@@ -1,3 +1,6 @@
+import 'leaflet/dist/leaflet.css';
+import * as L from 'leaflet';
+import {vlpTrails,vlpOrienteering} from './parkmaps.js';
 
 function vlpMap(debugMode) {
     var useHighAccuracy = true;
@@ -35,10 +38,10 @@ function vlpMap(debugMode) {
     }
     
     var map_bounds = new L.LatLngBounds(map.unproject([0, h], cz), map.unproject([w, 0], cz));
-    var parkplanLayer = L.imageOverlay('img/parkplan.jpg', map_bounds,{attribution:'<a href="https://dbdplanning.com/">Destination by Design</a>'});
-    var parkplanHybridLayer = L.imageOverlay('img/parkplanhybrid.jpg', map_bounds);
-    var photoLayer = L.imageOverlay('img/photo.jpg', map_bounds,{attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`});
-    var terrainLayer =L.imageOverlay('img/terrain.jpg', map_bounds,{attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`});
+    var parkplanLayer = L.imageOverlay('./img/parkplan.jpg', map_bounds,{attribution:'<a href="https://dbdplanning.com/">Destination by Design</a>'});
+    var parkplanHybridLayer = L.imageOverlay('./img/parkplanhybrid.jpg', map_bounds);
+    var photoLayer = L.imageOverlay('./img/photo.jpg', map_bounds,{attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`});
+    var terrainLayer =L.imageOverlay('./img/terrain.jpg', map_bounds,{attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`});
     var baseMaps = {"Park Plan":parkplanLayer,"Hybrid Park Plan":parkplanHybridLayer,"Photo": photoLayer,"Terrain": terrainLayer};
     var overlayMaps = {};
     
@@ -102,3 +105,7 @@ function vlpMap(debugMode) {
     
     map.addLayer(overlayMaps[yahText]);
 }
+
+window.vlpMap = vlpMap;
+
+export {vlpMap};

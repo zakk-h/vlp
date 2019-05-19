@@ -1070,4 +1070,7 @@ var vlpOrienteering = {
 		[35.770785,-81.553161,"Marker 8"],
 		[35.775367,-81.547280,"Marker 9"],
 		[35.770126,-81.564404,"Marker 10"]
-	]}
+	]
+};
+
+export {vlpTrails,vlpOrienteering};
