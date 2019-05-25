@@ -12,7 +12,6 @@ function vlpMap(debugMode) {
     var useHighAccuracy = true;
     var vlpDebug = debugMode ? console.warn : function() {return;};
     
-    var burkeGISMap = 'http://gis.burkenc.org/default.htm?PIN=2744445905';
     var w = 1630,
         h = 908;
     var gpsP = [[35.7782,-81.5718],[35.7607,-81.5347]];
@@ -25,6 +24,10 @@ function vlpMap(debugMode) {
         zoom: 3,
         crs: L.CRS.Simple
     });
+    
+    if (USING_CORDOVA) {
+        map.attributionControl.setPrefix('Leaflet');
+    }
     
     var cz = map.getMaxZoom()-2;
     function gps(latitude,longitude)
@@ -44,10 +47,21 @@ function vlpMap(debugMode) {
     }
     
     var map_bounds = new L.LatLngBounds(map.unproject([0, h], cz), map.unproject([w, 0], cz));
-    var parkplanLayer = L.imageOverlay(img_parkplan, map_bounds,{attribution:'<a href="https://dbdplanning.com/">Destination by Design</a>'});
-    var parkplanHybridLayer = L.imageOverlay(img_parkplanhybrid, map_bounds);
-    var photoLayer = L.imageOverlay(img_photo, map_bounds,{attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`});
-    var terrainLayer =L.imageOverlay(img_terrain, map_bounds,{attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`});
+    var parkplanLayer,parkplanHybridLayer,photoLayer,terrainLayer;
+
+    if (USING_CORDOVA) {
+        parkplanLayer = L.imageOverlay(img_parkplan, map_bounds,{attribution:'Destination by Design'});
+        parkplanHybridLayer = L.imageOverlay(img_parkplanhybrid, map_bounds);
+        photoLayer = L.imageOverlay(img_photo, map_bounds,{attribution:'gis.burkenc</a>'});
+        terrainLayer =L.imageOverlay(img_terrain, map_bounds,{attribution:'gis.burkenc</a>'});
+    } else {
+        var burkeGISMap = 'http://gis.burkenc.org/default.htm?PIN=2744445905';
+        parkplanLayer = L.imageOverlay(img_parkplan, map_bounds,{attribution:'<a href="https://dbdplanning.com/">Destination by Design</a>'});
+        parkplanHybridLayer = L.imageOverlay(img_parkplanhybrid, map_bounds);
+        photoLayer = L.imageOverlay(img_photo, map_bounds,{attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`});
+        terrainLayer =L.imageOverlay(img_terrain, map_bounds,{attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`});
+    }
+
     var baseMaps = {"Park Plan":parkplanLayer,"Hybrid Park Plan":parkplanHybridLayer,"Photo": photoLayer,"Terrain": terrainLayer};
     var overlayMaps = {};
     
@@ -87,7 +101,11 @@ function vlpMap(debugMode) {
     
     L.control.layers(baseMaps, overlayMaps, {position:'topleft'}).addTo(map);
     map.setMaxBounds(map_bounds);
-    map.attributionControl.addAttribution('<a href="https://friendsofthevaldeserec.org">Friends of the Valdese Rec</a>');
+    if (USING_CORDOVA) {
+        map.attributionControl.addAttribution('Friends of the Valdese Rec');
+    } else {
+        map.attributionControl.addAttribution('<a href="https://friendsofthevaldeserec.org">Friends of the Valdese Rec</a>');
+    }
     
     map.on('locationfound', function(e) {yahMarker.setLatLng(gps(e.latlng.lat,e.latlng.lng));vlpDebug('locate',e.latlng);});
     map.on('locationerror', function(e) {console.warn('location failed',e.message);});

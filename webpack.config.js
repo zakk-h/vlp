@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
@@ -17,5 +18,11 @@ module.exports = {
             { test: /\.css$/, use: ["style-loader","css-loader"] },
             { test: /\.(png|svg|jpe?g|gif|woff2?|ttf|eot)$/, use: [{loader:'file-loader',options: {name:'[name].[ext]'}}] },
         ]
-    }
+    },
+    plugins: [
+        new webpack.DefinePlugin({
+            'USING_CORDOVA': true,
+            'USING_WEB': false
+          })
+    ]
 }
