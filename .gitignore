@@ -2,3 +2,6 @@
 /platforms/
 /plugins/
 /www/
+/res/android/
+/res/ios/
+.DS_Store
