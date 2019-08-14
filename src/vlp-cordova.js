@@ -1,5 +1,5 @@
-
 import './cordova.html';
+import './about.htm';
 import {vlpMap} from './vlp.js';
 
 var app = {
@@ -13,10 +13,10 @@ var app = {
         vlpMap(false);
     },
     onPause: function() {
-        console.warn('-----------------PAUSE----------------');
+        //console.warn('-----------------PAUSE----------------');
     },
     onResume: function() {
-        console.warn('-----------------RESUME---------------');
+        //console.warn('-----------------RESUME---------------');
     },
 };
 

@@ -15,6 +15,7 @@ module.exports = {
     module: {
         rules: [
             { test: /cordova\.html$/, use: [{loader:"file-loader",options:{name:"index.html"}}] },
+            { test: /\.htm$/, use: [{loader:"file-loader",options:{name:'[name].html'}}] },
             { test: /\.css$/, use: ["style-loader","css-loader"] },
             { test: /\.(png|svg|jpe?g|gif|woff2?|ttf|eot)$/, use: [{loader:'file-loader',options: {name:'[name].[ext]'}}] },
         ]

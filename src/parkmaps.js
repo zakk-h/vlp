@@ -615,6 +615,7 @@ var vlpTrails = [
 		]
 	}, {
 		"name":"Lime Connector",
+		"secret":true,
 		"color":"#00FF00",
 		"dash":true,
 		"miles":0.25,
@@ -667,6 +668,7 @@ var vlpTrails = [
 		]
 	}, {
 		"name":"Red Dot Connector",
+		"secret":true,
 		"color":"#880000",
 		"miles":0.15,
 		"dash":true,
@@ -702,6 +704,7 @@ var vlpTrails = [
 		]
 	}, {
 		"name":"Black Dot Connector",
+		"secret":true,
 		"color":"#000000",
 		"dash":true,
 		"miles":0.37,
