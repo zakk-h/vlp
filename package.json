@@ -5,6 +5,7 @@
   "description": "Navigating the new park and showing park plan overlays",
   "scripts": {
     "build": "webpack --mode production",
+    "build-cordova": "webpack --config webpack.cordova.js --mode production",
     "make-images": "cordova-image-maker --config ./config.xml --icon ./res/icon.png --splash ./res/splash.png",
     "make-screenshot": "adb shell screencap -p | sed 's/\r$//' > screen.png",
     "cordova-browser": "cordova run browser",
