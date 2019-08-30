@@ -1,5 +1,5 @@
 import './cordova.html';
-import './about.htm';
+//import './about.htm';
 import {vlpMap} from './vlp.js';
 
 var app = {
