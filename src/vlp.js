@@ -1,3 +1,4 @@
+ 
 import 'leaflet/dist/leaflet.css';
 import 'leaflet/dist/images/marker-shadow.png';
 import 'leaflet/dist/images/marker-icon-2x.png';
@@ -8,7 +9,6 @@ import * as img_parkplan from './img/parkplan.jpg';
 import * as img_parkplanhybrid from './img/parkplanhybrid.jpg';
 import * as img_photo from './img/photo.jpg';
 import * as img_terrain from './img/terrain.jpg';
-
 L.Control.Watermark = L.Control.extend({
     onAdd: function(map) {
         var img = L.DomUtil.create('img');
@@ -91,11 +91,11 @@ function vlpMap(debugMode) {
     
     vlpTrails.forEach(
         function(v,i) {
-            var nlo = {color:v.color,opacity:1.0,weight:9};
+            var nlo = {color:v.color,opacity:1.0,weight:9}; //weight was 9
             if (v.secret) return;
             if (v.dash) {
                 nlo['dashArray'] = "10";
-                nlo['weight'] = 5;
+                nlo['weight'] = 5; //was 5
             }
             var newLayer = L.polyline(gpsList(v.trail), nlo);
             var tt = `<span style="color:${v.color}">${v.name} </span><span class="mileage">(${v.miles} miles)</span>`;
@@ -113,12 +113,12 @@ function vlpMap(debugMode) {
             markerPts.push(L.marker(gps(v[0],v[1])).bindPopup(v[2]));
         }
     );
-    var orienteeringTrail = L.polyline(gpsList(vlpOrienteering.trail), {color: '#000',fillOpacity:0.5,weight:4});
+    var orienteeringTrail = L.polyline(gpsList/*(vlpOrienteering.trail)*/, {color: '#000',fillOpacity:0.5,weight:4});
     markerPts.push(orienteeringTrail);
-    overlayMaps['Orienteering (6 miles)'] = L.layerGroup(markerPts);
+    overlayMaps['Landmarks & Sightseeing'] = L.layerGroup(markerPts);
     
     var yahIcon = L.divIcon({className: 'yah-divicon',iconAnchor:[0,24],labelAnchor:[-6, 0],popupAnchor:[0, -36],html:'<span/>'});
-    var yahMarker = L.marker(gps(35.75640,-81.58016),{icon:yahIcon}).bindTooltip('you are here');
+    var yahMarker = L.marker(gps(35.75640,-81.58016),{icon:yahIcon}).bindTooltip('You are here');
     var yahText = 'You Are Here';
     overlayMaps[yahText] = yahMarker;
     
@@ -140,7 +140,7 @@ function vlpMap(debugMode) {
         if (e.name == yahText) {
             vlpDebug((useHighAccuracy ? 'U' : 'Not u')+'sing high accuracy location');
             map.locate({watch: true, enableHighAccuracy:useHighAccuracy});
-            map.setZoom(2);
+            map.setZoom(1);
         }
     });
     
