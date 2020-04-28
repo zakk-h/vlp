@@ -9,12 +9,13 @@ module.exports = {
         maxAssetSize: 512000
     },    
     output: {
-		path: path.resolve(__dirname, 'www'),
+		path: path.resolve(__dirname, 'build'),
 		filename: 'vlp.js'
     },
     module: {
         rules: [
             { test: /webapp\.html$/, use: [{loader:"file-loader",options:{name:"index.html"}}] },
+            { test: /app\.manifest$/, use: [{loader:'file-loader',options: {name:'manifest.json'}}] },
             { test: /\.htm$/, use: [{loader:"file-loader",options:{name:'[name].html'}}] },
             { test: /\.css$/, use: ["style-loader","css-loader"] },
             { test: /\.(png|svg|jpe?g|gif|woff2?|ttf|eot)$/, use: [{loader:'file-loader',options: {name:'[name].[ext]'}}] },

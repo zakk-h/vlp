@@ -4,8 +4,9 @@
   "version": "0.9.5",
   "description": "Navigating the new park and showing park plan overlays",
   "scripts": {
+    "pwa": "workbox generateSW",
     "build": "webpack --mode production",
-    "serve": "http-server -p 1336 www -c-1",
+    "serve": "http-server -p 1336 build -c-1",
     "make-screenshot": "adb shell screencap -p | sed 's/\r$//' > screen.png",
     "debug-android": "adb logcat",
     "test": "echo \"Error: no test specified\" && exit 1"
