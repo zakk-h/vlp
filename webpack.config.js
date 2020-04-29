@@ -26,10 +26,12 @@ module.exports = {
     plugins: [
         new webpack.DefinePlugin({
             'USING_CORDOVA': false,
+            'ADD_ZAKKLAB': true,
             'USING_WEB': true
           }),
         new workboxPlugin.GenerateSW({
             swDest: 'sw.js',
+            //globPatterns: ['**/*.{html,js,css}'],
             clientsClaim: true,
             skipWaiting: true,
         })

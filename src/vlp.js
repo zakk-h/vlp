@@ -1,4 +1,3 @@
- 
 import 'leaflet/dist/leaflet.css';
 import 'leaflet/dist/images/marker-shadow.png';
 import 'leaflet/dist/images/marker-icon-2x.png';
@@ -9,6 +8,8 @@ import * as img_parkplan from './img/parkplan.jpg';
 import * as img_parkplanhybrid from './img/parkplanhybrid.jpg';
 import * as img_photo from './img/photo.jpg';
 import * as img_terrain from './img/terrain.jpg';
+import zakklab from './zakklab.json';
+
 L.Control.Watermark = L.Control.extend({
     onAdd: function(map) {
         var img = L.DomUtil.create('img');
@@ -89,38 +90,45 @@ function vlpMap(debugMode) {
     
     map.addLayer(parkplanHybridLayer);
     
-    vlpTrails.forEach(
-        function(v,i) {
-            var nlo = {color:v.color,opacity:1.0,weight:9}; //weight was 9
-            if (v.secret) return;
-            if (v.dash) {
-                nlo['dashArray'] = "10";
-                nlo['weight'] = 5; //was 5
-            }
-            var newLayer = L.polyline(gpsList(v.trail), nlo);
-            var tt = `<span style="color:${v.color}">${v.name} </span><span class="mileage">(${v.miles} miles)</span>`;
-            newLayer.bindTooltip(tt,{ 'sticky': true });
-            overlayMaps[tt] = newLayer;
-            if (!v.optional) {
-                map.addLayer(newLayer);
-            }
+    function vlpAddTrail(v,i) {
+        var nlo = {color:v.color,opacity:1.0,weight:9}; //weight was 9
+        if (v.secret) return;
+        if (v.dash) {
+            nlo['dashArray'] = "10";
+            nlo['weight'] = 5; //was 5
         }
-    );
+        var newLayer = L.polyline(gpsList(v.trail), nlo);
+        var tt = `<span style="color:${v.color}">${v.name} </span><span class="mileage">(${v.miles} miles)</span>`;
+        newLayer.bindTooltip(tt,{ 'sticky': true });
+        overlayMaps[tt] = newLayer;
+        if (!v.optional) {
+            map.addLayer(newLayer);
+        }
+    }
+    vlpTrails.forEach(vlpAddTrail);
+    if (ADD_ZAKKLAB) {
+        zakklab.forEach(vlpAddTrail);
+    }
     
     var markerPts = [];
-    vlpOrienteering.markers.forEach(
+    vlpOrienteering.forEach(
         function(v,i) {
             markerPts.push(L.marker(gps(v[0],v[1])).bindPopup(v[2]));
         }
     );
-    var orienteeringTrail = L.polyline(gpsList/*(vlpOrienteering.trail)*/, {color: '#000',fillOpacity:0.5,weight:4});
-    markerPts.push(orienteeringTrail);
+    //var orienteeringTrail = L.polyline(gpsList(vlpOrienteeringTrail), {color: '#000',fillOpacity:0.5,weight:4});
+    //markerPts.push(orienteeringTrail);
     overlayMaps['Landmarks & Sightseeing'] = L.layerGroup(markerPts);
     
     var yahIcon = L.divIcon({className: 'yah-divicon',iconAnchor:[0,24],labelAnchor:[-6, 0],popupAnchor:[0, -36],html:'<span/>'});
     var yahMarker = L.marker(gps(35.75640,-81.58016),{icon:yahIcon}).bindTooltip('You are here');
+    var yahPopup = L.popup();
     var yahText = 'You Are Here';
+    var yahLatLng = false;
     overlayMaps[yahText] = yahMarker;
+    
+    yahPopup.setContent('no location');
+    yahMarker.bindPopup(yahPopup);
     
     L.control.layers(baseMaps, overlayMaps, {position:'topright'}).addTo(map);
     map.setMaxBounds(map_bounds);
@@ -131,7 +139,12 @@ function vlpMap(debugMode) {
         map.attributionControl.addAttribution('<a href="https://friendsofthevaldeserec.org">Friends of the Valdese Rec</a>');
     }
     
-    map.on('locationfound', function(e) {yahMarker.setLatLng(gps(e.latlng.lat,e.latlng.lng));vlpDebug('locate',e.latlng);});
+    map.on('locationfound', function(e) {
+        yahLatLng = e.latlng;
+        yahMarker.setLatLng(gps(yahLatLng.lat,yahLatLng.lng));
+        yahPopup.setContent('('+yahLatLng.lat+','+yahLatLng.lng+')');
+        vlpDebug('locate',e.latlng);}
+        );
     map.on('locationerror', function(e) {alert(e.message);});
     
     //map.locate({watch: true, enableHighAccuracy:useHighAccuracy});
