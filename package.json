@@ -4,7 +4,6 @@
   "version": "0.9.5",
   "description": "Navigating the new park and showing park plan overlays",
   "scripts": {
-    "pwa": "workbox generateSW",
     "build": "webpack --mode production",
     "serve": "http-server -p 1336 build -c-1",
     "make-screenshot": "adb shell screencap -p | sed 's/\r$//' > screen.png",
@@ -25,6 +24,7 @@
     "file-loader": "^3.0.1",
     "style-loader": "^0.23.1",
     "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.6"
+    "webpack-cli": "^3.3.6",
+    "workbox-webpack-plugin": "^5.1.3"
   }
 }

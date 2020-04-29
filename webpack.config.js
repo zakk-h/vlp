@@ -1,5 +1,7 @@
-const webpack = require('webpack');
-const path = require('path');
+const
+    webpack = require('webpack'),
+    path = require('path'),
+    workboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
     entry: './src/vlp-web.js',
@@ -25,6 +27,11 @@ module.exports = {
         new webpack.DefinePlugin({
             'USING_CORDOVA': false,
             'USING_WEB': true
-          })
+          }),
+        new workboxPlugin.GenerateSW({
+            swDest: 'sw.js',
+            clientsClaim: true,
+            skipWaiting: true,
+        })
     ]
 }
