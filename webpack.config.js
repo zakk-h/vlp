@@ -24,9 +24,7 @@ module.exports = {
     },
     plugins: [
         new webpack.DefinePlugin({
-            'USING_CORDOVA': false,
-            'ADD_ZAKKLAB': true,
-            'USING_WEB': true
+            'ADD_ZAKKLAB': false
           }),
         new workboxPlugin.GenerateSW({
             swDest: 'sw.js',
@@ -34,7 +32,7 @@ module.exports = {
             clientsClaim: true,
             skipWaiting: true,
             runtimeCaching: [{
-                urlPattern: new RegExp('https://[abc].tile.openstreetmap.org/[0-9]+/[0-9]+/[0-9]+.png'),
+				urlPattern: new RegExp('https://static.valdese.net/osm/.+'),
                 handler: 'StaleWhileRevalidate'
               }]
         })
