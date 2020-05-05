@@ -15,5 +15,5 @@ function ready(callback){
 }
 
 ready(function(){
-    vlpMap(false);
+    vlpMap();
 });

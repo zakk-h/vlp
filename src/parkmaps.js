@@ -8,13 +8,18 @@ const osmTileServer = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 
 var vlpConfig = {
 	gpsBoundsValdese: [[35.721650, -81.597445],[35.784838, -81.514709]],
-	osmZoomRange: [10,14],
+	gpsBoundsParkPlan: [[35.7632988,-81.56665],[35.77711,-81.5426]],
+	gpsBoundsParkPhoto: [[35.7785,-81.5345],[35.7607,-81.5718]],
+	osmZoomRange: [8,15],
 	osmTileRanges: {
+		8: [[66,98],[73,102]],
+		9: [[136,199],[143,203]],
 		10: [[276,401],[283,404]],
 		11: [[556,804],[563,807]],
 		12: [[1115,1608],[1124,1615]],
 		13: [[2234,3219],[2244,3227]],
-		14: [[4475,6442],[4486,6452]]
+		14: [[4475,6442],[4486,6452]],
+		15: [[8956,12890],[8965,12898]]
 	},
 	urlOSMTileServer: osmTileServer,
 	urlTileServer: 'https://static.valdese.net/osm/{z}/{x}_{y}.png'

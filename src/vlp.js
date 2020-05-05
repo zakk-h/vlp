@@ -6,14 +6,19 @@ import './vlp-icon.js';
 import {vlpConfig,vlpTrails,vlpOrienteering} from './parkmaps.js';
 import * as blankTile from './img/blankTile.png';
 import * as fvr_logo from './img/fvrlogopng.png';
-import * as img_parkplan from './img/parkplan.jpg';
-import * as img_parkplanhybrid from './img/parkplanhybrid.jpg';
+import * as img_parkplan from './img/dbd-parkplan.png';
 import * as img_photo from './img/photo.jpg';
 import * as img_terrain from './img/terrain.jpg';
 import zakklab from './zakklab.json';
 
 const burkeGISMap = 'http://gis.burkenc.org/default.htm?PIN=2744445905';
-const addZakklab = location.href.search('zakklab');
+const addZakklab = location.href.indexOf('zakklab')>=0;
+var vlpDebug = function() {};
+if (location.href.indexOf('debug')>0) {
+	vlpDebug = console.log;
+	vlpDebug('Debug mode is activated for vlp app',location.href);
+	if (addZakklab) vlpDebug('zakklab extension has been enabled');
+}
 
 var WatermarkControl = L.Control.extend({
 	onAdd: function(map) {
@@ -52,18 +57,16 @@ var ValdeseTileLayer = L.TileLayer.extend({
 			}
 		}
 
-		console.log('blank tile for ',coords);
+		vlpDebug('blank tile for ',coords);
 		return blankTile;
 	}
 });
 
-function vlpMap(debugMode) {
+function vlpMap() {
 	var useHighAccuracy = true;
-	var vlpDebug = debugMode ? console.warn : function() {return;};
 	
 	var pixels = {w:1630,h:908};
-	var gpsP = [[35.7782,-81.5347],[35.7607,-81.5718]];
-	var map_bounds = new L.LatLngBounds(gpsP);
+	var map_bounds = new L.LatLngBounds(vlpConfig.gpsBoundsParkPhoto);
 	var valdese_area = vlpConfig.gpsBoundsValdese;
 	var gpsCenter = map_bounds.getCenter();
 	var map = L.map('image-map',{center: gpsCenter, minZoom: vlpConfig.osmZoomRange[0], zoom: 13, maxBounds:valdese_area});
@@ -74,19 +77,18 @@ function vlpMap(debugMode) {
 		});
 	map.addLayer(mapTiles);
 	function gps(latitude,longitude) { return new L.LatLng(latitude,longitude); }
-	//map.attributionControl.setPrefix('Leaflet');
+	map.attributionControl.setPrefix('');
 	
 	new WatermarkControl({position:'bottomleft'}).addTo(map);
 	new ZoomViewer({position:'topleft'}).addTo(map);
 
-	var parkplanLayer = L.imageOverlay(img_parkplan, map_bounds,{interactive:true,attribution:'<a href="https://dbdplanning.com/">Destination by Design</a>',opacity:0.8});
-	var parkplanHybridLayer = L.imageOverlay(img_parkplanhybrid, map_bounds,{interactive:true});
-	var photoLayer = L.imageOverlay(img_photo, map_bounds,{interactive:true,attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`});
-	var terrainLayer =L.imageOverlay(img_terrain, map_bounds,{interactive:true,attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`});
-	var baseMaps = {"Hybrid Park Plan":parkplanHybridLayer,"Park Plan":parkplanLayer,"Photo": photoLayer,"Terrain": terrainLayer};
+	var parkplanLayer = L.imageOverlay(img_parkplan, vlpConfig.gpsBoundsParkPlan,{attribution:'<a href="https://dbdplanning.com/">Destination by Design</a>'});
+	var photoLayer = L.imageOverlay(img_photo, map_bounds,{attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`});
+	var terrainLayer =L.imageOverlay(img_terrain, map_bounds,{attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`});
+	var baseMaps = {"Park Plan":parkplanLayer,"Photo": photoLayer,"Terrain": terrainLayer};
 	var overlayMaps = {};
 	
-	map.addLayer(parkplanHybridLayer);
+	map.addLayer(parkplanLayer);
 	
 	function vlpAddTrail(v,i) {
 		var nlo = {color:v.color,opacity:1.0,weight:9};
@@ -118,21 +120,16 @@ function vlpMap(debugMode) {
 	
 	var yahIcon = L.divIcon({className: 'yah-divicon',iconAnchor:[0,24],labelAnchor:[-6, 0],popupAnchor:[0, -36],html:'<span/>'});
 	var yahMarker = L.marker(gps(35.75640,-81.58016),{icon:yahIcon}).bindTooltip('You are here');
-	var yahPopup = L.popup();
 	var yahText = 'You Are Here';
 	var yahLatLng = false;
 	overlayMaps[yahText] = yahMarker;
 	
-	yahPopup.setContent('no location');
-	yahMarker.bindPopup(yahPopup);
-	
 	L.control.layers(baseMaps, overlayMaps, {position:'topright'}).addTo(map);
-	map.attributionControl.addAttribution('<a href="https://friendsofthevaldeserec.org">Friends of the Valdese Rec</a>');
+	map.attributionControl.addAttribution('<a href="https://friendsofthevaldeserec.org">FVR</a>');
 	
 	map.on('locationfound', function(e) {
 		yahLatLng = e.latlng;
-		yahMarker.setLatLng(gps(yahLatLng.lat,yahLatLng.lng));
-		yahPopup.setContent('('+yahLatLng.lat+','+yahLatLng.lng+')');
+		yahMarker.setLatLng([yahLatLng.lat,yahLatLng.lng]);
 		vlpDebug('locate',e.latlng);}
 		);
 	map.on('locationerror', function(e) {alert(e.message);});
@@ -151,7 +148,11 @@ function vlpMap(debugMode) {
 			map.stopLocate();
 		}
 	});
-	
+
+	map.on('click',function(e){
+		vlpDebug(e.latlng);
+	});
+
 	map.addLayer(overlayMaps[yahText]);
 	
 	map.fitBounds(valdese_area);

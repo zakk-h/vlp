@@ -27,7 +27,8 @@ module.exports = {
             'ADD_ZAKKLAB': false
           }),
         new workboxPlugin.GenerateSW({
-            swDest: 'sw.js',
+			swDest: 'sw.js',
+			maximumFileSizeToCacheInBytes: 3000000,
             //globPatterns: ['**/*.{html,js,css}'],
             clientsClaim: true,
             skipWaiting: true,
