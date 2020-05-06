@@ -4,6 +4,7 @@ import 'leaflet/dist/images/marker-icon-2x.png';
 import * as L from 'leaflet';
 import './vlp-icon.js';
 import {vlpConfig,vlpTrails,vlpOrienteering} from './parkmaps.js';
+import * as yahMarkerSVG from './img/yah.svg';
 import * as blankTile from './img/blankTile.png';
 import * as fvr_logo from './img/fvrlogopng.png';
 import * as img_parkplan from './img/dbd-parkplan.png';
@@ -12,12 +13,17 @@ import * as img_terrain from './img/terrain.jpg';
 import zakklab from './zakklab.json';
 
 const burkeGISMap = 'http://gis.burkenc.org/default.htm?PIN=2744445905';
-const addZakklab = location.href.indexOf('zakklab')>=0;
+const addZakklab = (location.href.indexOf('zakklab')>=0);
 var vlpDebug = function() {};
 if (location.href.indexOf('debug')>0) {
 	vlpDebug = console.log;
 	vlpDebug('Debug mode is activated for vlp app',location.href);
 	if (addZakklab) vlpDebug('zakklab extension has been enabled');
+}
+
+function sprintf(s,...a) {
+	var i=0;
+	return s.replace(/%[%dfos]/g, function (m) { return m=="%%" ? "%" : a[i++].toString(); });
 }
 
 var WatermarkControl = L.Control.extend({
@@ -37,11 +43,11 @@ var WatermarkControl = L.Control.extend({
 var ZoomViewer = L.Control.extend({
 	onAdd: function(map){
 		var gauge = L.DomUtil.create('div');
-		gauge.style.width = '160px';
+		gauge.style.width = '28px';
 		gauge.style.background = 'rgba(255,255,255,0.5)';
 		gauge.style.textAlign = 'left';
 		map.on('zoomstart zoom zoomend', function(ev){
-			gauge.innerHTML = 'Zoom: ' + map.getZoom();
+			gauge.innerHTML = map.getZoom();
 		})
 		return gauge;
 	}
@@ -69,9 +75,10 @@ function vlpMap() {
 	var map_bounds = new L.LatLngBounds(vlpConfig.gpsBoundsParkPhoto);
 	var valdese_area = vlpConfig.gpsBoundsValdese;
 	var gpsCenter = map_bounds.getCenter();
-	var map = L.map('image-map',{center: gpsCenter, minZoom: vlpConfig.osmZoomRange[0], zoom: 13, maxBounds:valdese_area});
+	var map = L.map('image-map',{center: gpsCenter, minZoom: vlpConfig.osmZoomRange[0], zoom: vlpConfig.osmZoomRange[1], maxBounds:valdese_area});
 	var mapTiles = new ValdeseTileLayer(vlpConfig.urlTileServer, {
 		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+		crossOrigin: true,
 		minZoom: vlpConfig.osmZoomRange[0],
 		maxNativeZoom: vlpConfig.osmZoomRange[1]
 		});
@@ -118,29 +125,33 @@ function vlpMap() {
 	);
 	overlayMaps['Landmarks & Sightseeing'] = L.layerGroup(markerPts);
 	
-	var yahIcon = L.divIcon({className: 'yah-divicon',iconAnchor:[0,24],labelAnchor:[-6, 0],popupAnchor:[0, -36],html:'<span/>'});
+	var yahIcon = L.divIcon({
+		className: 'yah-divicon',
+		html: sprintf('<img style="background:rgba(255,255,0,0.5); border:0; border-radius:50%;" src="%s">',yahMarkerSVG),
+		iconSize: [24, 24],
+		iconAnchor: [12, 0]
+    });
 	var yahMarker = L.marker(gps(35.75640,-81.58016),{icon:yahIcon}).bindTooltip('You are here');
-	var yahText = 'You Are Here';
 	var yahLatLng = false;
-	overlayMaps[yahText] = yahMarker;
-	
+	overlayMaps['You Are Here'] = yahMarker;
+
 	L.control.layers(baseMaps, overlayMaps, {position:'topright'}).addTo(map);
 	map.attributionControl.addAttribution('<a href="https://friendsofthevaldeserec.org">FVR</a>');
 	
 	map.on('locationfound', function(e) {
+		var firstLocationNotify = (yahLatLng === false);
 		yahLatLng = e.latlng;
+		vlpDebug('locate',yahLatLng);
 		yahMarker.setLatLng([yahLatLng.lat,yahLatLng.lng]);
-		vlpDebug('locate',e.latlng);}
-		);
-	map.on('locationerror', function(e) {alert(e.message);});
-	
-	map.on('overlayadd',function(e) {
-		if (e.name == yahText) {
-			vlpDebug((useHighAccuracy ? 'U' : 'Not u')+'sing high accuracy location');
-			map.locate({watch: true, enableHighAccuracy:useHighAccuracy});
-			map.setZoom(1);
+		
+		if (firstLocationNotify) {
+			// add the Icon to the map on first locationfound
+			map.addLayer(yahMarker);
+			
+			//map.flyTo(yahLatLng);
 		}
 	});
+	map.on('locationerror', function(e) {alert(e.message);});
 	
 	map.on('overlayremove',function(e) {
 		if (e.name == yahText) {
@@ -153,9 +164,10 @@ function vlpMap() {
 		vlpDebug(e.latlng);
 	});
 
-	map.addLayer(overlayMaps[yahText]);
-	
-	map.fitBounds(valdese_area);
+	map.fitBounds(vlpConfig.gpsBoundsParkPlan);
+
+	vlpDebug((useHighAccuracy ? 'U' : 'Not u')+'sing high accuracy location');
+	map.locate({watch: true, enableHighAccuracy:useHighAccuracy});
 }
 
 export {vlpMap};

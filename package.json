@@ -1,20 +1,17 @@
 {
   "name": "vlp",
   "displayName": "Valdese Lakeside Park",
-  "version": "0.9.5",
+  "version": "0.9.6",
   "description": "Navigating the new park and showing park plan overlays",
   "scripts": {
     "build": "webpack --mode production",
-    "serve": "http-server -p 1336 build -c-1",
-    "make-screenshot": "adb shell screencap -p | sed 's/\r$//' > screen.png",
-    "debug-android": "adb logcat",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "serve": "http-server -p 1336 build -c-1"
   },
-  "author": "Noteworthy Software, Inc.",
+  "author": "Valdese Network",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "git://github.com/nwsw/vlp.git"
+    "url": "https://github.com/valdese-net/vlp.git"
   },
   "dependencies": {
     "leaflet": "^1.5.1"
