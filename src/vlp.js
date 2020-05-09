@@ -44,8 +44,9 @@ var ZoomViewer = L.Control.extend({
 	onAdd: function(map){
 		var gauge = L.DomUtil.create('div');
 		gauge.style.width = '28px';
-		gauge.style.background = 'rgba(255,255,255,0.5)';
-		gauge.style.textAlign = 'left';
+		gauge.style.overflow = 'hidden';
+		gauge.style.background = 'rgba(250,248,245,0.6)';
+		gauge.style.textAlign = 'center';
 		map.on('zoomstart zoom zoomend', function(ev){
 			gauge.innerHTML = map.getZoom();
 		})
@@ -78,6 +79,7 @@ function vlpMap() {
 	var map = L.map('image-map',{center: gpsCenter, minZoom: vlpConfig.osmZoomRange[0], zoom: vlpConfig.osmZoomRange[1], maxBounds:valdese_area});
 	var mapTiles = new ValdeseTileLayer(vlpConfig.urlTileServer, {
 		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+		errorTileUrl: blankTile,
 		crossOrigin: true,
 		minZoom: vlpConfig.osmZoomRange[0],
 		maxNativeZoom: vlpConfig.osmZoomRange[1]
@@ -127,9 +129,9 @@ function vlpMap() {
 	
 	var yahIcon = L.divIcon({
 		className: 'yah-divicon',
-		html: sprintf('<img style="background:rgba(255,255,0,0.5); border:0; border-radius:50%;" src="%s">',yahMarkerSVG),
-		iconSize: [24, 24],
-		iconAnchor: [12, 0]
+		html: sprintf('<img style="background:rgba(255,255,0,0.75); border:0; padding: 6px; border-radius:50%;" src="%s">',yahMarkerSVG),
+		iconSize: [36, 36],
+		iconAnchor: [18, 30]
     });
 	var yahMarker = L.marker(gps(35.75640,-81.58016),{icon:yahIcon}).bindTooltip('You are here');
 	var yahLatLng = false;

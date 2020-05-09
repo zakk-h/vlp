@@ -33,7 +33,8 @@ module.exports = {
             clientsClaim: true,
             skipWaiting: true,
             runtimeCaching: [{
-				urlPattern: new RegExp('https://static.valdese.net/osm/.+'),
+				//urlPattern: new RegExp('https://static.valdese.net/osm/.+'),
+				urlPattern: new RegExp('https://[a-c].tile.openstreetmap.org/[0-9]+/[0-9]+/[0-9]+.png'),
                 handler: 'StaleWhileRevalidate'
               }]
         })

@@ -22,7 +22,8 @@ var vlpConfig = {
 		15: [[8956,12890],[8965,12898]]
 	},
 	urlOSMTileServer: osmTileServer,
-	urlTileServer: 'https://static.valdese.net/osm/{z}/{x}_{y}.png'
+	//urlTileServer: 'https://static.valdese.net/osm/{z}/{x}_{y}.png'
+	urlTileServer: osmTileServer
 };
 
 var vlpTrails = [
