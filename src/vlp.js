@@ -134,6 +134,7 @@ function vlpMap() {
 		iconAnchor: [18, 30]
     });
 	var yahMarker = L.marker(gps(35.75640,-81.58016),{icon:yahIcon}).bindTooltip('You are here');
+	map.addLayer(yahMarker);
 
 	L.control.layers(baseMaps, overlayMaps, {position:'topright'}).addTo(map);
 	map.attributionControl.addAttribution('<a href="https://friendsofthevaldeserec.org">FVR</a>');
