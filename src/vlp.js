@@ -148,7 +148,10 @@ function vlpMap() {
 		}
 
 		yahMarker.setLatLng(yahLatLng);
-		map.flyTo(yahLatLng);
+		if (map_bounds.contains(yahLatLng)) {
+			vlpDebug('flying to parkplan location');
+			map.flyTo(yahLatLng);
+		}
 	});
 	map.on('locationerror', function(e) {
 		if (map.hasLayer(yahMarker)) {
