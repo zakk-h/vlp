@@ -1,6 +1,7 @@
 const {vlpConfig} = require('../src/parkmaps.js');
 const path = require('path');
 const fs = require('fs');
+const smartstring = require('./smartstring.js');
 
 // a tool for calculating gps area:
 // https://tools.geofabrik.de/calc/
@@ -12,21 +13,6 @@ const fs = require('fs');
 // find . -name '*.png' -print0 | xargs -0 -n1 -I{} sh -c 'zopflipng {} output.png; [ -f output.png ] && mv output.png {};'
 
 const sleepEvery = 9;
-
-var smartstringRe = /\{ *([\w_-]+) *\}/g;
-function smartstring(str, data) {
-	return str.replace(smartstringRe, function (str, key) {
-		var value = data[key];
-
-		if (value === undefined) {
-			throw new Error('No value for variable ' + str);
-
-		} else if (typeof value === 'function') {
-			value = value(data);
-		}
-		return value;
-	});
-}
 
 console.log('#!/usr/bin/bash');
 console.log('# Generate curl statements');

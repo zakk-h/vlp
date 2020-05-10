@@ -134,34 +134,29 @@ function vlpMap() {
 		iconAnchor: [18, 30]
     });
 	var yahMarker = L.marker(gps(35.75640,-81.58016),{icon:yahIcon}).bindTooltip('You are here');
-	var yahLatLng = false;
-	overlayMaps['You Are Here'] = yahMarker;
 
 	L.control.layers(baseMaps, overlayMaps, {position:'topright'}).addTo(map);
 	map.attributionControl.addAttribution('<a href="https://friendsofthevaldeserec.org">FVR</a>');
 	
 	map.on('locationfound', function(e) {
-		var firstLocationNotify = (yahLatLng === false);
-		yahLatLng = e.latlng;
+		var yahLatLng = e.latlng;
+		var firstLocationNotify = !map.hasLayer(yahMarker);
 		vlpDebug('locate',yahLatLng);
-		yahMarker.setLatLng([yahLatLng.lat,yahLatLng.lng]);
-		
-		if (firstLocationNotify) {
-			// add the Icon to the map on first locationfound
-			map.addLayer(yahMarker);
-			
-			//map.flyTo(yahLatLng);
-		}
-	});
-	map.on('locationerror', function(e) {alert(e.message);});
-	
-	map.on('overlayremove',function(e) {
-		if (e.name == yahText) {
-			vlpDebug('no longer tracking location');
-			map.stopLocate();
-		}
-	});
 
+		if (firstLocationNotify) {
+			map.addLayer(yahMarker);
+		}
+
+		yahMarker.setLatLng(yahLatLng);
+		map.flyTo(yahLatLng);
+	});
+	map.on('locationerror', function(e) {
+		if (map.hasLayer(yahMarker)) {
+			map.removeLayer(yahMarker);
+			alert(e.message);
+		}
+	});
+	
 	map.on('click',function(e){
 		vlpDebug(e.latlng);
 	});
