@@ -30,6 +30,7 @@ module.exports = {
 			swDest: 'sw.js',
 			maximumFileSizeToCacheInBytes: 3000000,
             //globPatterns: ['**/*.{html,js,css}'],
+			cleanupOutdatedCaches: true,
             clientsClaim: true,
             skipWaiting: true,
             runtimeCaching: [{

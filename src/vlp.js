@@ -8,8 +8,9 @@ import * as yahMarkerSVG from './img/yah.svg';
 import * as blankTile from './img/blankTile.png';
 import * as fvr_logo from './img/fvrlogopng.png';
 import * as img_parkplan from './img/dbd-parkplan.png';
-import * as img_photo from './img/photo.jpg';
-import * as img_terrain from './img/terrain.jpg';
+import * as img_parkboundary from './img/park-boundary.png';
+import * as img_photo from './img/park-satellite.jpg';
+import * as img_terrain from './img/park-contour.png';
 import zakklab from './zakklab.json';
 
 const burkeGISMap = 'http://gis.burkenc.org/default.htm?PIN=2744445905';
@@ -73,7 +74,7 @@ function vlpMap() {
 	var useHighAccuracy = true;
 	
 	var pixels = {w:1630,h:908};
-	var map_bounds = new L.LatLngBounds(vlpConfig.gpsBoundsParkPhoto);
+	var map_bounds = new L.LatLngBounds(vlpConfig.gpsBoundsParkPlan);
 	var valdese_area = vlpConfig.gpsBoundsValdese;
 	var gpsCenter = map_bounds.getCenter();
 	var map = L.map('image-map',{center: gpsCenter, minZoom: vlpConfig.osmZoomRange[0], zoom: vlpConfig.osmZoomRange[1], maxBounds:valdese_area});
@@ -91,10 +92,11 @@ function vlpMap() {
 	new WatermarkControl({position:'bottomleft'}).addTo(map);
 	new ZoomViewer({position:'topleft'}).addTo(map);
 
+	var parkboundaryLayer = L.imageOverlay(img_parkboundary, vlpConfig.gpsBoundsParkPlan);
 	var parkplanLayer = L.imageOverlay(img_parkplan, vlpConfig.gpsBoundsParkPlan,{attribution:'<a href="https://dbdplanning.com/">Destination by Design</a>'});
-	var photoLayer = L.imageOverlay(img_photo, map_bounds,{attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`});
-	var terrainLayer =L.imageOverlay(img_terrain, map_bounds,{attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`});
-	var baseMaps = {"Park Plan":parkplanLayer,"Photo": photoLayer,"Terrain": terrainLayer};
+	var photoLayer = L.imageOverlay(img_photo, [[35.760604, -81.570219],[35.778307, -81.534993]],{attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`});
+	var terrainLayer =L.imageOverlay(img_terrain, [[35.763224, -81.566366],[35.778292, -81.534960]],{attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`,opacity:0.6});
+	var baseMaps = {"Park Boundary":parkboundaryLayer,"Park Plan":parkplanLayer,"Photo": photoLayer,"Terrain": terrainLayer};
 	var overlayMaps = {};
 	
 	map.addLayer(parkplanLayer);

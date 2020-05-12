@@ -8,8 +8,7 @@ const osmTileServer = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 
 var vlpConfig = {
 	gpsBoundsValdese: [[35.721650, -81.597445],[35.784838, -81.514709]],
-	gpsBoundsParkPlan: [[35.7632988,-81.56665],[35.77711,-81.5426]],
-	gpsBoundsParkPhoto: [[35.7785,-81.5345],[35.7607,-81.5718]],
+	gpsBoundsParkPlan: [[35.76319,-81.56665],[35.7771,-81.54292]],
 	osmZoomRange: [8,15],
 	osmTileRanges: {
 		8: [[66,98],[73,102]],
