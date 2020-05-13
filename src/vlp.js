@@ -13,6 +13,7 @@ import * as img_photo from './img/park-satellite.jpg';
 import * as img_terrain from './img/park-contour.png';
 import zakklab from './zakklab.json';
 
+const FLYTO_LOCATION_INTERVAL = 30000;
 const burkeGISMap = 'http://gis.burkenc.org/default.htm?PIN=2744445905';
 const addZakklab = (location.href.indexOf('zakklab')>=0);
 var vlpDebug = function() {};
@@ -72,6 +73,7 @@ var ValdeseTileLayer = L.TileLayer.extend({
 
 function vlpMap() {
 	var useHighAccuracy = true;
+	var lastVisibleLocationTime = 0;
 	
 	var pixels = {w:1630,h:908};
 	var map_bounds = new L.LatLngBounds(vlpConfig.gpsBoundsParkPlan);
@@ -92,11 +94,10 @@ function vlpMap() {
 	new WatermarkControl({position:'bottomleft'}).addTo(map);
 	new ZoomViewer({position:'topleft'}).addTo(map);
 
-	var parkboundaryLayer = L.imageOverlay(img_parkboundary, vlpConfig.gpsBoundsParkPlan);
 	var parkplanLayer = L.imageOverlay(img_parkplan, vlpConfig.gpsBoundsParkPlan,{attribution:'<a href="https://dbdplanning.com/">Destination by Design</a>'});
 	var photoLayer = L.imageOverlay(img_photo, [[35.760604, -81.570219],[35.778307, -81.534993]],{attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`});
 	var terrainLayer =L.imageOverlay(img_terrain, [[35.763224, -81.566366],[35.778292, -81.534960]],{attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`,opacity:0.6});
-	var baseMaps = {"Park Boundary":parkboundaryLayer,"Park Plan":parkplanLayer,"Photo": photoLayer,"Terrain": terrainLayer};
+	var baseMaps = {"Park Plan":parkplanLayer,"Photo": photoLayer,"Terrain": terrainLayer};
 	var overlayMaps = {};
 	
 	map.addLayer(parkplanLayer);
@@ -151,9 +152,21 @@ function vlpMap() {
 		}
 
 		yahMarker.setLatLng(yahLatLng);
+
+		// if user is in the park, flyTo their location if the map has not shown their location for more than
+		// FLYTO_LOCATION_INTERVAL milliseconds
 		if (map_bounds.contains(yahLatLng)) {
-			vlpDebug('flying to parkplan location');
-			map.flyTo(yahLatLng);
+			if (map.getBounds().contains(yahLatLng)) {
+				// user is in the park, and location is shown on-screen
+				lastVisibleLocationTime = yahTime;
+			} else {
+				// user is in the park, but location is currently off-screen
+				if ((yahTime - lastVisibleLocationTime) >= FLYTO_LOCATION_INTERVAL) {
+					vlpDebug('flying to location in park');
+					lastVisibleLocationTime = yahTime;
+					map.flyTo(yahLatLng);
+				}
+			}
 		}
 	});
 	map.on('locationerror', function(e) {
@@ -170,7 +183,7 @@ function vlpMap() {
 	map.fitBounds(vlpConfig.gpsBoundsParkPlan);
 
 	vlpDebug((useHighAccuracy ? 'U' : 'Not u')+'sing high accuracy location');
-	map.locate({watch: true, enableHighAccuracy:useHighAccuracy});
+	map.locate({watch: true, enableHighAccuracy:useHighAccuracy, timeout:60000, maximumAge:5000});
 }
 
 export {vlpMap};

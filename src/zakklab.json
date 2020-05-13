@@ -177,7 +177,7 @@
     }, {
         "name": "Hoyle Creek",
         "secret": false,
-        "color": "#0DC6CA",
+        "color": "#db9004",
         "dash": false,
         "miles": 1.4,
         "optional": false,
