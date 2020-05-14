@@ -1,7 +1,9 @@
 import 'leaflet/dist/leaflet.css';
+import 'leaflet-groupedlayercontrol/src/leaflet.groupedlayercontrol.css';
 import 'leaflet/dist/images/marker-shadow.png';
 import 'leaflet/dist/images/marker-icon-2x.png';
 import * as L from 'leaflet';
+import 'leaflet-groupedlayercontrol/src/leaflet.groupedlayercontrol.js';
 import './vlp-icon.js';
 import {vlpConfig,vlpTrails,vlpOrienteering} from './parkmaps.js';
 import * as yahMarkerSVG from './img/yah.svg';
@@ -98,28 +100,32 @@ function vlpMap() {
 	var photoLayer = L.imageOverlay(img_photo, [[35.760604, -81.570219],[35.778307, -81.534993]],{attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`});
 	var terrainLayer =L.imageOverlay(img_terrain, [[35.763224, -81.566366],[35.778292, -81.534960]],{attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`,opacity:0.6});
 	var baseMaps = {"Park Plan":parkplanLayer,"Photo": photoLayer,"Terrain": terrainLayer};
-	var overlayMaps = {};
+	var groupedOverlays = {};
 	
 	map.addLayer(parkplanLayer);
 	
-	function vlpAddTrail(v,i) {
-		var nlo = {color:v.color,opacity:1.0,weight:9};
+	function vlpAddTrail(grp,opacity,weight,v,i) {
+		var nlo = {'color':v.color,'opacity':opacity,'weight':weight};
 		if (v.secret) return;
+		if (!groupedOverlays[grp]) {
+			groupedOverlays[grp] = {};
+		}
+
 		if (v.dash) {
 			nlo['dashArray'] = "10";
-			nlo['weight'] = 5;
+			nlo['weight'] = Math.min(5,weight);
 		}
 		var newLayer = L.polyline(v.trail, nlo);
 		var tt = `<span style="color:${v.color}">${v.name} </span><span class="mileage">(${v.miles} miles)</span>`;
 		newLayer.bindTooltip(tt,{ 'sticky': true });
-		overlayMaps[tt] = newLayer;
+		groupedOverlays[grp][tt] = newLayer;
 		if (!v.optional) {
 			map.addLayer(newLayer);
 		}
 	}
-	vlpTrails.forEach(vlpAddTrail);
+	vlpTrails.forEach(function(v,i) {vlpAddTrail("Primary Trails",0.85,9,v,i);});
 	if (addZakklab) {
-		zakklab.forEach(vlpAddTrail);
+		zakklab.forEach(function(v,i) {vlpAddTrail("Trails by Zakklab",0.7,7,v,i);});
 	}
 	
 	var markerPts = [];
@@ -128,8 +134,11 @@ function vlpMap() {
 			markerPts.push(L.marker(gps(v[0],v[1])).bindPopup(v[2]));
 		}
 	);
-	overlayMaps['Landmarks & Sightseeing'] = L.layerGroup(markerPts);
+	groupedOverlays['Landmarks & Sightseeing'] = {"Orienteering Markers":L.layerGroup(markerPts)};
 	
+	L.control.groupedLayers(baseMaps, groupedOverlays, {position:'topright'}).addTo(map);
+	map.attributionControl.addAttribution('<a href="https://friendsofthevaldeserec.org">FVR</a>');
+
 	var yahIcon = L.divIcon({
 		className: 'yah-divicon',
 		html: sprintf('<img style="background:rgba(255,255,0,0.75); border:0; padding: 6px; border-radius:50%;" src="%s">',yahMarkerSVG),
@@ -137,11 +146,10 @@ function vlpMap() {
 		iconAnchor: [18, 30]
     });
 	var yahMarker = L.marker(gps(35.75640,-81.58016),{icon:yahIcon}).bindTooltip('You are here');
+	//
+	// add layer at start so that intial location error is shown
 	map.addLayer(yahMarker);
 
-	L.control.layers(baseMaps, overlayMaps, {position:'topright'}).addTo(map);
-	map.attributionControl.addAttribution('<a href="https://friendsofthevaldeserec.org">FVR</a>');
-	
 	map.on('locationfound', function(e) {
 		var yahLatLng = e.latlng;
 		var firstLocationNotify = !map.hasLayer(yahMarker);
