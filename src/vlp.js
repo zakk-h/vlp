@@ -1,9 +1,9 @@
 import 'leaflet/dist/leaflet.css';
-import 'leaflet-groupedlayercontrol/src/leaflet.groupedlayercontrol.css';
+import './leaflet/grpLayerControl.css';
 import 'leaflet/dist/images/marker-shadow.png';
 import 'leaflet/dist/images/marker-icon-2x.png';
 import * as L from 'leaflet';
-import 'leaflet-groupedlayercontrol/src/leaflet.groupedlayercontrol.js';
+import './leaflet/grpLayerControl.js';
 import './vlp-icon.js';
 import {vlpConfig,vlpTrails,vlpOrienteering} from './parkmaps.js';
 import * as yahMarkerSVG from './img/yah.svg';
@@ -136,7 +136,7 @@ function vlpMap() {
 	);
 	groupedOverlays['Landmarks & Sightseeing'] = {"Orienteering Markers":L.layerGroup(markerPts)};
 	
-	L.control.groupedLayers(baseMaps, groupedOverlays, {position:'topright'}).addTo(map);
+	L.control.groupedLayers(baseMaps, groupedOverlays).addTo(map);
 	map.attributionControl.addAttribution('<a href="https://friendsofthevaldeserec.org">FVR</a>');
 
 	var yahIcon = L.divIcon({
