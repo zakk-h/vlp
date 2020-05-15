@@ -15,6 +15,8 @@ import * as img_photo from './img/park-satellite.jpg';
 import * as img_terrain from './img/park-contour.png';
 import zakklab from './zakklab.json';
 
+'use strict';
+
 const FLYTO_LOCATION_INTERVAL = 30000;
 const burkeGISMap = 'http://gis.burkenc.org/default.htm?PIN=2744445905';
 const addZakklab = (location.href.indexOf('zakklab')>=0);
@@ -152,6 +154,7 @@ function vlpMap() {
 
 	map.on('locationfound', function(e) {
 		var yahLatLng = e.latlng;
+		var yahTime = e.timestamp;
 		var firstLocationNotify = !map.hasLayer(yahMarker);
 		vlpDebug('locate',yahLatLng);
 
