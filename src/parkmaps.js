@@ -269,11 +269,7 @@ var vlpTrails = [
 	},{
 		"name": "Yellow Connector",
 		"color": "#ece60a",
-<<<<<<< HEAD
-		"dash": true,
-=======
 		"dash": false,
->>>>>>> refs/remotes/origin/master
 		"miles": 0.35,
 		"trail": [
 			[35.767971, -81.556280, 329.9],

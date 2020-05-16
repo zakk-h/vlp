@@ -645,14 +645,10 @@
     }, {
         "name": "Green Diagonal",
         "secret": false,
-        "color": "#3DEEBB",
+        "color": "#0E561A",
         "miles": 0.15,
-        "dash": true,
-<<<<<<< HEAD
-        "optional": true,
-=======
+        "dash": false,
         "optional": false,
->>>>>>> refs/remotes/origin/master
         "trail": [
             [35.774686, -81.545077, 313.5],
             [35.774594, -81.545086, 313.6],
