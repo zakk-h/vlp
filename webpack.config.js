@@ -1,5 +1,7 @@
-const webpack = require('webpack');
-const path = require('path');
+const
+    webpack = require('webpack'),
+    path = require('path'),
+    workboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
     entry: './src/vlp-web.js',
@@ -9,21 +11,33 @@ module.exports = {
         maxAssetSize: 512000
     },    
     output: {
-		path: path.resolve(__dirname, 'www'),
+		path: path.resolve(__dirname, 'build'),
 		filename: 'vlp.js'
     },
     module: {
         rules: [
-            { test: /webapp\.html$/, use: [{loader:"file-loader",options:{name:"index.html"}}] },
-            { test: /\.htm$/, use: [{loader:"file-loader",options:{name:'[name].html'}}] },
+            { test: /app\.manifest$/, use: [{loader:'file-loader',options: {name:'manifest.json'}}] },
+            { test: /\.html$/, use: [{loader:"file-loader",options:{name:'[name].html'}}] },
             { test: /\.css$/, use: ["style-loader","css-loader"] },
             { test: /\.(png|svg|jpe?g|gif|woff2?|ttf|eot)$/, use: [{loader:'file-loader',options: {name:'[name].[ext]'}}] },
         ]
     },
     plugins: [
         new webpack.DefinePlugin({
-            'USING_CORDOVA': false,
-            'USING_WEB': true
-          })
+            'ADD_ZAKKLAB': false
+          }),
+        new workboxPlugin.GenerateSW({
+			swDest: 'sw.js',
+			maximumFileSizeToCacheInBytes: 3000000,
+            //globPatterns: ['**/*.{html,js,css}'],
+			cleanupOutdatedCaches: true,
+            clientsClaim: true,
+            skipWaiting: true,
+            runtimeCaching: [{
+				//urlPattern: new RegExp('https://static.valdese.net/osm/.+'),
+				urlPattern: new RegExp('https://[a-c].tile.openstreetmap.org/[0-9]+/[0-9]+/[0-9]+.png'),
+                handler: 'StaleWhileRevalidate'
+              }]
+        })
     ]
 }

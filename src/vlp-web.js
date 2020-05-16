@@ -1,5 +1,7 @@
-import './webapp.html';
+import './index.html';
+import './app.manifest';
 import {vlpMap} from './vlp.js';
+//import {precacheAndRoute} from 'workbox-precaching';
 
 function ready(callback){
     // in case the document is already rendered
@@ -13,5 +15,5 @@ function ready(callback){
 }
 
 ready(function(){
-    vlpMap(false);
+    vlpMap();
 });

@@ -1,159 +1,200 @@
- 
 import 'leaflet/dist/leaflet.css';
+import './leaflet/grpLayerControl.css';
 import 'leaflet/dist/images/marker-shadow.png';
 import 'leaflet/dist/images/marker-icon-2x.png';
 import * as L from 'leaflet';
-import {vlpTrails,vlpOrienteering} from './parkmaps.js';
+import './leaflet/grpLayerControl.js';
+import './vlp-icon.js';
+import {vlpConfig,vlpTrails,vlpOrienteering} from './parkmaps.js';
+import * as yahMarkerSVG from './img/yah.svg';
+import * as blankTile from './img/blankTile.png';
 import * as fvr_logo from './img/fvrlogopng.png';
-import * as img_parkplan from './img/parkplan.jpg';
-import * as img_parkplanhybrid from './img/parkplanhybrid.jpg';
-import * as img_photo from './img/photo.jpg';
-import * as img_terrain from './img/terrain.jpg';
-L.Control.Watermark = L.Control.extend({
-    onAdd: function(map) {
-        var img = L.DomUtil.create('img');
+import * as img_parkplan from './img/dbd-parkplan.png';
+import * as img_parkboundary from './img/park-boundary.png';
+import * as img_photo from './img/park-satellite.jpg';
+import * as img_terrain from './img/park-contour.png';
+import zakklab from './zakklab.json';
 
-        img.src = fvr_logo;
-        img.style.width = '50px';
-        img.style.opacity = 0.5;
+'use strict';
 
-        return img;
-    },
-
-    onRemove: function(map) { }
-});
-
-function vlpMap(debugMode) {
-    var useHighAccuracy = true;
-    var vlpDebug = debugMode ? console.warn : function() {return;};
-    
-    var w = 1630,
-        h = 908;
-    var gpsP = [[35.7782,-81.5718],[35.7607,-81.5347]];
-    var gpsD = [gpsP[1][0]-gpsP[0][0],gpsP[1][1]-gpsP[0][1]];
-    
-    var map = L.map('image-map', {
-        minZoom: 1,
-        maxZoom: 5,
-        center: [0, 0],
-        zoom: 3,
-        crs: L.CRS.Simple
-    });
-    
-    if (USING_CORDOVA) {
-        map.attributionControl.setPrefix('Leaflet');
-    }
-    
-    //L.control.watermark = function(opts) {
-    //    return new L.Control.Watermark(opts);
-    //}
-
-    //L.control.watermark({ position: 'bottomleft' }).addTo(map);
-    new L.Control.Watermark({position:'bottomleft'}).addTo(map);
-
-    var cz = map.getMaxZoom()-2;
-    function gps(latitude,longitude)
-    {
-        var x = ((longitude - gpsP[0][1])*w)/gpsD[1];
-        var y = ((latitude  - gpsP[0][0])*h)/gpsD[0];
-        x = Math.min(w+150,Math.max(x,-150));
-        y = Math.min(h+150,Math.max(y,-150));
-        return map.unproject([x,y], cz);
-    }
-    
-    function gpsList(coords)
-    {
-        var xlc = [];
-        coords.forEach(function(v,i){xlc[i]=gps(v[0],v[1]);});
-        return xlc;
-    }
-    
-    var map_bounds = new L.LatLngBounds(map.unproject([0, h], cz), map.unproject([w, 0], cz));
-    var parkplanLayer,parkplanHybridLayer,photoLayer,terrainLayer;
-
-    if (USING_CORDOVA) {
-        parkplanLayer = L.imageOverlay(img_parkplan, map_bounds,{attribution:'Destination by Design'});
-        parkplanHybridLayer = L.imageOverlay(img_parkplanhybrid, map_bounds);
-        photoLayer = L.imageOverlay(img_photo, map_bounds,{attribution:'gis.burkenc'});
-        terrainLayer =L.imageOverlay(img_terrain, map_bounds,{attribution:'gis.burkenc'});
-    } else {
-        var burkeGISMap = 'http://gis.burkenc.org/default.htm?PIN=2744445905';
-        parkplanLayer = L.imageOverlay(img_parkplan, map_bounds,{attribution:'<a href="https://dbdplanning.com/">Destination by Design</a>'});
-        parkplanHybridLayer = L.imageOverlay(img_parkplanhybrid, map_bounds);
-        photoLayer = L.imageOverlay(img_photo, map_bounds,{attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`});
-        terrainLayer =L.imageOverlay(img_terrain, map_bounds,{attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`});
-    }
-
-    var baseMaps = {"Hybrid Park Plan":parkplanHybridLayer,"Park Plan":parkplanLayer,"Photo": photoLayer,"Terrain": terrainLayer};
-    var overlayMaps = {};
-    
-    map.addLayer(parkplanHybridLayer);
-    
-    vlpTrails.forEach(
-        function(v,i) {
-            var nlo = {color:v.color,opacity:1.0,weight:9}; //weight was 9
-            if (v.secret) return;
-            if (v.dash) {
-                nlo['dashArray'] = "10";
-                nlo['weight'] = 5; //was 5
-            }
-            var newLayer = L.polyline(gpsList(v.trail), nlo);
-            var tt = `<span style="color:${v.color}">${v.name} </span><span class="mileage">(${v.miles} miles)</span>`;
-            newLayer.bindTooltip(tt,{ 'sticky': true });
-            overlayMaps[tt] = newLayer;
-            if (!v.optional) {
-                map.addLayer(newLayer);
-            }
-        }
-    );
-    
-    var markerPts = [];
-    vlpOrienteering.markers.forEach(
-        function(v,i) {
-            markerPts.push(L.marker(gps(v[0],v[1])).bindPopup(v[2]));
-        }
-    );
-    var orienteeringTrail = L.polyline(gpsList/*(vlpOrienteering.trail)*/, {color: '#000',fillOpacity:0.5,weight:4});
-    markerPts.push(orienteeringTrail);
-    overlayMaps['Landmarks & Sightseeing'] = L.layerGroup(markerPts);
-    
-    var yahIcon = L.divIcon({className: 'yah-divicon',iconAnchor:[0,24],labelAnchor:[-6, 0],popupAnchor:[0, -36],html:'<span/>'});
-    var yahMarker = L.marker(gps(35.75640,-81.58016),{icon:yahIcon}).bindTooltip('You are here');
-    var yahText = 'You Are Here';
-    overlayMaps[yahText] = yahMarker;
-    
-    L.control.layers(baseMaps, overlayMaps, {position:'topright'}).addTo(map);
-    map.setMaxBounds(map_bounds);
-    if (USING_CORDOVA) {
-        map.attributionControl.addAttribution('Friends of the Valdese Rec');
-        //map.attributionControl.addAttribution('<a href="about.html">About FVR</a>');
-    } else {
-        map.attributionControl.addAttribution('<a href="https://friendsofthevaldeserec.org">Friends of the Valdese Rec</a>');
-    }
-    
-    map.on('locationfound', function(e) {yahMarker.setLatLng(gps(e.latlng.lat,e.latlng.lng));vlpDebug('locate',e.latlng);});
-    map.on('locationerror', function(e) {alert(e.message);});
-    
-    //map.locate({watch: true, enableHighAccuracy:useHighAccuracy});
-    
-    map.on('overlayadd',function(e) {
-        if (e.name == yahText) {
-            vlpDebug((useHighAccuracy ? 'U' : 'Not u')+'sing high accuracy location');
-            map.locate({watch: true, enableHighAccuracy:useHighAccuracy});
-            map.setZoom(1);
-        }
-    });
-    
-    map.on('overlayremove',function(e) {
-        if (e.name == yahText) {
-            vlpDebug('no longer tracking location');
-            map.stopLocate();
-        }
-    });
-    
-    map.addLayer(overlayMaps[yahText]);
+const FLYTO_LOCATION_INTERVAL = 30000;
+const burkeGISMap = 'http://gis.burkenc.org/default.htm?PIN=2744445905';
+const addZakklab = (location.href.indexOf('zakklab')>=0);
+var vlpDebug = function() {};
+if (location.href.indexOf('debug')>0) {
+	vlpDebug = console.log;
+	vlpDebug('Debug mode is activated for vlp app',location.href);
+	if (addZakklab) vlpDebug('zakklab extension has been enabled');
 }
 
-//window.vlpMap = vlpMap;
+function sprintf(s,...a) {
+	var i=0;
+	return s.replace(/%[%dfos]/g, function (m) { return m=="%%" ? "%" : a[i++].toString(); });
+}
+
+var WatermarkControl = L.Control.extend({
+	onAdd: function(map) {
+		var img = L.DomUtil.create('img');
+
+		img.src = fvr_logo;
+		img.style.width = '50px';
+		img.style.opacity = 0.5;
+
+		return img;
+	},
+
+	onRemove: function(map) { }
+});
+
+var ZoomViewer = L.Control.extend({
+	onAdd: function(map){
+		var gauge = L.DomUtil.create('div');
+		gauge.style.width = '28px';
+		gauge.style.overflow = 'hidden';
+		gauge.style.background = 'rgba(250,248,245,0.6)';
+		gauge.style.textAlign = 'center';
+		map.on('zoomstart zoom zoomend', function(ev){
+			gauge.innerHTML = map.getZoom();
+		})
+		return gauge;
+	}
+});
+
+var ValdeseTileLayer = L.TileLayer.extend({
+	getTileUrl: function(coords) {
+		var zBox = vlpConfig.osmTileRanges[coords.z];
+		if (zBox) {
+			var x = coords.x, y = coords.y;
+			if ((x >= zBox[0][0]) && (x <= zBox[1][0]) && (y >= zBox[0][1]) && (y <= zBox[1][1])) {
+				return L.TileLayer.prototype.getTileUrl.call(this,coords);
+			}
+		}
+
+		vlpDebug('blank tile for ',coords);
+		return blankTile;
+	}
+});
+
+function vlpMap() {
+	var useHighAccuracy = true;
+	var lastVisibleLocationTime = 0;
+	
+	var pixels = {w:1630,h:908};
+	var map_bounds = new L.LatLngBounds(vlpConfig.gpsBoundsParkPlan);
+	var valdese_area = vlpConfig.gpsBoundsValdese;
+	var gpsCenter = map_bounds.getCenter();
+	var map = L.map('image-map',{center: gpsCenter, minZoom: vlpConfig.osmZoomRange[0], zoom: vlpConfig.osmZoomRange[1], maxBounds:valdese_area});
+	var mapTiles = new ValdeseTileLayer(vlpConfig.urlTileServer, {
+		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+		errorTileUrl: blankTile,
+		crossOrigin: true,
+		minZoom: vlpConfig.osmZoomRange[0],
+		maxNativeZoom: vlpConfig.osmZoomRange[1]
+		});
+	map.addLayer(mapTiles);
+	function gps(latitude,longitude) { return new L.LatLng(latitude,longitude); }
+	map.attributionControl.setPrefix('');
+	
+	new WatermarkControl({position:'bottomleft'}).addTo(map);
+	new ZoomViewer({position:'topleft'}).addTo(map);
+
+	var parkplanLayer = L.imageOverlay(img_parkplan, vlpConfig.gpsBoundsParkPlan,{attribution:'<a href="https://dbdplanning.com/">Destination by Design</a>'});
+	var photoLayer = L.imageOverlay(img_photo, [[35.760604, -81.570219],[35.778307, -81.534993]],{attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`});
+	var terrainLayer =L.imageOverlay(img_terrain, [[35.763224, -81.566366],[35.778292, -81.534960]],{attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`,opacity:0.6});
+	var baseMaps = {"Park Plan":parkplanLayer,"Photo": photoLayer,"Terrain": terrainLayer};
+	var groupedOverlays = {};
+	
+	map.addLayer(parkplanLayer);
+	
+	function vlpAddTrail(grp,opacity,weight,v,i) {
+		var nlo = {'color':v.color,'opacity':opacity,'weight':weight};
+		if (v.secret) return;
+		if (!groupedOverlays[grp]) {
+			groupedOverlays[grp] = {};
+		}
+
+		if (v.dash) {
+			nlo['dashArray'] = "10";
+			nlo['weight'] = Math.min(5,weight);
+		}
+		var newLayer = L.polyline(v.trail, nlo);
+		var tt = `<span style="color:${v.color}">${v.name} </span><span class="mileage">(${v.miles} miles)</span>`;
+		newLayer.bindTooltip(tt,{ 'sticky': true });
+		groupedOverlays[grp][tt] = newLayer;
+		if (!v.optional) {
+			map.addLayer(newLayer);
+		}
+	}
+	vlpTrails.forEach(function(v,i) {vlpAddTrail("Primary Trails",0.85,9,v,i);});
+	if (addZakklab) {
+		zakklab.forEach(function(v,i) {vlpAddTrail("Trails by Zakklab",0.7,7,v,i);});
+	}
+	
+	var markerPts = [];
+	vlpOrienteering.forEach(
+		function(v,i) {
+			markerPts.push(L.marker(gps(v[0],v[1])).bindPopup(v[2]));
+		}
+	);
+	groupedOverlays['Landmarks & Sightseeing'] = {"Orienteering Markers":L.layerGroup(markerPts)};
+	
+	L.control.groupedLayers(baseMaps, groupedOverlays).addTo(map);
+	map.attributionControl.addAttribution('<a href="https://friendsofthevaldeserec.org">FVR</a>');
+
+	var yahIcon = L.divIcon({
+		className: 'yah-divicon',
+		html: sprintf('<img style="background:rgba(255,255,0,0.75); border:0; padding: 6px; border-radius:50%;" src="%s">',yahMarkerSVG),
+		iconSize: [36, 36],
+		iconAnchor: [18, 30]
+    });
+	var yahMarker = L.marker(gps(35.75640,-81.58016),{icon:yahIcon}).bindTooltip('You are here');
+	//
+	// add layer at start so that intial location error is shown
+	map.addLayer(yahMarker);
+
+	map.on('locationfound', function(e) {
+		var yahLatLng = e.latlng;
+		var yahTime = e.timestamp;
+		var firstLocationNotify = !map.hasLayer(yahMarker);
+		vlpDebug('locate',yahLatLng);
+
+		if (firstLocationNotify) {
+			map.addLayer(yahMarker);
+		}
+
+		yahMarker.setLatLng(yahLatLng);
+
+		// if user is in the park, flyTo their location if the map has not shown their location for more than
+		// FLYTO_LOCATION_INTERVAL milliseconds
+		if (map_bounds.contains(yahLatLng)) {
+			if (map.getBounds().contains(yahLatLng)) {
+				// user is in the park, and location is shown on-screen
+				lastVisibleLocationTime = yahTime;
+			} else {
+				// user is in the park, but location is currently off-screen
+				if ((yahTime - lastVisibleLocationTime) >= FLYTO_LOCATION_INTERVAL) {
+					vlpDebug('flying to location in park');
+					lastVisibleLocationTime = yahTime;
+					map.flyTo(yahLatLng);
+				}
+			}
+		}
+	});
+	map.on('locationerror', function(e) {
+		if (map.hasLayer(yahMarker)) {
+			map.removeLayer(yahMarker);
+			alert(e.message);
+		}
+	});
+	
+	map.on('click',function(e){
+		vlpDebug(e.latlng);
+	});
+
+	map.fitBounds(vlpConfig.gpsBoundsParkPlan);
+
+	vlpDebug((useHighAccuracy ? 'U' : 'Not u')+'sing high accuracy location');
+	map.locate({watch: true, enableHighAccuracy:useHighAccuracy, timeout:60000, maximumAge:5000});
+}
 
 export {vlpMap};
