@@ -527,7 +527,7 @@
         ]
     }, {
 
-        "name": "Short Creek Connector",
+        "name": "Shade Seeker",
         "secret": false,
         "color": "#636BEE",
         "dash": true,
@@ -614,7 +614,7 @@
         "secret": false,
         "color": "#000000",
         "dash": true,
-        "miles": 0.10,
+        "miles": 0.15,
         "optional": false,
         "trail": [
             [35.766576, -81.549969, 343.7],
@@ -680,7 +680,7 @@
         ]
     }, {
         "name": "Lovelady Connector - Moderately Overgrown",
-        "secret": false,
+        "secret": true,
         "color": "#9529EA",
         "miles": 0.16,
         "dash": true,
