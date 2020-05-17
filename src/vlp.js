@@ -1,3 +1,4 @@
+import {format,formatDistance,formatRelative} from 'date-fns';
 import 'leaflet/dist/leaflet.css';
 import './leaflet/grpLayerControl.css';
 import './vlpStyles.css';
@@ -33,21 +34,33 @@ function sprintf(s,...a) {
 }
 
 function showWhatsNew(map) {
-	var whatnewHtml = '<h2>Welcome to this Lakeside Park app.</h2><p>Recent changes to the app include:</p><ul>';
+	var t_newest = whatsnew[0][0];
+	var lastseen = localStorage.vintage || 1;
+
+	if (t_newest <= lastseen) { return; }
+
+	var whatnewHtml = '<h2>App Updated</h2><p>The Lakeside Park app has been updated. Recent changes to the app include:</p><ul>';
+	var now = new Date();
+	const tdfmt = {addSuffix:true};
+
 	for (var i=0; i<whatsnew.length; i++) {
-		whatnewHtml += '<li>'+whatsnew[i][0]+': '+whatsnew[i][1]+'</li>';
+		var t =  whatsnew[i][0];
+		if (t < lastseen) break;
+		var d2 = new Date(t*1000);
+		whatnewHtml += sprintf('<li>%s (%s)</li>',whatsnew[i][1],formatDistance(d2,now,tdfmt));
 	}
 	whatnewHtml += '</ul>';
 	var whatsnewPopupOpts = {className:'whatsnew',keepInView:true,autoPan:false,maxWidth:Math.round(map._size.x*0.8),maxHeight:Math.round(map._size.y*0.8)};
 	var whatsnewPopup = L.popup(whatsnewPopupOpts)
 	.setLatLng(map.getCenter())
 	.setContent(whatnewHtml)
-	.openOn(map);
+	.openOn(map)
+	.bringToFront();
 
 	map.on('popupclose', function (e) {
 		if (e.popup == whatsnewPopup) {
 			vlpDebug('whatsnew has been closed.');
-			localStorage.vintage = whatsnew[0][0];
+			localStorage.vintage = t_newest;
 		}
 	});
 }
@@ -217,10 +230,7 @@ function vlpMap() {
 	vlpDebug((useHighAccuracy ? 'U' : 'Not u')+'sing high accuracy location');
 	map.locate({watch: true, enableHighAccuracy:useHighAccuracy, timeout:60000, maximumAge:5000});
 
-	var showWhatsnew = localStorage.vintage ? (localStorage.vintage < whatsnew[0][0]) : true;
-	if (showWhatsnew) {
-		showWhatsNew(map);
-	}
+	showWhatsNew(map);
 }
 
 export {vlpMap};
