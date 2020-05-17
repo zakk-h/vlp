@@ -105,7 +105,7 @@ L.Control.GroupedLayers = L.Control.extend({
 			link.href = '#';
 			link.title = 'Layers';
 
-			L.DomEvent.on(link, 'focus', this._expand, this);
+			L.DomEvent.on(link,'click', this._expand, this);
 
 			this._map.on('click', this._collapse, this);
 		} else {
