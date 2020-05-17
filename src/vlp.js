@@ -7,7 +7,7 @@ import 'leaflet/dist/images/marker-icon-2x.png';
 import * as L from 'leaflet';
 import './leaflet/grpLayerControl.js';
 import './vlp-icon.js';
-import {vlpConfig,vlpTrails,vlpOrienteering} from './parkmaps.js';
+import {vlpConfig,vlpTrails,vlpOrienteering, vlpLandmarks} from './parkmaps.js';
 import * as yahMarkerSVG from './img/yah.svg';
 import * as blankTile from './img/blankTile.png';
 import * as fvr_logo from './img/fvrlogopng.png';
@@ -165,12 +165,14 @@ function vlpMap() {
 	}
 	
 	var markerPts = [];
-	vlpOrienteering.forEach(
-		function(v,i) {
-			markerPts.push(L.marker(gps(v[0],v[1])).bindPopup(v[2]));
-		}
-	);
-	groupedOverlays['Landmarks & Sightseeing'] = {"Orienteering Markers":L.layerGroup(markerPts)};
+	vlpOrienteering.forEach(function(v,i) {markerPts.push(L.marker(gps(v[0],v[1])).bindPopup(v[2]))});
+	
+		
+	
+	var landmarkPts = [];
+	vlpLandmarks.forEach(function(v,i) {landmarkPts.push(L.marker(gps(v[0],v[1])).bindPopup(v[2]))});
+	
+	groupedOverlays['Landmarks & Sightseeing'] = {"Orienteering Markers":L.layerGroup(markerPts), "Landmarks":L.layerGroup(landmarkPts)};
 	
 	L.control.groupedLayers(baseMaps, groupedOverlays).addTo(map);
 	map.attributionControl.addAttribution('<a href="https://friendsofthevaldeserec.org">FVR</a>');

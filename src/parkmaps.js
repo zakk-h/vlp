@@ -806,8 +806,19 @@ var vlpTrails = [
 		]
 	}
 ];
-
 var vlpOrienteering = [
+	[35.773590, -81.547390, "Marker 1"],
+	[35.772110, -81.547680, "Marker 2"],
+	[35.769390, -81.551470, "Marker 3"],
+	[35.766754, -81.552442, "Marker 4"],
+	[35.767849, -81.556220, "Marker 5"],
+	[35.768670, -81.558744, "Marker 6"],
+	[35.772401, -81.558432, "Marker 7"],
+	[35.770785, -81.553161, "Marker 8"],
+	[35.775367, -81.547280, "Marker 9"],
+	[35.770126, -81.564404, "Marker 10"]
+];
+var vlpLandmarks = [
     [35.773590, -81.547390, "Picnic Area - 4 Picnic Tables crafted by Kellex Furniture. Bottom Table features a water view."],
     [35.775367, -81.547280, "Meditation Point- An overlook over the water to see the mountain backdrop behind the lake. Makes for great sunsets."],
     [35.770126, -81.564404, "Future Bridge to McGalliard Falls Park."],
@@ -824,5 +835,6 @@ var vlpOrienteering = [
 module.exports = {
 	vlpConfig,
 	vlpTrails,
-	vlpOrienteering
+	vlpOrienteering,
+	vlpLandmarks,
 };
