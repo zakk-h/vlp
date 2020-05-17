@@ -1,5 +1,6 @@
 import 'leaflet/dist/leaflet.css';
 import './leaflet/grpLayerControl.css';
+import './vlpStyles.css';
 import 'leaflet/dist/images/marker-shadow.png';
 import 'leaflet/dist/images/marker-icon-2x.png';
 import * as L from 'leaflet';
@@ -14,8 +15,7 @@ import * as img_parkboundary from './img/park-boundary.png';
 import * as img_photo from './img/park-satellite.jpg';
 import * as img_terrain from './img/park-contour.png';
 import zakklab from './zakklab.json';
-
-'use strict';
+import whatsnew from './whatsnew.json';
 
 const FLYTO_LOCATION_INTERVAL = 30000;
 const burkeGISMap = 'http://gis.burkenc.org/default.htm?PIN=2744445905';
@@ -30,6 +30,26 @@ if (location.href.indexOf('debug')>0) {
 function sprintf(s,...a) {
 	var i=0;
 	return s.replace(/%[%dfos]/g, function (m) { return m=="%%" ? "%" : a[i++].toString(); });
+}
+
+function showWhatsNew(map) {
+	var whatnewHtml = '<h2>Welcome to this Lakeside Park app.</h2><p>Recent changes to the app include:</p><ul>';
+	for (var i=0; i<whatsnew.length; i++) {
+		whatnewHtml += '<li>'+whatsnew[i][0]+': '+whatsnew[i][1]+'</li>';
+	}
+	whatnewHtml += '</ul>';
+	var whatsnewPopupOpts = {className:'whatsnew',keepInView:true,autoPan:false,maxWidth:Math.round(map._size.x*0.8),maxHeight:Math.round(map._size.y*0.8)};
+	var whatsnewPopup = L.popup(whatsnewPopupOpts)
+	.setLatLng(map.getCenter())
+	.setContent(whatnewHtml)
+	.openOn(map);
+
+	map.on('popupclose', function (e) {
+		if (e.popup == whatsnewPopup) {
+			vlpDebug('whatsnew has been closed.');
+			localStorage.vintage = whatsnew[0][0];
+		}
+	});
 }
 
 var WatermarkControl = L.Control.extend({
@@ -91,11 +111,12 @@ function vlpMap() {
 		minZoom: vlpConfig.osmZoomRange[0],
 		maxNativeZoom: vlpConfig.osmZoomRange[1]
 		});
+	var fvrWatermark = new WatermarkControl({position:'bottomleft'})
 	map.addLayer(mapTiles);
 	function gps(latitude,longitude) { return new L.LatLng(latitude,longitude); }
 	map.attributionControl.setPrefix('');
 	
-	new WatermarkControl({position:'bottomleft'}).addTo(map);
+	fvrWatermark.addTo(map);
 	new ZoomViewer({position:'topleft'}).addTo(map);
 
 	var parkplanLayer = L.imageOverlay(img_parkplan, vlpConfig.gpsBoundsParkPlan,{attribution:'<a href="https://dbdplanning.com/">Destination by Design</a>'});
@@ -195,6 +216,11 @@ function vlpMap() {
 
 	vlpDebug((useHighAccuracy ? 'U' : 'Not u')+'sing high accuracy location');
 	map.locate({watch: true, enableHighAccuracy:useHighAccuracy, timeout:60000, maximumAge:5000});
+
+	var showWhatsnew = localStorage.vintage ? (localStorage.vintage < whatsnew[0][0]) : true;
+	if (showWhatsnew) {
+		showWhatsNew(map);
+	}
 }
 
 export {vlpMap};
