@@ -818,8 +818,7 @@ var vlpOrienteering = [
 	[35.77228, -81.552720, "The Fox Den - Water Access in McGalliard Creek Cove. Great Fishing Spot."],
 	[35.76812, -81.55838, "Red Meadow - An open meadow where you can often spot deer."],
 	[35.76184, -81.54822, "Alternate Parking - Enter through Hoyle Creek."],
-	[35.77442, -81.54543, "Arch - At the park entrance, great to take photos in."],
-	[35.770126, -81.564404, "Future Bridge to McGalliard Falls Park."]
+	[35.77442, -81.54543, "Arch - At the park entrance, great to take photos in."]
 ];
 
 module.exports = {
