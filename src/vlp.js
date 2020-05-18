@@ -2,12 +2,14 @@ import {format,formatDistance,formatRelative} from 'date-fns';
 import 'leaflet/dist/leaflet.css';
 import './leaflet/grpLayerControl.css';
 import './vlpStyles.css';
+import './modal.css';
 import 'leaflet/dist/images/marker-shadow.png';
 import 'leaflet/dist/images/marker-icon-2x.png';
 import * as L from 'leaflet';
 import './leaflet/grpLayerControl.js';
 import './vlp-icon.js';
 import {vlpConfig,vlpTrails,vlpOrienteering, vlpLandmarks} from './parkmaps.js';
+import {showModal} from './modal.js';
 import * as yahMarkerSVG from './img/yah.svg';
 import * as blankTile from './img/blankTile.png';
 import * as fvr_logo from './img/fvrlogopng.png';
@@ -42,10 +44,8 @@ function showWhatsNew(map) {
 	var whatnewHtml = '<p>The Lakeside Park app has been updated. Recent changes to the app include:</p><ul>';
 	var now = new Date();
 	const tdfmt = {addSuffix:true};
-	var wnp = document.getElementById('vlp-modal');
-	var wnt = document.getElementById('vlp-modal-title');
-	var wnc = document.getElementById('vlp-modal-body');
-	var wnx = document.getElementById('vlp-modal-close');
+
+	vlpDebug('Showing whatsnew modal');
 
 	for (var i=0; i<whatsnew.length; i++) {
 		var t =  whatsnew[i][0];
@@ -55,17 +55,9 @@ function showWhatsNew(map) {
 	}
 	whatnewHtml += '</ul>';
 
-	wnc.innerHTML = whatnewHtml;
-	wnt.innerHTML = 'App Update';
-	wnp.style.display = 'block';
-	function closeWhatsnew() {
-		vlpDebug('whatsnew has been closed.');
-		wnp.style.display = 'none';
+	showModal('App Update',whatnewHtml,function() {
+		vlpDebug('whatsnew has been closed');
 		localStorage.vintage = t_newest;
-	}
-	wnx.addEventListener("click",closeWhatsnew);
-	wnp.addEventListener("click",function(e) {
-		if (e.target == wnp) {closeWhatsnew();}
 	});
 }
 
