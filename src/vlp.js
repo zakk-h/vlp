@@ -171,8 +171,7 @@ function vlpMap() {
 	
 	var landmarkPts = [];
 	vlpLandmarks.forEach(function(v,i) {landmarkPts.push(L.marker(gps(v[0],v[1])).bindPopup(v[2]))});
-	
-	groupedOverlays['Landmarks & Sightseeing'] = {"Orienteering Markers":L.layerGroup(markerPts), "Landmarks":L.layerGroup(landmarkPts)};
+	groupedOverlays['Points of Interest'] = {"Orienteering Markers":L.layerGroup(markerPts), "Landmarks & Sightseeing":L.layerGroup(landmarkPts)};
 	
 	L.control.groupedLayers(baseMaps, groupedOverlays).addTo(map);
 	map.attributionControl.addAttribution('<a href="https://friendsofthevaldeserec.org">FVR</a>');
