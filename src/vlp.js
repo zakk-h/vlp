@@ -169,7 +169,7 @@ function vlpMap() {
 	}
 	
 	var markerPts = [];
-	vlpOrienteering.forEach(function(v,i) {markerPts.push(L.marker(gps(v[0],v[1])).bindPopup(v[2]))});
+	vlpOrienteering.forEach(function(v,i) {markerPts.push(L.marker(gps(v[0],v[1])).bindPopup('Orienteering Marker - Find all 10 of these Orange and White Markers.<br><br>'+v[2]))});
 	
 	var landmarkPts = [];
 	vlpLandmarks.forEach(function(v,i) {landmarkPts.push(L.marker(gps(v[0],v[1])).bindPopup(v[2]))});

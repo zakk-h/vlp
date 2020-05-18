@@ -808,16 +808,16 @@ var vlpTrails = [
 	
 ];
 var vlpOrienteering = [
-	[35.773590, -81.547390, "Orienteering Marker - Find all 10 of these Orange and White Markers. This selected marker is at the Table Rock Viewing Area by the Greenway."],
-	[35.772110, -81.547680, "Orienteering Marker - Find all 10 of these Orange and White Markers. This selected marker is at an intersection of the Red Trail and a small meadow."],
-	[35.769390, -81.551470, "Orienteering Marker - Find all 10 of these Orange and White Markers. This selected marker is at an intersection of the Red Trail and a small meadow."],
-	[35.766754, -81.552442, "Orienteering Marker - Find all 10 of these Orange and White Markers. This selected marker is at the Power Lines on the Red Trail."],
-	[35.767849, -81.556220, "Orienteering Marker - Find all 10 of these Orange and White Markers. This selected marker is at the intersection of the Red and Yellow trails."],
-	[35.768670, -81.558744, "Orienteering Marker - Find all 10 of these Orange and White Markers. This selected marker is at the Red Meadow."],
-	[35.772401, -81.558432, "Orienteering Marker - Find all 10 of these Orange and White Markers. This selected marker is at the intersection of the Red and Green trails."],
-	[35.770785, -81.553161, "Orienteering Marker - Find all 10 of these Orange and White Markers. This selected marker is along the Yellow Trail."],
-	[35.775367, -81.547280, "Orienteering Marker - Find all 10 of these Orange and White Markers. This selected marker is at Meditation Point looking out at Lake Rhodhiss."],
-	[35.770126, -81.564404, "Orienteering Marker - Find all 10 of these Orange and White Markers. This selected marker is at the Future Bridge to McGalliard Falls Park."]
+	[35.773590, -81.547390, "This selected marker is at the Table Rock Viewing Area by the Greenway."],
+	[35.772110, -81.547680, "This selected marker is at an intersection of the Red Trail and a small meadow."],
+	[35.769390, -81.551470, "This selected marker is at an intersection of the Red Trail and a small meadow."],
+	[35.766754, -81.552442, "This selected marker is at the Power Lines on the Red Trail."],
+	[35.767849, -81.556220, "This selected marker is at the intersection of the Red and Yellow trails."],
+	[35.768670, -81.558744, "This selected marker is at the Red Meadow."],
+	[35.772401, -81.558432, "This selected marker is at the intersection of the Red and Green trails."],
+	[35.770785, -81.553161, "This selected marker is along the Yellow Trail."],
+	[35.775367, -81.547280, "This selected marker is at Meditation Point looking out at Lake Rhodhiss."],
+	[35.770126, -81.564404, "This selected marker is at the Future Bridge to McGalliard Falls Park."]
 ];
 var vlpLandmarks = [
     [35.773590, -81.547390, "Picnic Area - 4 Picnic Tables crafted by Kellex Furniture. Bottom Table features a water view."],
