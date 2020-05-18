@@ -1,0 +1,45 @@
+#vlp-modal {
+	display: none;
+	position: fixed;
+	z-index: 2000;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.5);
+}
+
+#vlp-modal-content {
+	background-color: #fefefe;
+	margin: 30px auto;
+	padding: 10px;
+	border: 1px solid #888;
+	border-radius: 12px;
+	width: 80%;
+	max-height:80%;
+	overflow:hidden;
+}
+
+#vlp-modal-header {
+	padding: 2px 16px;
+	background-color: #5cb85c;
+	color: white;
+	font-size: 28px;
+	font-weight: bold;
+	border-radius: 8px;
+}
+
+#vlp-modal-close {
+	float: right;
+}
+
+#vlp-modal-close:hover,
+#vlp-modal-close:focus {
+	color: black;
+	cursor: pointer;
+}
+
+#vlp-modal-body {
+	max-height:100%;
+	overflow-y:scroll;
+}
