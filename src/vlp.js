@@ -167,10 +167,9 @@ function vlpMap() {
 	var markerPts = [];
 	vlpOrienteering.forEach(function(v,i) {markerPts.push(L.marker(gps(v[0],v[1])).bindPopup(v[2]))});
 	
-		
-	
 	var landmarkPts = [];
 	vlpLandmarks.forEach(function(v,i) {landmarkPts.push(L.marker(gps(v[0],v[1])).bindPopup(v[2]))});
+	
 	groupedOverlays['Points of Interest'] = {"Orienteering Markers":L.layerGroup(markerPts), "Landmarks & Sightseeing":L.layerGroup(landmarkPts)};
 	
 	L.control.groupedLayers(baseMaps, groupedOverlays).addTo(map);
