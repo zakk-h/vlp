@@ -39,9 +39,13 @@ function showWhatsNew(map) {
 
 	if (t_newest <= lastseen) { return; }
 
-	var whatnewHtml = '<h2>App Updated</h2><p>The Lakeside Park app has been updated. Recent changes to the app include:</p><ul>';
+	var whatnewHtml = '<p>The Lakeside Park app has been updated. Recent changes to the app include:</p><ul>';
 	var now = new Date();
 	const tdfmt = {addSuffix:true};
+	var wnp = document.getElementById('vlp-modal');
+	var wnt = document.getElementById('vlp-modal-title');
+	var wnc = document.getElementById('vlp-modal-body');
+	var wnx = document.getElementById('vlp-modal-close');
 
 	for (var i=0; i<whatsnew.length; i++) {
 		var t =  whatsnew[i][0];
@@ -50,18 +54,18 @@ function showWhatsNew(map) {
 		whatnewHtml += sprintf('<li>%s (%s)</li>',whatsnew[i][1],formatDistance(d2,now,tdfmt));
 	}
 	whatnewHtml += '</ul>';
-	var whatsnewPopupOpts = {className:'whatsnew',keepInView:true,autoPan:false,maxWidth:Math.round(map._size.x*0.8),maxHeight:Math.round(map._size.y*0.8)};
-	var whatsnewPopup = L.popup(whatsnewPopupOpts)
-	.setLatLng(map.getCenter())
-	.setContent(whatnewHtml)
-	.openOn(map)
-	.bringToFront();
 
-	map.on('popupclose', function (e) {
-		if (e.popup == whatsnewPopup) {
-			vlpDebug('whatsnew has been closed.');
-			localStorage.vintage = t_newest;
-		}
+	wnc.innerHTML = whatnewHtml;
+	wnt.innerHTML = 'App Update';
+	wnp.style.display = 'block';
+	function closeWhatsnew() {
+		vlpDebug('whatsnew has been closed.');
+		wnp.style.display = 'none';
+		localStorage.vintage = t_newest;
+	}
+	wnx.addEventListener("click",closeWhatsnew);
+	wnp.addEventListener("click",function(e) {
+		if (e.target == wnp) {closeWhatsnew();}
 	});
 }
 
