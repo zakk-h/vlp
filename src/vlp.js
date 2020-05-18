@@ -45,6 +45,8 @@ function showWhatsNew(map) {
 	var now = new Date();
 	const tdfmt = {addSuffix:true};
 
+	vlpDebug('Showing whatsnew modal');
+
 	for (var i=0; i<whatsnew.length; i++) {
 		var t =  whatsnew[i][0];
 		if (t < lastseen) break;
