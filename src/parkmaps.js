@@ -269,7 +269,7 @@ var vlpTrails = [
 	},{
 		"name": "Yellow Connector",
 		"color": "#ece60a",
-		"dash": true,
+		"dash": false,
 		"miles": 0.35,
 		"trail": [
 			[35.767971, -81.556280, 329.9],
@@ -804,24 +804,38 @@ var vlpTrails = [
 			[35.770261, -81.564882, 309.8],
 			[35.770120, -81.564303, 313.8]
 		]
-	}
+	},
+	
 ];
-
 var vlpOrienteering = [
-	[35.773590, -81.547390, "Table Rock View - Another Viewing Area for the Lake and Mountains"],
-	[35.772110, -81.547680, "Red Polka Dot"],
-	[35.769390, -81.551470, "Lime"],
-	[35.766754, -81.552442, "Power Lines"],
-	[35.767849, -81.556220, "Red and Yellow Intersection"],
-	[35.768670, -81.558744, "Red Meadow - An open meadow where you can often spot deer"],
-	[35.772401, -81.558432, "Red and Green Intersection"],
-	[35.770785, -81.553161, "Yellow and Orange Intersection"],
-	[35.775367, -81.547280, "Meditation Point- An overlook over the water to see the mountain backdrop behind the lake. Makes for great sunsets"],
-	[35.770126, -81.564404, "Future Bridge to McGalliard Falls Park"]
+	[35.773590, -81.547390, "Orienteering Marker - Find all 10 of these Orange and White Markers. This selected marker is at the Table Rock Viewing Area by the Greenway."],
+	[35.772110, -81.547680, "Orienteering Marker - Find all 10 of these Orange and White Markers. This selected marker is at an intersection of the Red Trail and a small meadow."],
+	[35.769390, -81.551470, "Orienteering Marker - Find all 10 of these Orange and White Markers. This selected marker is at an intersection of the Red Trail and a small meadow."],
+	[35.766754, -81.552442, "Orienteering Marker - Find all 10 of these Orange and White Markers. This selected marker is at the Power Lines on the Red Trail."],
+	[35.767849, -81.556220, "Orienteering Marker - Find all 10 of these Orange and White Markers. This selected marker is at the intersection of the Red and Yellow trails."],
+	[35.768670, -81.558744, "Orienteering Marker - Find all 10 of these Orange and White Markers. This selected marker is at the Red Meadow."],
+	[35.772401, -81.558432, "Orienteering Marker - Find all 10 of these Orange and White Markers. This selected marker is at the intersection of the Red and Green trails."],
+	[35.770785, -81.553161, "Orienteering Marker - Find all 10 of these Orange and White Markers. This selected marker is along the Yellow Trail."],
+	[35.775367, -81.547280, "Orienteering Marker - Find all 10 of these Orange and White Markers. This selected marker is at Meditation Point looking out at Lake Rhodhiss."],
+	[35.770126, -81.564404, "Orienteering Marker - Find all 10 of these Orange and White Markers. This selected marker is at the Future Bridge to McGalliard Falls Park."]
+];
+var vlpLandmarks = [
+    [35.773590, -81.547390, "Picnic Area - 4 Picnic Tables crafted by Kellex Furniture. Bottom Table features a water view."],
+    [35.775367, -81.547280, "Meditation Point- An overlook over the water to see the mountain backdrop behind the lake. Makes for great sunsets."],
+    [35.770126, -81.564404, "Future Bridge to McGalliard Falls Park."],
+    [35.77405, -81.54666, "Table Rock View - Another Viewing Area for the Lake and Mountains. Best place to put in kayaks."],
+	[35.77473, -81.54665, "Future Boardwalk for Kayak Launch and Fishing Pier."],
+	[35.76821, -81.54854, "Hoyle Creek Rest Area with Benches, a Picnic Table, and stools with Sandy Creekside Access."],
+	[35.76716, -81.54659, "Hoyle Creek Beaver Dam"],
+	[35.77228, -81.552720, "The Fox Den - Water Access in McGalliard Creek Cove. Great Fishing Spot."],
+	[35.76812, -81.55838, "Red Meadow - An open meadow where you can often spot deer."],
+	[35.76184, -81.54822, "Alternate Parking - Enter through Hoyle Creek."],
+	[35.77442, -81.54543, "Arch - At the park entrance, great to take photos in."]
 ];
 
 module.exports = {
 	vlpConfig,
 	vlpTrails,
-	vlpOrienteering
+	vlpOrienteering,
+	vlpLandmarks,
 };
