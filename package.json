@@ -15,7 +15,7 @@
     "url": "https://github.com/valdese-net/vlp.git"
   },
   "dependencies": {
-    "date-fns": "^2.13.0",
+    "date-fns": "^2.14.0",
     "leaflet": "^1.5.1"
   },
   "devDependencies": {
