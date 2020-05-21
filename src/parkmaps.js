@@ -1027,7 +1027,7 @@ var vlpTrails = [{
 	}, {
 		"name": "Shade Seeker",
 		"secret": false,
-		"color": "#636BEE",
+		"color": "#0192EA",
 		"dash": true,
 		"miles": 0.28,
 		"optional": false,
@@ -1082,7 +1082,7 @@ var vlpTrails = [{
 
 	}, {
 		"name": "Outer Creek Connector",
-		"color": "#1A8FB2",
+		"color": "#FD613F",
 		"dash": true,
 		"miles": 0.45,
 		"optional": false,

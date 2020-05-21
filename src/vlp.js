@@ -148,6 +148,11 @@ function vlpMap() {
 			nlo['weight'] = Math.min(5,weight);
 		}
 		var newLayer = L.polyline(v.trail, nlo);
+		if (!v.dash) {
+			// could also test for bluw:  /^#[012345678].[012345678].[9abcdef]/.test(v.color);
+			var newLayer2 = L.polyline(v.trail, {color:'#006600',weight:1});
+			newLayer = L.layerGroup([newLayer,newLayer2]);
+		}
 		var tt = `<span style="color:${v.color}">${v.name} </span><span class="mileage">(${v.miles} miles)</span>`;
 		newLayer.bindTooltip(tt,{ 'sticky': true });
 		groupedOverlays[grp][tt] = newLayer;
