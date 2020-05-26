@@ -1,5 +1,8 @@
 import * as g from './globals.js';
+import * as L from 'leaflet';
+
 import {format,formatDistance,formatRelative} from 'date-fns';
+import * as mdiIcons from './vlp-mdi-icons';
 import {vlpConfig,vlpTrails,vlpOrienteering, vlpLandmarks} from './parkmaps.js';
 import 'leaflet/dist/leaflet.css';
 import './leaflet/grpLayerControl.css';
@@ -8,10 +11,9 @@ import './vlpStyles.css';
 import './modal.css';
 import 'leaflet/dist/images/marker-shadow.png';
 import 'leaflet/dist/images/marker-icon-2x.png';
-import * as L from 'leaflet';
 import './leaflet/grpLayerControl.js';
 import {YAHControl} from './leaflet/yahControl.js';
-import './vlp-icon.js';
+import './vlp-manifest-icons.js';
 import {showModal} from './modal.js';
 import * as blankTile from './img/blankTile.png';
 import * as fvr_logo from './img/fvrlogopng.png';
@@ -159,7 +161,14 @@ function vlpMap() {
 	}
 	
 	var markerPts = [];
-	vlpOrienteering.forEach(function(v,i) {markerPts.push(L.marker(gps(v[0],v[1])).bindPopup('Orienteering Marker - Find all 10 of these Orange and White Markers.<br><br>'+v[2]))});
+	var orienteeringSVG = L.divIcon({
+		className: 'icon-mdi',
+		html: `<svg style="width:32px;height:32px" viewBox="0 0 24 24"><path stroke="#FFFFFF" stroke-width="1.0" fill="#EF6C00" d="${mdiIcons.mdi_Orienteering}"></svg>`,
+		iconSize: [32, 32],
+		iconAnchor: [15, 31],
+		popupAnchor: [0, -18]
+	});
+	vlpOrienteering.forEach(function(v,i) {markerPts.push(L.marker(gps(v[0],v[1]),{icon:orienteeringSVG}).bindPopup('Orienteering Marker - Find all 10 of these Orange and White Markers.<br><br>'+v[2]))});
 	
 	var landmarkPts = [];
 	vlpLandmarks.forEach(function(v,i) {landmarkPts.push(L.marker(gps(v[0],v[1])).bindPopup(v[2]))});
