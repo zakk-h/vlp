@@ -6,14 +6,14 @@
 const osmTileServer = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 
 var vlpConfig = {
+	gpsBoundsLayerRotate: -1.5,
 	gpsBoundsValdese: [
 		[35.721650, -81.597445],
 		[35.784838, -81.514709]
 	],
-	gpsBoundsParkPlan: [
-		[35.76319, -81.56665],
-		[35.7771, -81.54292]
-	],
+	gpsBoundsParkContour: [[35.76295,-81.5668],[35.7765,-81.5433]],
+	gpsBoundsParkPlan:  [[35.7632, -81.5670],[35.7765,-81.54284]],
+	gpsBoundsSatellite: [[35.75907,-81.57701],[35.78042,-81.523604]],
 	osmZoomRange: [8, 15],
 	osmTileRanges: {
 		8: [

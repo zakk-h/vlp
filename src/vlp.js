@@ -20,8 +20,8 @@ import * as blankTile from './img/blankTile.png';
 import * as fvr_logo from './img/fvrlogopng.png';
 import * as img_parkplan from './img/dbd-parkplan.png';
 import * as img_parkboundary from './img/park-boundary.png';
-import * as img_photo from './img/park-satellite.jpg';
-import * as img_terrain from './img/park-contour.png';
+import * as img_photo from './img/park-satellite.png';
+import * as img_parkcontours from './img/park-contour.png';
 import zakklab from './zakklab.json';
 import whatsnew from './whatsnew.json';
 
@@ -53,6 +53,25 @@ function showWhatsNew(map) {
 		localStorage.vintage = t_newest;
 	});
 }
+
+//transform: skewY(-5deg);
+var vlpRotateImageLayer = L.ImageOverlay.extend({
+	options: {rotation: -1.5},
+	initialize: function(url,bounds,options) {
+		L.setOptions(this,options);
+		L.ImageOverlay.prototype.initialize.call(this,url,bounds,options);
+    },
+    _animateZoom: function(e){
+		L.ImageOverlay.prototype._animateZoom.call(this, e);
+        var img = this._image;
+        img.style[L.DomUtil.TRANSFORM] += ' rotate(' + this.options.rotation + 'deg)';
+    },
+    _reset: function(){
+        L.ImageOverlay.prototype._reset.call(this);
+        var img = this._image;
+        img.style[L.DomUtil.TRANSFORM] += ' rotate(' + this.options.rotation + 'deg)';
+    }
+});
 
 var fvrWatermarkControl = L.Control.extend({
 	onAdd: function(map) {
@@ -124,13 +143,13 @@ function vlpMap() {
 	
 	fvrMark.addTo(map);
 
-	var parkplanLayer = L.imageOverlay(img_parkplan, vlpConfig.gpsBoundsParkPlan,{attribution:'<a href="https://dbdplanning.com/">Destination by Design</a>'});
-	var photoLayer = L.imageOverlay(img_photo, [[35.760604, -81.570219],[35.778307, -81.534993]],{attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`});
-	var terrainLayer =L.imageOverlay(img_terrain, [[35.763224, -81.566366],[35.778292, -81.534960]],{attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`,opacity:0.6});
-	var baseMaps = {"Park Plan":parkplanLayer,"Photo": photoLayer,"Terrain": terrainLayer};
+	var contourLayer = new vlpRotateImageLayer(img_parkcontours, vlpConfig.gpsBoundsParkContour,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`});
+	var photoLayer = new vlpRotateImageLayer(img_photo,vlpConfig.gpsBoundsSatellite,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`,opacity:0.7});
+	var parkplanLayer = new vlpRotateImageLayer(img_parkplan,vlpConfig.gpsBoundsParkPlan,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:'<a href="https://dbdplanning.com/">Destination by Design</a>'});
+	var baseMaps = {"Contour": contourLayer,"Photo": photoLayer,"Projected Park Plan":parkplanLayer};
 	var groupedOverlays = {};
 	
-	map.addLayer(parkplanLayer);
+	map.addLayer(contourLayer);
 	
 	function vlpAddTrail(grp,opacity,weight,v,i) {
 		var nlo = {'color':v.color,'opacity':opacity,'weight':weight};
@@ -199,6 +218,8 @@ function vlpMap() {
 			vlpDebug(e.latlng);
 		});
 	}
+
+	//L.rectangle(vlpConfig.gpsBoundsSatellite, {color: "#ff7800", weight: 1}).addTo(map);
 
 	map.fitBounds(vlpConfig.gpsBoundsParkPlan);
 
