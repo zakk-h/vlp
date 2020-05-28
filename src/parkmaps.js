@@ -6,14 +6,14 @@
 const osmTileServer = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 
 var vlpConfig = {
+	gpsBoundsLayerRotate: -1.5,
 	gpsBoundsValdese: [
 		[35.721650, -81.597445],
 		[35.784838, -81.514709]
 	],
-	gpsBoundsParkPlan: [
-		[35.76319, -81.56665],
-		[35.7771, -81.54292]
-	],
+	gpsBoundsParkContour: [[35.76295,-81.5668],[35.7765,-81.5433]],
+	gpsBoundsParkPlan:  [[35.7632, -81.5670],[35.7765,-81.54284]],
+	gpsBoundsSatellite: [[35.75907,-81.57701],[35.78042,-81.523604]],
 	osmZoomRange: [8, 15],
 	osmTileRanges: {
 		8: [
@@ -1168,7 +1168,7 @@ var vlpTrails = [{
 	},
 ];
 
-	/*var vlpAmentities = [
+	var vlpAmentities = [
 	[35.769651, -81.555416, "Mountain Biking - Up to 8 Miles will be included. Pending grant - May be built in Phase 1."],
 	[35.770261, -81.564882, "Bridge to McGalliard Falls - Phase 1 - Waiting on additional quotes and 40K in donations. Donate at friendsofthevaldeserec.org/donate. It will be a 150 foot suspension bridge."],
 	[35.771879, -81.547076, "Outer Loop. A sustainable Outer Loop will be built in Phase 2."],
@@ -1186,8 +1186,8 @@ var vlpFishing = [
 	[35.774577, -81.545248, "Meditation Point - Please limit your fishing here at this prime viewing area to 30 minutes."],
 	[35.774577, -81.545248, "Fox Den - description"],
 	[35.774577, -81.545248, "Fish Attractor at Picnic Area"],
-	[35.774577, -81.545248, "Fish Attractor somewhere."]
-];*/
+	[35.77269, -81.55015, "Fish Attractor somewhere."]
+];
 var vlpOrienteering = [
 	[35.773590, -81.547390, "This selected marker is at the Picnic Area by the Greenway."],
 	[35.772110, -81.547680, "This selected marker is at an intersection of the Red Trail and a small meadow."],
@@ -1203,14 +1203,14 @@ var vlpOrienteering = [
 /*
 var vlpLandmarks = [{
 	"description": "Picnic Area - 4 Picnic Tables crafted by Kellex Furniture. Bottom Table features a water view.",
-	"icon": camera,
+	"icon": picnicSVG,
 	"gps": [
 		[35.773590, -81.547390]
 	]
 },
 {
 	"description": "Meditation Point - A rock outcrop with amazing long views of Lake Rhodhiss in addition to Table Rock and Hawksbill Mountain. Gorgeous sunsets. Location of future Wildlife Viewing Platform.",
-	"icon": camera,
+	"icon": cameraSVG,
 	"gps": [
 		[35.775367, -81.547280]
 	]
@@ -1221,75 +1221,77 @@ var vlpLandmarks = [{
 	"gps": [
 		[35.770126, -81.564404]
 	]
-},
+}, 
 {
 	"description": "Table Rock View - Another Viewing Area for the Lake and Mountains. Best place to put in kayaks.",
-	"icon": camera,
+	"icon": cameraSVG,
 	"gps": [
 		[35.77405, -81.54666,]
 	]
 },
 {
 	"description": "Future Boardwalk for Kayak Launch and Fishing Pier.",
-	"icon": camera,
+	"icon": cameraSVG,
 	"gps": [
 		[35.77473, -81.54665]
 	]
 },
 {
 	"description": "Hoyle Creek Rest Area with Benches, a Picnic Table, and stools with Sandy Creekside Access.",
-	"icon": camera,
+	"icon": picnicSVG,
 	"gps": [
 		[35.76821, -81.54854]
 	]
 },
 {
 	"description": "Hoyle Creek Beaver Dam",
-	"icon": camera,
+	"icon": cameraSVG,
 	"gps": [
 		[35.76716, -81.54659]
 	]
 },
 {
 	"description": "The Fox Den - Water Access in McGalliard Creek Cove. Great Fishing Spot.",
-	"icon": camera,
+	"icon": cameraSVG,
 	"gps": [
 		[35.77228, -81.552720]
 	]
 },
 {
 	"description": "Red Meadow - An open meadow where you can often spot deer.",
-	"icon": camera,
+	"icon": cameraSVG,
 	"gps": [
 		[35.76812, -81.55838]
 	]
 },
 {
 	"description": "Alternate Parking - Enter through Hoyle Creek.",
-	"icon": camera,
+	"icon": marker,
 	"gps": [
 		[35.76184, -81.54822]
 	]
 },
 {
 	"description": "Arch - At the park entrance, great to take photos in.",
-	"icon": camera,
+	"icon": cameraSVG,
 	"gps": [
 		[35.77442, -81.54543]
 	]},
 ];
 */
-var vlpLandmarks = [
+var vlpPicnicTables = [
     [35.773590, -81.547390, "Picnic Area - 4 Picnic Tables crafted by Kellex Furniture. Bottom Table features a water view."],
-    [35.775367, -81.547280, "Meditation Point - A rock outcrop with amazing long views of Lake Rhodhiss in addition to Table Rock and Hawksbill Mountain. Gorgeous sunsets. Location of future Wildlife Viewing Platform."],
-    [35.770126, -81.564404, "Future Bridge to McGalliard Falls Park."],
+	[35.76821, -81.54854, "Hoyle Creek Rest Area with Benches, a Picnic Table, and stools with Sandy Creekside Access."]
+]
+var vlpLandmarks = [
+	[35.775367, -81.547280, "Meditation Point - A rock outcrop with amazing long views of Lake Rhodhiss in addition to Table Rock and Hawksbill Mountain. Gorgeous sunsets. Location of future Wildlife Viewing Platform."],
+	//[35.770126, -81.564404, "Future Bridge to McGalliard Falls Park."],
     [35.77405, -81.54666, "Table Rock View - Another Viewing Area for the Lake and Mountains. Best place to put in kayaks."],
 	[35.77473, -81.54665, "Future Boardwalk for Kayak Launch and Fishing Pier."],
-	[35.76821, -81.54854, "Hoyle Creek Rest Area with Benches, a Picnic Table, and stools with Sandy Creekside Access."],
 	[35.76716, -81.54659, "Hoyle Creek Beaver Dam"],
 	[35.77228, -81.552720, "The Fox Den - Water Access in McGalliard Creek Cove. Great Fishing Spot."],
 	[35.76812, -81.55838, "Red Meadow - An open meadow where you can often spot deer."],
-	[35.76184, -81.54822, "Alternate Parking - Enter through Hoyle Creek."],
+	//[35.76184, -81.54822, "Alternate Parking - Enter through Hoyle Creek."],
 	[35.77442, -81.54543, "Arch - At the park entrance, great to take photos in."]
 ];
 
@@ -1298,4 +1300,7 @@ module.exports = {
 	vlpTrails,
 	vlpOrienteering,
 	vlpLandmarks,
+	vlpFishing,
+	vlpAmentities,
+	vlpPicnicTables,
 };

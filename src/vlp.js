@@ -2,7 +2,8 @@ import * as g from './globals.js';
 import * as L from 'leaflet';
 import {format,formatDistance,formatRelative} from 'date-fns';
 import * as mdiIcons from './vlp-mdi-icons';
-import {vlpConfig,vlpTrails,vlpOrienteering, vlpLandmarks} from './parkmaps.js';
+import parkParcel from './park-parcel.json';
+import {vlpConfig,vlpTrails,vlpOrienteering, vlpLandmarks, vlpFishing, vlpAmentities, vlpPicnicTables} from './parkmaps.js';
 import 'leaflet/dist/leaflet.css';
 import './leaflet/grpLayerControl.css';
 import './leaflet/yahControl.css';
@@ -18,8 +19,8 @@ import * as blankTile from './img/blankTile.png';
 import * as fvr_logo from './img/fvrlogopng.png';
 import * as img_parkplan from './img/dbd-parkplan.png';
 import * as img_parkboundary from './img/park-boundary.png';
-import * as img_photo from './img/park-satellite.jpg';
-import * as img_terrain from './img/park-contour.png';
+import * as img_photo from './img/park-satellite.png';
+import * as img_parkcontours from './img/park-contour.png';
 import zakklab from './zakklab.json';
 import whatsnew from './whatsnew.json';
 
@@ -51,6 +52,25 @@ function showWhatsNew(map) {
 		localStorage.vintage = t_newest;
 	});
 }
+
+//transform: skewY(-5deg);
+var vlpRotateImageLayer = L.ImageOverlay.extend({
+	options: {rotation: -1.5},
+	initialize: function(url,bounds,options) {
+		L.setOptions(this,options);
+		L.ImageOverlay.prototype.initialize.call(this,url,bounds,options);
+    },
+    _animateZoom: function(e){
+		L.ImageOverlay.prototype._animateZoom.call(this, e);
+        var img = this._image;
+        img.style[L.DomUtil.TRANSFORM] += ' rotate(' + this.options.rotation + 'deg)';
+    },
+    _reset: function(){
+        L.ImageOverlay.prototype._reset.call(this);
+        var img = this._image;
+        img.style[L.DomUtil.TRANSFORM] += ' rotate(' + this.options.rotation + 'deg)';
+    }
+});
 
 var fvrWatermarkControl = L.Control.extend({
 	onAdd: function(map) {
@@ -122,13 +142,13 @@ function vlpMap() {
 	
 	fvrMark.addTo(map);
 
-	var parkplanLayer = L.imageOverlay(img_parkplan, vlpConfig.gpsBoundsParkPlan,{attribution:'<a href="https://dbdplanning.com/">Destination by Design</a>'});
-	var photoLayer = L.imageOverlay(img_photo, [[35.760604, -81.570219],[35.778307, -81.534993]],{attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`});
-	var terrainLayer =L.imageOverlay(img_terrain, [[35.763224, -81.566366],[35.778292, -81.534960]],{attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`,opacity:0.6});
-	var baseMaps = {"Park Plan":parkplanLayer,"Photo": photoLayer,"Terrain": terrainLayer};
+	var contourLayer = new vlpRotateImageLayer(img_parkcontours, vlpConfig.gpsBoundsParkContour,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`});
+	var photoLayer = new vlpRotateImageLayer(img_photo,vlpConfig.gpsBoundsSatellite,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`,opacity:0.7});
+	var parkplanLayer = new vlpRotateImageLayer(img_parkplan,vlpConfig.gpsBoundsParkPlan,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:'<a href="https://dbdplanning.com/">Destination by Design</a>'});
+	var baseMaps = {"Contour": contourLayer,"Photo": photoLayer,"Projected Park Plan":parkplanLayer};
 	var groupedOverlays = {};
 	
-	map.addLayer(parkplanLayer);
+	map.addLayer(contourLayer);
 	
 	function vlpAddTrail(grp,opacity,weight,v,i) {
 		var nlo = {'color':v.color,'opacity':opacity,'weight':weight};
@@ -142,28 +162,33 @@ function vlpMap() {
 			nlo['weight'] = Math.min(5,weight);
 		}
 		var newLayer = L.polyline(v.trail, nlo);
+		var tt = `<span style="color:${v.color}">${v.name} </span>`;
+		if (v.miles) {tt += `<span class="mileage">(${v.miles} miles)</span>`; }
+
+		newLayer.bindTooltip(tt,{ 'sticky': true });
+
 		if (!v.dash) {
-			// could also test for bluw:  /^#[012345678].[012345678].[9abcdef]/.test(v.color);
+			// could also test for blue:  /^#[012345678].[012345678].[9abcdef]/.test(v.color);
 			var newLayer2 = L.polyline(v.trail, {color:'#006600',weight:1});
 			newLayer = L.layerGroup([newLayer,newLayer2]);
 		}
-		var tt = `<span style="color:${v.color}">${v.name} </span><span class="mileage">(${v.miles} miles)</span>`;
-		newLayer.bindTooltip(tt,{ 'sticky': true });
 		groupedOverlays[grp][tt] = newLayer;
 		if (!v.optional) {
 			map.addLayer(newLayer);
 		}
 	}
-	vlpTrails.forEach(function(v,i) {vlpAddTrail("Primary Trails",0.85,9,v,i);});
+	
+	vlpTrails.forEach(function(v,i) {vlpAddTrail('Primary Trails',0.85,9,v,i);});
+
 	if (g.addZakklab) {
-		zakklab.forEach(function(v,i) {vlpAddTrail("Trails by Zakklab",0.7,7,v,i);});
+		zakklab.forEach(function(v,i) {vlpAddTrail('Trails by Zakklab',0.7,7,v,i);});
 	}
 	
 	var markerPts = [];
 	var orienteeringSVG = L.divIcon({
 		className: 'icon-mdi',
 		html: `<svg style="width:44px;height:44px" viewBox="0 0 24 24"><path stroke="#FFFFFF" stroke-width="1.0" fill="#EF6C00" d="${mdiIcons.mdi_Orienteering}"></svg>`,
-		iconSize: [32, 32],
+		iconSize: [44, 44],
 		iconAnchor: [15, 31],
 		popupAnchor: [0, -18]
 	});
@@ -171,14 +196,52 @@ function vlpMap() {
 	var picnicSVG = L.divIcon({
 		className: 'icon-mdi',
 		html: `<svg style="width:44px;height:44px" viewBox="0 0 24 24"><path stroke="#FFFFFF" stroke-width="1.0" fill="#5C2F00" d="${mdiIcons.mdi_Picnic}"></svg>`,
-		iconSize: [32, 32],
-		iconAnchor: [15, 31],
+		iconSize: [44, 44],
+		iconAnchor: [21, 31],
+		popupAnchor: [0, -18]
+	});
+	var cameraSVG = L.divIcon({
+		className: 'icon-mdi',
+		//html: `<svg style="width:36px;height:36px" viewBox="0 0 24 24"><path stroke="#FFFFFF" stroke-width="1.0" fill="#053275" d="${mdiIcons.mdi_Camera}"></svg>`,
+		//html: `<svg style="width:36px;height:36px" viewBox="0 0 24 24"><path stroke="#053275" stroke-width="2.2" fill="#FFFFFF" d="${mdiIcons.mdi_Camera}"></svg>`,
+		html: `<svg style="width:36px;height:36px" viewBox="0 0 24 24"><path stroke="#FFFFFF" stroke-width="1.0" fill="#000000" d="${mdiIcons.mdi_Camera}"></svg>`,
+		iconSize: [36, 36],
+		iconAnchor: [21, 31],
+		popupAnchor: [0, -18]
+	});
+	var fishSVG = L.divIcon({
+		className: 'icon-mdi',
+		html: `<svg style="width:36px;height:36px" viewBox="0 0 24 24"><path stroke="#000000" stroke-width="1.5" fill="#F6E35B" d="${mdiIcons.mdi_Fish}"></svg>`,
+		//html: `<svg style="width:36px;height:36px" viewBox="0 0 24 24"><path stroke="#000000" stroke-width="1.5" fill="#7CE300" d="${mdiIcons.mdi_Fish}"></svg>`,
+		iconSize: [36, 36],
+		iconAnchor: [21, 31],
 		popupAnchor: [0, -18]
 	});
 	var landmarkPts = [];
-	vlpLandmarks.forEach(function(v,i) {landmarkPts.push(L.marker(gps(v[0],v[1]),{icon:picnicSVG}).bindPopup(v[2]))});
+	vlpLandmarks.forEach(function(v,i) {landmarkPts.push(L.marker(gps(v[0],v[1]),{icon:cameraSVG}).bindPopup(v[2]))});
+	var fishingPts = [];
+	vlpFishing.forEach(function(v,i) {fishingPts.push(L.marker(gps(v[0],v[1]),{icon:fishSVG}).bindPopup(v[2]))});
+	var amentityPts = [];
+	vlpAmentities.forEach(function(v,i) {amentityPts.push(L.marker(gps(v[0],v[1])).bindPopup(v[2]))});
+	var picnicPts = [];
+	vlpPicnicTables.forEach(function(v,i) {picnicPts.push(L.marker(gps(v[0],v[1]),{icon:picnicSVG}).bindPopup(v[2]))});
+
+	// Parcel GeoJSON has LngLat that needs to be reversed
+	var gpsParkBoundary = [];
+	parkParcel.geometry.coordinates[0].forEach(function(v) {gpsParkBoundary.push(gps(v[1],v[0]));});
 	
-	groupedOverlays['Points of Interest'] = {"Orienteering Markers":L.layerGroup(markerPts), "Landmarks & Sightseeing":L.layerGroup(landmarkPts)};
+	groupedOverlays['Points of Interest'] = {
+		"Orienteering Markers":L.layerGroup(markerPts),
+		"Landmarks & Sightseeing":L.layerGroup(landmarkPts),
+		"Fishing Spots":L.layerGroup(fishingPts),
+		"Future Amentities":L.layerGroup(amentityPts),
+		"Picnic Tables":L.layerGroup(picnicPts),
+		"Park Parcel Boundary": L.polyline(gpsParkBoundary,{
+			color:'#D8B908',
+			opacity:0.75,
+			weight:8}
+			).bindTooltip('This is the parcel boundary for the park property.',{sticky:true})
+	};
 	
 	L.control.groupedLayers(baseMaps, groupedOverlays).addTo(map);
 	map.attributionControl.addAttribution('<a href="https://friendsofthevaldeserec.org">FVR</a>');
@@ -190,6 +253,8 @@ function vlpMap() {
 			vlpDebug(e.latlng);
 		});
 	}
+
+	//L.rectangle(vlpConfig.gpsBoundsSatellite, {color: "#ff7800", weight: 1}).addTo(map);
 
 	map.fitBounds(vlpConfig.gpsBoundsParkPlan);
 
