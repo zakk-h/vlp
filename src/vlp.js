@@ -3,6 +3,7 @@ import * as L from 'leaflet';
 
 import {format,formatDistance,formatRelative} from 'date-fns';
 import * as mdiIcons from './vlp-mdi-icons';
+import parkParcel from './park-parcel.json';
 import {vlpConfig,vlpTrails,vlpOrienteering, vlpLandmarks} from './parkmaps.js';
 import 'leaflet/dist/leaflet.css';
 import './leaflet/grpLayerControl.css';
@@ -148,16 +149,29 @@ function vlpMap() {
 			var newLayer2 = L.polyline(v.trail, {color:'#006600',weight:1});
 			newLayer = L.layerGroup([newLayer,newLayer2]);
 		}
-		var tt = `<span style="color:${v.color}">${v.name} </span><span class="mileage">(${v.miles} miles)</span>`;
+		var tt = `<span style="color:${v.color}">${v.name} </span>`;
+		if (v.miles) {tt += `<span class="mileage">(${v.miles} miles)</span>`; }
 		newLayer.bindTooltip(tt,{ 'sticky': true });
 		groupedOverlays[grp][tt] = newLayer;
 		if (!v.optional) {
 			map.addLayer(newLayer);
 		}
 	}
-	vlpTrails.forEach(function(v,i) {vlpAddTrail("Primary Trails",0.85,9,v,i);});
+	
+	// Parcel GeoJSON has LngLat that needs to be reversed
+	var gpsParkBoundary = {
+		name: 'Park Boundary (Burke GIS Parcel)',
+		color: '#D8B908',
+		miles: false,
+		optional: true,
+		trail: []
+	};
+	parkParcel.geometry.coordinates[0].forEach(function(v) {gpsParkBoundary.trail.push(gps(v[1],v[0]));});
+	vlpTrails.push(gpsParkBoundary);
+	vlpTrails.forEach(function(v,i) {vlpAddTrail('Primary Trails',0.85,9,v,i);});
+
 	if (g.addZakklab) {
-		zakklab.forEach(function(v,i) {vlpAddTrail("Trails by Zakklab",0.7,7,v,i);});
+		zakklab.forEach(function(v,i) {vlpAddTrail('Trails by Zakklab',0.7,7,v,i);});
 	}
 	
 	var markerPts = [];

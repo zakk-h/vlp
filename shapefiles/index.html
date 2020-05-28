@@ -1,0 +1,18 @@
+<html>
+<head>
+	<title>Shapefile to GeoJSON</title>
+</head>
+<body>
+	<script src='https://unpkg.com/shpjs@latest/dist/shp.js'></script>
+	<h1>Shapefile to GeoJSON</h1>
+	<code><script>
+		shp('https://s3.amazonaws.com/gis-opendata/gis-data/parcel_shp.zip').then(function(data) {
+			var geojson_park = data.features[53759];
+			//console.log(data);
+			console.log('vlp',geojson_park);
+			//console.log(data[53759]);
+			document.write(JSON.stringify(geojson_park));
+		});
+	</script></code>
+</body>
+</html>

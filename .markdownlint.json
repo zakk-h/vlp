@@ -1,0 +1,7 @@
+{
+	"default": true,
+	"no-inline-html": {
+		"allowed_elements": ["br"]
+	},
+	"no-hard-tabs": false
+}
