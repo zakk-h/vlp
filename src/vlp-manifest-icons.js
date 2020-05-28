@@ -6,3 +6,4 @@ import './icon/icon-152x152.png';
 import './icon/icon-192x192.png';
 import './icon/icon-384x384.png';
 import './icon/icon-512x512.png';
+import './icon/apple-touch-icon.png';

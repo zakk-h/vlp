@@ -22,3 +22,4 @@
 .leaflet-control-layers-group label:not(.leaflet-control-layers-group-label) {
   text-indent: 15px;
 }
+span.mileage {font-size: 80%;}
