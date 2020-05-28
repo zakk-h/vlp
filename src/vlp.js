@@ -163,30 +163,22 @@ function vlpMap() {
 			nlo['weight'] = Math.min(5,weight);
 		}
 		var newLayer = L.polyline(v.trail, nlo);
+		var tt = `<span style="color:${v.color}">${v.name} </span>`;
+		if (v.miles) {tt += `<span class="mileage">(${v.miles} miles)</span>`; }
+
+		newLayer.bindTooltip(tt,{ 'sticky': true });
+
 		if (!v.dash) {
-			// could also test for bluw:  /^#[012345678].[012345678].[9abcdef]/.test(v.color);
+			// could also test for blue:  /^#[012345678].[012345678].[9abcdef]/.test(v.color);
 			var newLayer2 = L.polyline(v.trail, {color:'#006600',weight:1});
 			newLayer = L.layerGroup([newLayer,newLayer2]);
 		}
-		var tt = `<span style="color:${v.color}">${v.name} </span>`;
-		if (v.miles) {tt += `<span class="mileage">(${v.miles} miles)</span>`; }
-		newLayer.bindTooltip(tt,{ 'sticky': true });
 		groupedOverlays[grp][tt] = newLayer;
 		if (!v.optional) {
 			map.addLayer(newLayer);
 		}
 	}
 	
-	// Parcel GeoJSON has LngLat that needs to be reversed
-	var gpsParkBoundary = {
-		name: 'Park Boundary (Burke GIS Parcel)',
-		color: '#D8B908',
-		miles: false,
-		optional: true,
-		trail: []
-	};
-	parkParcel.geometry.coordinates[0].forEach(function(v) {gpsParkBoundary.trail.push(gps(v[1],v[0]));});
-	vlpTrails.push(gpsParkBoundary);
 	vlpTrails.forEach(function(v,i) {vlpAddTrail('Primary Trails',0.85,9,v,i);});
 
 	if (g.addZakklab) {
@@ -205,8 +197,20 @@ function vlpMap() {
 	
 	var landmarkPts = [];
 	vlpLandmarks.forEach(function(v,i) {landmarkPts.push(L.marker(gps(v[0],v[1])).bindPopup(v[2]))});
+
+	// Parcel GeoJSON has LngLat that needs to be reversed
+	var gpsParkBoundary = [];
+	parkParcel.geometry.coordinates[0].forEach(function(v) {gpsParkBoundary.push(gps(v[1],v[0]));});
 	
-	groupedOverlays['Points of Interest'] = {"Orienteering Markers":L.layerGroup(markerPts), "Landmarks & Sightseeing":L.layerGroup(landmarkPts)};
+	groupedOverlays['Points of Interest'] = {
+		"Orienteering Markers":L.layerGroup(markerPts),
+		"Landmarks & Sightseeing":L.layerGroup(landmarkPts),
+		"Park Parcel Boundary": L.polyline(gpsParkBoundary,{
+			color:'#D8B908',
+			opacity:0.75,
+			weight:8}
+			).bindTooltip('this is the parcel boundary for the park property',{sticky:true})
+	};
 	
 	L.control.groupedLayers(baseMaps, groupedOverlays).addTo(map);
 	map.attributionControl.addAttribution('<a href="https://friendsofthevaldeserec.org">FVR</a>');
