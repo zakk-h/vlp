@@ -36,11 +36,12 @@ const mdiIconColor = {
 	waves:	'#000066'
 }
 const mdiIconOutline = {
-    fish:	'#000000',
-    bridge:	'#000000'
+    bridge:	'#000000',
+    fish:	'#000000'
 }
 const mdiIconOutlineWidth = {
     fish:	'1.5',
-    bridge: '.75'
+    bridge: '.75',
+    
 }
 export {mdiIcon, mdiIconColor, mdiIconOutline, mdiIconOutlineWidth};

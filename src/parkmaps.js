@@ -1198,7 +1198,7 @@ var vlpLandmarks = [
 var vlpAmenities = [
 	[[35.769810455507034, -81.5575432777404], "bike", "Mountain Biking - Up to 8 Miles will be included. Pending grant - May be built in Phase 1."],
 	[[35.770261, -81.564882], "bridge", "Bridge to McGalliard Falls - Phase 1 - Waiting on additional quotes and 40K in donations. Donate at friendsofthevaldeserec.org/donate. It will be a 150 foot suspension bridge."],
-	[[35.771037861, 81.550269], "nature", "Outer Loop. A sustainable Outer Loop will be built in Phase 2."],
+	[[35.771037861, -81.550269], "nature", "Outer Loop. A sustainable Outer Loop will be built in Phase 2."],
 	[[35.772704, -81.54921], "nature", "Greenway - This will be ADA compliant made out of crushed cinder. 10 ft wide. A mile of the Greenway will be paved in Phase 1."],
 	[[35.7757775, -81.547275], "nature", "Wildlife Viewing Platform. This will be a jutout over the water x by x feet in Phase 1."],
 	[[35.773575, -81.5453982], "nature", "Open Green - This will be a large ellipse clearing with a pergola in Phase 1-2"],
