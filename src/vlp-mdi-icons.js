@@ -25,7 +25,7 @@ const mdiIconColor = {
     boat:	'#A52A2A',
 	bridge:	'#000000',
 	camera:	'#040421',
-	cars:	'#800000',
+	cars:	'#A88C8C',
 	fish:	'#F6E35B', 
 	flag:	'#EF6C00',
 	info:	'#0000AA',
@@ -37,7 +37,8 @@ const mdiIconColor = {
 }
 const mdiIconOutline = {
     bridge:	'#000000',
-    fish:	'#000000'
+    fish:	'#000000',
+    cars:   '#000000'
 }
 const mdiIconOutlineWidth = {
     fish:	'1.5',

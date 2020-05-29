@@ -300,6 +300,7 @@ var vlpTrails = [{
 		"dash": false,
 		"miles": 0.35,
 		"trail": [
+			[35.7678, -81.55633620, 329.9],
 			[35.767971, -81.556280, 329.9],
 			[35.768063, -81.556238, 329.8],
 			[35.768137, -81.556195, 329.7],
@@ -1171,7 +1172,7 @@ var vlpTrails = [{
 
 	
 var vlpOrienteering = [
-	[[35.773575311, -81.547125], "flag", "This selected marker is at the Picnic Area by the Greenway."],
+	[[35.773575, -81.547125], "flag", "This selected marker is at the Picnic Area by the Greenway."],
 	[[35.772110, -81.547680], "flag", "This selected marker is at an intersection of the Red Trail and a small meadow."],
 	[[35.769390, -81.551470], "flag", "This selected marker is at an intersection of the Red Trail and a small meadow."],
 	[[35.766754, -81.552442], "flag", "This selected marker is at the Power Lines on the Red Trail."],
@@ -1184,32 +1185,34 @@ var vlpOrienteering = [
 ];
 
 var vlpLandmarks = [
-	[[35.77371023, -81.54758155], "picnic", "Picnic Area - 4 Picnic Tables crafted by Kellex Furniture. Bottom Table features a water view."],
+	[[35.77371023, -81.547581], "picnic", "Picnic Area - 4 Picnic Tables crafted by Kellex Furniture. Bottom Table features a water view."],
+	[[35.7651269, -81.5694683], "picnic", "Picnic Area - A covered Picnic Shelter with multiple tables at McGalliard Falls Park."],
 	[[35.77535104, -81.547613], "camera", "Meditation Point- An overlook over the water to see the mountain backdrop behind the lake. Makes for great sunsets."],
 	[[35.77405, -81.54666], "boat", "Table Rock View - Another Viewing Area for the Lake and Mountains. Best place to put in kayaks."],
 	[[35.76821, -81.54854], "tablechair", "Hoyle Creek Rest Area with Benches, a Picnic Table, and stools with Sandy Creekside Access."],
 	[[35.76716, -81.54659], "waves", "Hoyle Creek Beaver Dam"],
-	[[35.772143381, -81.5529352], "camera", "The Fox Den - Water Access in McGalliard Creek Cove. Great Fishing Spot."],
+	[[35.772143, -81.5529], "camera", "The Fox Den - A gentle sloped Water Access in McGalliard Creek Cove."],
 	[[35.76812, -81.55838], "camera", "Red Meadow - An open meadow where you can often spot deer."],
 	[[35.76184, -81.54822], "cars", "Alternate Parking - Enter through Hoyle Creek."],
 	[[35.77492, -81.54484], "cars", "Primary park entrance, lots of parking (beware of muddy conditions in wet weather)"],
+	[[35.764535, -81.569881], "cars", "McGalliard Falls Parking"],
 	[[35.7745545, -81.5456], "camera", "Arch - At the park entrance, great to take photos in."]
 ];
 var vlpAmenities = [
-	[[35.769810455507034, -81.5575432777404], "bike", "Mountain Biking - Up to 8 Miles will be included. Pending grant - May be built in Phase 1."],
+	[[35.769810, -81.55754], "bike", "Mountain Biking - Up to 8 Miles will be included. Pending grant - May be built in Phase 1."],
 	[[35.770261, -81.564882], "bridge", "Bridge to McGalliard Falls - Phase 1 - Waiting on additional quotes and 40K in donations. Donate at friendsofthevaldeserec.org/donate. It will be a 150 foot suspension bridge."],
-	[[35.771037861, -81.550269], "nature", "Outer Loop. A sustainable Outer Loop will be built in Phase 2."],
-	[[35.772704, -81.54921], "nature", "Greenway - This will be ADA compliant made out of crushed cinder. 10 ft wide. A mile of the Greenway will be paved in Phase 1."],
-	[[35.7757775, -81.547275], "nature", "Wildlife Viewing Platform. This will be a jutout over the water x by x feet in Phase 1."],
+	[[35.77103786, -81.55027], "nature", "Outer Loop. A sustainable Outer Loop will be built in Phase 2."],
+	[[35.772704, -81.54921], "nature", "Greenway - This will be ADA compliant made out of crushed cinder. 10 ft wide. 4000 linear feet of the Greenway will be paved in Phase 1."],
+	[[35.7757775, -81.547275], "nature", "Wildlife Viewing Platform. This will be a jutout over the water 14 by 20 feet in Phase 1."],
 	[[35.773575, -81.5453982], "nature", "Open Green - This will be a large ellipse clearing with a pergola in Phase 1-2"],
-	[[35.765701553, 81.55078411], "nature", "Disc Golf - This 18 hole course was designed by somebody. (Phase 3)"],
-	[[35.7752944, -81.544405], "nature", "Dog Park - This will be included in Phase 1 and be an 1 Acre ______"],
-	[[35.772791, -81.546358], "nature", "Pump Track"]
+	[[35.76570155, 81.550784], "nature", "Disc Golf - This 18 hole course was designed by John Houck. (Phase 3)"],
+	[[35.7752944, -81.544405], "nature", "Dog Park - This will be included in Phase 1 and be an 1 acre fenced-in play space."],
+	[[35.772791, -81.54636], "nature", "Pump Track"]
 
 ];
 var vlpFishing = [
-	[[	35.7723, -81.5526], "fish", "Fox Den - description"],
-	[[35.77413676, -81.54800534], "fish", "Fish Attractor at Picnic Area"],
+	[[35.7723, -81.5526], "fish", "Fox Den - A gentle slope down to the water."],
+	[[35.774137, -81.548], "fish", "Fish Attractor at Picnic Area. Below the bottom picnic table there is room to fish."],
 	[[35.77269, -81.55015], "fish", "Fish Attractor along the Greenway."]
 ];
 module.exports = {
