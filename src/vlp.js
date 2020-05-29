@@ -2,7 +2,7 @@ import * as g from './globals.js';
 import * as L from 'leaflet';
 
 import {format,formatDistance,formatRelative} from 'date-fns';
-import * as mdiIcons from './vlp-mdi-icons';
+import {mdiIcon, mdiIconColor} from './vlp-mdi-icons';
 import parkParcel from './park-parcel.json';
 import {vlpConfig,vlpTrails,vlpOrienteering, vlpLandmarks} from './parkmaps.js';
 import 'leaflet/dist/leaflet.css';
@@ -185,18 +185,39 @@ function vlpMap() {
 		zakklab.forEach(function(v,i) {vlpAddTrail('Trails by Zakklab',0.7,7,v,i);});
 	}
 	
+	var svgIcons = {};
+	function getSVGIcon(i) {
+		if (!mdiIcon[i]) { i = 'info'; }
+		if (!svgIcons[i]) {
+			var d = mdiIcon[i];
+			var c = mdiIconColor[i] || '#000000';
+			svgIcons[i] = L.divIcon({
+				className: 'icon-mdi',
+				html: `<svg style="width:32px;height:32px" viewBox="0 0 24 24"><path stroke="#FFFFFF" stroke-width="1.0" fill="${c}" d="${d}"></svg>`,
+				iconSize: [32, 32],
+				iconAnchor: [15, 31],
+				popupAnchor: [0, -18]
+			});
+		}
+		return svgIcons[i];
+	}
+
 	var markerPts = [];
-	var orienteeringSVG = L.divIcon({
-		className: 'icon-mdi',
-		html: `<svg style="width:32px;height:32px" viewBox="0 0 24 24"><path stroke="#FFFFFF" stroke-width="1.0" fill="#EF6C00" d="${mdiIcons.mdi_Orienteering}"></svg>`,
-		iconSize: [32, 32],
-		iconAnchor: [15, 31],
-		popupAnchor: [0, -18]
-	});
-	vlpOrienteering.forEach(function(v,i) {markerPts.push(L.marker(gps(v[0],v[1]),{icon:orienteeringSVG}).bindPopup('Orienteering Marker - Find all 10 of these Orange and White Markers.<br><br>'+v[2]))});
+	const orientMsg = 'Orienteering Marker - Find all 10 of these Orange and White Markers.<br><br>';
+	vlpOrienteering.forEach(function(v,i) {
+		markerPts.push(
+			L.marker(v[0],{
+				icon:getSVGIcon(v[1])
+			}).bindPopup(orientMsg+v[2]))}
+		);
 	
 	var landmarkPts = [];
-	vlpLandmarks.forEach(function(v,i) {landmarkPts.push(L.marker(gps(v[0],v[1])).bindPopup(v[2]))});
+	vlpLandmarks.forEach(function(v,i) {
+		landmarkPts.push(
+			L.marker(v[0],{
+				icon:getSVGIcon(v[1])
+			}).bindPopup(v[2]))}
+		);
 
 	// Parcel GeoJSON has LngLat that needs to be reversed
 	var gpsParkBoundary = [];

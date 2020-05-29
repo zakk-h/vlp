@@ -1169,29 +1169,28 @@ var vlpTrails = [{
 ];
 
 var vlpOrienteering = [
-	[35.773590, -81.547390, "This selected marker is at the Picnic Area by the Greenway."],
-	[35.772110, -81.547680, "This selected marker is at an intersection of the Red Trail and a small meadow."],
-	[35.769390, -81.551470, "This selected marker is at an intersection of the Red Trail and a small meadow."],
-	[35.766754, -81.552442, "This selected marker is at the Power Lines on the Red Trail."],
-	[35.767849, -81.556220, "This selected marker is at the intersection of the Red and Yellow trails."],
-	[35.768670, -81.558744, "This selected marker is at the Red Meadow."],
-	[35.772401, -81.558432, "This selected marker is at the intersection of the Red and Green trails."],
-	[35.770785, -81.553161, "This selected marker is along the Yellow Trail."],
-	[35.775367, -81.547280, "This selected marker is at Meditation Point looking out at Lake Rhodhiss."],
-	[35.770126, -81.564404, "This selected marker is at the Future Bridge to McGalliard Falls Park."]
+	[[35.773590, -81.547390], "flag", "This selected marker is at the Picnic Area by the Greenway."],
+	[[35.772110, -81.547680], "flag", "This selected marker is at an intersection of the Red Trail and a small meadow."],
+	[[35.769390, -81.551470], "flag", "This selected marker is at an intersection of the Red Trail and a small meadow."],
+	[[35.766754, -81.552442], "flag", "This selected marker is at the Power Lines on the Red Trail."],
+	[[35.767849, -81.556220], "flag", "This selected marker is at the intersection of the Red and Yellow trails."],
+	[[35.768670, -81.558744], "flag", "This selected marker is at the Red Meadow."],
+	[[35.772401, -81.558432], "flag", "This selected marker is at the intersection of the Red and Green trails."],
+	[[35.770785, -81.553161], "flag", "This selected marker is along the Yellow Trail."],
+	[[35.775367, -81.547280], "flag", "This selected marker is at Meditation Point looking out at Lake Rhodhiss."],
+	[[35.770126, -81.564404], "flag", "This selected marker is at the Future Bridge to McGalliard Falls Park."]
 ];
 var vlpLandmarks = [
-	[35.773590, -81.547390, "Picnic Area - 4 Picnic Tables crafted by Kellex Furniture. Bottom Table features a water view."],
-	[35.775367, -81.547280, "Meditation Point- An overlook over the water to see the mountain backdrop behind the lake. Makes for great sunsets."],
-	[35.770126, -81.564404, "Future Bridge to McGalliard Falls Park."],
-	[35.77405, -81.54666, "Table Rock View - Another Viewing Area for the Lake and Mountains. Best place to put in kayaks."],
-	[35.77473, -81.54665, "Future Boardwalk for Kayak Launch and Fishing Pier."],
-	[35.76821, -81.54854, "Hoyle Creek Rest Area with Benches, a Picnic Table, and stools with Sandy Creekside Access."],
-	[35.76716, -81.54659, "Hoyle Creek Beaver Dam"],
-	[35.77228, -81.552720, "The Fox Den - Water Access in McGalliard Creek Cove. Great Fishing Spot."],
-	[35.76812, -81.55838, "Red Meadow - An open meadow where you can often spot deer."],
-	[35.76184, -81.54822, "Alternate Parking - Enter through Hoyle Creek."],
-	[35.77442, -81.54543, "Arch - At the park entrance, great to take photos in."]
+	[[35.773590, -81.547390], "picnic", "Picnic Area - 4 Picnic Tables crafted by Kellex Furniture. Bottom Table features a water view."],
+	[[35.775367, -81.547280], "camera", "Meditation Point- An overlook over the water to see the mountain backdrop behind the lake. Makes for great sunsets."],
+	[[35.770126, -81.564404], "bridge", "Future Bridge to McGalliard Falls Park."],
+	[[35.77405, -81.54666], "boat", "Table Rock View - Another Viewing Area for the Lake and Mountains. Best place to put in kayaks."],
+	[[35.76821, -81.54854], "tablechair", "Hoyle Creek Rest Area with Benches, a Picnic Table, and stools with Sandy Creekside Access."],
+	[[35.76716, -81.54659], "waves", "Hoyle Creek Beaver Dam"],
+	[[35.77228, -81.552720], "nature", "The Fox Den - Water Access in McGalliard Creek Cove. Great Fishing Spot."],
+	[[35.76812, -81.55838], "nature", "Red Meadow - An open meadow where you can often spot deer."],
+	[[35.76184, -81.54822], "cars", "Alternate Parking - Enter through Hoyle Creek."],
+	[[35.77492, -81.54484], "cars", "Primary park entrance, lots of parking (beware of muddy conditions in wet weather)"]
 ];
 
 module.exports = {
