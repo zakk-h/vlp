@@ -249,7 +249,7 @@ function vlpMap() {
 			color:'#D8B908',
 			opacity:0.75,
 			weight:7}
-			).bindTooltip('this is the parcel boundary for the park property',{sticky:true})
+			).bindTooltip('This is the parcel boundary for the park property.',{sticky:true})
 	};
 	
 	L.control.groupedLayers(baseMaps, groupedOverlays).addTo(map);
