@@ -59,17 +59,17 @@ var vlpRotateImageLayer = L.ImageOverlay.extend({
 	initialize: function(url,bounds,options) {
 		L.setOptions(this,options);
 		L.ImageOverlay.prototype.initialize.call(this,url,bounds,options);
-    },
-    _animateZoom: function(e){
+	},
+	_animateZoom: function(e){
 		L.ImageOverlay.prototype._animateZoom.call(this, e);
-        var img = this._image;
-        img.style[L.DomUtil.TRANSFORM] += ' rotate(' + this.options.rotation + 'deg)';
-    },
-    _reset: function(){
-        L.ImageOverlay.prototype._reset.call(this);
-        var img = this._image;
-        img.style[L.DomUtil.TRANSFORM] += ' rotate(' + this.options.rotation + 'deg)';
-    }
+		var img = this._image;
+		img.style[L.DomUtil.TRANSFORM] += ' rotate(' + this.options.rotation + 'deg)';
+	},
+	_reset: function(){
+		L.ImageOverlay.prototype._reset.call(this);
+		var img = this._image;
+		img.style[L.DomUtil.TRANSFORM] += ' rotate(' + this.options.rotation + 'deg)';
+	}
 });
 
 var fvrWatermarkControl = L.Control.extend({
@@ -219,20 +219,23 @@ function vlpMap() {
 				icon:getSVGIcon(v[1])
 			}).bindPopup(v[2]))}
 		);
-		var fishingPts = [];
+
+	var fishingPts = [];
 	vlpFishing.forEach(function(v,i) {
 		fishingPts.push(
 			L.marker(v[0],{
 				icon:getSVGIcon(v[1])
 			}).bindPopup(v[2]))}
 		);
-		var amenityPts = [];
-		vlpAmenities.forEach(function(v,i) {
+
+	var amenityPts = [];
+	vlpAmenities.forEach(function(v,i) {
 			amenityPts.push(
 				L.marker(v[0],{
 					icon:getSVGIcon(v[1])
 				}).bindPopup(v[2]))}
 			);
+			
 	// Parcel GeoJSON has LngLat that needs to be reversed
 	var gpsParkBoundary = [];
 	parkParcel.geometry.coordinates[0].forEach(function(v) {gpsParkBoundary.push(gps(v[1],v[0]));});
