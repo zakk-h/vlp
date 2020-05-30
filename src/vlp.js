@@ -1,17 +1,25 @@
 import * as g from './globals.js';
+import {vlpConfig} from './config.js';
+
 import * as L from 'leaflet';
+import 'leaflet.markercluster/dist/leaflet.markercluster.js';
+import "leaflet.featuregroup.subgroup";
 
 import {format,formatDistance,formatRelative} from 'date-fns';
 import {mdiIcon, mdiIconColor} from './vlp-mdi-icons';
 import parkParcel from './park-parcel.json';
-import {vlpConfig,vlpTrails,vlpOrienteering, vlpLandmarks} from './parkmaps.js';
+import {vlpTrails,vlpOrienteering, vlpLandmarks} from './parkmaps.js';
 import 'leaflet/dist/leaflet.css';
 import './leaflet/grpLayerControl.css';
 import './leaflet/yahControl.css';
 import './vlpStyles.css';
 import './modal.css';
+
 import 'leaflet/dist/images/marker-shadow.png';
 import 'leaflet/dist/images/marker-icon-2x.png';
+import 'leaflet.markercluster/dist/MarkerCluster.css';
+import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
+
 import './leaflet/grpLayerControl.js';
 import {YAHControl} from './leaflet/yahControl.js';
 import './vlp-manifest-icons.js';
@@ -202,6 +210,7 @@ function vlpMap() {
 		return svgIcons[i];
 	}
 
+	var clusterGroup = L.markerClusterGroup();
 	var markerPts = [];
 	const orientMsg = 'Orienteering Marker - Find all 10 of these Orange and White Markers.<br><br>';
 	vlpOrienteering.forEach(function(v,i) {
@@ -224,8 +233,8 @@ function vlpMap() {
 	parkParcel.geometry.coordinates[0].forEach(function(v) {gpsParkBoundary.push(gps(v[1],v[0]));});
 	
 	groupedOverlays['Points of Interest'] = {
-		"Orienteering Markers":L.layerGroup(markerPts),
-		"Landmarks & Sightseeing":L.layerGroup(landmarkPts),
+		"Orienteering Markers": L.featureGroup.subGroup(clusterGroup, markerPts),
+		"Landmarks & Sightseeing": L.featureGroup.subGroup(clusterGroup, landmarkPts),
 		"Park Parcel Boundary": L.polyline(gpsParkBoundary,{
 			color:'#D8B908',
 			opacity:0.75,
@@ -233,6 +242,7 @@ function vlpMap() {
 			).bindTooltip('this is the parcel boundary for the park property',{sticky:true})
 	};
 	
+	clusterGroup.addTo(map);
 	L.control.groupedLayers(baseMaps, groupedOverlays).addTo(map);
 	map.attributionControl.addAttribution('<a href="https://friendsofthevaldeserec.org">FVR</a>');
 	yahBtn.addTo(map);

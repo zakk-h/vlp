@@ -1,4 +1,4 @@
-const {vlpConfig} = require('../src/parkmaps.js');
+const {vlpConfig} = require('../src/config.js');
 const path = require('path');
 const fs = require('fs');
 const smartstring = require('./smartstring.js');
@@ -33,7 +33,7 @@ for (var z=vlpConfig.osmZoomRange[0]; z<=vlpConfig.osmZoomRange[1];z++) {
 			data.y = y;
 			if (!fs.existsSync(smartstring('tiles/{z}/{x}_{y}.png',data))) {
 				data.s = 'abc'[(s++ % 3)];
-				console.log(smartstring('curl '+vlpConfig.urlOSMTileServer+' -o tiles/{z}/{x}_{y}.png',data));
+				console.log(smartstring('curl https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png -o tiles/{z}/{x}_{y}.png',data));
 				if ((s%sleepEvery) == 0) { console.log('sleep 1s'); }
 			}
 		}

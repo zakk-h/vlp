@@ -1,4 +1,4 @@
-const {vlpConfig} = require('../src/parkmaps.js');
+const {vlpConfig} = require('../src/config.js');
 const path = require('path');
 const fs = require('fs');
 const smartstring = require('./smartstring.js');
