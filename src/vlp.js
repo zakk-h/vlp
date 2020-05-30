@@ -8,7 +8,7 @@ import "leaflet.featuregroup.subgroup";
 import {format,formatDistance,formatRelative} from 'date-fns';
 import {mdiIcon, mdiIconColor} from './vlp-mdi-icons';
 import parkParcel from './park-parcel.json';
-import {vlpTrails,vlpOrienteering, vlpLandmarks} from './parkmaps.js';
+import {vlpTrails,vlpMarkers} from './parkmaps.js';
 import 'leaflet/dist/leaflet.css';
 import './leaflet/grpLayerControl.css';
 import './leaflet/yahControl.css';
@@ -211,36 +211,32 @@ function vlpMap() {
 	}
 
 	var clusterGroup = L.markerClusterGroup();
-	var markerPts = [];
-	const orientMsg = 'Orienteering Marker - Find all 10 of these Orange and White Markers.<br><br>';
-	vlpOrienteering.forEach(function(v,i) {
-		markerPts.push(
-			L.marker(v[0],{
-				icon:getSVGIcon(v[1])
-			}).bindPopup(orientMsg+v[2]))}
-		);
+	var poiData = {};
+
+	vlpMarkers.forEach(function(markData) {
+		var markerPts = [];
 	
-	var landmarkPts = [];
-	vlpLandmarks.forEach(function(v,i) {
-		landmarkPts.push(
-			L.marker(v[0],{
-				icon:getSVGIcon(v[1])
-			}).bindPopup(v[2]))}
-		);
+		markData.markers.forEach(function(v,i) {
+			markerPts.push(
+				L.marker(v[0],{
+					icon:getSVGIcon(v[1])
+				}).bindPopup(v[2]))}
+			);
+
+		poiData[markData.name] = L.featureGroup.subGroup(clusterGroup, markerPts);
+	});
 
 	// Parcel GeoJSON has LngLat that needs to be reversed
 	var gpsParkBoundary = [];
 	parkParcel.geometry.coordinates[0].forEach(function(v) {gpsParkBoundary.push(gps(v[1],v[0]));});
 	
-	groupedOverlays['Points of Interest'] = {
-		"Orienteering Markers": L.featureGroup.subGroup(clusterGroup, markerPts),
-		"Landmarks & Sightseeing": L.featureGroup.subGroup(clusterGroup, landmarkPts),
-		"Park Parcel Boundary": L.polyline(gpsParkBoundary,{
-			color:'#D8B908',
-			opacity:0.75,
-			weight:8}
-			).bindTooltip('this is the parcel boundary for the park property',{sticky:true})
-	};
+	poiData['Park Parcel Boundary'] = L.polyline(gpsParkBoundary,{
+		color:'#D8B908',
+		opacity:0.75,
+		weight:8}
+		).bindTooltip('this is the parcel boundary for the park property',{sticky:true});
+
+	groupedOverlays['Points of Interest'] = poiData;
 	
 	clusterGroup.addTo(map);
 	L.control.groupedLayers(baseMaps, groupedOverlays).addTo(map);
