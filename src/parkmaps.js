@@ -1156,7 +1156,7 @@ var vlpAmenities = [
 	[[35.773575, -81.5453982], "nature", "Open Green - This will be a large ellipse clearing with a pergola in Phase 1-2"],
 	[[35.76570155, 81.550784], "nature", "Disc Golf - This 18 hole course was designed by John Houck. (Phase 3)"],
 	[[35.7752944, -81.544405], "nature", "Dog Park - This will be included in Phase 1 and be an 1 acre fenced-in play space."],
-	[[35.772791, -81.54636], "nature", "Pump Track"]
+	[[35.772791, -81.54636], "nature", "Pump Track - 15,000 has been allocated so far from donations."]
 
 ];
 
