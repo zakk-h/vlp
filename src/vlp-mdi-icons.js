@@ -17,7 +17,8 @@ const mdiIcon = {
 	bridge: {
 		svg: mdiBridge,
 		color: '#000000',
-		outline: ['#000000', 0.75]
+		outline: ['#000000'],
+		outlinewidth: [0.75]
 	},
 	camera: {
 		svg: mdiCamera,
@@ -31,7 +32,8 @@ const mdiIcon = {
 	fish: {
 		svg: mdiFish,
 		color: '#F6E35B',
-		outline: ['#000000', 1.5]
+		outline: ['#000000'],
+		outlinewidth: [1.5]
 	},
 	flag: {
 		svg: mdiFlagTriangle,
