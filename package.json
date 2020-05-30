@@ -6,8 +6,8 @@
   "scripts": {
     "build": "webpack --mode production",
     "test": "webpack --mode development",
-	"serve": "http-server -p 1336 build -c-1",
-	"convert-shapefile": "http-server -p 8080 shapefiles -c-1"
+    "serve": "http-server -p 1336 build -c-1",
+    "convert-shapefile": "http-server -p 8080 shapefiles -c-1"
   },
   "author": "Valdese Network",
   "license": "Apache-2.0",
@@ -16,11 +16,13 @@
     "url": "https://github.com/valdese-net/vlp.git"
   },
   "dependencies": {
+    "@mdi/js": "^5.3.45",
     "date-fns": "^2.13.0",
-    "leaflet": "^1.5.1"
+    "leaflet": "^1.5.1",
+    "leaflet.featuregroup.subgroup": "^1.0.2",
+    "leaflet.markercluster": "^1.4.1"
   },
   "devDependencies": {
-    "@mdi/js": "^5.3.45",
     "css-loader": "^2.1.1",
     "file-loader": "^3.0.1",
     "style-loader": "^0.23.1",
