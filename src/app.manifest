@@ -1,8 +1,8 @@
 {
-	"name": "Valdese Lakeside Park",
-	"short_name": "Lakeside Park",
-	"theme_color": "#000000",
-	"background_color": "#2196f3",
+	"name": "__fulltitle__",
+	"short_name": "__title__",
+	"theme_color": "__manifest_themecolor__",
+	"background_color": "__manifest_background_color__",
 	"display": "standalone",
 	"start_url": ".",
 	"icons": [

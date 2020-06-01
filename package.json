@@ -7,6 +7,8 @@
     "build": "webpack --mode production",
     "test": "webpack --mode development",
     "serve": "http-server -p 1336 build -c-1",
+    "zakklab-build": "webpack --env.ZAKKLAB --mode production",
+    "zakklab-test": "webpack --env.ZAKKLAB --mode development",
     "convert-shapefile": "http-server -p 8080 shapefiles -c-1"
   },
   "author": "Valdese Network",

@@ -217,7 +217,7 @@ function vlpMap() {
 		color:'#D8B908',
 		opacity:0.75,
 		weight:8}
-		).bindTooltip('this is the parcel boundary for the park property',{sticky:true});
+		).bindTooltip('Parcel boundary for the park property',{sticky:true});
 
 	groupedOverlays['Points of Interest'] = poiData;
 	

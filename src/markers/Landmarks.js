@@ -10,6 +10,9 @@ module.exports = {
 		[[35.772143, -81.5529], "camera", "The Fox Den - A gentle sloped Water Access in McGalliard Creek Cove."],
 		[[35.770211, -81.564667], "bridge", "Future Bridge to McGalliard Falls - Phase 1 - <a target=\"_blank\" href=\"https://friendsofthevaldeserec.org/donate\">Donations Welcome</a>"],
 		[[35.76812, -81.55838], "nature", "Red Meadow - An open meadow where you can often spot deer."],
+		[[35.7723, -81.5526], "fish", "Fox Den - A gentle slope down to the water."],
+		[[35.774137, -81.548], "fish", "Fish Attractor at Picnic Area. Below the bottom picnic table there is room to fish."],
+		[[35.77269, -81.55015], "fish", "Fish Attractor along the Greenway."],
 		[[35.76184, -81.54822], "parking", "Alternate Parking - Enter through Hoyle Creek."],
 		[[35.77492, -81.54484], "parking", "Primary park entrance, lots of parking (beware of muddy conditions in wet weather)"],
 		[[35.764535, -81.569881], "parking", "McGalliard Falls Parking"]
