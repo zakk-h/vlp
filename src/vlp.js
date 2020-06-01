@@ -6,7 +6,7 @@ import 'leaflet.markercluster/dist/leaflet.markercluster.js';
 import "leaflet.featuregroup.subgroup";
 
 import {format,formatDistance,formatRelative} from 'date-fns';
-import {mdiIcon, mdiIconColor} from './vlp-mdi-icons';
+import {createSVGIcon} from './vlp-mdi-icons';
 import parkParcel from './park-parcel.json';
 import {vlpTrails,vlpMarkers} from './parkmaps.js';
 import 'leaflet/dist/leaflet.css';
@@ -174,13 +174,13 @@ function vlpMap() {
 		var tt = `<span style="color:${v.color}">${v.name} </span>`;
 		if (v.miles) {tt += `<span class="mileage">(${v.miles} miles)</span>`; }
 
-		newLayer.bindTooltip(tt,{ 'sticky': true });
-
 		if (!v.dash) {
 			// could also test for blue:  /^#[012345678].[012345678].[9abcdef]/.test(v.color);
+			var newLayer1 = newLayer;
 			var newLayer2 = L.polyline(v.trail, {color:'#006600',weight:1});
-			newLayer = L.layerGroup([newLayer,newLayer2]);
+			newLayer = L.featureGroup([newLayer1,newLayer2]);
 		}
+		newLayer.bindTooltip(tt,{ 'sticky': true });
 		groupedOverlays[grp][tt] = newLayer;
 		if (!v.optional) {
 			map.addLayer(newLayer);
@@ -193,24 +193,7 @@ function vlpMap() {
 		zakklab.forEach(function(v,i) {vlpAddTrail('Trails by Zakklab',0.7,7,v,i);});
 	}
 	
-	var svgIcons = {};
-	function getSVGIcon(i) {
-		if (!mdiIcon[i]) { i = 'info'; }
-		if (!svgIcons[i]) {
-			var d = mdiIcon[i];
-			var c = mdiIconColor[i] || '#000000';
-			svgIcons[i] = L.divIcon({
-				className: 'icon-mdi',
-				html: `<svg style="width:32px;height:32px" viewBox="0 0 24 24"><path stroke="#FFFFFF" stroke-width="1.0" fill="${c}" d="${d}"></svg>`,
-				iconSize: [32, 32],
-				iconAnchor: [15, 31],
-				popupAnchor: [0, -18]
-			});
-		}
-		return svgIcons[i];
-	}
-
-	var clusterGroup = L.markerClusterGroup();
+	var clusterGroup = L.markerClusterGroup({maxClusterRadius:30});
 	var poiData = {};
 
 	vlpMarkers.forEach(function(markData) {
@@ -219,7 +202,7 @@ function vlpMap() {
 		markData.markers.forEach(function(v,i) {
 			markerPts.push(
 				L.marker(v[0],{
-					icon:getSVGIcon(v[1])
+					icon:createSVGIcon(v[1])
 				}).bindPopup(v[2]))}
 			);
 
