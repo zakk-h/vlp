@@ -1,12 +1,13 @@
 import * as g from './globals.js';
 import {vlpConfig} from './config.js';
 import * as L from 'leaflet';
-//import 'leaflet.markercluster/dist/leaflet.markercluster.js';
-//import "leaflet.featuregroup.subgroup";
+import 'leaflet.markercluster/dist/leaflet.markercluster.js';
+import "leaflet.featuregroup.subgroup";
 import {format,formatDistance,formatRelative} from 'date-fns';
-import {mdiIcon} from './vlp-mdi-icons';
+//import {mdiIcon} from './vlp-mdi-icons';
 import parkParcel from './park-parcel.json';
 import {vlpTrails,vlpOrienteering, vlpLandmarks, vlpFishing, vlpAmenities} from './parkmaps.js';
+import {vlpPotentialTrails} from './parkmaps.js';
 import 'leaflet/dist/leaflet.css';
 import './leaflet/grpLayerControl.css';
 import './leaflet/yahControl.css';
@@ -14,8 +15,8 @@ import './vlpStyles.css';
 import './modal.css';
 import 'leaflet/dist/images/marker-shadow.png';
 import 'leaflet/dist/images/marker-icon-2x.png';
-//import 'leaflet.markercluster/dist/MarkerCluster.css';
-//import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
+import 'leaflet.markercluster/dist/MarkerCluster.css';
+import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
 import './leaflet/grpLayerControl.js';
 import {YAHControl} from './leaflet/yahControl.js';
 import './vlp-manifest-icons.js';
@@ -28,8 +29,7 @@ import * as img_photo from './img/park-satellite.png';
 import * as img_parkcontours from './img/park-contour.png';
 import zakklab from './zakklab.json';
 import whatsnew from './whatsnew.json';
-import { mdiNature } from '@mdi/js';
-
+import {mdiIcon, mdiIconColor, mdiIconOutline, mdiIconOutlineWidth} from './vlp-mdi-icons';
 const vlpDebug = g.vlpDebug;
 
 function showWhatsNew(map) {
@@ -189,14 +189,14 @@ function vlpMap() {
 	if (g.addZakklab) {
 		zakklab.forEach(function(v,i) {vlpAddTrail('Trails by Zakklab',0.7,7,v,i);});
 	}
-	
+	/*
 	var svgIcons = {};
 	function getSVGIcon(i) {
 		if (!mdiIcon[i]) { i = 'info'; }
 		if (!svgIcons[i]) {
 			svgIcons[i] = L.divIcon({
 				className: 'icon-mdi',
-				html: `<svg style="width:37px;height:37px" viewBox="0 0 24 24"><path stroke="${mdiIcon[i[2]] || "#FFFFFF"}" stroke-width="${mdiIcon[i[3]] || 1.0}" fill="${mdiIcon[i[1]] || "#FFFFFF"}" d="${mdiIcon[i[0]] || mdiNature}"></svg>`,
+				html: `<svg style="width:37px;height:37px" viewBox="0 0 24 24"><path stroke="${mdiIcon[i][2]}" stroke-width="${mdiIcon[i][3]}" fill="${mdiIcon[i][1]}""${mdiIcon[i][0]}"></svg>`,
 				iconSize: [37, 37],
 				iconAnchor: [15, 31],
 				popupAnchor: [0, -18]
@@ -204,8 +204,26 @@ function vlpMap() {
 		}
 		return svgIcons[i];
 	}
-
-	//var clusterGroup = L.markerClusterGroup();
+*/
+var svgIcons = {};
+	function getSVGIcon(i) {
+		if (!mdiIcon[i]) { i = 'info'; }
+		if (!svgIcons[i]) {
+			var d = mdiIcon[i];
+			var c = mdiIconColor[i] || '#000000';
+			var b = mdiIconOutlineWidth[i] || '1.0';
+			var a = mdiIconOutline[i] || '#FFFFFF';
+			svgIcons[i] = L.divIcon({
+				className: 'icon-mdi',
+				html: `<svg style="width:37px;height:37px" viewBox="0 0 24 24"><path stroke="${a}" stroke-width="${b}" fill="${c}" d="${d}"></svg>`,
+				iconSize: [37, 37],
+				iconAnchor: [15, 31],
+				popupAnchor: [0, -18]
+			});
+		}
+		return svgIcons[i];
+	}
+	var clusterGroup = L.markerClusterGroup();
 	var markerPts = [];
 	const orientMsg = 'Orienteering Marker - Find all 10 of these Orange and White Markers.<br><br>';
 	vlpOrienteering.forEach(function(v,i) {
@@ -238,6 +256,15 @@ function vlpMap() {
 					icon:getSVGIcon(v[1])
 				}).bindPopup(v[2]))}
 			);
+			//
+			var potentialTrailPts = [];
+			vlpPotentialTrails.forEach(function(v,i) {
+					potentialTrailPts.push(
+						L.marker(v[0],{
+							icon:getSVGIcon(v[1])
+						}).bindPopup(v[2]))}
+					);
+			
 			
 	// Parcel GeoJSON has LngLat that needs to be reversed
 	var gpsParkBoundary = [];
@@ -248,10 +275,11 @@ function vlpMap() {
 		//"Landmarks & Sightseeing":L.layerGroup(landmarkPts),
 		//"Fishing":L.layerGroup(fishingPts),
 		//"Future Amenities":L.layerGroup(amenityPts),
-		"Orienteering Markers": L.featureGroup.subGroup(/*clusterGroup,*/ markerPts),
-		"Landmarks & Sightseeing": L.featureGroup.subGroup(/*clusterGroup,*/ landmarkPts),
-		"Fishing":L.featureGroup.subGroup(/*clusterGroup,*/ fishingPts),
-		"Future Amenities": L.featureGroup.subGroup(/*clusterGroup,*/ amenityPts),
+		"Orienteering Markers": L.featureGroup.subGroup(clusterGroup, markerPts),
+		"Landmarks & Sightseeing": L.featureGroup.subGroup(clusterGroup, landmarkPts),
+		"Fishing":L.featureGroup.subGroup(clusterGroup, fishingPts),
+		"Future Amenities": L.featureGroup.subGroup(clusterGroup, amenityPts),
+		"Potential Trails": L.featureGroup.subGroup(clusterGroup, potentialTrailPts),
 		"Park Parcel Boundary": L.polyline(gpsParkBoundary,{
 			color:'#D8B908',
 			opacity:0.75,
