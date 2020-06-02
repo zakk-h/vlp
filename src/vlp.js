@@ -4,10 +4,9 @@ import * as L from 'leaflet';
 import 'leaflet.markercluster/dist/leaflet.markercluster.js';
 import "leaflet.featuregroup.subgroup";
 import {format,formatDistance,formatRelative} from 'date-fns';
-//import {mdiIcon} from './vlp-mdi-icons';
+import {createSVGIcon} from './vlp-mdi-icons';
 import parkParcel from './park-parcel.json';
-import {vlpTrails,vlpOrienteering, vlpLandmarks, vlpFishing, vlpAmenities} from './parkmaps.js';
-import {vlpPotentialTrails} from './parkmaps.js';
+import {vlpTrails,vlpMarkers} from './parkmaps.js';
 import 'leaflet/dist/leaflet.css';
 import './leaflet/grpLayerControl.css';
 import './leaflet/yahControl.css';
@@ -171,13 +170,13 @@ function vlpMap() {
 		var tt = `<span style="color:${v.color}">${v.name} </span>`;
 		if (v.miles) {tt += `<span class="mileage">(${v.miles} miles)</span>`; }
 
-		newLayer.bindTooltip(tt,{ 'sticky': true });
-
 		if (!v.dash) {
 			// could also test for blue:  /^#[012345678].[012345678].[9abcdef]/.test(v.color);
+			var newLayer1 = newLayer;
 			var newLayer2 = L.polyline(v.trail, {color:'#006600',weight:1});
-			newLayer = L.layerGroup([newLayer,newLayer2]);
+			newLayer = L.featureGroup([newLayer1,newLayer2]);
 		}
+		newLayer.bindTooltip(tt,{ 'sticky': true });
 		groupedOverlays[grp][tt] = newLayer;
 		if (!v.optional) {
 			map.addLayer(newLayer);
@@ -189,57 +188,22 @@ function vlpMap() {
 	if (g.addZakklab) {
 		zakklab.forEach(function(v,i) {vlpAddTrail('Trails by Zakklab',0.7,7,v,i);});
 	}
-	/*
-	var svgIcons = {};
-	function getSVGIcon(i) {
-		if (!mdiIcon[i]) { i = 'info'; }
-		if (!svgIcons[i]) {
-			svgIcons[i] = L.divIcon({
-				className: 'icon-mdi',
-				html: `<svg style="width:37px;height:37px" viewBox="0 0 24 24"><path stroke="${mdiIcon[i][2]}" stroke-width="${mdiIcon[i][3]}" fill="${mdiIcon[i][1]}""${mdiIcon[i][0]}"></svg>`,
-				iconSize: [37, 37],
-				iconAnchor: [15, 31],
-				popupAnchor: [0, -18]
-			});
-		}
-		return svgIcons[i];
-	}
-*/
-var svgIcons = {};
-	function getSVGIcon(i) {
-		if (!mdiIcon[i]) { i = 'info'; }
-		if (!svgIcons[i]) {
-			var d = mdiIcon[i];
-			var c = mdiIconColor[i] || '#000000';
-			var b = mdiIconOutlineWidth[i] || '1.0';
-			var a = mdiIconOutline[i] || '#FFFFFF';
-			svgIcons[i] = L.divIcon({
-				className: 'icon-mdi',
-				html: `<svg style="width:37px;height:37px" viewBox="0 0 24 24"><path stroke="${a}" stroke-width="${b}" fill="${c}" d="${d}"></svg>`,
-				iconSize: [37, 37],
-				iconAnchor: [15, 31],
-				popupAnchor: [0, -18]
-			});
-		}
-		return svgIcons[i];
-	}
-	var clusterGroup = L.markerClusterGroup();
-	var markerPts = [];
-	const orientMsg = 'Orienteering Marker - Find all 10 of these Orange and White Markers.<br><br>';
-	vlpOrienteering.forEach(function(v,i) {
-		markerPts.push(
-			L.marker(v[0],{
-				icon:getSVGIcon(v[1])
-			}).bindPopup(orientMsg+v[2]))}
-		);
 	
-	var landmarkPts = [];
-	vlpLandmarks.forEach(function(v,i) {
-		landmarkPts.push(
-			L.marker(v[0],{
-				icon:getSVGIcon(v[1])
-			}).bindPopup(v[2]))}
-		);
+	var clusterGroup = L.markerClusterGroup({maxClusterRadius:30});
+	var poiData = {};
+
+	vlpMarkers.forEach(function(markData) {
+		var markerPts = [];
+	
+		markData.markers.forEach(function(v,i) {
+			markerPts.push(
+				L.marker(v[0],{
+					icon:createSVGIcon(v[1])
+				}).bindPopup(v[2]))}
+			);
+
+		poiData[markData.name] = L.featureGroup.subGroup(clusterGroup, markerPts);
+	});
 
 	var fishingPts = [];
 	vlpFishing.forEach(function(v,i) {
@@ -270,22 +234,13 @@ var svgIcons = {};
 	var gpsParkBoundary = [];
 	parkParcel.geometry.coordinates[0].forEach(function(v) {gpsParkBoundary.push(gps(v[1],v[0]));});
 	
-	groupedOverlays['Points of Interest'] = {
-		//"Orienteering Markers":L.layerGroup(markerPts),
-		//"Landmarks & Sightseeing":L.layerGroup(landmarkPts),
-		//"Fishing":L.layerGroup(fishingPts),
-		//"Future Amenities":L.layerGroup(amenityPts),
-		"Orienteering Markers": L.featureGroup.subGroup(clusterGroup, markerPts),
-		"Landmarks & Sightseeing": L.featureGroup.subGroup(clusterGroup, landmarkPts),
-		"Fishing":L.featureGroup.subGroup(clusterGroup, fishingPts),
-		"Future Amenities": L.featureGroup.subGroup(clusterGroup, amenityPts),
-		"Potential Trails": L.featureGroup.subGroup(clusterGroup, potentialTrailPts),
-		"Park Parcel Boundary": L.polyline(gpsParkBoundary,{
-			color:'#D8B908',
-			opacity:0.75,
-			weight:7}
-			).bindTooltip('This is the parcel boundary for the park property.',{sticky:true})
-	};
+	poiData['Park Parcel Boundary'] = L.polyline(gpsParkBoundary,{
+		color:'#D8B908',
+		opacity:0.75,
+		weight:8}
+		).bindTooltip('Parcel boundary for the park property',{sticky:true});
+
+	groupedOverlays['Points of Interest'] = poiData;
 	
 	clusterGroup.addTo(map);
 	L.control.groupedLayers(baseMaps, groupedOverlays).addTo(map);
