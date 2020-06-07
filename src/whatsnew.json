@@ -1,9 +1,10 @@
 [
+	[1591559339, "Added High School Cross Country Trails"],
 	[1591041095,"New marker clusters for landmarks and other points of interest"],
 	[1590691571,"New high precision contour and image maps, with optional park boundary"],
 	[1590320405, "Add user control over location tracking (fixed in update)"],
 	[1589810024, "Add Hoyle Creek to Primary Trails"],
 	[1589807866, "Add Points of Interests and update trail maps (via <a target='_blank' href='https://zakklab.valdese.info'>zakklab</a>)"],
 	[1589741217,"Fix trail layers control when used in Safari browser"],
-	[1562008315,"Debut of the Lakeside Park app"]
+	[1562008315,"Debut of the Lakeside Park app"] 
 ]

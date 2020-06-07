@@ -3,7 +3,7 @@ module.exports = {
 	"secret": false,
 	"color": "#A854DF",
 	"dash": false,
-	"miles": 1.4,
+	"miles": 1.15,
 	"optional": false,
 	"trail": [
 		[35.771862, -81.545879, 319.3],

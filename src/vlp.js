@@ -1,8 +1,10 @@
 import * as g from './globals.js';
 import {vlpConfig} from './config.js';
+
 import * as L from 'leaflet';
 import 'leaflet.markercluster/dist/leaflet.markercluster.js';
 import "leaflet.featuregroup.subgroup";
+
 import {format,formatDistance,formatRelative} from 'date-fns';
 import {createSVGIcon} from './vlp-mdi-icons';
 import parkParcel from './park-parcel.json';
@@ -12,10 +14,12 @@ import './leaflet/grpLayerControl.css';
 import './leaflet/yahControl.css';
 import './vlpStyles.css';
 import './modal.css';
+
 import 'leaflet/dist/images/marker-shadow.png';
 import 'leaflet/dist/images/marker-icon-2x.png';
 import 'leaflet.markercluster/dist/MarkerCluster.css';
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
+
 import './leaflet/grpLayerControl.js';
 import {YAHControl} from './leaflet/yahControl.js';
 import './vlp-manifest-icons.js';
@@ -28,7 +32,7 @@ import * as img_photo from './img/park-satellite.png';
 import * as img_parkcontours from './img/park-contour.png';
 import zakklab from './zakklab.json';
 import whatsnew from './whatsnew.json';
-import {mdiIcon, mdiIconColor, mdiIconOutline, mdiIconOutlineWidth} from './vlp-mdi-icons';
+
 const vlpDebug = g.vlpDebug;
 
 function showWhatsNew(map) {
@@ -64,17 +68,17 @@ var vlpRotateImageLayer = L.ImageOverlay.extend({
 	initialize: function(url,bounds,options) {
 		L.setOptions(this,options);
 		L.ImageOverlay.prototype.initialize.call(this,url,bounds,options);
-	},
-	_animateZoom: function(e){
+    },
+    _animateZoom: function(e){
 		L.ImageOverlay.prototype._animateZoom.call(this, e);
-		var img = this._image;
-		img.style[L.DomUtil.TRANSFORM] += ' rotate(' + this.options.rotation + 'deg)';
-	},
-	_reset: function(){
-		L.ImageOverlay.prototype._reset.call(this);
-		var img = this._image;
-		img.style[L.DomUtil.TRANSFORM] += ' rotate(' + this.options.rotation + 'deg)';
-	}
+        var img = this._image;
+        img.style[L.DomUtil.TRANSFORM] += ' rotate(' + this.options.rotation + 'deg)';
+    },
+    _reset: function(){
+        L.ImageOverlay.prototype._reset.call(this);
+        var img = this._image;
+        img.style[L.DomUtil.TRANSFORM] += ' rotate(' + this.options.rotation + 'deg)';
+    }
 });
 
 var fvrWatermarkControl = L.Control.extend({
@@ -205,31 +209,6 @@ function vlpMap() {
 		poiData[markData.name] = L.featureGroup.subGroup(clusterGroup, markerPts);
 	});
 
-	var fishingPts = [];
-	vlpFishing.forEach(function(v,i) {
-		fishingPts.push(
-			L.marker(v[0],{
-				icon:getSVGIcon(v[1])
-			}).bindPopup(v[2]))}
-		);
-
-	var amenityPts = [];
-	vlpAmenities.forEach(function(v,i) {
-			amenityPts.push(
-				L.marker(v[0],{
-					icon:getSVGIcon(v[1])
-				}).bindPopup(v[2]))}
-			);
-			//
-			var potentialTrailPts = [];
-			vlpPotentialTrails.forEach(function(v,i) {
-					potentialTrailPts.push(
-						L.marker(v[0],{
-							icon:getSVGIcon(v[1])
-						}).bindPopup(v[2]))}
-					);
-			
-			
 	// Parcel GeoJSON has LngLat that needs to be reversed
 	var gpsParkBoundary = [];
 	parkParcel.geometry.coordinates[0].forEach(function(v) {gpsParkBoundary.push(gps(v[1],v[0]));});
