@@ -4,9 +4,17 @@ function showModal(title,content,callbackOnClose) {
 	var wnc = document.getElementById('vlp-modal-body');
     var wnx = document.getElementById('vlp-modal-close');
     
-    wnc.innerHTML = content;
 	wnt.innerHTML = title;
-    wnp.style.display = 'block';
+
+	//if (typeof(content) == 'string') {
+		wnc.innerHTML = content;
+	//} else {
+	//	wnc.innerHTML = '';
+	//	content(wnc);
+	//}
+
+	wnp.style.display = 'block';
+
     function doClose(e) {
         wnp.style.display = 'none';
         callbackOnClose(e);
