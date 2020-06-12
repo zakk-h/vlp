@@ -19,17 +19,38 @@ module.exports = env => {
     },
     module: {
         rules: [
-            { test: /app\.manifest$/, use: [
-				{loader:'file-loader',options: {name:'manifest.json'}},
-				{loader: path.resolve('./loader/TitleReplacer.js'), options:{ZAKKLAB:use_zakklab} }
-			] },
-            { test: /\.html$/, use: [
-				{loader:"file-loader",options:{name:'[name].html'}},
-				{loader: path.resolve('./loader/TitleReplacer.js'), options:{ZAKKLAB:use_zakklab} }
-			] },
-            { test: /\.css$/, use: ["style-loader","css-loader"] },
-            { test: /\.(png|svg|jpe?g|gif|woff2?|ttf|eot)$/, use: [{loader:'file-loader',options: {name:'[name].[ext]'}}] },
-        ]
+			{
+				test: /app\.manifest$/,
+				use: [
+					{loader:'file-loader',options: {name:'manifest.json'}},
+					{loader: path.resolve('./loader/TitleReplacer.js'), options:{ZAKKLAB:use_zakklab} }
+				]
+			},
+            {
+				test: /\.html$/,
+				use: [
+					{loader:"file-loader",options:{name:'[name].html'}},
+					{loader: path.resolve('./loader/TitleReplacer.js'), options:{ZAKKLAB:use_zakklab} }
+				]
+			},
+			{
+				test: /\.md$/,
+				use: [
+					{loader: 'raw-loader'},
+					{loader: 'markdown-loader'}
+				]
+			},
+			{
+				test: /\.css$/,
+				use: ["style-loader","css-loader"]
+			},
+            {
+				test: /\.(png|svg|jpe?g|gif|woff2?|ttf|eot)$/, 
+				use: [
+					{loader:'file-loader',options: {name:'[name].[ext]'}}
+				]
+			}
+		]
     },
     plugins: [
         new webpack.DefinePlugin({
