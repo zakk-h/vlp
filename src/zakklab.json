@@ -1,6 +1,6 @@
 [{
 	"name": "Hoyle Creek Extension",
-	"secret": false,
+	"secret": true,
 	"color": "#190129",
 	"dash": false,
 	"miles": 0.20,
