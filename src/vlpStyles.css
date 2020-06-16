@@ -1,3 +1,4 @@
 #image-map {width:100%; height:calc(100% - 28px); border:0; margin:0;}
 img.fvrlogo {width:50px;opacity:1.0;}
 a:visited img.fvrlogo {opacity:0.5;}
+a.btn {display:block; width: 140px; border:solid 1px black; border-radius: 4px; text-decoration: none; padding: 3px 10px; background: #CCFFCC; margin:15px auto; text-align:center;}

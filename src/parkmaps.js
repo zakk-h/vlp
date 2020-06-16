@@ -11,6 +11,7 @@ const OuterCreek = require('./trails/OuterCreek.js');
 
 const markersOrienteering = require('./markers/Orienteering.js');
 const markersLandmarks = require('./markers/Landmarks.js');
+
 module.exports = {
 	vlpTrails: [
 		ParkingLot,
