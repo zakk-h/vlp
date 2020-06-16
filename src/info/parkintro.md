@@ -1,3 +1,3 @@
-# Park Intro
+# About VLP
 
-This is a park introduction. We need to add some text and descriptions.
+Welcome to Valdese Lakeside Park - a 300 acre park with construction set to start in 2020. You are viewing the Adventure Trail map.

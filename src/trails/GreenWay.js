@@ -1,6 +1,6 @@
 module.exports = {
 	"name": "Green Way",
-	"color": "#00cc00",
+	"color": "#01A108",
 	"miles": 1.3,
 	"trail": [
 		[35.770120, -81.564303, 313.8],

@@ -10,7 +10,7 @@ module.exports = {
 		[[35.767849, -81.556220], "flag", `${orientMsg}This selected marker is at the intersection of the Red and Yellow trails.`],
 		[[35.768670, -81.558744], "flag", `${orientMsg}This selected marker is at the Red Meadow.`],
 		[[35.772401, -81.558432], "flag", `${orientMsg}This selected marker is at the intersection of the Red and Green trails.`],
-		[[35.770785, -81.553161], "flag", `${orientMsg}This selected marker is along the Yellow Trail.`],
+		[[35.770245, -81.553461], "flag", `${orientMsg}This selected marker is along the Yellow Trail.`],
 		[[35.775367, -81.547280], "flag", `${orientMsg}This selected marker is at Meditation Point looking out at Lake Rhodhiss.`],
 		[[35.770126, -81.564404], "flag", `${orientMsg}This selected marker is at the Future Bridge to McGalliard Falls Park.`]
 	]

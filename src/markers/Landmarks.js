@@ -2,7 +2,7 @@ module.exports = {
 	name: 'Landmarks & Sightseeing',
 	markers: [
 		[[35.77371023, -81.547581], "picnic", "Picnic Area - 4 Picnic Tables crafted by Kellex Furniture. Bottom Table features a water view."],
-		[[35.7651269, -81.5694683], "picnic", "Picnic Area - A covered Picnic Shelter with multiple tables at McGalliard Falls Park."],
+		[[35.7646873, -81.5694576], "picnic", "Picnic Area - A covered Picnic Shelter with multiple tables at McGalliard Falls Park."],
 		[[35.77535104, -81.547613], "camera", "Meditation Point- An overlook over the water to see the mountain backdrop behind the lake. Makes for great sunsets."],
 		[[35.77405, -81.54666], "boat", "Table Rock View - Another Viewing Area for the Lake and Mountains. Best place to put in kayaks."],
 		[[35.76821, -81.54854], "picnic", "Hoyle Creek Rest Area with Benches, a Picnic Table, and stools with Sandy Creekside Access."],
