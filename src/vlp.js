@@ -209,6 +209,7 @@ function vlpMap() {
 		poiData[markData.name] = L.featureGroup.subGroup(clusterGroup, markerPts);
 	});
 
+	poiData['Landmarks & Sightseeing'].addTo(map);
 	// Parcel GeoJSON has LngLat that needs to be reversed
 	var gpsParkBoundary = [];
 	parkParcel.geometry.coordinates[0].forEach(function(v) {gpsParkBoundary.push(gps(v[1],v[0]));});

@@ -8,7 +8,7 @@ module.exports = {
 		[[35.76821, -81.54854], "picnic", "Hoyle Creek Rest Area with Benches, a Picnic Table, and stools with Sandy Creekside Access."],
 		[[35.76716, -81.54659], "waves", "Hoyle Creek Beaver Dam"],
 		[[35.772143, -81.5529], "camera", "The Fox Den - A gentle sloped Water Access in McGalliard Creek Cove."],
-		[[35.770211, -81.564667], "bridge", "Future Bridge to McGalliard Falls - Phase 1 - <a target=\"_blank\" href=\"https://friendsofthevaldeserec.org/donate\">Donations Welcome</a>"],
+		[[35.770211, -81.564667], "bridge", "Future Bridge to McGalliard Falls - Phase 1<br><a class=\"btn\" target=\"_blank\" href=\"https://friendsofthevaldeserec.org/donate\">Donations Welcome</a>"],
 		[[35.76812, -81.55838], "nature", "Red Meadow - An open meadow where you can often spot deer."],
 		[[35.7723, -81.5526], "fish", "Fox Den - A gentle slope down to the water."],
 		[[35.774137, -81.548], "fish", "Fish Attractor at Picnic Area. Below the bottom picnic table there is room to fish."],

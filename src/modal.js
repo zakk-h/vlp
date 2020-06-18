@@ -15,13 +15,23 @@ function showModal(title,content,callbackOnClose) {
 
 	wnp.style.display = 'block';
 
-    function doClose(e) {
+	function doClose(e) {
         wnp.style.display = 'none';
         callbackOnClose(e);
     }
-    wnx.addEventListener("click",doClose);
+	function keyPress (e) {
+		if (keyCode == 27) {
+			return doClose(e);
+		}
+	}
+	wnx.addEventListener("click",doClose);
 	wnp.addEventListener("click",function(e) {
 		if (e.target == wnp) {doClose(e);}
+	});
+	document.addEventListener('keydown', (e) => {
+		if (e.keyCode == 27) {
+			return doClose(e);
+		}
 	});
 }
 

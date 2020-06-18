@@ -22,6 +22,7 @@ const mdiSVGPaths = {
 const mdiSVGIcons = {
 	_default: {
 		path: mdiSVGPaths.info,
+		size: 32,
 		stroke: '#FFFFFF',
 		strokeWidth: 0.5,
 		fill: '#000000',
@@ -29,7 +30,7 @@ const mdiSVGIcons = {
 	},
 	bike: {path: mdiSVGPaths.bike},
 	boat: {path: mdiSVGPaths.boat,fill:'#A52A2A'},
-	bridge:	{path: mdiSVGPaths.bridge,strokeWidth:0},
+	bridge:	{path: mdiSVGPaths.bridge,strokeWidth:0,size:48},
 	camera:	{path: mdiSVGPaths.camera,fill:'#040421'},
 	cars:	{path: mdiSVGPaths.cars,fill:'#A88C8C',stroke:'#000000'},
 	fish:	{path: mdiSVGPaths.fish,fill:'#F6E35B',stroke:'#000000',strokeWidth:1},
@@ -49,8 +50,8 @@ function buildIcon(icoName) {
 	if (i2) {
 		for (var attrname in i2) { icon[attrname] = i2[attrname]; }
 	}
-	
-	var sz = [32,32];
+
+	var sz = [icon.size,icon.size];
 	var anchor = sz.map((v,i) => Math.round(icon.anchor[i]*v));
 	var popAnchor = [0,-anchor[1]];
 
@@ -62,7 +63,7 @@ function buildIcon(icoName) {
 
 	return L.divIcon({
 		className: 'icon-mdi',
-		html: `<svg style="width:32px;height:32px" viewBox="0 0 24 24">${path}></svg>`,
+		html: `<svg style="width:${sz[0]}px;height:${sz[1]}px" viewBox="0 0 24 24">${path}></svg>`,
 		iconSize: sz,
 		iconAnchor: anchor,
 		popupAnchor: popAnchor
