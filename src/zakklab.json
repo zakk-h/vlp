@@ -866,7 +866,7 @@
 	]
 }, {
 	"name": "Red Dot Connector - Very Steep",
-	"secret": true,
+	"secret": false,
 	"color": "#880000",
 	"miles": 0.15,
 	"dash": true,
