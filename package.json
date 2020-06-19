@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --mode production",
     "test": "webpack --mode development",
-    "serve": "http-server -p 1336 build -c-1",
+    "serve": "http-server -p 1336 build -c-1 --gzip",
     "zakklab-build": "webpack --env.ZAKKLAB --mode production",
     "zakklab-test": "webpack --env.ZAKKLAB --mode development",
     "convert-shapefile": "http-server -p 8080 shapefiles -c-1"
@@ -25,6 +25,7 @@
     "leaflet.markercluster": "^1.4.1"
   },
   "devDependencies": {
+    "compression-webpack-plugin": "^4.0.0",
     "css-loader": "^2.1.1",
     "file-loader": "^3.0.1",
     "markdown-loader": "^5.1.0",
