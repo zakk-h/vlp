@@ -5,6 +5,12 @@ of the Lakeside Park in Valdese, NC. It illustrates several Primary Trails as
 they currently exist, adventure trails via a zakklab extension, and the future
 park plan as it is currently documented.
 
+## Town of Valdese
+
+The town page for this property can be found at:
+
+https://www.townofvaldese.com/recreation/valdese-lakeside-park-project/
+
 ## Acknowledgements
 
 - [Leaflet open-source JavaScript library](https://leafletjs.com/)<br>
