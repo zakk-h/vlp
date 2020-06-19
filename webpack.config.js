@@ -1,6 +1,7 @@
 const
     webpack = require('webpack'),
-    path = require('path'),
+	path = require('path'),
+	CompressionPlugin = require('compression-webpack-plugin'),
     workboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = env => { 
@@ -55,12 +56,16 @@ module.exports = env => {
     plugins: [
         new webpack.DefinePlugin({
             'ADD_ZAKKLAB': use_zakklab
-          }),
+		  }),
+		new CompressionPlugin({
+			test: /\.js(\?.*)?$/i,
+		}),
         new workboxPlugin.GenerateSW({
 			swDest: 'sw.js',
 			maximumFileSizeToCacheInBytes: 3000000,
             //globPatterns: ['**/*.{html,js,css}'],
 			cleanupOutdatedCaches: true,
+			exclude: [/\.js\.gz/],
             clientsClaim: true,
             skipWaiting: true,
             runtimeCaching: [{
