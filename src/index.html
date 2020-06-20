@@ -10,14 +10,18 @@
 <meta name="theme-color" content="#000000">
 <style>
 html, body {height:100%; margin:0; padding:0; overflow:hidden;}
-header {width:100%;height:24px;border:0;margin:0;padding:0;overflow:hidden;background-color:black;color:#eee;}
-span#appTitle {display:inline-block;margin:0;padding:3px 0 0 10px;font:16px "Times New Roman",Times,serif;}
-img#appMenuBtn {float:right;margin:0;padding:0 12px;}
+header {width:100%;height:28px;border:0;margin:0;padding:0;overflow:hidden;background-color:black;color:#eee;}
+header span {display:inline-block;vertical-align:middle;}
+span#appMenuBtn {margin:0;padding:2px 12px;cursor: help;}
+span#appTitle {margin:0;padding:0;font:16px "Times New Roman",Times,serif;}
 </style>
 <title>__fulltitle__</title>
 </head>
 <body>
-<header><span id="appTitle">__title__</span><img id="appMenuBtn" src="btn-menu.png"></header>
+<header>
+	<span id="appMenuBtn"></span>
+	<span id="appTitle">__title__</span>
+</header>
 <div id="image-map"></div>
 
 <div id="vlp-modal"><div id="vlp-modal-content">

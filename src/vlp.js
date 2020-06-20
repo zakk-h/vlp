@@ -38,6 +38,7 @@ const vlpDebug = g.vlpDebug;
 function showWhatsNew(map) {
 	var lastseen = localStorage.vintage;
 	var t_newest = whatsnew[0][0];
+	var whatsnew4zakklab = /^zakklab:/;
 
 	if (!lastseen) { localStorage.vintage = t_newest; return; }
 	if (t_newest <= lastseen) { return; }
@@ -52,7 +53,10 @@ function showWhatsNew(map) {
 		var t =  whatsnew[i][0];
 		if (t <= lastseen) break;
 		var d2 = new Date(t*1000);
-		whatnewHtml += g.sprintf('<li>%s (%s)</li>',whatsnew[i][1],formatDistance(d2,now,tdfmt));
+		var txt =  whatsnew[i][1];
+		if (!whatsnew4zakklab.test(txt)  || g.addZakklab) {
+			whatnewHtml += g.sprintf('<li>%s (%s)</li>',txt,formatDistance(d2,now,tdfmt));
+		}
 	}
 	whatnewHtml += '</ul>';
 

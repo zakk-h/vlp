@@ -1,7 +1,7 @@
 {
 	"default": true,
 	"no-inline-html": {
-		"allowed_elements": ["br"]
+		"allowed_elements": ["a","br","details","summary"]
 	},
 	"no-hard-tabs": false
 }
