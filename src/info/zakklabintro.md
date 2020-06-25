@@ -1,4 +1,15 @@
-## Zakklab Exclusives
+## Adventure Trails
+<details>
+<summary>Green Diagonal</summary>
+
+- Easy Trail
+- 0.15 Miles
+- Open, wide, and level
+
+Starting at the beginning of the park by taking a left into the grass
+clearing it connects to Red. This trail will avoid some of the
+**road rocks** found on the Red trail.
+</details>
 
 <details>
 <summary>Oven Trail</summary>

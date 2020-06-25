@@ -197,7 +197,7 @@ function vlpMap() {
 		zakklab.forEach(function(v,i) {vlpAddTrail('Trails by Zakklab',0.7,7,v,i);});
 	}
 	
-	var clusterGroup = L.markerClusterGroup({maxClusterRadius:30});
+	var clusterGroup = L.markerClusterGroup({maxClusterRadius:20});
 	var poiData = {};
 
 	vlpMarkers.forEach(function(markData) {

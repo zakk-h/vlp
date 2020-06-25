@@ -5,7 +5,7 @@ module.exports = {
 	markers: [
 		[[35.773590, -81.547390], "flag", `${orientMsg}This selected marker is at the Picnic Area by the Greenway.`],
 		[[35.772110, -81.547680], "flag", `${orientMsg}This selected marker is at an intersection of the Red Trail and a small meadow.`],
-		[[35.769390, -81.551470], "flag", `${orientMsg}This selected marker is at an intersection of the Red Trail and a small meadow.`],
+		[[35.769179, -81.551283], "flag", `${orientMsg}This selected marker is at an intersection of the Red Trail and a small meadow.`],
 		[[35.766754, -81.552442], "flag", `${orientMsg}This selected marker is at the Power Lines on the Red Trail.`],
 		[[35.767849, -81.556220], "flag", `${orientMsg}This selected marker is at the intersection of the Red and Yellow trails.`],
 		[[35.768670, -81.558744], "flag", `${orientMsg}This selected marker is at the Red Meadow.`],

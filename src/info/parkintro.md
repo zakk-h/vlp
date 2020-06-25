@@ -5,6 +5,11 @@ to start in 2020. The park is maintained by the
 <a href="http://friendsofthevaldeserec.org/" target="_blank">Friends of the Valdese Rec</a>
 volunteer organization.
 
+To donate to build a **150 foot suspension bridge** connecting McGalliard Falls and Valdese Lakeside Park <a href="http://friendsofthevaldeserec.org/donate-2" target="_blank">tap here to donate.</a>  
+
+Donations are accepted through Facebook, Paypal, Mail, or a Stock donation.
+
+You are viewing the Adventure Trail map. 
 Below are descriptions of each trail. Click on the trail to see more information.
 
 <details>
@@ -63,9 +68,9 @@ trail.
 
 - Very Steep
 - 0.5 Miles (including all segments)
-
 The trail takes you next to the water and down to Meditation Point.
-The Meditation Point Trail is strongly recommended for casual walkers.
+
+For casual walkers, the Meditation Point trail is recommended instead.
 </details>
 
 <details>
@@ -121,16 +126,4 @@ climb the most difficult part of the trail.
 A difficult trail starting along Hoyle Creek and going up to Red.
 There is a small creek crossing with wooden planks allowing you to cross it.
 Towards the end of the trail there is a steep hill that will be difficult for some.
-</details>
-
-<details>
-<summary>Green Diagonal</summary>
-
-- Easy Trail
-- 0.15 Miles
-- Open, wide, and level
-
-Starting at the beginning of the park by taking a left into the grass
-clearing it connects to Red. This trail will avoid some of the
-**road rocks** found on the Red trail.
 </details>
