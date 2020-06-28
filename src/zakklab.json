@@ -830,12 +830,12 @@
 	]
 }, {
 	"name": "Proposed Burke River Trail Segment",
-		"secret": false,
-		"color": "#67B50F",
-		"miles": 0.45,
-		"dash": true,
-		"optional": false,
-		"trail": [
+	"secret": false,
+	"color": "#67B50F",
+	"miles": 0.45,
+	"dash": true,
+	"optional": true,
+	"trail": [
 		[35.772814,-81.542535,311],
 		[35.772884,-81.542475,310.5],
 		[35.772967,-81.542494,310.1],
@@ -993,9 +993,9 @@
 		[35.764858, -81.551833, 335.7]
 	]
 }, {
-	"name": "Red Dot Connector - Very Steep",
-	"secret": true,
-	"color": "#880000",
+	"name": "Polka Dot Connector - Very Steep",
+	"secret": false,
+	"color": "#580606",
 	"miles": 0.15,
 	"dash": true,
 	"optional": true,
