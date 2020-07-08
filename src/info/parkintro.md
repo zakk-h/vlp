@@ -103,6 +103,7 @@ do wash it away frequently. The last part of the trail walks
 very close to the creek and there are some ups and downs and turns.
 At the very end you reach Lovelady Rd, where you cross the
 bridge to get back to Lake Rhodhiss Drive.
+**Bikes are discouraged on this trail due to its slender nature and turtles often laying on the trail.**
 </details>
 
 <details>

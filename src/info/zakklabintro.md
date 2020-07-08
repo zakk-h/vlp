@@ -24,15 +24,13 @@ the trail there is an old oven sitting to the side of the trail.
 </details>
 
 <details>
-<summary>Lime Connector</summary>
+<summary>Lime Loop</summary>
 
 - Intermediate Trail
-- 0.28 Miles
+- 0.25 Miles (Far Left Path : .28, Middle Path : .25, Far Right Path: .22 but steeper.)
 
 Travels along the Yellow Creek but at a much higher elevation.
-In the middle of the trail it splits off into 2 different directions.
-Either direction is fine; both are about the same distance.
-At the Greenway end of the trail there is a steep elevation change.
+In the middle of the trail it splits off into 2 different directions. If you go right then you can take another turn that takes you back to Red 10ft from where you started. At the Greenway end of the trail there is a steep elevation change.
 </details>
 
 <details>
