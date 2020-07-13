@@ -181,7 +181,7 @@ function vlpMap() {
 		if (!v.dash) {
 			// could also test for blue:  /^#[012345678].[012345678].[9abcdef]/.test(v.color);
 			var newLayer1 = newLayer;
-			var newLayer2 = L.polyline(v.trail, {color:'#006600',weight:1});
+			var newLayer2 = L.polyline(v.trail, {color:'#2C3050',weight:1});
 			newLayer = L.featureGroup([newLayer1,newLayer2]);
 		}
 		newLayer.bindTooltip(tt,{ 'sticky': true });
@@ -194,7 +194,7 @@ function vlpMap() {
 	vlpTrails.forEach(function(v,i) {vlpAddTrail('Primary Trails',0.85,9,v,i);});
 
 	if (g.addZakklab) {
-		zakklab.forEach(function(v,i) {vlpAddTrail('Trails by Zakklab',0.7,7,v,i);});
+		zakklab.forEach(function(v,i) {vlpAddTrail('Trails by Zakklab',0.75,8,v,i);});
 	}
 	
 	var clusterGroup = L.markerClusterGroup({maxClusterRadius:20});

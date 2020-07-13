@@ -24,15 +24,22 @@ the trail there is an old oven sitting to the side of the trail.
 </details>
 
 <details>
-<summary>Lime Loop</summary>
+<summary>Lime Connector</summary>
 
 - Intermediate Trail
-- 0.25 Miles (Far Left Path : .28, Middle Path : .25, Far Right Path: .22 but steeper.)
+- 0.25 Miles 
 
 Travels along the Yellow Creek but at a much higher elevation.
-In the middle of the trail it splits off into 2 different directions. If you go right then you can take another turn that takes you back to Red 10ft from where you started. At the Greenway end of the trail there is a steep elevation change.
+In the middle of the trail it splits off into 2 different directions. Either way is fine and they are the same distance. At the Greenway end of the trail there is a steep elevation change.
 </details>
+<details>
+<summary>Black Dot Connector</summary>
 
+- Steep Trail
+- 0.16 Miles 
+
+Connects a part of Lime back up to Red. The lime 1/2 is steep and needs some trees removed but the half closer to Red is really wide and clear.
+</details>
 <details>
 <summary>Pink Trail</summary>
 
@@ -49,7 +56,16 @@ deer and rabbit sightings.
 - Intermediate-Strenuous
 - 0.06 Miles
 
-This trail connects Pink the Greenway to Pink.
-This trail is a hill going straight up to Pink.
+This trail connects Pink the Greenway to Pink and is a hill going straight up to Pink.
 It is a bit steeper than the Blue Loop so use with caution.
+</details>
+<details>
+<summary>Rhododendron Row</summary>
+
+- Unrecommended Trail
+- 0.15 Miles
+
+A wooded trail running from Red to Green past the Picnic Tables.
+The trail is wide but at the Green side there is a 20ft bank you have to climb down with trees and for that reason isn't recommended.
+There are great views on the trail like a Row of Rhododendrons along the path and if you adventure off the side you can see great water views.
 </details>

@@ -1,7 +1,7 @@
 module.exports = {
 	"name": "Outer Creek Connector",
 	"color": "#FD7B3F",
-	"dash": true,
+	"dash": false,
 	"miles": 0.50,
 	"optional": false,
 	"trail": [

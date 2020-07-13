@@ -1,7 +1,7 @@
 module.exports = {
-	"name": "McGalliard Greenway Connector",
+	"name": "McGalliard Falls Greenway",
 	"color": "#20982F",
-	"dash": true,
+	"dash": false,
 	"miles": 0.6,
 	"trail": [
 		[35.765128, -81.56967, 319.7],

@@ -12,6 +12,8 @@ Donations are accepted through Facebook, Paypal, Mail, or a Stock donation.
 You are viewing the Adventure Trail map. 
 Below are descriptions of each trail. Click on the trail to see more information.
 
+Dashed Line Trails mean a connector that is often steep and not recommended for casual walkers or in the case of the High School Trails, off Park Property.
+
 <details>
 <summary>Greenway</summary>
 
