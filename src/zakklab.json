@@ -342,7 +342,7 @@
 	"secret": false,
 	"color": "#D33A78",
 	"dash": false,
-	"miles": 0.15,
+	"miles": 0.13,
 	"optional": false,
 	"trail": [
 		[35.766576, -81.549969, 343.7],
@@ -587,9 +587,9 @@
 		[35.771911, -81.547529, 335]
 	]
 }, {
-	"name": "Road to DHS Connector",
+	"name": "Road to DHS",
 	"secret": false,
-	"color": "#0E8559",
+	"color": "#717005",
 	"miles": 0.07,
 	"dash": true,
 	"optional": false,
