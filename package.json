@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@mdi/js": "^5.3.45",
-    "date-fns": "^2.13.0",
+    "date-fns": "^2.15.0",
     "leaflet": "^1.5.1",
     "leaflet.featuregroup.subgroup": "^1.0.2",
     "leaflet.markercluster": "^1.4.1"
@@ -32,7 +32,7 @@
     "raw-loader": "^1.0.0",
     "style-loader": "^0.23.1",
     "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.11",
+    "webpack-cli": "^3.3.12",
     "workbox-webpack-plugin": "^5.1.3"
   }
 }
