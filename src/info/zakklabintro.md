@@ -1,4 +1,6 @@
 ## Adventure Trails
+
+Dashed Line Trails mean a connector that is often steep and not recommended for casual walkers or in the case of the High School Trails, off Park Property.
 <details>
 <summary>Green Diagonal</summary>
 

@@ -5,7 +5,7 @@ to start in 2020. The park is maintained by the
 <a href="http://friendsofthevaldeserec.org/" target="_blank">Friends of the Valdese Rec</a>
 volunteer organization.
 
-To donate to build a **150 foot suspension bridge** connecting McGalliard Falls and Valdese Lakeside Park. <a href="http://friendsofthevaldeserec.org/donate-2" target="_blank">Tap here to donate.</a>  
+To donate to build a **150 foot suspension bridge** connecting McGalliard Falls and Valdese Lakeside Park <a href="http://friendsofthevaldeserec.org/donate-2" target="_blank">tap here.</a>  
 
 Donations are accepted through Facebook, Paypal, Mail, or a Stock donation.
 
@@ -15,10 +15,11 @@ Donations are accepted through Facebook, Paypal, Mail, or a Stock donation.
 **Know of a trail we don't have on the map?** Let us know some information about where it is and we'll add it to the Adventure Map.
 <a href="http://docs.google.com/forms/d/e/1FAIpQLSdFYcDCt-2WTX7Z-bKeqR_rO2lHcCua98KdzfxEnAAyu2cJMg/viewform?usp=sf_link" target="_blank">New Trail Form.</a>  
 
-You are viewing the Adventure Trail map. 
+Planning to go out on the water? You can check the water level <a href="https://lakes.duke-energy.com/index.html#/detail/14/Detail" target="_blank">here.</a>
+We recommend putting in at the Table Rock View less than 0.1 miles down the Greenway.
+
 Below are descriptions of each trail. Click on the trail to see more information.
 
-Dashed Line Trails mean a connector that is often steep and not recommended for casual walkers or in the case of the High School Trails, off Park Property.
 
 <details>
 <summary>Greenway</summary>
