@@ -9,13 +9,13 @@ To donate to build a **150 foot suspension bridge** connecting McGalliard Falls 
 
 Donations are accepted through Facebook, Paypal, Mail, or a Stock donation.
 
-**See a trail that has a tree down, tall grass, or any other issue?** Fill out the form below to let the FVR volunteers know and we'll take care of it.
+**See a trail that has a tree down, tall grass, or any other issue?** Fill out the <a href="http://docs.google.com/forms/d/e/1FAIpQLScHY7sXLqqrayqviz1cJ0upHKMaSclZd_FkdYX8XcsG1YNxbA/viewform?usp=sf_link" target="_blank">form</a>  to let the FVR volunteers know and we'll take care of it.
 <a href="http://docs.google.com/forms/d/e/1FAIpQLScHY7sXLqqrayqviz1cJ0upHKMaSclZd_FkdYX8XcsG1YNxbA/viewform?usp=sf_link" target="_blank">Trail Maintence Form</a> 
 
-**Know of a trail we don't have on the map?** Let us know some information about where it is and we'll add it to the Adventure Map.
+**Know of a trail we don't have on the map?** Let us know some information about where it is and we'll consider adding it to the Adventure Map.
 <a href="http://docs.google.com/forms/d/e/1FAIpQLSdFYcDCt-2WTX7Z-bKeqR_rO2lHcCua98KdzfxEnAAyu2cJMg/viewform?usp=sf_link" target="_blank">New Trail Form.</a>  
 
-Planning to go out on the water? You can check the water level <a href="https://lakes.duke-energy.com/index.html#/detail/14/Detail" target="_blank">here.</a>
+**Planning to go out on the water?** You can check the water level <a href="https://lakes.duke-energy.com/index.html#/detail/14/Detail" target="_blank">on this site.</a>
 We recommend putting in at the Table Rock View less than 0.1 miles down the Greenway.
 
 Below are descriptions of each trail. Click on the trail to see more information.
