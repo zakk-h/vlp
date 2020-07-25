@@ -17,6 +17,6 @@ The menu in the top right corner will open a menu that allows you to change what
 
 The icons you see on screen are clickable and will tell you about that location.
 
-The '(i)' icon in the top left corner provides more information about the park and summaries of all the trails here.
+The (i) icon in the top left corner provides more information about the park and summaries of all the trails here.
 
 And lastly enjoy your trip to Valdese Lakeside Park!

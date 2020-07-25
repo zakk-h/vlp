@@ -32,6 +32,8 @@ import * as img_photo from './img/park-satellite.png';
 import * as img_parkcontours from './img/park-contour.png';
 import zakklab from './zakklab.json';
 import whatsnew from './whatsnew.json';
+import welcome from './info/welcome.md';
+import zakklabwelcome from './info/zakklabwelcome.md';
 
 const vlpDebug = g.vlpDebug;
 
@@ -40,7 +42,10 @@ function showWhatsNew(map) {
 	var t_newest = whatsnew[0][0];
 	var whatsnew4zakklab = /^zakklab:/;
 
-	if (!lastseen) { localStorage.vintage = t_newest; return; }
+	if (!lastseen) {
+		showModal('Info', g.addZakklab ? (welcome + zakklabwelcome) : welcome, function () { });
+		localStorage.vintage = t_newest; return;
+	}
 	if (t_newest <= lastseen) { return; }
 
 	var whatnewHtml = '<p>The Lakeside Park app has been updated. Recent changes to the app include:</p><ul>';
@@ -65,6 +70,8 @@ function showWhatsNew(map) {
 		localStorage.vintage = t_newest;
 	});
 }
+
+
 
 //transform: skewY(-5deg);
 var vlpRotateImageLayer = L.ImageOverlay.extend({
