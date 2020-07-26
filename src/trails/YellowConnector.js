@@ -1,6 +1,6 @@
 module.exports = {
 	"name": "Yellow Connector",
-	"color": "#ece60a",
+	"color": "#E1DB15",
 	"dash": false,
 	"miles": 0.35,
 	"trail": [

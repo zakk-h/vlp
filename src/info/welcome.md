@@ -5,7 +5,7 @@ to start in 2020.
 
 Below are some things you should know about the Interactive App:
 
-You can install the app on any device. Detailed Instructions can be found <a href="http://friendsofthevaldeserec.org/" target="_blank">here.</a> But here is a quick overview:
+You can install the app on any device. Detailed Instructions can be found <a href="http://zakklab.valdese.info/vlp/smart-install/" target="_blank">here.</a> But here is a quick overview:
 
 On iOS: In Safari, Tap the share button (the middle button on the bottom) and scroll down until you find "Add to Homescreen"
 
