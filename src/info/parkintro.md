@@ -36,6 +36,9 @@ throughout. Featured sights include:
 - 0.5 Miles in: A shallow stepdown into the water called The Fox Den. Across
   the water there are often birds such as the Great Blue Heron.
 - 1.3 Miles in: The future bridge to McGalliard Falls Park.
+<p align="center">
+  <img src="https://zakklab.valdese.info/files/greenway.jpg" width=100% title="Trail Picture">
+</p>
 
 </details>
 
@@ -45,8 +48,11 @@ throughout. Featured sights include:
 - Easy Trail
 - 0.6 Miles
 - Grass can be tall at times.
-
 **Not recommended** until a future bridge project comes to fruition.
+<p align="center">
+  <img src="https://zakklab.valdese.info/files/mcgalliard.jpg" width=100% title="Trail Picture">
+</p>
+To cross to Lakeside Park as of now this pipe is what you would have to walk across.
 </details>
 
 <details>
@@ -59,6 +65,9 @@ The creek runs to the left side for the majority of the trail.
 A third of the way in, a good photo opportunity can be found
 on the left side, with access to the creek and an unusual tree
 overhang.
+<p align="center">
+  <img src="https://zakklab.valdese.info/files/yellow.jpg" width=100% title="Trail Picture">
+</p>
 </details>
 
 <details>
@@ -70,6 +79,9 @@ overhang.
 The beginning and end of the trail can be a little steep.
 There are many elevation changes throughout the
 trail.
+<p align="center">
+  <img src="https://zakklab.valdese.info/files/red.jpg" width=100% title="Trail Picture">
+</p>
 </details>
 
 <details>
@@ -80,6 +92,9 @@ trail.
 The trail takes you next to the water and down to Meditation Point.
 
 For casual walkers, the Meditation Point trail is recommended instead.
+<p align="center">
+  <img src="https://zakklab.valdese.info/files/blueloop.jpg" width=100% title="Trail Picture">
+</p>
 </details>
 
 <details>
@@ -93,7 +108,10 @@ For casual walkers, the Meditation Point trail is recommended instead.
 Has great water views and a rock halfway along the trail that you can go down
 and sit on and fish or take photos.
 
-This is a heavily trafficked trail and could cause incidents with bikes.
+No bikes allowed because this is a heavily trafficked trail and collisions could occur.
+<p align="center">
+  <img src="https://zakklab.valdese.info/files/pointview.jpg" width=100% title="Trail Picture">
+</p>
 </details>
 
 <details>
@@ -112,7 +130,9 @@ do wash it away frequently. The last part of the trail walks
 very close to the creek and there are some ups and downs and turns.
 At the very end you reach Lovelady Rd, where you cross the
 bridge to get back to Lake Rhodhiss Drive.
-**Bikes are discouraged on this trail due to its slender nature and turtles often laying on the trail.**
+<p align="center">
+  <img src="https://zakklab.valdese.info/files/creek.jpg" width=100% title="Trail Picture">
+</p>
 </details>
 
 <details>
@@ -125,6 +145,9 @@ bridge to get back to Lake Rhodhiss Drive.
 A wooded trail along the side of the power lines that stays in the shade.
 Throughout the trail there you gain/lose 150 feet in elevation making the
 climb the most difficult part of the trail.
+<p align="center">
+  <img src="https://zakklab.valdese.info/files/orange2.jpg" width=100% title="Trail Picture">
+</p>
 </details>
 
 <details>
@@ -135,5 +158,8 @@ climb the most difficult part of the trail.
 
 A difficult trail starting along Hoyle Creek and going up to Red.
 There is a small creek crossing with wooden planks allowing you to cross it.
-Towards the end of the trail there is a steep hill that will be difficult for some.
+The width and terrain of the trail varies.
+<p align="center">
+  <img src="https://zakklab.valdese.info/files/pink3.jpg" width=100% title="Trail Picture">
+</p>
 </details>

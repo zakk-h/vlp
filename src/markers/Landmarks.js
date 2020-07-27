@@ -15,7 +15,7 @@ module.exports = {
 		[[35.76184, -81.54822], "parking", "Alternate Parking - Enter through Hoyle Creek."],
 		[[35.77492, -81.54484], "parking", "Primary park entrance with lots of parking."],
 		[[35.764535, -81.569881], "parking", "McGalliard Falls Parking"],
-		[[35.765541, -81.568551], "wheel", "Historic Meytre Grist Mill beside the Falls. To see the water wheel in action, visit the first Saturday of each month April through October, 10 am – 6 pm."]
+		[[35.765541, -81.568551], "wheel", "Historic Meytre Grist Mill beside the Falls. To see the water wheel in action, visit the first Saturday of each month April through October, 10 am - 6 pm."]
 
 	]
 };
