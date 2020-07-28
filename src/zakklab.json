@@ -332,7 +332,7 @@
 }, {
 	"name": "Oven Trail",
 	"secret": false,
-	"color": "#7C4E3A",
+	"color": "#793D2D",
 	"dash": false,
 	"miles": 0.13,
 	"optional": false,
@@ -803,7 +803,7 @@
 }, {
 	"name": "High School XC Trail #3",
 	"secret": false,
-	"color": "#835705",
+	"color": "#D0760A",
 	"miles": 0.20,
 	"dash": true,
 	"optional": false,
