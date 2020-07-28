@@ -43,8 +43,15 @@ function showWhatsNew(map) {
 	var whatsnew4zakklab = /^zakklab:/;
 
 	if (!lastseen) {
-		showModal('Info', g.addZakklab ? (welcome + zakklabwelcome) : welcome, function () { });
-		localStorage.vintage = t_newest; return;
+		if (g.addZakklab) {
+			showModal('Info',welcome + zakklabwelcome, function () {
+				localStorage.vintage = t_newest;
+			});
+		} else {
+			localStorage.vintage = t_newest;
+		}
+	
+		return;
 	}
 	if (t_newest <= lastseen) { return; }
 

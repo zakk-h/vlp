@@ -1,6 +1,6 @@
 # Welcome to Valdese Lakeside Park
 
-Welcome to **Valdese Lakeside Park** - a 300 acre park with construction set
+Welcome to Valdese Lakeside Park - a 300 acre park with construction set
 to start in 2020. 
 
 Below are some things you should know about the Interactive App:

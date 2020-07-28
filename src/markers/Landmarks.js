@@ -5,7 +5,7 @@ module.exports = {
 		[[35.7646873, -81.5694576], "picnic", "Picnic Area - A covered Picnic Shelter with multiple tables at McGalliard Falls Park."],
 		[[35.77535104, -81.547613], "camera", "Meditation Point- An overlook over the water to see the mountain backdrop behind the lake. Makes for great sunsets."],
 		[[35.77405, -81.54666], "boat", "Table Rock View - Another Viewing Area for the Lake and Mountains. Best place to put in kayaks."],
-		[[35.76821, -81.54854], "picnic", "Hoyle Creek Rest Area with Benches, a Picnic Table, and stools with Sandy Creekside Access."],
+		[[35.7683, -81.548702], "picnic", "Hoyle Creek Rest Area with Benches, a Picnic Table, and stools with Sandy Creekside Access."],
 		[[35.76716, -81.54659], "waves", "Suspected Hoyle Creek Beaver Dam"],
 		[[35.77208, -81.55274], "camera", "The Fox Den - A gentle sloped Water Access in McGalliard Creek Cove."],
 		[[35.77024,-81.564468], "bridge", "Future Bridge to McGalliard Falls - Phase 1<br><a class=\"btn\" target=\"_blank\" href=\"https://friendsofthevaldeserec.org/donate-today\">Donations Welcome</a>"],
