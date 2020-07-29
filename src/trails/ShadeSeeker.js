@@ -2,7 +2,7 @@ module.exports = {
 	"name": "Shade Seeker",
 	"secret": false,
 	"color": "#0192EA",
-	"dash": true,
+	"dash": false,
 	"miles": 0.28,
 	"optional": false,
 	"trail": [

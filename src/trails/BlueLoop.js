@@ -1,8 +1,8 @@
 module.exports = {
-	"name": "Blue Loop - Steep",
+	"name": "Blue Loop",
 	"color": "#151A8A",
-	"dash": true,
-	"miles": 0.45,
+	"dash": false,
+	"miles": 0.4,
 	"trail": [
 		[35.774599, -81.545494, 317.2],
 		[35.774686, -81.545528, 317.6],
