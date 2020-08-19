@@ -1,4 +1,8 @@
 [
+	[1597532000, "Additional Icons along Hoyle Creek"],
+	[1596323605, "New tools: A more simple measurement widget that is more mobile-friendly. In the bottom right corner there is an upload and download button. You can download where you've walked with the app open (can't have your phone asleep) to then send to other people or view later. The upload button will allow you to select a gpx, json, or geojson file (a mapping file/what the download button gives you) and it will plot the route on your map."],
+	[1596237568, "zakklab: 'Helmet Trail' Added. These are somewhat steep ATV trails that you can use to take a shortcut on Orange past the creek crossing."],
+	[1596237268, "New tool: The icon underneath the zoom controls in the top left can measure distances. Tap it and select points on the map to see the perimeter/area."],
 	[1595962630, "Want to see all the wildlife at the park? Visit <a target='_blank' href='https://zakklab.valdese.info'>this site to see it all.</a>"],
 	[1595879000, "The (i) menu now has pictures of each trail."],
 	[1595878526, "zakklab: Changes that you can see and some you can't: New visitors of the App receive an introduction to the page and how to install the App, basic information, etc. Oven Trail is being re-colored to match the surroundings better."],

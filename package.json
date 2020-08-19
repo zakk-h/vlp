@@ -21,8 +21,10 @@
     "@mdi/js": "^5.3.45",
     "date-fns": "^2.15.0",
     "leaflet": "^1.5.1",
+    "leaflet-draw": "^1.0.4",
     "leaflet.featuregroup.subgroup": "^1.0.2",
-    "leaflet.markercluster": "^1.4.1"
+    "leaflet.markercluster": "^1.4.1",
+    "leaflet.measurecontrol": "github:makinacorpus/Leaflet.MeasureControl"
   },
   "devDependencies": {
     "compression-webpack-plugin": "^4.0.0",

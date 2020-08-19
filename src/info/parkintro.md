@@ -7,8 +7,6 @@ volunteer organization.
 
 To donate to build a **150 foot suspension bridge** connecting McGalliard Falls and Valdese Lakeside Park <a href="http://friendsofthevaldeserec.org/donate-2" target="_blank">tap here.</a>  
 
-Donations are accepted through Facebook, Paypal, Mail, or a Stock donation.
-
 **See a trail that has a tree down, tall grass, or any other issue?** Fill out the <a href="http://docs.google.com/forms/d/e/1FAIpQLScHY7sXLqqrayqviz1cJ0upHKMaSclZd_FkdYX8XcsG1YNxbA/viewform?usp=sf_link" target="_blank">form</a>  to let the FVR volunteers know and we'll take care of it.
 <a href="http://docs.google.com/forms/d/e/1FAIpQLScHY7sXLqqrayqviz1cJ0upHKMaSclZd_FkdYX8XcsG1YNxbA/viewform?usp=sf_link" target="_blank">Trail Maintence Form</a> 
 
@@ -18,7 +16,7 @@ Donations are accepted through Facebook, Paypal, Mail, or a Stock donation.
 **Planning to go out on the water?** You can check the water level <a href="https://lakes.duke-energy.com/index.html#/detail/14/Detail" target="_blank">on this site.</a>
 We recommend putting in at the Table Rock Viewing Site less than 0.1 miles down the Greenway.
 
-**Want to see all the wildlife found at the park?** Visit <a target='_blank' href='https://zakklab.valdese.info'>this site to see it all.</a>
+**Want to see all the wildlife found at the park?** Visit <a target='_blank' href='https://zakklab.valdese.info/vlp/wildlife/'>this site to see it all.</a>
 
 Below are descriptions of each trail. Click on the trail to see more information.
 
