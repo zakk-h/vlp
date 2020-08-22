@@ -1,4 +1,7 @@
 [
+	[1598135555, "Combined Black Dot connector into Lime Loop"],
+	[1598134444, "Removed Zoom Control to save space. If you don't know how to use the map without it all you have to do is pinch in and out with your fingers"],
+	[1598048500, "New Trail: Nicknamed the Shade Cut (subject to change) the trail runs from the Hoyle Creek Beaver Dam up onto Shade Seaker. Description: Wide, Gentle-Moderate Slope, .28 miles. A large tree is down across the trail and some things may need clipping but should be clear in a few days."],
 	[1597532000, "Additional Icons along Hoyle Creek"],
 	[1596323605, "New tools: A more simple measurement widget that is more mobile-friendly. In the bottom right corner there is an upload and download button. You can download where you've walked with the app open (can't have your phone asleep) to then send to other people or view later. The upload button will allow you to select a gpx, json, or geojson file (a mapping file/what the download button gives you) and it will plot the route on your map."],
 	[1596237568, "zakklab: 'Helmet Trail' Added. These are somewhat steep ATV trails that you can use to take a shortcut on Orange past the creek crossing."],

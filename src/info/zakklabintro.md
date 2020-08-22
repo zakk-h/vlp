@@ -31,14 +31,13 @@ the trail there is an old oven sitting to the side of the trail.
 </details>
 
 <details>
-<summary>Lime Connector</summary>
+<summary>Lime Loop</summary>
 
 - Intermediate Trail
-- 0.25 Miles 
+- 0.3 Miles 
 
 Travels along the Yellow Creek but at a much higher elevation.
-In the middle of the trail it splits off into 2 different directions. Either way is fine and they are the same distance. At the Greenway end of the trail there is a steep elevation change.
-
+A small network of trails. At the Red Entrance, 2 logging roads will take you either direction. On the left logging road there is a 2 way split, on the left is a gradual slope down that is 0.1 miles, or on the right is a steep sloped trail that mountain bikes enjoy at 0.05 miles. The logging road starting from the top that goes to the right will have a steeper slope at the end.
   <img src="https://zakklab.valdese.info/files/lime.jpg" width=100% title="Trail Picture">
 
 </details>
@@ -47,7 +46,7 @@ In the middle of the trail it splits off into 2 different directions. Either way
 
 - Steep Trail
 - 0.16 Miles 
-
+**Now part of Lime Loop**
 Connects a part of Lime back up to Red. The lime 1/2 is steep and needs some trees removed but the half closer to Red is really wide and clear.
 
   <img src="https://zakklab.valdese.info/files/lime2.jpg" width=100% title="Trail Picture">

@@ -4,6 +4,7 @@ import { vlpConfig } from './config.js';
 import * as L from 'leaflet';
 import 'leaflet-draw/dist/leaflet.draw.js';
 import 'leaflet.measurecontrol/leaflet.measurecontrol.min.js';
+import 'leaflet-compass/dist/leaflet-compass.min.js';
 import 'leaflet.markercluster/dist/leaflet.markercluster.js';
 import "leaflet.featuregroup.subgroup";
 import { format, formatDistance, formatRelative } from 'date-fns';
@@ -14,6 +15,7 @@ import 'leaflet/dist/leaflet.css';
 import './leaflet/grpLayerControl.css';
 import 'leaflet-draw/dist/leaflet.draw.css';
 import 'leaflet.measurecontrol/leaflet.measurecontrol.css';
+import 'leaflet-compass/dist/leaflet-compass.min.css';
 import './leaflet/yahControl.css';
 import './vlpStyles.css';
 import './modal.css';
@@ -155,7 +157,7 @@ function vlpMap() {
 	var gpsCenter = parkplan_bounds.getCenter();
 
 
-	var map = L.map('image-map', { center: gpsCenter, minZoom: vlpConfig.osmZoomRange[0], zoom: vlpConfig.osmZoomRange[1], maxBounds: valdese_area });
+	var map = L.map('image-map', { zoomControl: false, center: gpsCenter, minZoom: vlpConfig.osmZoomRange[0], zoom: vlpConfig.osmZoomRange[1], maxBounds: valdese_area });
 
 
 	var mapTiles = new ValdeseTileLayer(vlpConfig.urlTileServer, {
@@ -188,7 +190,11 @@ function vlpMap() {
 
 	function vlpAddTrail(grp, opacity, weight, v, i) {
 		var nlo = { 'color': v.color, 'opacity': opacity, 'weight': weight };
-		if (v.secret) return;
+		if (g.vlpDebugMode) {
+		 
+		} else {
+			if (v.secret) return;
+		  }
 		if (!groupedOverlays[grp]) {
 			groupedOverlays[grp] = {};
 		}
@@ -209,11 +215,16 @@ function vlpMap() {
 		}
 		newLayer.bindTooltip(tt, { 'sticky': true });
 		groupedOverlays[grp][tt] = newLayer;
+		
 		if (!v.optional) {
 			map.addLayer(newLayer);
 		}
+		if (g.vlpDebugMode) {
+		if (v.optional) {
+			map.addLayer(newLayer);
+		}
 	}
-
+	}
 	vlpTrails.forEach(function (v, i) { vlpAddTrail('Primary Trails', 0.85, 9, v, i); });
 
 	if (g.addZakklab) {
@@ -254,6 +265,7 @@ function vlpMap() {
 	map.attributionControl.addAttribution('<a href="https://friendsofthevaldeserec.org">FVR</a>');
 	yahBtn.addTo(map);
 	if (g.vlpDebugMode) {
+		map.addControl(new L.Control.Compass() );
 		new ZoomViewer({ position: 'topleft' }).addTo(map);
 		map.on('click', function (e) {
 			vlpDebug(e.latlng);
@@ -265,7 +277,7 @@ function vlpMap() {
 	}
 	else {	
 	L.Control.measureControl().addTo(map);
-	}
+}
 	/*
 	L.control.watermark({ position: 'bottomright' }).addTo(map);  //download-button
 	var url = location.search.slice(1)
