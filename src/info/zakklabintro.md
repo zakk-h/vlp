@@ -17,6 +17,18 @@ clearing it connects to Red. This trail will avoid some of the
 </details>
 
 <details>
+<summary>Shade Cut</summary>
+
+- Description is not finished
+- 0.28 Miles
+
+A trail connecting Hoyle Creek by the Beaver Dam to Shade Seeker.
+A wide logging road with moderate hills but some trees are down / on the sides.
+**Image of a similar trail but not Shade Cut**
+  <img src="https://zakklab.valdese.info/files/pink3.jpg" width=100% title="Trail Picture">
+
+</details>
+<details>
 <summary>Oven Trail</summary>
 
 - Easy Trail
@@ -89,6 +101,7 @@ There are great views on the trail like a Row of Rhododendrons along the path an
 
 **Can't find this trail on the map?** Because of the steep bank you have to climb down, the trail is off by default. You can turn in on in the upper right hand corner menu by checking the box.
 
+**This trail may be re-routed in the future**
   <img src="https://zakklab.valdese.info/files/polka.jpg" width=100% title="Trail Picture">
 
 </details>

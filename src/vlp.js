@@ -4,7 +4,6 @@ import { vlpConfig } from './config.js';
 import * as L from 'leaflet';
 import 'leaflet-draw/dist/leaflet.draw.js';
 import 'leaflet.measurecontrol/leaflet.measurecontrol.min.js';
-import 'leaflet-compass/dist/leaflet-compass.min.js';
 import 'leaflet.markercluster/dist/leaflet.markercluster.js';
 import "leaflet.featuregroup.subgroup";
 import { format, formatDistance, formatRelative } from 'date-fns';
@@ -15,7 +14,6 @@ import 'leaflet/dist/leaflet.css';
 import './leaflet/grpLayerControl.css';
 import 'leaflet-draw/dist/leaflet.draw.css';
 import 'leaflet.measurecontrol/leaflet.measurecontrol.css';
-import 'leaflet-compass/dist/leaflet-compass.min.css';
 import './leaflet/yahControl.css';
 import './vlpStyles.css';
 import './modal.css';
@@ -265,7 +263,6 @@ function vlpMap() {
 	map.attributionControl.addAttribution('<a href="https://friendsofthevaldeserec.org">FVR</a>');
 	yahBtn.addTo(map);
 	if (g.vlpDebugMode) {
-		map.addControl(new L.Control.Compass() );
 		new ZoomViewer({ position: 'topleft' }).addTo(map);
 		map.on('click', function (e) {
 			vlpDebug(e.latlng);
@@ -278,6 +275,7 @@ function vlpMap() {
 	else {	
 	L.Control.measureControl().addTo(map);
 }
+
 	/*
 	L.control.watermark({ position: 'bottomright' }).addTo(map);  //download-button
 	var url = location.search.slice(1)
@@ -288,7 +286,7 @@ function vlpMap() {
 	//setInterval(function(){upbu.ajax("https://api.wheretheiss.at/v1/satellites/25544")}, 3000)  //https://wanderdrone.appspot.com
 	setInterval(function(){mytrack.upload("upload/")}, 300000)  //upload int 5min
 	//upbu._container.addEventListener("click", function () { upbu.wakelock.request() })
-*/
+	*/
 	map.fitBounds(vlpConfig.gpsBoundsParkPlan);
 
 	showWhatsNew(map);

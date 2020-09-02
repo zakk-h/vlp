@@ -42,6 +42,7 @@ var YAHControl = L.Control.extend({
 				L.DomUtil.addClass(btn,'yahActive');
 				lastVisibleLocationTime = 0;
 				map.locate({watch: true, enableHighAccuracy:true, timeout:60000, maximumAge:5000});
+				
 			}
 		}
 

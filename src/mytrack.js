@@ -1,7 +1,8 @@
+
 /*
 L.Mytrack = L.Layer.extend({
   options: {
-    click: false,
+    click: true,
     elevation: false
   }, //click or locationfound
   lng0: 0, //prevent duplikates
@@ -122,7 +123,7 @@ L.Control.Watermark2 = L.Control.extend({ //upload-button
     })
 
   },
-  Wakelock: function () {  //Android
+  /*Wakelock: function () {  //Android
     var video = document.createElement('video'); video.addEventListener('ended', function () { video.play() })
     this.request = function () {
       video.src = "data:video/webm;base64,GkXfo0AgQoaBAUL3gQFC8oEEQvOBCEKCQAR3ZWJtQoeBAkKFgQIYU4BnQI0VSalmQCgq17FAAw9CQE2AQAZ3aGFtbXlXQUAGd2hhbW15RIlACECPQAAAAAAAFlSua0AxrkAu14EBY8WBAZyBACK1nEADdW5khkAFVl9WUDglhohAA1ZQOIOBAeBABrCBCLqBCB9DtnVAIueBAKNAHIEAAIAwAQCdASoIAAgAAUAmJaQAA3AA/vz0AAA="
