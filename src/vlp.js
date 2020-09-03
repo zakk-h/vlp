@@ -32,6 +32,8 @@ import * as img_photo from './img/park-satellite.png';
 import * as img_parkcontours from './img/park-contour.png';
 import zakklab from './zakklab.json';
 import whatsnew from './whatsnew.json';
+import welcome from './info/welcome.md';
+import zakklabwelcome from './info/zakklabwelcome.md';
 
 const vlpDebug = g.vlpDebug;
 
@@ -40,7 +42,17 @@ function showWhatsNew(map) {
 	var t_newest = whatsnew[0][0];
 	var whatsnew4zakklab = /^zakklab:/;
 
-	if (!lastseen) { localStorage.vintage = t_newest; return; }
+	if (!lastseen) {
+		if (g.addZakklab) {
+			showModal('Info',welcome + zakklabwelcome, function () {
+				localStorage.vintage = t_newest;
+			});
+		} else {
+			localStorage.vintage = t_newest;
+		}
+	
+		return;
+	}
 	if (t_newest <= lastseen) { return; }
 
 	var whatnewHtml = '<p>The Lakeside Park app has been updated. Recent changes to the app include:</p><ul>';
@@ -65,6 +77,8 @@ function showWhatsNew(map) {
 		localStorage.vintage = t_newest;
 	});
 }
+
+
 
 //transform: skewY(-5deg);
 var vlpRotateImageLayer = L.ImageOverlay.extend({
@@ -181,7 +195,7 @@ function vlpMap() {
 		if (!v.dash) {
 			// could also test for blue:  /^#[012345678].[012345678].[9abcdef]/.test(v.color);
 			var newLayer1 = newLayer;
-			var newLayer2 = L.polyline(v.trail, {color:'#006600',weight:1});
+			var newLayer2 = L.polyline(v.trail, {color:'#2C3050',weight:1});
 			newLayer = L.featureGroup([newLayer1,newLayer2]);
 		}
 		newLayer.bindTooltip(tt,{ 'sticky': true });
@@ -194,10 +208,10 @@ function vlpMap() {
 	vlpTrails.forEach(function(v,i) {vlpAddTrail('Primary Trails',0.85,9,v,i);});
 
 	if (g.addZakklab) {
-		zakklab.forEach(function(v,i) {vlpAddTrail('Trails by Zakklab',0.7,7,v,i);});
+		zakklab.forEach(function(v,i) {vlpAddTrail('Trails by Zakklab',0.75,8,v,i);});
 	}
 	
-	var clusterGroup = L.markerClusterGroup({maxClusterRadius:30});
+	var clusterGroup = L.markerClusterGroup({maxClusterRadius:20});
 	var poiData = {};
 
 	vlpMarkers.forEach(function(markData) {
