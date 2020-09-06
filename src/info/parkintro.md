@@ -10,7 +10,7 @@ To donate to build a **150 foot suspension bridge** connecting McGalliard Falls 
 Donations are accepted through Facebook, Paypal, Mail, or a Stock donation.
 
 **See a trail that has a tree down, tall grass, or any other issue?** Fill out the <a href="http://docs.google.com/forms/d/e/1FAIpQLScHY7sXLqqrayqviz1cJ0upHKMaSclZd_FkdYX8XcsG1YNxbA/viewform?usp=sf_link" target="_blank">form</a>  to let the FVR volunteers know and we'll take care of it.
-<a href="http://docs.google.com/forms/d/e/1FAIpQLScHY7sXLqqrayqviz1cJ0upHKMaSclZd_FkdYX8XcsG1YNxbA/viewform?usp=sf_link" target="_blank">Trail Maintence Form</a> 
+<a href="http://docs.google.com/forms/d/e/1FAIpQLScHY7sXLqqrayqviz1cJ0upHKMaSclZd_FkdYX8XcsG1YNxbA/viewform?usp=sf_link" target="_blank">Trail Maintence Form</a>.
 
 **Know of a trail we don't have on the map?** Let us know some information about where it is and we'll consider adding it to the Adventure Map.
 <a href="http://docs.google.com/forms/d/e/1FAIpQLSdFYcDCt-2WTX7Z-bKeqR_rO2lHcCua98KdzfxEnAAyu2cJMg/viewform?usp=sf_link" target="_blank">New Trail Form.</a>  
@@ -21,7 +21,6 @@ We recommend putting in at the Table Rock Viewing Site less than 0.1 miles down 
 **Want to see all the wildlife found at the park?** Visit <a target='_blank' href='https://zakklab.valdese.info'>this site to see it all.</a>
 
 Below are descriptions of each trail. Click on the trail to see more information.
-
 
 <details>
 <summary>Greenway</summary>
@@ -39,9 +38,7 @@ throughout. Featured sights include:
   the water there are often birds such as the Great Blue Heron.
 - 1.3 Miles in: The future bridge to McGalliard Falls Park.
 
-  <img src="https://zakklab.valdese.info/files/greenway.jpg" width=100% title="Trail Picture">
-
-
+![Trail Picture](https://zakklab.valdese.info/files/greenway.jpg#center)
 </details>
 
 <details>
@@ -52,7 +49,7 @@ throughout. Featured sights include:
 - Grass can be tall at times.
 **Not recommended** until a future bridge project comes to fruition.
 
-  <img src="https://zakklab.valdese.info/files/mcgalliard.jpg" width=100% title="Trail Picture">
+![Trail Picture](https://zakklab.valdese.info/files/mcgalliard.jpg#center)
 
 To cross to Lakeside Park as of now this pipe is what you would have to walk across.
 </details>
@@ -68,8 +65,7 @@ A third of the way in, a good photo opportunity can be found
 on the left side, with access to the creek and an unusual tree
 overhang.
 
-  <img src="https://zakklab.valdese.info/files/yellow.jpg" width=100% title="Trail Picture">
-
+![Trail Picture](https://zakklab.valdese.info/files/yellow.jpg#center)
 </details>
 
 <details>
@@ -82,8 +78,7 @@ The beginning and end of the trail can be a little steep.
 There are many elevation changes throughout the
 trail.
 
-  <img src="https://zakklab.valdese.info/files/red.jpg" width=100% title="Trail Picture">
-
+![Trail Picture](https://zakklab.valdese.info/files/red.jpg#center)
 </details>
 
 <details>
@@ -95,8 +90,7 @@ The trail takes you next to the water and down to Meditation Point.
 
 For casual walkers, the Meditation Point trail is recommended instead.
 
-  <img src="https://zakklab.valdese.info/files/blueloop.jpg" width=100% title="Trail Picture">
-
+![Trail Picture](https://zakklab.valdese.info/files/blueloop.jpg#center)
 </details>
 
 <details>
@@ -112,8 +106,7 @@ and sit on and fish or take photos.
 
 No bikes allowed because this is a heavily trafficked trail and collisions could occur.
 
-  <img src="https://zakklab.valdese.info/files/pointview.jpg" width=100% title="Trail Picture">
-
+![Trail Picture](https://zakklab.valdese.info/files/pointview.jpg#center)
 </details>
 
 <details>
@@ -133,8 +126,7 @@ very close to the creek and there are some ups and downs and turns.
 At the very end you reach Lovelady Rd, where you cross the
 bridge to get back to Lake Rhodhiss Drive.
 
-  <img src="https://zakklab.valdese.info/files/creek.jpg" width=100% title="Trail Picture">
-
+![Trail Picture](https://zakklab.valdese.info/files/creek.jpg#center)
 </details>
 
 <details>
@@ -148,8 +140,7 @@ A wooded trail along the side of the power lines that stays in the shade.
 Throughout the trail there you gain/lose 150 feet in elevation making the
 climb the most difficult part of the trail.
 
-  <img src="https://zakklab.valdese.info/files/orange2.jpg" width=100% title="Trail Picture">
-
+![Trail Picture](https://zakklab.valdese.info/files/orange2.jpg#center)
 </details>
 
 <details>
@@ -162,6 +153,5 @@ A difficult trail starting along Hoyle Creek and going up to Red.
 There is a small creek crossing with wooden planks allowing you to cross it.
 The width and terrain of the trail varies.
 
-  <img src="https://zakklab.valdese.info/files/pink3.jpg" width=100% title="Trail Picture">
-
+![Trail Picture](https://zakklab.valdese.info/files/pink3.jpg#center)
 </details>
