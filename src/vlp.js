@@ -3,7 +3,6 @@ import { vlpConfig } from './config.js';
 
 import * as L from 'leaflet';
 import 'leaflet-draw/dist/leaflet.draw.js';
-import 'leaflet.measurecontrol/leaflet.measurecontrol.min.js';
 import 'leaflet.markercluster/dist/leaflet.markercluster.js';
 import "leaflet.featuregroup.subgroup";
 import { format, formatDistance, formatRelative } from 'date-fns';
@@ -13,7 +12,6 @@ import { vlpTrails, vlpMarkers } from './parkmaps.js';
 import 'leaflet/dist/leaflet.css';
 import './leaflet/grpLayerControl.css';
 import 'leaflet-draw/dist/leaflet.draw.css';
-import 'leaflet.measurecontrol/leaflet.measurecontrol.css';
 import './leaflet/yahControl.css';
 import './vlpStyles.css';
 import './modal.css';
@@ -22,8 +20,6 @@ import 'leaflet/dist/images/marker-shadow.png';
 import 'leaflet/dist/images/marker-icon-2x.png';
 import 'leaflet.markercluster/dist/MarkerCluster.css';
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
-import 'leaflet.measurecontrol/images/measure-control.png';
-
 import './leaflet/grpLayerControl.js';
 import { YAHControl } from './leaflet/yahControl.js';
 import './vlp-manifest-icons.js';
@@ -39,7 +35,21 @@ import whatsnew from './whatsnew.json';
 import welcome from './info/welcome.md';
 import zakklabwelcome from './info/zakklabwelcome.md';
 import mytrack from './mytrack.js';
-
+import 'leaflet-measure/dist/assets/cancel.png';
+import 'leaflet-measure/dist/assets/cancel_@2X.png';
+import 'leaflet-measure/dist/assets/check.png';
+import 'leaflet-measure/dist/assets/check_@2X.png';
+import 'leaflet-measure/dist/assets/focus.png';
+import 'leaflet-measure/dist/assets/focus_@2X.png';
+import 'leaflet-measure/dist/assets/leaflet-measure.png'; //
+import 'leaflet-measure/dist/assets/rulers.png';
+import 'leaflet-measure/dist/assets/rulers_@2X.png';
+import 'leaflet-measure/dist/assets/start.png';
+import 'leaflet-measure/dist/assets/start_@2X.png';
+import 'leaflet-measure/dist/assets/trash.png';
+import 'leaflet-measure/dist/assets/trash_@2X.png';
+import 'leaflet-measure/dist/leaflet-measure.en.js'; 
+import 'leaflet-measure/dist/leaflet-measure.css'; 
 
 const vlpDebug = g.vlpDebug;
 
@@ -61,7 +71,7 @@ function showWhatsNew(map) {
 	}
 	if (t_newest <= lastseen) { return; }
 
-	var whatnewHtml = '<p>The Lakeside Park app has been updated. Recent changes to the app include:</p><ul>';
+	var whatnewHtml = '<p>The Lakeside Park app has been updated. Recent changes to the app and/or park updates include:</p><ul>';
 	var now = new Date();
 	const tdfmt = { addSuffix: true };
 
@@ -133,7 +143,6 @@ var ZoomViewer = L.Control.extend({
 		return gauge;
 	}
 });
-
 var ValdeseTileLayer = L.TileLayer.extend({
 	getTileUrl: function (coords) {
 		var zBox = vlpConfig.osmTileRanges[coords.z];
@@ -152,11 +161,11 @@ function vlpMap() {
 	const burkeGISMap = 'http://gis.burkenc.org/default.htm?PIN=2744445905';
 	var parkplan_bounds = new L.LatLngBounds(vlpConfig.gpsBoundsParkPlan);
 	var valdese_area = vlpConfig.gpsBoundsValdese;
-	var gpsCenter = parkplan_bounds.getCenter();
-
-
+	var gpsCenter = parkplan_bounds.getCenter();	
 	var map = L.map('image-map', { zoomControl: false, center: gpsCenter, minZoom: vlpConfig.osmZoomRange[0], zoom: vlpConfig.osmZoomRange[1], maxBounds: valdese_area });
-
+	var options = {position: 'topleft', primaryLengthUnit: 'miles', secondaryLengthUnit: 'feet', primaryAreaUnit: 'acres', secondaryAreaUnit: 'sqfeet' /*undefined is option 2*/, activeColor: '#000000', completedColor: '#000000'};
+	var measureControl = L.control.measure(options);
+	measureControl.addTo(map);
 
 	var mapTiles = new ValdeseTileLayer(vlpConfig.urlTileServer, {
 		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
@@ -268,14 +277,6 @@ function vlpMap() {
 			vlpDebug(e.latlng);
 		});
 	}
-	var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-	if (isMobile) {
-	  /* your code here */
-	}
-	else {	
-	L.Control.measureControl().addTo(map);
-}
-
 	/*
 	L.control.watermark({ position: 'bottomright' }).addTo(map);  //download-button
 	var url = location.search.slice(1)

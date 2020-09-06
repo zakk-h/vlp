@@ -19,7 +19,7 @@ clearing it connects to Red. This trail will avoid some of the
 <details>
 <summary>Shade Cut</summary>
 
-- Description is not finished
+- Wide, mostly clear, rocky tread
 - 0.28 Miles
 
 A trail connecting Hoyle Creek by the Beaver Dam to Shade Seeker.
@@ -54,17 +54,6 @@ A small network of trails. At the Red Entrance, 2 logging roads will take you ei
 
 </details>
 <details>
-<summary>Black Dot Connector</summary>
-
-- Steep Trail
-- 0.16 Miles 
-**Now part of Lime Loop**
-Connects a part of Lime back up to Red. The lime 1/2 is steep and needs some trees removed but the half closer to Red is really wide and clear.
-
-  <img src="https://zakklab.valdese.info/files/lime2.jpg" width=100% title="Trail Picture">
-
-</details>
-<details>
 <summary>Pink Trail</summary>
 
 - Easy Trail
@@ -90,18 +79,30 @@ It is a bit steeper than the Blue Loop so use with caution.
 
 </details>
 <details>
-<summary>Rhododendron Row</summary>
+<summary>Stone Skipper</summary>
 
-- Unrecommended Trail
-- 0.15 Miles
+- Mostly Finished Trail
+- 0.37 Miles
 
-A wooded trail running from Red to Green past the Picnic Tables.
-The trail is wide but at the Green side there is a 20ft bank you have to climb down with trees and for that reason isn't recommended.
-There are great views on the trail like a Row of Rhododendrons along the path and if you adventure off the side you can see great water views.
+This trail runs from the open green at the start of the Red trail to an opening field on the Red Trail.
+It is around four foot wide and includes elevation changes and different logging roads.
+Part of the trail runs parallel to the greenway where you can see views of Lake Rhodhiss from above.
+There is also a wall of Rhododendrons found on the trail.
+This trail allows you to skip all of the **Red Road Rocks**.
+(Part of this Trail may be known as Polka Dot or Rhododendron Row to some)
 
-**Can't find this trail on the map?** Because of the steep bank you have to climb down, the trail is off by default. You can turn in on in the upper right hand corner menu by checking the box.
+<img src="https://zakklab.valdese.info/files/polka.jpg" width=100% title="Trail Picture">
 
-**This trail may be re-routed in the future**
-  <img src="https://zakklab.valdese.info/files/polka.jpg" width=100% title="Trail Picture">
+</details>
+<details>
+<summary>Unfinished Hoyle Creek Extension</summary>
+
+- Unfinished Trail
+- 0.33 Miles
+
+This trail is a work in progress and will connect from the Hoyle Creek / Outer Creek intersection to the Beaver Dam.
+This trail will run right beside the creek.
+
+<img src="https://zakklab.valdese.info/files/creek.jpg" width=100% title="Trail Picture">
 
 </details>

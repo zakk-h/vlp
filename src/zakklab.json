@@ -3,8 +3,8 @@
 	"secret": false,
 	"color": "#190129",
 	"dash": true,
-	"miles": 0.20,
-	"optional": true,
+	"miles": 0.33,
+	"optional": false,
 	"trail": [
 		[35.76402572190551, -81.54887974262239],
 		[35.76403007476013, -81.54877781867982],
@@ -690,7 +690,7 @@
 		[35.771691,-81.547588,335.3]
 	]
 }, {
-	"name": "Rhododendron Row",
+	"name": "Stone Skipper",
 	"secret": false,
 	"color": "#13C2B5",
 	"miles": 0.37,

@@ -22,6 +22,7 @@
     "date-fns": "^2.15.0",
     "leaflet": "^1.5.1",
     "leaflet-draw": "^1.0.4",
+    "leaflet-measure": "^3.1.0",
     "leaflet.featuregroup.subgroup": "^1.0.2",
     "leaflet.markercluster": "^1.4.1",
     "leaflet.measurecontrol": "github:makinacorpus/Leaflet.MeasureControl"
