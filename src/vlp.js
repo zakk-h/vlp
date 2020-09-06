@@ -20,6 +20,8 @@ import 'leaflet/dist/images/marker-icon-2x.png';
 import 'leaflet.markercluster/dist/MarkerCluster.css';
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
 
+import './img/ios-share.svg';
+
 import './leaflet/grpLayerControl.js';
 import {YAHControl} from './leaflet/yahControl.js';
 import './vlp-manifest-icons.js';
@@ -43,13 +45,9 @@ function showWhatsNew(map) {
 	var whatsnew4zakklab = /^zakklab:/;
 
 	if (!lastseen) {
-		if (g.addZakklab) {
-			showModal('Info',welcome + zakklabwelcome, function () {
-				localStorage.vintage = t_newest;
-			});
-		} else {
+		showModal('Info',g.addZakklab?(zakklabwelcome+welcome):welcome, function () {
 			localStorage.vintage = t_newest;
-		}
+		});
 	
 		return;
 	}

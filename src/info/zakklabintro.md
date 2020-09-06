@@ -13,7 +13,7 @@ Starting at the beginning of the park by taking a left into the grass
 clearing it connects to Red. This trail will avoid some of the
 **road rocks** found on the Red trail.
 
-![Trail Picture](https://zakklab.valdese.info/files/diagonal.jpg#center)
+![Green Diagonal Trail Photo][photo-greendiagonal]
 </details>
 
 <details>
@@ -26,7 +26,7 @@ A trail connecting the start of Outer Creek to Shade Seeker.
 The trail is wooded with some small elevation changes. Halfway through
 the trail there is an old oven sitting to the side of the trail.
 
-![Trail Picture](https://zakklab.valdese.info/files/oven.jpg#center)
+![Oven Trail Photo][photo-oventrail]
 </details>
 
 <details>
@@ -38,7 +38,7 @@ the trail there is an old oven sitting to the side of the trail.
 Travels along the Yellow Creek but at a much higher elevation.
 In the middle of the trail it splits off into 2 different directions. Either way is fine and they are the same distance. At the Greenway end of the trail there is a steep elevation change.
 
-![Trail Picture](https://zakklab.valdese.info/files/lime.jpg#center)
+![Lime Connector Photo][photo-limeconnector]
 </details>
 <details>
 <summary>Black Dot Connector</summary>
@@ -48,7 +48,7 @@ In the middle of the trail it splits off into 2 different directions. Either way
 
 Connects a part of Lime back up to Red. The lime 1/2 is steep and needs some trees removed but the half closer to Red is really wide and clear.
 
-![Trail Picture](https://zakklab.valdese.info/files/lime2.jpg#center)
+![Black Dot Connector Photo][photo-blackdotconnector]
 </details>
 <details>
 <summary>Pink Trail</summary>
@@ -59,7 +59,7 @@ Connects a part of Lime back up to Red. The lime 1/2 is steep and needs some tre
 A wooded trail connecting the middle of Yellow to the Red Meadow with great
 deer and rabbit sightings.
 
-![Trail Picture](https://zakklab.valdese.info/files/pink2.jpg#center)
+![Pink Trail Photo][photo-pinktrail]
 </details>
 
 <details>
@@ -71,7 +71,7 @@ deer and rabbit sightings.
 This trail connects Pink the Greenway to Pink and is a hill going straight up to Pink.
 It is a bit steeper than the Blue Loop so use with caution.
 
-![Trail Picture](https://zakklab.valdese.info/files/pink.jpg#center)
+![Pink to Green Connector Trail Photo][photo-pinkgreenconnector]
 </details>
 <details>
 <summary>Rhododendron Row</summary>
@@ -83,5 +83,13 @@ A wooded trail running from Red to Green past the Picnic Tables.
 The trail is wide but at the Green side there is a 20ft bank you have to climb down with trees and for that reason isn't recommended.
 There are great views on the trail like a Row of Rhododendrons along the path and if you adventure off the side you can see great water views.
 
-![Trail Picture](https://zakklab.valdese.info/files/polka.jpg#center)
+![Rhododendron Row Trail Photo][photo-rhododendronrowtrail]
 </details>
+
+[photo-greendiagonal]: https://zakklab.valdese.info/files/diagonal.jpg#center
+[photo-oventrail]: https://zakklab.valdese.info/files/oven.jpg#center
+[photo-limeconnector]: https://zakklab.valdese.info/files/lime.jpg#center
+[photo-blackdotconnector]: https://zakklab.valdese.info/files/lime2.jpg#center
+[photo-pinktrail]: https://zakklab.valdese.info/files/pink2.jpg#center
+[photo-pinkgreenconnector]: https://zakklab.valdese.info/files/pink.jpg#center
+[photo-rhododendronrowtrail]: https://zakklab.valdese.info/files/polka.jpg#center
