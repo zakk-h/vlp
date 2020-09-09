@@ -96,10 +96,13 @@ var YAHControl = L.Control.extend({
 	onRemove: function(map) { },
 });
 /*
-for i<2 ++ ...;
-if (calcCrow(cameraLat[i], cameraLon[i], yahLat, yahLng < 0.0333))
+var myLat = position.coords.latitude;
+var myLng = position.coords.longitude;
+alert("lat:" + lat + " lng:" + lng);
+for (i = 0; i < 2; i++) {
+	if (calcCrow(cameraLat[i], cameraLon[i], myLat, myLng < 0.0333))
 alert("You are within 150 feet of a wildlife camera");
-
+}
 
 
     //This function takes in latitude and longitude of two location and returns the distance between them as the crow flies (in km)
@@ -123,6 +126,7 @@ alert("You are within 150 feet of a wildlife camera");
     function toRad(Value) 
     {
 		return Value * Math.PI / 180;
-    }
-*/
+	}
+	*/
+
 export {YAHControl};

@@ -1,6 +1,6 @@
 import {mdiTableFurniture, mdiFlagTriangle, mdiCamera, mdiCarMultiple, mdiParking, 
 	mdiSailBoat, mdiBridge, mdiNature, mdiInformationOutline, mdiWaves,
-	mdiBike, mdiFish, mdiShipWheel, mdiImageFilterHdr, mdiBeach} from '@mdi/js';
+	mdiBike, mdiFish, mdiShipWheel, mdiImageFilterHdr, mdiBeach, mdiCctv} from '@mdi/js';
 
 // https://materialdesignicons.com
 
@@ -17,7 +17,8 @@ const mdiSVGPaths = {
 	nature:  mdiNature,
 	parking: mdiParking,
 	picnic:  mdiTableFurniture,
-	rock:   mdiImageFilterHdr,
+	rock:    mdiImageFilterHdr,
+	cctv: 	 mdiCctv,
 	waves:   mdiWaves,
 	wheel:   mdiShipWheel
 }
@@ -43,6 +44,7 @@ const mdiSVGIcons = {
 	nature:	{path: mdiSVGPaths.nature,fill:'#00AA00',anchor:[0.5,1.0]},
 	parking: {path: mdiSVGPaths.parking,fill:'#0000AA'},
 	picnic:	{path: mdiSVGPaths.picnic,fill:'#5C2F00'},
+	cctv:   {path: mdiSVGPaths.cctv,strokeWidth:1,size:24,fill:'7C8216'},
 	rock:	{path: mdiSVGPaths.rock,fill:'#70BB0A',stroke:'#000000'}, 
 	waves:	{path: mdiSVGPaths.waves,fill:'#000066'},
 	wheel:	{path: mdiSVGPaths.wheel,fill:'#5C2F00'},

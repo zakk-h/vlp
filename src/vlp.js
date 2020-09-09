@@ -9,13 +9,13 @@ import { format, formatDistance, formatRelative } from 'date-fns';
 import { createSVGIcon } from './vlp-mdi-icons';
 import parkParcel from './park-parcel.json';
 import { vlpTrails, vlpMarkers } from './parkmaps.js';
+import mytrack from './mytrack.js';
 import 'leaflet/dist/leaflet.css';
 import './leaflet/grpLayerControl.css';
 import 'leaflet-draw/dist/leaflet.draw.css';
 import './leaflet/yahControl.css';
 import './vlpStyles.css';
 import './modal.css';
-
 import 'leaflet/dist/images/marker-shadow.png';
 import 'leaflet/dist/images/marker-icon-2x.png';
 import 'leaflet.markercluster/dist/MarkerCluster.css';
@@ -34,7 +34,6 @@ import zakklab from './zakklab.json';
 import whatsnew from './whatsnew.json';
 import welcome from './info/welcome.md';
 import zakklabwelcome from './info/zakklabwelcome.md';
-import mytrack from './mytrack.js';
 import 'leaflet-measure/dist/assets/cancel.png';
 import 'leaflet-measure/dist/assets/cancel_@2X.png';
 import 'leaflet-measure/dist/assets/check.png';
@@ -276,8 +275,6 @@ function vlpMap() {
 		map.on('click', function (e) {
 			vlpDebug(e.latlng);
 		});
-	}
-	/*
 	L.control.watermark({ position: 'bottomright' }).addTo(map);  //download-button
 	var url = location.search.slice(1)
 	var mytrack = L.mytrack({ click: url == 1 ? true : false, elevation: true }).addTo(map)  //{click:false}  //querstringparameter ?1 draw track  //must be named mytrack!
@@ -286,8 +283,8 @@ function vlpMap() {
 	if (isNaN(url)) upbu.ajax(url)  //querstringparameter ?mytrack.json
 	//setInterval(function(){upbu.ajax("https://api.wheretheiss.at/v1/satellites/25544")}, 3000)  //https://wanderdrone.appspot.com
 	setInterval(function(){mytrack.upload("upload/")}, 300000)  //upload int 5min
-	//upbu._container.addEventListener("click", function () { upbu.wakelock.request() })
-	*/
+	//upbu._container.addEventListener("click", function () { upbu.wakelock.request() })	
+	}
 	map.fitBounds(vlpConfig.gpsBoundsParkPlan);
 
 	showWhatsNew(map);

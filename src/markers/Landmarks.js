@@ -1,6 +1,7 @@
 module.exports = {
 	name: 'Landmarks & Sightseeing',
 	markers: [
+		[[35.77009, -81.54855], "cctv", "A Valdese Lakeside Park Wildlife Camera - Currently recording wildlife on Hobble Island. To view all Wildlife caught press the button.  <br><a class=\"btn\" target=\"_blank\" href=\"https://zakklab.valdese.info/vlp/wildlife/\">View Wildlife</a>"],
 		[[35.77371023, -81.547581], "picnic", "Picnic Area - 4 Picnic Tables crafted by Kellex Furniture. Bottom Table features a water view."],
 		[[35.7646873, -81.5694576], "picnic", "Picnic Area - A covered Picnic Shelter with multiple tables at McGalliard Falls Park."],
 		[[35.77535104, -81.547613], "camera", "Meditation Point- An overlook over the water to see the mountain backdrop behind the lake. Makes for great sunsets."],

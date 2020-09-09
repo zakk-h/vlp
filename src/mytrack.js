@@ -1,8 +1,7 @@
 
-/*
 L.Mytrack = L.Layer.extend({
   options: {
-    click: true,
+    click: false,
     elevation: false
   }, //click or locationfound
   lng0: 0, //prevent duplikates
@@ -63,7 +62,7 @@ L.control.watermark = function (opts) {
 L.Control.Watermark2 = L.Control.extend({ //upload-button
   onAdd: function (map) {
     var thisLoader = this;
-    this.mt = L.geoJSON("", { style: { color: "red" } }).addTo(map)
+    this.mt = L.geoJSON("", { style: { color: "black" } }).addTo(map)
     //this.wakelock = new this.Wakelock()
     var container = L.DomUtil.create('div');
     container.setAttribute("style", "height:26px; width:26px; background:#fff; text-align:center")
@@ -118,12 +117,12 @@ L.Control.Watermark2 = L.Control.extend({ //upload-button
     if (mp[0][2]) mp.forEach(function myFunction(item) {
       L.geoJSON({ "type": "Point", "coordinates": item }, {
         style: function (feature) { return { fillColor: "hsl(" + (180 - Math.atan(feature.geometry.coordinates[2] / 1000) / Math.PI * 360) + ", 100%, 50%)" } },  //500
-        pointToLayer: function (feature, latlng) { return L.circleMarker(latlng, { radius: 4, color: "#000", weight: 0, fillOpacity: 0.8 }) }  //1
+        pointToLayer: function (feature, latlng) { return L.circleMarker(latlng, { radius: 20, color: "#000", fillColor: "000000", opacity: 1, weight: 10, fillOpacity: 0.8 }) }  //1
       }).addTo(map);
     })
 
   },
-  /*Wakelock: function () {  //Android
+  Wakelock: function () {  //Android
     var video = document.createElement('video'); video.addEventListener('ended', function () { video.play() })
     this.request = function () {
       video.src = "data:video/webm;base64,GkXfo0AgQoaBAUL3gQFC8oEEQvOBCEKCQAR3ZWJtQoeBAkKFgQIYU4BnQI0VSalmQCgq17FAAw9CQE2AQAZ3aGFtbXlXQUAGd2hhbW15RIlACECPQAAAAAAAFlSua0AxrkAu14EBY8WBAZyBACK1nEADdW5khkAFVl9WUDglhohAA1ZQOIOBAeBABrCBCLqBCB9DtnVAIueBAKNAHIEAAIAwAQCdASoIAAgAAUAmJaQAA3AA/vz0AAA="
@@ -136,4 +135,3 @@ L.Control.Watermark2 = L.Control.extend({ //upload-button
 L.control.watermark2 = function (opts) {
   return new L.Control.Watermark2(opts);
 }
-*/
