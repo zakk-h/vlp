@@ -1,3 +1,8 @@
+{% if zakklab %}
+# Welcome to Zakklab's Lakeside App
+
+There are over 10 miles of trails to explore!
+{% endif %}
 # Welcome to Valdese Lakeside Park
 
 [Friends of the Valdese Rec][link-fvr] would like to welcome you to Valdese Lakeside, a 300 acre municipal park with construction set

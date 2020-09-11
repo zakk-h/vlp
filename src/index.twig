@@ -18,25 +18,32 @@ span#appTitle {margin:0;padding:0;font:16px "Times New Roman",Times,serif;white-
 .main-content {display:none; width:100%; height:calc(100% - 28px); border:0; margin:0;}
 .main-content.active { display:block; }
 #image-map {width:100%; height:100%; margin:0; padding:0;}
-div#id-maininfo {overflow:auto;}
-div#id-maininfo>div {padding:10px; background-color:#eee;color:#1a1a3a;}
+div.info-page {overflow:auto;}
+div.info-page>div {padding:10px; background-color:#eee;color:#1a1a3a;}
 #win-mainmenu {position:absolute;left:0px;top:28px;height:calc(100% - 28px);width:100%;overflow:hidden; background-color: rgba(0,0,0,0.5);}
 nav.lsmenu {height:100%;width:70%;max-width:350px;overflow:auto;padding:10px 5px; background-color:#111;color:white;}
 .lsmenu a {display:block; margin:0; padding:4px 12px; color:white;}
 .lsmenu a:hover {color:#111;background-color:white;}
 </style>
-<title>__fulltitle__</title>
+<title>{{ appfulltitle }}</title>
 </head>
 <body>
+{% apply spaceless %}
 <header>
 	<span id="appMenuBtn"><svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="white" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"></svg></span>
-	<span id="appTitle">__title__</span>
+	<span id="appTitle">{{ apptitle }}</span>
 </header>
 <div class="main-content active" id="id-mainmap">
 	<div id="image-map"></div>
 </div>
-<div class="main-content" id="id-maininfo">
+
+{% for pg in info %}
+<div class="main-content info-page" id="idmarkdown-{{ pg.id }}">
+	<div class="markdown-page">
+		{{ pg.html|raw }}
+	</div>
 </div>
+{% endfor %}
 
 <div id="vlp-modal"><div id="vlp-modal-content">
 	<div id="vlp-modal-header">
@@ -48,12 +55,19 @@ nav.lsmenu {height:100%;width:70%;max-width:350px;overflow:auto;padding:10px 5px
 
 <div id="win-mainmenu" style="display:none;z-index:99999;">
 	<nav id="mainmenu" class="lsmenu">
-		<a href="/#!about">About the Park</a>
 		<a href="/#!map">Park Map</a>
 		<hr>
-		<a href="/#!credits">Credits</a>
+		{% for pg in info %}
+			<a href="/#!show-{{ pg.id }}">{{ pg.title|e('html') }}</a>
+		{% endfor %}
 	</nav>
 </div>
+
+<div style="display:none" id="whatsnew"><ul>
+	{% for txt in whatsnew %}
+		<li>{{ txt[0] }}: {{ txt[1]|raw }}</li>
+	{% endfor %}
+</ul></div>
 
 <script async src="vlp.js"></script>
 <script>
@@ -62,4 +76,5 @@ if ('serviceWorker' in navigator) {
 }
 </script>
 </body>
+{% endapply %}
 </html>

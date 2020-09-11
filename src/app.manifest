@@ -1,8 +1,8 @@
 {
-	"name": "__fulltitle__",
-	"short_name": "__title__",
-	"theme_color": "__manifest_themecolor__",
-	"background_color": "__manifest_background_color__",
+	"name": "{{ appfulltitle }}",
+	"short_name": "{{ apptitle }}",
+	"theme_color": "{{ manifest_themecolor }}",
+	"background_color": "{{ manifest_bgcolor }}",
 	"display": "standalone",
 	"start_url": ".",
 	"icons": [
