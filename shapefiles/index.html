@@ -1,17 +1,51 @@
 <html>
 <head>
 	<title>Shapefile to GeoJSON</title>
+	<script>
+		// const parcelDataURL = 'https://s3.amazonaws.com/gis-opendata/gis-data/parcel_shp.zip';
+		const parcelDataURL = './___parcel_shp.zip';
+	</script>
 </head>
 <body>
 	<script src='https://unpkg.com/shpjs@latest/dist/shp.js'></script>
 	<h1>Shapefile to GeoJSON</h1>
 	<code><script>
-		shp('https://s3.amazonaws.com/gis-opendata/gis-data/parcel_shp.zip').then(function(data) {
-			var geojson_park = data.features[53759];
+		function showParcel(data,n) {
+			var geojson_parcel = data.features[n];
+			console.log('vlp',geojson_parcel);
+			document.write(JSON.stringify(geojson_parcel));
+		}
+
+		function showMatches(f,r,k) {
+			var lots = [];
+			k = k || 'LOCATION_A';
+			f.forEach((e,objnum) => {
+				if (e.properties[k].trim().match(r)) {
+					var stripw = /[^0-9a-z]+/gi;
+					var addr = e.properties.LOCATION_A.replace(stripw,'_');
+					var ownr = e.properties.PROPERTY_O.replace(stripw,' ');
+					lots.push({
+						//entry: objnum,
+						//address: addr.toLowerCase(),
+						//owner: ownr.toLowerCase(),
+						pin: e.properties.PIN,
+						coords: e.geometry.coordinates
+					});
+				}
+			});
+
+			document.write(JSON.stringify(lots));
+		}
+
+		shp(parcelDataURL).then(function(data) {
+			var f = data.features;
+			//showParcel(data,53759);
+			//showParcel(data,9476);
+			console.log(f[9476]);
+			//showMatches(f,/mineral spr/i,'LOCATION_A');
+			showMatches(f,/28690/,'PHYADDR_ZI');
+			//showMatches(f,/valdese/i,'PHYADDR_CI');
 			//console.log(data);
-			console.log('vlp',geojson_park);
-			//console.log(data[53759]);
-			document.write(JSON.stringify(geojson_park));
 		});
 	</script></code>
 </body>

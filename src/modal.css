@@ -54,3 +54,15 @@
 #vlp-modal-body summary:hover {
 	background: #AACCff;
 }
+
+#vlp-modal-body img[src*='#center'] {
+	display: block;
+	max-width: 80%;
+	margin: auto;
+}
+
+#vlp-modal-body img[src*='#inline'] {
+	display: inline;
+	border:0;
+	max-height: 16px;
+}

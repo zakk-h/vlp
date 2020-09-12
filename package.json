@@ -1,7 +1,7 @@
 {
   "name": "vlp",
   "displayName": "Valdese Lakeside Park",
-  "version": "0.9.8",
+  "version": "0.9.9",
   "description": "Navigating the new park and showing park plan overlays",
   "scripts": {
     "build": "webpack --mode production",
@@ -24,13 +24,14 @@
     "leaflet-draw": "^1.0.4",
     "leaflet-measure": "^3.1.0",
     "leaflet.featuregroup.subgroup": "^1.0.2",
-    "leaflet.markercluster": "^1.4.1"
+    "leaflet.markercluster": "^1.4.1",
+    "navigo": "^7.1.2"
   },
   "devDependencies": {
     "compression-webpack-plugin": "^4.0.1",
     "css-loader": "^2.1.1",
     "file-loader": "^3.0.1",
-    "markdown-loader": "^5.1.0",
+    "marked": "^1.1.1",
     "raw-loader": "^1.0.0",
     "style-loader": "^0.23.1",
     "webpack": "^4.44.1",

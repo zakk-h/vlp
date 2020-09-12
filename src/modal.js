@@ -6,13 +6,7 @@ function showModal(title,content,callbackOnClose) {
     
 	wnt.innerHTML = title;
 
-	//if (typeof(content) == 'string') {
-		wnc.innerHTML = content;
-	//} else {
-	//	wnc.innerHTML = '';
-	//	content(wnc);
-	//}
-
+	wnc.innerHTML = content;
 	wnp.style.display = 'block';
 
 	function doClose(e) {

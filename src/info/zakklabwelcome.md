@@ -1,1 +1,3 @@
-There are over 10 miles of trails to explore! 
+# Welcome to Zakklab's Lakeside App
+
+There are over 10 miles of trails to explore!

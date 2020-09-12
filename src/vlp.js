@@ -1,6 +1,5 @@
 import * as g from './globals.js';
 import { vlpConfig } from './config.js';
-
 import * as L from 'leaflet';
 import 'leaflet-draw/dist/leaflet.draw.js';
 import 'leaflet.markercluster/dist/leaflet.markercluster.js';
@@ -40,7 +39,7 @@ import 'leaflet-measure/dist/assets/check.png';
 import 'leaflet-measure/dist/assets/check_@2X.png';
 import 'leaflet-measure/dist/assets/focus.png';
 import 'leaflet-measure/dist/assets/focus_@2X.png';
-import 'leaflet-measure/dist/assets/leaflet-measure.png'; //
+import 'leaflet-measure/dist/assets/leaflet-measure.png';
 import 'leaflet-measure/dist/assets/rulers.png';
 import 'leaflet-measure/dist/assets/rulers_@2X.png';
 import 'leaflet-measure/dist/assets/start.png';
@@ -58,14 +57,10 @@ function showWhatsNew(map) {
 	var whatsnew4zakklab = /^zakklab:/;
 
 	if (!lastseen) {
-		if (g.addZakklab) {
-			showModal('Info', welcome + zakklabwelcome, function () {
-				localStorage.vintage = t_newest;
-			});
-		} else {
+		showModal('Info',g.addZakklab?(zakklabwelcome+welcome):welcome, function () {
 			localStorage.vintage = t_newest;
-		}
-
+		});
+	
 		return;
 	}
 	if (t_newest <= lastseen) { return; }
