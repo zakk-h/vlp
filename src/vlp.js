@@ -27,7 +27,6 @@ import {showModal} from './modal.js';
 import * as blankTile from './img/blankTile.png';
 import * as fvr_logo from './img/fvrlogopng.png';
 import * as img_parkplan from './img/dbd-parkplan.png';
-import * as img_parkboundary from './img/park-boundary.png';
 import * as img_photo from './img/park-satellite.png';
 import * as img_parkcontours from './img/park-contour.png';
 import zakklab from './zakklab.json';

@@ -1,11 +1,8 @@
 import * as g from './globals.js';
 import Navigo from 'navigo';
 import {format,formatDistance,formatRelative} from 'date-fns';
-import './img/ios-share.svg';
-import './index.twig';
 import './app.manifest';
 import { vlpMap } from './vlp.js';
-import { showModal } from './modal.js';
 import whatsnew from './whatsnew.json';
 
 function toggleWindow(w) {w.style.display = (w.style.display == 'block') ? 'none' : 'block';}

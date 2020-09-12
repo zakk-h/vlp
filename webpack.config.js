@@ -8,7 +8,7 @@ module.exports = env => {
 	var use_zakklab = (env && env.ZAKKLAB) ? 1 : 0;
 
 	return {
-		entry: './src/vlp-web.js',
+		entry: ['./src/vlp-web.js','./src/index.twig'],
 		performance: {
 			hints: false,
 			maxEntrypointSize: 512000,
@@ -24,21 +24,16 @@ module.exports = env => {
 					test: /app\.manifest$/,
 					use: [
 						{ loader: 'file-loader', options: { name: 'manifest.json' } },
-						{ loader: path.resolve('./loader/twig-loader.js'), options: { zakklab:use_zakklab } }
+						{ loader: path.resolve('./src/loader/twig-loader.js'), options: { zakklab:use_zakklab } }
 					]
 				},
 				{
 					test: /\.twig$/,
 					use: [
-						{ loader: "file-loader", options: { name: '[name].html' } },
-						{ loader: path.resolve('./loader/twig-loader.js'), options: { zakklab:use_zakklab, infofiles:true  } }
-					]
-				},
-				{
-					test: /\.md$/,
-					use: [
-						{ loader: 'raw-loader' },
-						{ loader: path.resolve('./loader/markdown.js') }
+						{ loader: 'file-loader', options: { name: '[name].html' } },
+						{ loader: 'extract-loader' },
+						{ loader: 'html-loader', options: { attributes: {list: [{tag:'img',attribute:'src',type:'src'}] } } },
+						{ loader: path.resolve('./src/loader/twig-loader.js'), options: { zakklab:use_zakklab, loadpages:true  } }
 					]
 				},
 				{
@@ -58,14 +53,14 @@ module.exports = env => {
 				'ADD_ZAKKLAB': use_zakklab
 			}),
 			new CompressionPlugin({
-				test: /\.js(\?.*)?$/i,
+				test: /\.(js|html)$/i,
 			}),
 			new workboxPlugin.GenerateSW({
 				swDest: 'sw.js',
 				maximumFileSizeToCacheInBytes: 3000000,
 				//globPatterns: ['**/*.{html,js,css}'],
 				cleanupOutdatedCaches: true,
-				exclude: [/\.js\.gz/],
+				exclude: [/\.(js|html)\.gz/],
 				clientsClaim: true,
 				skipWaiting: true,
 				runtimeCaching: [{

@@ -3,21 +3,26 @@ const {cleanUrl,escape} = require('marked/src/helpers.js');
 
 marked.use({ renderer: {
 	link(href, title, text) {
+		let match = null;
+		let target = '';
+		let tail = '';
+
 		href = cleanUrl(this.options.sanitize, this.options.baseUrl, href);
 		if (href === null) {
 			return text;
 		}
-		let out = '<a href="' + escape(href) + '"';
-		if (title) {
-			out += ' title="' + title + '"';
-		}
+
 		if (/^http/.test(href)) {
-			out += ' target="_blank"';
-		} else {
-			out += ' data-navigo';
+			target = ' target="_blank"';
+		} else if (match = /^([\S]+)\.md$/.exec(href)) {
+			href = `/!#show-${match[1]}`;
+			tail = ' data-navigo';
 		}
-		out += '>' + text + '</a>';
-		return out;
+
+		title = title ? ` title="${title}"` : '';
+		href = escape(href);
+
+		return `<a ${target}href="${href}"${tail}>${text}</a>`;
 	}
 }});
 
