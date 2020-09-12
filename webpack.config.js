@@ -24,14 +24,14 @@ module.exports = env => {
 					test: /app\.manifest$/,
 					use: [
 						{ loader: 'file-loader', options: { name: 'manifest.json' } },
-						{ loader: path.resolve('./loader/TitleReplacer.js'), options: { ZAKKLAB: use_zakklab } }
+						{ loader: path.resolve('./loader/twig-loader.js'), options: { zakklab:use_zakklab } }
 					]
 				},
 				{
-					test: /\.html$/,
+					test: /\.twig$/,
 					use: [
 						{ loader: "file-loader", options: { name: '[name].html' } },
-						{ loader: path.resolve('./loader/TitleReplacer.js'), options: { ZAKKLAB: use_zakklab } }
+						{ loader: path.resolve('./loader/twig-loader.js'), options: { zakklab:use_zakklab, infofiles:true  } }
 					]
 				},
 				{
