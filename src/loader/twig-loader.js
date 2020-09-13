@@ -1,3 +1,10 @@
+// This load is used to pipe a file through the twing/twig templating engine.
+// By default, a limited set of context variables are established, mainly 
+// app title text and color settings. Extra context can be requested using
+// the `loadpages` option, which will scan through all of the info pages
+// and build an array of their content. This is used to embed the pages
+// into a single bundled index.html file.
+//
 const fs = require('fs');
 const path = require('path');
 const { forEach } = require('p-iteration');
@@ -6,7 +13,7 @@ const {TwingEnvironment, TwingLoaderArray} = require('twing');
 const init_twigenv = require('./init_twigenv.js');
 const markdownRender = require('./markdown.js');
 const { type } = require('os');
-const defaultOptions = {infofiles:false, zakklab:false};
+const defaultOptions = {loadpages:false, zakklab:false};
 
 async function twigIt(data, context) {
 	let loader = new TwingLoaderArray({'data.twig': data});
@@ -34,12 +41,13 @@ async function buildMarkdownPage(ifolder,fname,context) {
 async function doLoader(twigSource, options) {
 	let c = init_twigenv(options.zakklab);
 
-	if (options.infofiles) {
+	if (options.loadpages) {
 		let ifolder = path.resolve('src/info');
 		let info = [];
 		c.whatsnew = JSON.parse(fs.readFileSync(path.resolve('src/whatsnew.json')));
 
 		let flist = fs.readdirSync(ifolder,{withFileTypes:true});
+		// wait while we asynchronously process all of the pages
 		await forEach(flist, async (file) => { 
 			if (file.isFile && /\.md$/.test(file.name)) {
 				let md_r = await buildMarkdownPage(ifolder,file.name,c);

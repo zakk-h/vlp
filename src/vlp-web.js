@@ -1,11 +1,8 @@
 import * as g from './globals.js';
 import Navigo from 'navigo';
 import {format,formatDistance,formatRelative} from 'date-fns';
-import './img/ios-share.svg';
-import './index.twig';
 import './app.manifest';
 import { vlpMap } from './vlp.js';
-import { showModal } from './modal.js';
 import whatsnew from './whatsnew.json';
 
 function toggleWindow(w) {w.style.display = (w.style.display == 'block') ? 'none' : 'block';}
@@ -30,6 +27,7 @@ function buildWhatsNew() {
 
 function initLakesideParkApp() {
 	var router = new Navigo('', true);
+	var ctrl_PageTitle = document.getElementById('id_AppPageTitle');
 	var currentPageID = 'id-mainmap';
 	var menuDiv = document.getElementById('win-mainmenu');
 
@@ -39,13 +37,19 @@ function initLakesideParkApp() {
 		let newpage = document.getElementById(id);
 
 		if (newpage) {
+			let newt = ctrl_PageTitle.querySelector('span');
+			let newh1 = newpage.querySelector('h1');
+
+			newt.innerHTML = newh1 ? newh1.innerHTML : 'Map';
+
 			curpage.classList.remove('active');
 			newpage.classList.add('active');
 			currentPageID = id;
 		}
 	}
 
-	document.getElementById('appMenuBtn').addEventListener("click",(e) => toggleWindow(menuDiv));
+	ctrl_PageTitle.addEventListener("click",(e) => toggleWindow(menuDiv));
+	document.getElementById('id_AppPageMenuBtn').addEventListener("click",(e) => toggleWindow(menuDiv));
 	menuDiv.addEventListener("click",() => closeOpenMenu());
 	document.addEventListener('keydown', (e) => {
 		if (e.keyCode == 27) {
