@@ -36,8 +36,8 @@ and scroll down until you find "Add to Homescreen"
 - **On Android:**\
 In Chrome, Tap the bottom prompt that says "Add to Homescreen"
 
-[img-layerbtn]: /layers.png#inline
-[img-sharebtn]: /ios-share.svg#inline
-[img-yah]: /yah.svg#inline
+[img-layerbtn]: ../../node_modules/leaflet/dist/images/layers.png#inline
+[img-sharebtn]: ../img/ios-share.svg#inline
+[img-yah]: ../img/yah.svg#inline
 [link-fvr]: https://friendsofthevaldeserec.org
 [link-zakklab]: https://zakklab.valdese.info/vlp/smart-install/

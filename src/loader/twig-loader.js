@@ -22,7 +22,20 @@ async function twigIt(data, context) {
 	return response;
 }
 
-async function buildMarkdownPage(ifolder,fname,context) {
+function fixupHtmlResources(infoObj,ifolder,loaderObj) {
+	let fixups = [];
+	infoObj.html = infoObj.html.replace(/<img [^>]+>/g, img => {
+		return img.replace(/(src=["'])([^"']+)/,(match,p1,p2) => {
+			if (p2.indexOf('http') === 0) { return match; }
+			let newp2 = path.resolve(ifolder,p2);
+			fixups.push(newp2);
+			return p1+newp2;
+		})
+	});
+	return fixups;
+}
+
+async function buildMarkdownPage(loaderObj,ifolder,fname,context) {
 	let md = fs.readFileSync(path.resolve(ifolder,fname)).toString();
 	let mdp = await twigIt(md,context);
 	let html = markdownRender(mdp);
@@ -30,15 +43,14 @@ async function buildMarkdownPage(ifolder,fname,context) {
 	let pgid = (match = /^([^.]+)\.md$/.exec(fname)) ? match[1] : fname;
 	let title = (match = /^#\s*(.+)$/m.exec(mdp)) ? match[1] : 'untitled';
 
-	return {
-		id: pgid,
-		title: title,
-		html: html,
-		src: md
-	};
+	const infoObj = {id: pgid, title: title, html: html, src: md};
+	const linkedFiles = fixupHtmlResources(infoObj,ifolder,loaderObj);
+	//console.log('linked files '+linkedFiles);
+
+	return infoObj;
 }
 
-async function doLoader(twigSource, options) {
+async function doLoader(loaderObj, twigSource, options) {
 	let c = init_twigenv(options.zakklab);
 
 	if (options.loadpages) {
@@ -50,7 +62,7 @@ async function doLoader(twigSource, options) {
 		// wait while we asynchronously process all of the pages
 		await forEach(flist, async (file) => { 
 			if (file.isFile && /\.md$/.test(file.name)) {
-				let md_r = await buildMarkdownPage(ifolder,file.name,c);
+				let md_r = await buildMarkdownPage(loaderObj,ifolder,file.name,c);
 				info.push(md_r);
 			}
 		});
@@ -67,7 +79,7 @@ module.exports = function(twigSource) {
 	let callback = this.async();
 	const options = loaderUtils.getOptions(this) || defaultOptions;
 
-	doLoader(twigSource, options).then((output) => {
+	doLoader(this, twigSource, options).then((output) => {
 		callback(null,output);
 	});
 };
