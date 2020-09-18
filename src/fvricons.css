@@ -4,7 +4,7 @@
   font-weight: 400;
   font-display: auto;
   
-  src: url("./fvricons.woff") format("woff"), url("./fvricons.ttf") format("truetype"), url("./fvricons.svg#fvricons") format("svg");
+  src: url("./fvricons.woff") format("woff"); 
 }
 
 .fvricon {
