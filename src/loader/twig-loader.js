@@ -30,7 +30,7 @@ function fixupHtmlResources(infoObj,ifolder,loaderObj) {
 	infoObj.html = infoObj.html.replace(/<img [^>]+>/g, img => {
 		return img.replace(/(src=["'])([^"']+)/,(match,p1,p2) => {
 			if (p2.indexOf('http') === 0) { return match; }
-			let newp2 = path.resolve(ifolder,p2);
+			let newp2 = path.join(ifolder,p2);
 			fixups.push(newp2);
 			return p1+newp2;
 		})
@@ -39,7 +39,7 @@ function fixupHtmlResources(infoObj,ifolder,loaderObj) {
 }
 
 async function buildMarkdownPage(loaderObj,ifolder,fname,context) {
-	let md = fs.readFileSync(path.resolve(ifolder,fname)).toString();
+	let md = fs.readFileSync(path.resolve('./src',ifolder,fname)).toString();
 	let mdp = await twigIt(md,context);
 	let html = markdownRender(mdp);
 	let match = null;
@@ -57,15 +57,14 @@ async function doLoader(loaderObj, twigSource, options) {
 	let c = init_twigenv(options.zakklab);
 
 	if (options.loadpages) {
-		let ifolder = path.resolve('src/info');
 		let info = [];
 		c.whatsnew = JSON.parse(fs.readFileSync(path.resolve('src/whatsnew.json')));
 
-		let flist = fs.readdirSync(ifolder,{withFileTypes:true});
+		let flist = fs.readdirSync(path.resolve('./src/info'),{withFileTypes:true});
 		// wait while we asynchronously process all of the pages
 		await forEach(flist, async (file) => { 
 			if (file.isFile && /\.md$/.test(file.name)) {
-				let md_r = await buildMarkdownPage(loaderObj,ifolder,file.name,c);
+				let md_r = await buildMarkdownPage(loaderObj,'info',file.name,c);
 				info.push(md_r);
 			}
 		});
