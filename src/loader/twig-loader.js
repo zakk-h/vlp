@@ -9,16 +9,19 @@ const fs = require('fs');
 const path = require('path');
 const { forEach } = require('p-iteration');
 const loaderUtils = require("loader-utils");
-const {TwingEnvironment, TwingLoaderArray} = require('twing');
+const {TwingEnvironment,TwingLoaderArray,TwingLoaderFilesystem,TwingLoaderChain} = require('twing');
 const init_twigenv = require('./init_twigenv.js');
 const markdownRender = require('./markdown.js');
 const { type } = require('os');
 const defaultOptions = {loadpages:false, zakklab:false};
 
 async function twigIt(data, context) {
-	let loader = new TwingLoaderArray({'data.twig': data});
-	let twing = new TwingEnvironment(loader);
-	const response = await twing.render('data.twig', context);
+	let loader1 = new TwingLoaderArray({'twig.main': data});
+	let loader2 = new TwingLoaderFilesystem(path.resolve(__dirname,'..'));
+	let loader = new TwingLoaderChain([loader1, loader2]);	
+	let twing = new TwingEnvironment(loader, {autoescape:false});
+
+	const response = await twing.render('twig.main', context);
 	return response;
 }
 

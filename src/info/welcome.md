@@ -1,12 +1,20 @@
-{% if zakklab %}
-# Welcome to Zakklab's Lakeside App
+# Welcome
 
-There are over 10 miles of trails to explore!
-{% endif %}
-# Welcome to Valdese Lakeside Park
-
-[Friends of the Valdese Rec][link-fvr] would like to welcome you to Valdese Lakeside, a 300 acre municipal park with construction set
+The [Friends of the Valdese Rec][link-fvr] would like to welcome you to Valdese Lakeside, a 300 acre municipal park with construction set
 to start in 2020. We hope that enjoy your visit to Valdese Lakeside Park!
+
+{% if zakklab %}
+This is Zakklab's Lakeside App. There are over 10 miles of trails to explore!
+{% endif %}
+
+## Connect
+
+- https://friendsofthevaldeserec.org/
+- https://www.facebook.com/FriendsoftheValdeseRec/
+- https://www.instagram.com/friendsofthevaldeserec/
+- https://twitter.com/FriendsValdese
+- https://github.com/valdese-net/vlp
+
 
 ## Introduction to the App
 
@@ -30,14 +38,13 @@ You can install the app on any device and it works offline. Detailed instruction
 on [the zakklab website][link-zakklab]. A summary is described below:
 
 - **On iOS:**\
-In Safari, tap the center icon along the bottom ![Share Button][img-sharebtn]
+In Safari, tap the center icon along the bottom {{ icon.ishare }}
 and scroll down until you find "Add to Homescreen"
 
 - **On Android:**\
 In Chrome, Tap the bottom prompt that says "Add to Homescreen"
 
 [img-layerbtn]: ../../node_modules/leaflet/dist/images/layers.png#inline
-[img-sharebtn]: ../img/ios-share.svg#inline
 [img-yah]: ../img/yah.svg#inline
 [link-fvr]: https://friendsofthevaldeserec.org
 [link-zakklab]: https://zakklab.valdese.info/vlp/smart-install/
