@@ -16,5 +16,10 @@ module.exports = function(zakklab) {
 		});
 	}
 
+	let iconList = 'backburger,city,cog,directions,home,information,link,menu,github,facebook,instagram,twitter,donate,ishare,natureman,together,voice'.split(',');
+	let icons = {};
+	iconList.forEach(k => icons[k] = `<i class="fvricon fvricon-${k}"></i>`);
+	o.icon = icons;
+
 	return o;
 }

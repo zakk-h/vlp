@@ -1,0 +1,171 @@
+@font-face {
+  font-family: "fvricons";
+  font-style: normal;
+  font-weight: 400;
+  font-display: auto;
+  
+  src: url("./fvricons.woff") format("woff"); 
+}
+
+.fvricon {
+  display: inline-block;
+  font-family: "fvricons";
+  font-weight: 400;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+.fvricon-lg {
+  font-size: 1.33333em;
+  line-height: 0.75em;
+  vertical-align: -0.0667em;
+}
+
+.fvricon-xs {
+  font-size: 0.75em;
+}
+
+.fvricon-sm {
+  font-size: 0.875em;
+}
+
+.fvricon-1x {
+  font-size: 1em;
+}
+
+.fvricon-2x {
+  font-size: 2em;
+}
+
+.fvricon-3x {
+  font-size: 3em;
+}
+
+.fvricon-4x {
+  font-size: 4em;
+}
+
+.fvricon-5x {
+  font-size: 5em;
+}
+
+.fvricon-6x {
+  font-size: 6em;
+}
+
+.fvricon-7x {
+  font-size: 7em;
+}
+
+.fvricon-8x {
+  font-size: 8em;
+}
+
+.fvricon-9x {
+  font-size: 9em;
+}
+
+.fvricon-10x {
+  font-size: 10em;
+}
+
+.fvricon-fw {
+  text-align: center;
+  width: 1.25em;
+}
+
+.fvricon-border {
+  border: solid 0.08em #eee;
+  border-radius: 0.1em;
+  padding: 0.2em 0.25em 0.15em;
+}
+
+.fvricon-pull-left {
+  float: left;
+}
+
+.fvricon-pull-right {
+  float: right;
+}
+
+.fvricon.fvricon-pull-left {
+  margin-right: 0.3em;
+}
+
+.fvricon.fvricon-pull-right {
+  margin-left: 0.3em;
+}
+
+
+.fvricon-backburger::before {
+  content: "\ea01";
+}
+
+.fvricon-city::before {
+  content: "\ea02";
+}
+
+.fvricon-cog::before {
+  content: "\ea03";
+}
+
+.fvricon-directions::before {
+  content: "\ea04";
+}
+
+.fvricon-donate::before {
+  content: "\ea05";
+}
+
+.fvricon-facebook::before {
+  content: "\ea06";
+}
+
+.fvricon-github::before {
+  content: "\ea07";
+}
+
+.fvricon-home::before {
+  content: "\ea08";
+}
+
+.fvricon-information::before {
+  content: "\ea09";
+}
+
+.fvricon-instagram::before {
+  content: "\ea0a";
+}
+
+.fvricon-ishare::before {
+  content: "\ea0b";
+}
+
+.fvricon-link::before {
+  content: "\ea0c";
+}
+
+.fvricon-menu::before {
+  content: "\ea0d";
+}
+
+.fvricon-natureman::before {
+  content: "\ea0e";
+}
+
+.fvricon-together::before {
+  content: "\ea0f";
+}
+
+.fvricon-twitter::before {
+  content: "\ea10";
+}
+
+.fvricon-voice::before {
+  content: "\ea11";
+}
+

@@ -1,4 +1,4 @@
-# About VLP
+# About the Park
 
 Welcome to **Valdese Lakeside Park** - a 300 acre park with construction set
 to start in 2020. The park is maintained by the
@@ -154,7 +154,7 @@ The width and terrain of the trail varies.
 </details>
 
 {% if zakklab %}
-# Adventure Trails
+## Adventure Trails
 
 Dashed Line Trails mean a connector that is often steep and not recommended
 for casual walkers or in the case of the High School Trails, off Park Property.
@@ -217,7 +217,7 @@ the trail there is an old oven sitting to the side of the trail.
 <summary>Lime Loop</summary>
 
 - Intermediate Trail
-- 0.3 Miles 
+- 0.3 Miles
 
 Travels along the Yellow Creek but at a much higher elevation.
 A small network of trails. At the Red Entrance, 2 logging roads will take you either direction. On the left logging road there is a 2 way split, on the left is a gradual slope down that is 0.1 miles, or on the right is a steep sloped trail that mountain bikes enjoy at 0.05 miles. The logging road starting from the top that goes to the right will have a steeper slope at the end.
@@ -273,6 +273,14 @@ This trail is a work in progress and will connect from the Hoyle Creek / Outer C
 This trail will run right beside the creek.
 
 </details>
+
+[photo-greendiagonal]: https://zakklab.valdese.info/files/diagonal.jpg#center
+[photo-oventrail]: https://zakklab.valdese.info/files/oven.jpg#center
+[photo-limeconnector]: https://zakklab.valdese.info/files/lime.jpg#center
+[photo-blackdotconnector]: https://zakklab.valdese.info/files/lime2.jpg#center
+[photo-pinktrail]: https://zakklab.valdese.info/files/pink2.jpg#center
+[photo-pinkgreenconnector]: https://zakklab.valdese.info/files/pink.jpg#center
+[photo-rhododendronrowtrail]: https://zakklab.valdese.info/files/polka.jpg#center
 {% endif %}
 
 [photo-greenway]: https://zakklab.valdese.info/files/greenway.jpg#center
@@ -284,13 +292,3 @@ This trail will run right beside the creek.
 [photo-hoylecreek]: https://zakklab.valdese.info/files/creek.jpg#center
 [photo-shadeseeker]: https://zakklab.valdese.info/files/orange2.jpg#center
 [photo-outercreekconnector]: https://zakklab.valdese.info/files/pink3.jpg#center
-
-{% if zakklab %}
-[photo-greendiagonal]: https://zakklab.valdese.info/files/diagonal.jpg#center
-[photo-oventrail]: https://zakklab.valdese.info/files/oven.jpg#center
-[photo-limeconnector]: https://zakklab.valdese.info/files/lime.jpg#center
-[photo-blackdotconnector]: https://zakklab.valdese.info/files/lime2.jpg#center
-[photo-pinktrail]: https://zakklab.valdese.info/files/pink2.jpg#center
-[photo-pinkgreenconnector]: https://zakklab.valdese.info/files/pink.jpg#center
-[photo-rhododendronrowtrail]: https://zakklab.valdese.info/files/polka.jpg#center
-{% endif %}

@@ -1,9 +1,11 @@
 import * as g from './globals.js';
 import Navigo from 'navigo';
 import {format,formatDistance,formatRelative} from 'date-fns';
-import './app.manifest';
 import { vlpMap } from './vlp.js';
 import whatsnew from './whatsnew.json';
+
+import './app.manifest';
+import './fvricons.woff';
 
 function toggleWindow(w) {w.style.display = (w.style.display == 'block') ? 'none' : 'block';}
 
