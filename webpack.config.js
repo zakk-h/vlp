@@ -8,7 +8,7 @@ module.exports = env => {
 	var use_zakklab = (env && env.ZAKKLAB) ? 1 : 0;
 
 	return {
-		entry: ['./src/vlp-web.js','./src/index.twig'],
+		entry: ['./src/index.twig','./src/vlp-styles.scss','./src/vlp-web.js'],
 		performance: {
 			hints: false,
 			maxEntrypointSize: 512000,
@@ -26,8 +26,7 @@ module.exports = env => {
 						{ loader: 'file-loader', options: { name: 'manifest.json' } },
 						{ loader: path.resolve('./src/loader/twig-loader.js'), options: { zakklab:use_zakklab } }
 					]
-				},
-				{
+				},{
 					test: /\.twig$/,
 					use: [
 						{ loader: 'file-loader', options: { name: '[name].html' } },
@@ -35,12 +34,24 @@ module.exports = env => {
 						{ loader: 'html-loader', options: { attributes: {list: [{tag:'img',attribute:'src',type:'src'}] } } },
 						{ loader: path.resolve('./src/loader/twig-loader.js'), options: { zakklab:use_zakklab, loadpages:true  } }
 					]
-				},
-				{
-					test: /\.css$/,
-					use: ["style-loader", "css-loader"]
-				},
-				{
+				},{
+					test: /\.scss$/,
+					use: [{
+						loader: 'file-loader',
+						options: {
+							name: '[name].css'
+						}
+					}, {
+						loader: 'extract-loader'
+					}, {
+						loader: 'css-loader'
+					}, {
+						loader: 'resolve-url-loader'
+					},{
+						loader: 'sass-loader',
+						options: { sourceMap: true }
+					}]
+				},{
 					test: /\.(png|svg|jpe?g|gif|woff2?|ttf|eot)$/,
 					use: [
 						{ loader: 'file-loader', options: { name: '[name].[ext]' } }
@@ -53,14 +64,14 @@ module.exports = env => {
 				'ADD_ZAKKLAB': use_zakklab
 			}),
 			new CompressionPlugin({
-				test: /\.(js|html)$/i,
+				test: /\.(css|js|html)$/i,
 			}),
 			new workboxPlugin.GenerateSW({
 				swDest: 'sw.js',
 				maximumFileSizeToCacheInBytes: 3000000,
 				//globPatterns: ['**/*.{html,js,css}'],
 				cleanupOutdatedCaches: true,
-				exclude: [/\.(js|html)\.gz/],
+				exclude: [/\.(css|js|html)\.gz/],
 				clientsClaim: true,
 				skipWaiting: true,
 				runtimeCaching: [{

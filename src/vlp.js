@@ -3,22 +3,12 @@ import {vlpConfig} from './config.js';
 
 import * as L from 'leaflet';
 import 'leaflet.markercluster/dist/leaflet.markercluster.js';
-import "leaflet.featuregroup.subgroup";
+import 'leaflet.featuregroup.subgroup';
 
 import {format,formatDistance,formatRelative} from 'date-fns';
 import {createSVGIcon} from './vlp-mdi-icons';
 import parkParcel from './park-parcel.json';
 import {vlpTrails,vlpMarkers} from './parkmaps.js';
-import 'leaflet/dist/leaflet.css';
-import './leaflet/grpLayerControl.css';
-import './leaflet/yahControl.css';
-import './vlpStyles.css';
-import './modal.css';
-
-import 'leaflet/dist/images/marker-shadow.png';
-import 'leaflet/dist/images/marker-icon-2x.png';
-import 'leaflet.markercluster/dist/MarkerCluster.css';
-import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
 
 import './leaflet/grpLayerControl.js';
 import {YAHControl} from './leaflet/yahControl.js';
