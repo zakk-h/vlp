@@ -7,16 +7,15 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" type="image/png" sizes="128x128" href="icon-128x128.png">
-<meta name="theme-color" content="#000000">
+<meta name="theme-color" content="{{ manifest_themecolor }}">
 <link rel="stylesheet" href="vlp-styles.css">
 <title>{{ appfulltitle }}</title>
 </head>
 <body>
 {% apply spaceless %}
 <header>
-	<div id="id_AppTitle"><span>{{ apptitle }}</span></div>
-	<div class="menu-selector" id="id_AppPageTitle"><span>Map</span></div>
 	<div class="menu-selector" id="id_AppPageMenuBtn"><i class="fvricon fvricon-menu" style="font-size:24px; margin-top:2px;"></i></div>
+	<div class="menu-selector" id="id_AppPageTitle"><span>{{ apptitle }}</span><span>Map</span></div>
 </header>
 <div class="main-content active" id="id-mainmap">
 	<div id="image-map"></div>

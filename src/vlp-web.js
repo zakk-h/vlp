@@ -39,7 +39,7 @@ function initLakesideParkApp() {
 		let newpage = document.getElementById(id);
 
 		if (newpage) {
-			let newt = ctrl_PageTitle.querySelector('span');
+			let newt = ctrl_PageTitle.querySelector('span:nth-of-type(2)');
 			let newh1 = newpage.querySelector('h1');
 
 			newt.innerHTML = newh1 ? newh1.innerHTML : 'Map';
