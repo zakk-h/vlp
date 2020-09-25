@@ -33,6 +33,8 @@
 
   $fvricon-voice: "\ea11";
 
+  $fvricon-walk: "\ea12";
+
 
 @font-face {
   font-family: "fvricons";
@@ -207,5 +209,9 @@ display: inline-block;
 
 .fvricon-voice::before {
     content: "\ea11";
+}
+
+.fvricon-walk::before {
+    content: "\ea12";
 }
 

@@ -126,7 +126,7 @@ function vlpMap() {
 	var parkplan_bounds = new L.LatLngBounds(vlpConfig.gpsBoundsParkPlan);
 	var valdese_area = vlpConfig.gpsBoundsValdese;
 	var gpsCenter = parkplan_bounds.getCenter();
-	var map = L.map('image-map',{center: gpsCenter, minZoom: vlpConfig.osmZoomRange[0], zoom: vlpConfig.osmZoomRange[1], maxBounds:valdese_area});
+	var map = L.map('image-map',{zoomControl: false, center: gpsCenter, minZoom: vlpConfig.osmZoomRange[0], zoom: vlpConfig.osmZoomRange[1], maxBounds:valdese_area});
 	var mapTiles = new ValdeseTileLayer(vlpConfig.urlTileServer, {
 		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 		errorTileUrl: blankTile,
@@ -137,8 +137,6 @@ function vlpMap() {
 	var fvrMark = new fvrWatermarkControl({position:'bottomleft'});
 	var yahBtn = new YAHControl({
 		position:'topright',
-		//for testing,
-		//maxBounds:new L.LatLngBounds(valdese_area).pad(2)
 		maxBounds:parkplan_bounds
 	});
 	map.addLayer(mapTiles);
