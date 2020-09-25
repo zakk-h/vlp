@@ -4,6 +4,10 @@ import {vlpConfig} from './config.js';
 import * as L from 'leaflet';
 import 'leaflet.markercluster/dist/leaflet.markercluster.js';
 import 'leaflet.featuregroup.subgroup';
+import 'leaflet-measure';
+// marker-shadow and marker-icon-2x have to be manually loaded
+import 'leaflet/dist/images/marker-shadow.png';
+import 'leaflet/dist/images/marker-icon-2x.png';
 
 import {format,formatDistance,formatRelative} from 'date-fns';
 import {createSVGIcon} from './vlp-mdi-icons';
@@ -218,6 +222,16 @@ function vlpMap() {
 	L.control.groupedLayers(baseMaps, groupedOverlays).addTo(map);
 	map.attributionControl.addAttribution('<a href="https://friendsofthevaldeserec.org">FVR</a>');
 	yahBtn.addTo(map);
+
+	var measureControl = L.control.measure({
+		position:'bottomright',
+		primaryLengthUnit: 'miles',
+		secondaryLengthUnit: 'feet',
+		primaryAreaUnit: 'acres',
+		activeColor: '#000000',
+		completedColor: '#000000'
+	});
+	measureControl.addTo(map);
 
 	if (g.vlpDebugMode) {
 		new ZoomViewer({position:'topleft'}).addTo(map);

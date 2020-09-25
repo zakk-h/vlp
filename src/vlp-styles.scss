@@ -3,12 +3,13 @@
 // images that are referenced from this.
 
 @import "~leaflet/dist/leaflet";
+@import "~leaflet-measure/dist/leaflet-measure";
 @import "./leaflet/grpLayerControl";
 @import "./leaflet/yahControl";
 @import "./modal";
 @import "~leaflet.markercluster/dist/MarkerCluster";
 @import "~leaflet.markercluster/dist/MarkerCluster.Default";
-@import "./fvricons";
+@import "./font/fvricons";
 
 html,
 body {

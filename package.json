@@ -23,6 +23,7 @@
 		"leaflet": "^1.7.1",
 		"leaflet.featuregroup.subgroup": "^1",
 		"leaflet.markercluster": "^1",
+		"leaflet-measure": "^3.1.0",
 		"navigo": "^7.1.2"
 	},
 	"devDependencies": {
