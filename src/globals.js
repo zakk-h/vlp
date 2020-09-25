@@ -1,5 +1,5 @@
 export const vlpDebugMode = (location.href.indexOf('debug')>=0);
-export const addZakklab = (location.href.indexOf('zakklab')>=0);
+export const addZakklab = (location.href.indexOf('zakklab')>=0) || ADD_ZAKKLAB;
 export var vlpDebug = function() {};
 
 export function sprintf(s,...a) {
