@@ -1,6 +1,7 @@
 const
 	webpack = require('webpack'),
 	path = require('path'),
+	{ CleanWebpackPlugin } = require('clean-webpack-plugin'),
 	CompressionPlugin = require('compression-webpack-plugin'),
 	workboxPlugin = require('workbox-webpack-plugin');
 
@@ -54,7 +55,7 @@ module.exports = env => {
 				},{
 					test: /\.(png|svg|jpe?g|gif|woff2?|ttf|eot)$/,
 					use: [
-						{ loader: 'file-loader', options: { name: '[name].[ext]' } }
+						{ loader: 'file-loader', options: { name: '[name]~[hash:base64:4].[ext]' } }
 					]
 				}
 			]
@@ -63,6 +64,7 @@ module.exports = env => {
 			new webpack.DefinePlugin({
 				'ADD_ZAKKLAB': use_zakklab
 			}),
+			new CleanWebpackPlugin(),
 			new CompressionPlugin({
 				test: /\.(css|js|html)$/i,
 			}),
