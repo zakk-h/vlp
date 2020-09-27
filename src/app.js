@@ -1,30 +1,13 @@
+import './app.scss';
+import './app.manifest';
+import './index.twig';
+import {closeModal} from './modal.js';
+
 import * as g from './globals.js';
 import Navigo from 'navigo';
-import {format,formatDistance,formatRelative} from 'date-fns';
 import { vlpMap } from './vlp.js';
-import whatsnew from './whatsnew.json';
-
-import './app.manifest';
 
 function toggleWindow(w) {w.style.display = (w.style.display == 'block') ? 'none' : 'block';}
-
-function buildWhatsNew() {
-	var whatnewHtml = '<p>The Lakeside Park app update history:</p><ul>';
-	var now = new Date();
-	const whatsnew4zakklab = /^zakklab:/;
-	const tdfmt = {addSuffix:true};
-
-	for (var i=0; i<whatsnew.length; i++) {
-		var t =  whatsnew[i][0];
-		var d2 = new Date(t*1000);
-		var txt =  whatsnew[i][1];
-		if (!whatsnew4zakklab.test(txt)  || g.addZakklab) {
-			whatnewHtml += g.sprintf('<li>%s (%s)</li>',txt,formatDistance(d2,now,tdfmt));
-		}
-	}
-	whatnewHtml += '</ul>';
-	return whatnewHtml;
-}
 
 function initLakesideParkApp() {
 	var router = new Navigo('', true);
@@ -40,6 +23,8 @@ function initLakesideParkApp() {
 		if (newpage) {
 			let newt = ctrl_PageTitle.querySelector('span:nth-of-type(2)');
 			let newh1 = newpage.querySelector('h1');
+
+			closeModal();
 
 			newt.innerHTML = newh1 ? newh1.innerHTML : 'Map';
 
@@ -58,12 +43,12 @@ function initLakesideParkApp() {
 		}
 	});
 
-	vlpMap();
-
 	router.on({
-		'show-:id': (params) => setCurrentPage('idmarkdown-'+params.id),
+		'show-:id': (params) => setCurrentPage(`pgid-${params.id}`),
 		'*': () => setCurrentPage('id-mainmap')
 	}).resolve();
+
+	vlpMap();
 }
 
 initLakesideParkApp();

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
 <meta name="viewport" content="initial-scale=1, width=device-width">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -8,7 +9,7 @@
 <link rel="manifest" href="manifest.json">
 <link rel="icon" type="image/png" sizes="128x128" href="icon-128x128.png">
 <meta name="theme-color" content="{{ manifest_themecolor }}">
-<link rel="stylesheet" href="vlp-styles.css">
+<link rel="stylesheet" href="app.css">
 <title>{{ appfulltitle }}</title>
 </head>
 <body>
@@ -22,8 +23,8 @@
 </div>
 
 {% for pg in info %}
-<div class="main-content info-page" id="idmarkdown-{{ pg.id }}">
-	<div class="markdown-page">
+<div class="main-content info-page" id="pgid-{{ pg.id }}">
+	<div class="info-content">
 		{{ pg.html|raw }}
 	</div>
 </div>
@@ -39,21 +40,17 @@
 
 <div id="win-mainmenu" style="display:none;z-index:99999;">
 	<nav id="mainmenu" class="lsmenu">
-		<a href="/#!map">Park Map</a>
+		<a href="#!map">Park Map</a>
 		<hr>
-		{% for pg in info %}
-			<a href="/#!show-{{ pg.id }}">{{ pg.title|e('html') }}</a>
-		{% endfor %}
+		<a href="#!show-start">Start</a>
+		<a href="#!show-welcome">Welcome</a>
+		<a href="#!show-parkintro">Park Intro</a>
+		<a href="#!show-options">Options</a>
+		<a href="#!show-whatsnew">What&#039;s New</a>
 	</nav>
 </div>
 
-<div style="display:none" id="whatsnew"><ul>
-	{% for txt in whatsnew %}
-		<li>{{ txt[0] }}: {{ txt[1]|raw }}</li>
-	{% endfor %}
-</ul></div>
-
-<script async src="vlp.js"></script>
+<script async src="app.js"></script>
 <script>
 if ('serviceWorker' in navigator) {
 	window.addEventListener('load', () => { navigator.serviceWorker.register('./sw.js'); });

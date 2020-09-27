@@ -24,33 +24,18 @@ import * as img_parkplan from './img/dbd-parkplan.png';
 import * as img_photo from './img/park-satellite.png';
 import * as img_parkcontours from './img/park-contour.png';
 import zakklab from './zakklab.json';
-import whatsnew from './whatsnew.json';
 
 const vlpDebug = g.vlpDebug;
 
 function showWhatsNew(map) {
-	var lastseen = localStorage.vintage;
-	var t_newest = whatsnew[0][0];
-	var whatsnew4zakklab = /^zakklab:/;
+	let lastseen = localStorage.vintage;
+	let t_newest = LatestWhatsNewEntry;
 
 	if (t_newest <= lastseen) { return; }
 
-	var whatnewHtml = '<p>The Lakeside Park app has been updated. Recent changes to the app include:</p><ul>';
-	var now = new Date();
-	const tdfmt = {addSuffix:true};
+	var whatnewHtml = '<p>The Lakeside Park app has been updated.</p><p><a href="#!show-whatsnew">Show App History</a></p>';
 
 	vlpDebug('Showing whatsnew modal');
-
-	for (var i=0; i<whatsnew.length; i++) {
-		var t =  whatsnew[i][0];
-		if (t <= lastseen) break;
-		var d2 = new Date(t*1000);
-		var txt =  whatsnew[i][1];
-		if (!whatsnew4zakklab.test(txt)  || g.addZakklab) {
-			whatnewHtml += g.sprintf('<li>%s (%s)</li>',txt,formatDistance(d2,now,tdfmt));
-		}
-	}
-	whatnewHtml += '</ul>';
 
 	showModal('App Update',whatnewHtml,function() {
 		vlpDebug('whatsnew has been closed');

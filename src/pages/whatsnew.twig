@@ -1,4 +1,5 @@
-[
+<!---
+{"history": [
 	[1595962630, "Want to see all the wildlife at the park? Visit <a target='_blank' href='https://zakklab.valdese.info'>this site to see it all.</a>"],
 	[1595879000, "The (i) menu now has pictures of each trail."],
 	[1595878526, "zakklab: Changes that you can see and some you can't: New visitors of the App receive an introduction to the page and how to install the App, basic information, etc. Oven Trail is being re-colored to match the surroundings better."],
@@ -19,5 +20,28 @@
 	[1589810024, "Add Hoyle Creek to Primary Trails"],
 	[1589807866, "Add Points of Interests and update trail maps (via <a target='_blank' href='https://zakklab.valdese.info'>zakklab</a>)"],
 	[1589741217,"Fix trail layers control when used in Safari browser"],
-	[1562008315,"Debut of the Lakeside Park app"] 
-]
+	[1562008315,"Debut of the Lakeside Park app"]
+]}
+--->
+
+<h1>What&#039;s New</h1>
+
+<script>
+	var LatestWhatsNewEntry = {{ page.history[0][0] | e('js') }};
+</script>
+
+<p>The Lakeside Park app has been updated. Recent changes to the app include:
+</p>
+
+<style>
+	ul.whatsnew {list-style-type:none;position:relative;}
+	ul.whatsnew li:hover {background-color:#eee;}
+	ul.whatsnew li:not(:first-child) {padding-top:10px;}
+	.whatsnew li::before {content: '➝';position:absolute;left:0;}
+	.whatsnew em {padding:0 0 0 5px;color:#888;vertical-align:super;font-size:smaller;text-transform:lowercase;}
+</style>
+<ul class="whatsnew">
+{% for txt in page.history %}
+	<li>{{ txt[1]|raw }} <em>{{ txt[0] | timeAgo|e }}</em></li>
+{% endfor %}
+</ul>

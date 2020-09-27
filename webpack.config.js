@@ -9,7 +9,7 @@ module.exports = env => {
 	var use_zakklab = (env && env.ZAKKLAB) ? 1 : 0;
 
 	return {
-		entry: ['./src/index.twig','./src/vlp-styles.scss','./src/vlp-web.js'],
+		entry: './src/app.js',
 		performance: {
 			hints: false,
 			maxEntrypointSize: 512000,
@@ -17,7 +17,7 @@ module.exports = env => {
 		},
 		output: {
 			path: path.resolve(__dirname, 'build'),
-			filename: 'vlp.js'
+			filename: 'app.js'
 		},
 		module: {
 			rules: [

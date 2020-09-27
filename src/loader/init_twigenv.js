@@ -8,7 +8,7 @@ module.exports = function(zakklab) {
 	};
 	
 	if (zakklab) {
-		o = Object.assign(o, {
+		Object.assign(o, {
 			apptitle: 'Lakeside by Zakklab',
 			appfulltitle: 'Zakklab Valdese Lakeside Park',
 			manifest_themecolor: '#AA0000',

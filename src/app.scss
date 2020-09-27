@@ -90,13 +90,13 @@ header > div > span {
 div.info-page {
 	overflow: auto;
 }
-div.markdown-page {
+div.info-content {
 	color: #1a1a3a;
 	max-width: 1350px;
 	margin: 0;
 	padding: 4px 15px;
 }
-.markdown-page > h1:first-child {
+.info-content > h1:first-child {
 	display: none;
 }
 .main-content img[src*="#center"] {
