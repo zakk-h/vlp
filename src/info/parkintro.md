@@ -169,21 +169,6 @@ Starting at the beginning of the park by taking a left into the grass
 clearing it connects to Red. This trail will avoid some of the
 **road rocks** found on the Red trail.
 
-![Green Diagonal Trail Photo][photo-greendiagonal]
-</details>
-
-Dashed Line Trails mean a connector that is often steep and not recommended for casual walkers or in the case of the High School Trails, off Park Property.
-<details>
-<summary>Green Diagonal</summary>
-
-- Easy Trail
-- 0.15 Miles
-- Open, wide, and level
-
-Starting at the beginning of the park by taking a left into the grass
-clearing it connects to Red. This trail will avoid some of the
-**road rocks** found on the Red trail.
-
   <img src="https://zakklab.valdese.info/files/diagonal.jpg" width=100% title="Trail Picture">
 
 </details>
