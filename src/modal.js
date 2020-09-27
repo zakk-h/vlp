@@ -1,32 +1,37 @@
-function showModal(title,content,callbackOnClose) {
+function modalWindow() {
     var wnp = document.getElementById('vlp-modal');
 	var wnt = document.getElementById('vlp-modal-title');
 	var wnc = document.getElementById('vlp-modal-body');
-    var wnx = document.getElementById('vlp-modal-close');
-    
-	wnt.innerHTML = title;
+	var wnx = document.getElementById('vlp-modal-close');
+	var isOpen = false;
+	var cbClose = false;
 
-	wnc.innerHTML = content;
-	wnp.style.display = 'block';
-
-	function doClose(e) {
-        wnp.style.display = 'none';
-        callbackOnClose(e);
-    }
-	function keyPress (e) {
-		if (keyCode == 27) {
-			return doClose(e);
+	function doClose() {
+		if (isOpen) {
+			wnp.style.display = 'none';
+			isOpen = false;
+			if (cbClose) cbClose();
 		}
 	}
 	wnx.addEventListener("click",doClose);
 	wnp.addEventListener("click",function(e) {
-		if (e.target == wnp) {doClose(e);}
+		if (e.target == wnp) {doClose();}
 	});
 	document.addEventListener('keydown', (e) => {
-		if (e.keyCode == 27) {
-			return doClose(e);
-		}
+		if (e.keyCode == 27) { return doClose(); }
 	});
+
+	this.show = function(title,content,callbackOnClose) {
+		wnt.innerHTML = title;
+		wnc.innerHTML = content;
+		wnp.style.display = 'block';
+		isOpen = true;
+		cbClose = callbackOnClose;
+	}
+
+	this.close = function() { doClose(); }
 }
 
-module.exports = {showModal};
+let modalwin = new modalWindow();
+
+module.exports = {showModal: modalwin.show, closeModal: modalwin.close};

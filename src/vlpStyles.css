@@ -1,5 +1,0 @@
-img.fvrlogo {width:50px;opacity:1.0;}
-a:visited img.fvrlogo {opacity:0.5;}
-a.btn {display:block; width: 140px; border:solid 1px black; border-radius: 4px; text-decoration: none; padding: 3px 10px; background: #CCFFCC; margin:15px auto; text-align:center;}
-.main-content img[src*='#center'] {display: block;max-width: 80%;margin: auto;}
-.main-content img[src*='#inline'] {display: inline;border:0;max-height: 16px;}

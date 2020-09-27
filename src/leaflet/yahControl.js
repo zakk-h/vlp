@@ -1,12 +1,8 @@
 import {vlpDebug} from '../globals.js';
-import * as yahMarkerSVG from '../img/yah.svg';
 
 var YAHControl = L.Control.extend({
 	options: {
-		// defaults to map maxBounds
 		maxBounds: null,
-
-		// millisec interval where flyto location will NOT be repeated
 		flyToInterval: 20000
 	},
 	initialize: function(options) {
@@ -20,11 +16,11 @@ var YAHControl = L.Control.extend({
 		var btn = L.DomUtil.create('a','yahBtn');
 		btn.title = 'You are here';
 		btn.style.opacity = 0.8;
-		L.DomUtil.create('i','yahSVG',btn);
+		L.DomUtil.create('i','fvricon fvricon-walk',btn);
 
 		var yahIcon = L.divIcon({
 			className: 'yah-divicon',
-			html: `<img style="background:rgba(255,255,0,0.75); border:0; padding: 6px; border-radius:50%;" src="${yahMarkerSVG}">`,
+			html: '<i class="fvricon fvricon-walk" style="font-size:32px;background:rgba(255,255,0,0.70); border:0; padding: 6px; border-radius:50%;"></i>',
 			iconSize: [36, 36],
 			iconAnchor: [18, 30]
 		});
@@ -83,12 +79,6 @@ var YAHControl = L.Control.extend({
 				alert(e.message);
 			}
 		});
-
-		// We could auto-start location using code like this
-		//
-		//if (window.matchMedia('(display-mode: standalone)').matches) {
-		//	yahToggle();
-		//}
 
 		return btn;
 	},

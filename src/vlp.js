@@ -3,22 +3,17 @@ import { vlpConfig } from './config.js';
 import * as L from 'leaflet';
 import 'leaflet-draw/dist/leaflet.draw.js';
 import 'leaflet.markercluster/dist/leaflet.markercluster.js';
-import "leaflet.featuregroup.subgroup";
-import { format, formatDistance, formatRelative } from 'date-fns';
-import { createSVGIcon } from './vlp-mdi-icons';
-import parkParcel from './park-parcel.json';
-import { vlpTrails, vlpMarkers } from './parkmaps.js';
-import mytrack from './mytrack.js';
-import 'leaflet/dist/leaflet.css';
-import './leaflet/grpLayerControl.css';
-import 'leaflet-draw/dist/leaflet.draw.css';
-import './leaflet/yahControl.css';
-import './vlpStyles.css';
-import './modal.css';
+import 'leaflet.featuregroup.subgroup';
+import 'leaflet-measure';
+// marker-shadow and marker-icon-2x have to be manually loaded
 import 'leaflet/dist/images/marker-shadow.png';
 import 'leaflet/dist/images/marker-icon-2x.png';
-import 'leaflet.markercluster/dist/MarkerCluster.css';
-import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
+
+import {format,formatDistance,formatRelative} from 'date-fns';
+import {createSVGIcon} from './vlp-mdi-icons';
+import parkParcel from './park-parcel.json';
+import {vlpTrails,vlpMarkers} from './parkmaps.js';
+
 import './leaflet/grpLayerControl.js';
 import { YAHControl } from './leaflet/yahControl.js';
 import './vlp-manifest-icons.js';
@@ -29,50 +24,20 @@ import * as img_parkplan from './img/dbd-parkplan.png';
 import * as img_photo from './img/park-satellite.png';
 import * as img_parkcontours from './img/park-contour.png';
 import zakklab from './zakklab.json';
-import whatsnew from './whatsnew.json';
-import 'leaflet-measure/dist/assets/cancel.png';
-import 'leaflet-measure/dist/assets/cancel_@2X.png';
-import 'leaflet-measure/dist/assets/check.png';
-import 'leaflet-measure/dist/assets/check_@2X.png';
-import 'leaflet-measure/dist/assets/focus.png';
-import 'leaflet-measure/dist/assets/focus_@2X.png';
-import 'leaflet-measure/dist/assets/leaflet-measure.png';
-import 'leaflet-measure/dist/assets/rulers.png';
-import 'leaflet-measure/dist/assets/rulers_@2X.png';
-import 'leaflet-measure/dist/assets/start.png';
-import 'leaflet-measure/dist/assets/start_@2X.png';
-import 'leaflet-measure/dist/assets/trash.png';
-import 'leaflet-measure/dist/assets/trash_@2X.png';
-import 'leaflet-measure/dist/leaflet-measure.en.js'; 
-import 'leaflet-measure/dist/leaflet-measure.css'; 
 
 const vlpDebug = g.vlpDebug;
 
 function showWhatsNew(map) {
-	var lastseen = localStorage.vintage;
-	var t_newest = whatsnew[0][0];
-	var whatsnew4zakklab = /^zakklab:/;
+	let lastseen = localStorage.vintage;
+	let t_newest = LatestWhatsNewEntry;
 
 	if (t_newest <= lastseen) { return; }
 
-	var whatnewHtml = '<p>The Lakeside Park app has been updated. Recent changes to the app and/or park updates include:</p><ul>';
-	var now = new Date();
-	const tdfmt = { addSuffix: true };
+	var whatnewHtml = '<p>The Lakeside Park app has been updated.</p><p><a href="#!show-whatsnew">Show App History</a></p>';
 
 	vlpDebug('Showing whatsnew modal');
 
-	for (var i = 0; i < whatsnew.length; i++) {
-		var t = whatsnew[i][0];
-		if (t <= lastseen) break;
-		var d2 = new Date(t * 1000);
-		var txt = whatsnew[i][1];
-		if (!whatsnew4zakklab.test(txt) || g.addZakklab) {
-			whatnewHtml += g.sprintf('<li>%s (%s)</li>', txt, formatDistance(d2, now, tdfmt));
-		}
-	}
-	whatnewHtml += '</ul>';
-
-	showModal('App Update', whatnewHtml, function () {
+	showModal('App Update',whatnewHtml,function() {
 		vlpDebug('whatsnew has been closed');
 		localStorage.vintage = t_newest;
 	});
@@ -143,12 +108,8 @@ function vlpMap() {
 	const burkeGISMap = 'http://gis.burkenc.org/default.htm?PIN=2744445905';
 	var parkplan_bounds = new L.LatLngBounds(vlpConfig.gpsBoundsParkPlan);
 	var valdese_area = vlpConfig.gpsBoundsValdese;
-	var gpsCenter = parkplan_bounds.getCenter();	
-	var map = L.map('image-map', { zoomControl: false, center: gpsCenter, minZoom: vlpConfig.osmZoomRange[0], zoom: vlpConfig.osmZoomRange[1], maxBounds: valdese_area });
-	var options = {position: 'topleft', primaryLengthUnit: 'miles', secondaryLengthUnit: 'feet', primaryAreaUnit: 'acres', secondaryAreaUnit: 'sqfeet' /*undefined is option 2*/, activeColor: '#000000', completedColor: '#000000'};
-	var measureControl = L.control.measure(options);
-	measureControl.addTo(map);
-
+	var gpsCenter = parkplan_bounds.getCenter();
+	var map = L.map('image-map',{zoomControl: false, center: gpsCenter, minZoom: vlpConfig.osmZoomRange[0], zoom: vlpConfig.osmZoomRange[1], maxBounds:valdese_area});
 	var mapTiles = new ValdeseTileLayer(vlpConfig.urlTileServer, {
 		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 		errorTileUrl: blankTile,
@@ -159,8 +120,6 @@ function vlpMap() {
 	var fvrMark = new fvrWatermarkControl({ position: 'bottomleft' });
 	var yahBtn = new YAHControl({
 		position:'topright',
-		//for testing,
-		//maxBounds:new L.LatLngBounds(valdese_area).pad(2)
 		maxBounds:parkplan_bounds
 	}); 
 	map.addLayer(mapTiles);
@@ -253,6 +212,17 @@ function vlpMap() {
 	L.control.groupedLayers(baseMaps, groupedOverlays).addTo(map);
 	map.attributionControl.addAttribution('<a href="https://friendsofthevaldeserec.org">FVR</a>');
 	yahBtn.addTo(map);
+
+	var measureControl = L.control.measure({
+		position:'bottomright',
+		primaryLengthUnit: 'miles',
+		secondaryLengthUnit: 'feet',
+		primaryAreaUnit: 'acres',
+		activeColor: '#000000',
+		completedColor: '#000000'
+	});
+	measureControl.addTo(map);
+
 	if (g.vlpDebugMode) {
 		new ZoomViewer({ position: 'topleft' }).addTo(map);
 		map.on('click', function (e) {

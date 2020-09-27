@@ -8,7 +8,7 @@ module.exports = function(zakklab) {
 	};
 	
 	if (zakklab) {
-		o = Object.assign(o, {
+		Object.assign(o, {
 			apptitle: 'Lakeside by Zakklab',
 			appfulltitle: 'Zakklab Valdese Lakeside Park',
 			manifest_themecolor: '#AA0000',
@@ -16,7 +16,7 @@ module.exports = function(zakklab) {
 		});
 	}
 
-	let iconList = 'backburger,city,cog,directions,home,information,link,menu,github,facebook,instagram,twitter,donate,ishare,natureman,together,voice'.split(',');
+	let iconList = 'backburger,city,cog,directions,home,information,link,menu,github,facebook,instagram,twitter,donate,ishare,natureman,together,voice,walk'.split(',');
 	let icons = {};
 	iconList.forEach(k => icons[k] = `<i class="fvricon fvricon-${k}"></i>`);
 	o.icon = icons;

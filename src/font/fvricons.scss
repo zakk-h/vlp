@@ -1,3 +1,41 @@
+
+  $fvricon-backburger: "\ea01";
+
+  $fvricon-city: "\ea02";
+
+  $fvricon-cog: "\ea03";
+
+  $fvricon-directions: "\ea04";
+
+  $fvricon-donate: "\ea05";
+
+  $fvricon-facebook: "\ea06";
+
+  $fvricon-github: "\ea07";
+
+  $fvricon-home: "\ea08";
+
+  $fvricon-information: "\ea09";
+
+  $fvricon-instagram: "\ea0a";
+
+  $fvricon-ishare: "\ea0b";
+
+  $fvricon-link: "\ea0c";
+
+  $fvricon-menu: "\ea0d";
+
+  $fvricon-natureman: "\ea0e";
+
+  $fvricon-together: "\ea0f";
+
+  $fvricon-twitter: "\ea10";
+
+  $fvricon-voice: "\ea11";
+
+  $fvricon-walk: "\ea12";
+
+
 @font-face {
   font-family: "fvricons";
   font-style: normal;
@@ -7,8 +45,8 @@
   src: url("./fvricons.woff") format("woff"); 
 }
 
-.fvricon {
-  display: inline-block;
+%fvricon {
+display: inline-block;
   font-family: "fvricons";
   font-weight: 400;
   font-style: normal;
@@ -17,6 +55,10 @@
   line-height: 1;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
+}
+
+.fvricon {
+  @extend %fvricon;
 }
 
 .fvricon-lg {
@@ -102,70 +144,74 @@
 
 
 .fvricon-backburger::before {
-  content: "\ea01";
+    content: "\ea01";
 }
 
 .fvricon-city::before {
-  content: "\ea02";
+    content: "\ea02";
 }
 
 .fvricon-cog::before {
-  content: "\ea03";
+    content: "\ea03";
 }
 
 .fvricon-directions::before {
-  content: "\ea04";
+    content: "\ea04";
 }
 
 .fvricon-donate::before {
-  content: "\ea05";
+    content: "\ea05";
 }
 
 .fvricon-facebook::before {
-  content: "\ea06";
+    content: "\ea06";
 }
 
 .fvricon-github::before {
-  content: "\ea07";
+    content: "\ea07";
 }
 
 .fvricon-home::before {
-  content: "\ea08";
+    content: "\ea08";
 }
 
 .fvricon-information::before {
-  content: "\ea09";
+    content: "\ea09";
 }
 
 .fvricon-instagram::before {
-  content: "\ea0a";
+    content: "\ea0a";
 }
 
 .fvricon-ishare::before {
-  content: "\ea0b";
+    content: "\ea0b";
 }
 
 .fvricon-link::before {
-  content: "\ea0c";
+    content: "\ea0c";
 }
 
 .fvricon-menu::before {
-  content: "\ea0d";
+    content: "\ea0d";
 }
 
 .fvricon-natureman::before {
-  content: "\ea0e";
+    content: "\ea0e";
 }
 
 .fvricon-together::before {
-  content: "\ea0f";
+    content: "\ea0f";
 }
 
 .fvricon-twitter::before {
-  content: "\ea10";
+    content: "\ea10";
 }
 
 .fvricon-voice::before {
-  content: "\ea11";
+    content: "\ea11";
+}
+
+.fvricon-walk::before {
+    content: "\ea12";
 }
 

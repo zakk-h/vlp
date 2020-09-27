@@ -1,0 +1,17 @@
+<!---
+{
+	"opts": [
+		["measure-control","Show measurement control"],
+		["zakklab-trails","Show extra trails from zakklab"],
+		["yah-always","Always track my location"]
+	]
+}
+--->
+<h1>Options</h1>
+<p>App options:</p>
+
+<form class="options">
+	{% for opt in page.opts %}
+	<input type="checkbox" id="{{ opt[0] }}"> <label for="{{ opt[0] }}">{{ opt[1] }}</label><br>
+	{% endfor %}
+</form>
