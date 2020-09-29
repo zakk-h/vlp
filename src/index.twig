@@ -11,23 +11,37 @@
 <meta name="theme-color" content="{{ manifest_themecolor }}">
 <link rel="stylesheet" href="app.css">
 <title>{{ appfulltitle }}</title>
+<script>
+if ('serviceWorker' in navigator) {
+	window.addEventListener('load', () => { navigator.serviceWorker.register('./sw.js'); });
+}
+</script>
 </head>
 <body>
 {% apply spaceless %}
+{% set maproutes = [] %}
 <header>
 	<div class="menu-selector" id="id_AppPageMenuBtn"><i class="fvricon fvricon-menu" style="font-size:24px; margin-top:2px;"></i></div>
 	<div class="menu-selector" id="id_AppPageTitle"><span>{{ apptitle }}</span><span>Map</span></div>
 </header>
-<div class="main-content active" id="id-mainmap">
-	<div id="image-map"></div>
-</div>
 
-{% for pg in info %}
-<div class="main-content info-page" id="pgid-{{ pg.id }}">
-	<div class="info-content">
-		{{ pg.html|raw }}
-	</div>
-</div>
+{% for pg in pages %}
+	{% if pg.grp %}
+	{% endif %}
+{% endfor %}
+
+{% for pg in pages %}
+	{% if pg.class == 'map' %}
+		{% set maproutes = maproutes|merge([pg.id]) %}
+		<div class="main-content map-page" id="pgid-{{ pg.id }}">
+		</div>
+	{% elseif pg.class %}
+		<div class="main-content info-page" id="pgid-{{ pg.id }}">
+			<div class="info-content">
+				{{ pg.html|raw }}
+			</div>
+		</div>
+	{% endif %}
 {% endfor %}
 
 <div id="vlp-modal"><div id="vlp-modal-content">
@@ -40,22 +54,28 @@
 
 <div id="win-mainmenu" style="display:none;z-index:99999;">
 	<nav id="mainmenu" class="lsmenu">
-		<a href="#!map">Park Map</a>
-		<hr>
-		<a href="#!show-start">Start</a>
-		<a href="#!show-welcome">Welcome</a>
-		<a href="#!show-parkintro">Park Intro</a>
-		<a href="#!show-options">Options</a>
-		<a href="#!show-whatsnew">What&#039;s New</a>
+		{% set navgrp = '' %}
+		{% for pg in pages %}
+			{% if pg.class and pg.nav %}
+				{% set thisnavgrp = pg.nav|first %}
+				{% if navgrp and (navgrp != thisnavgrp) %}
+					<hr>
+				{% endif %}
+
+				<a href="#!{{ pg.id }}">{{ pg.title }}</a>
+				{% set navgrp = thisnavgrp %}
+			{% endif %}
+		{% endfor %}
 	</nav>
 </div>
 
-<script async src="app.js"></script>
+{% endapply %}
 <script>
-if ('serviceWorker' in navigator) {
-	window.addEventListener('load', () => { navigator.serviceWorker.register('./sw.js'); });
+var vlpApp = {
+	maps: {{ maproutes|json_encode() }},
+	activeMap: null
 }
 </script>
+<script async src="app.js"></script>
 </body>
-{% endapply %}
 </html>

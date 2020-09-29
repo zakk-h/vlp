@@ -1,8 +1,8 @@
 ---
-menuIndex: 1
-menu: Getting Started
-group: Introduction
+grp: B
+nav: 1
 ---
+
 # Start Here
 
 ![Featured Park Image][parkview]

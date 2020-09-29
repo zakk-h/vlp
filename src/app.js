@@ -10,27 +10,34 @@ import { vlpMap } from './vlp.js';
 function toggleWindow(w) {w.style.display = (w.style.display == 'block') ? 'none' : 'block';}
 
 function initLakesideParkApp() {
-	var router = new Navigo('', true);
+	var router = new Navigo('', true, '#!');
 	var ctrl_PageTitle = document.getElementById('id_AppPageTitle');
-	var currentPageID = 'id-mainmap';
+	var currentPageID = false;
 	var menuDiv = document.getElementById('win-mainmenu');
 
 	function closeOpenMenu() { menuDiv.style.display = 'none'; }
-	function setCurrentPage(id) {
-		let curpage = document.getElementById(currentPageID);
+	function setCurrentPage(rid) {
+		let id = `pgid-${rid}`;
 		let newpage = document.getElementById(id);
 
 		if (newpage) {
 			let newt = ctrl_PageTitle.querySelector('span:nth-of-type(2)');
 			let newh1 = newpage.querySelector('h1');
 
-			closeModal();
+			if (currentPageID) {
+				let curpage = document.getElementById(currentPageID);
+				closeModal();
+				curpage.classList.remove('active');
+			}
 
 			newt.innerHTML = newh1 ? newh1.innerHTML : 'Map';
-
-			curpage.classList.remove('active');
 			newpage.classList.add('active');
 			currentPageID = id;
+
+			if (vlpApp.maps.includes(rid)) {
+				vlpMap(newpage);
+			}
+
 		}
 	}
 
@@ -44,11 +51,9 @@ function initLakesideParkApp() {
 	});
 
 	router.on({
-		'show-:id': (params) => setCurrentPage(`pgid-${params.id}`),
-		'*': () => setCurrentPage('id-mainmap')
+		':id': (params) => setCurrentPage(params.id),
+		'*': () => setCurrentPage(vlpApp.maps[0])
 	}).resolve();
-
-	vlpMap();
 }
 
 initLakesideParkApp();

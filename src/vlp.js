@@ -106,12 +106,12 @@ var ValdeseTileLayer = L.TileLayer.extend({
 	}
 });
 
-function vlpMap() {
+function vlpMapStartup(targetDiv) {
 	const burkeGISMap = 'http://gis.burkenc.org/default.htm?PIN=2744445905';
 	var parkplan_bounds = new L.LatLngBounds(vlpConfig.gpsBoundsParkPlan);
 	var valdese_area = vlpConfig.gpsBoundsValdese;
 	var gpsCenter = parkplan_bounds.getCenter();
-	var map = L.map('image-map',{zoomControl: false, center: gpsCenter, minZoom: vlpConfig.osmZoomRange[0], zoom: vlpConfig.osmZoomRange[1], maxBounds:valdese_area});
+	var map = L.map(targetDiv,{zoomControl: false, center: gpsCenter, minZoom: vlpConfig.osmZoomRange[0], zoom: vlpConfig.osmZoomRange[1], maxBounds:valdese_area});
 	var mapTiles = new ValdeseTileLayer(vlpConfig.urlTileServer, {
 		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 		errorTileUrl: blankTile,
@@ -228,6 +228,15 @@ function vlpMap() {
 	map.fitBounds(vlpConfig.gpsBoundsParkPlan);
 
 	showWhatsNew(map);
+}
+
+function vlpMap(hostDiv) {
+	let targetDiv = hostDiv.querySelector('div');
+	if (!targetDiv) {
+		targetDiv = document.createElement('div');   
+		hostDiv.appendChild(targetDiv);
+		vlpMapStartup(targetDiv);
+	}
 }
 
 export {vlpMap};
