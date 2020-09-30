@@ -13,80 +13,21 @@ import {createSVGIcon} from './vlp-mdi-icons';
 import parkParcel from './park-parcel.json';
 import {vlpTrails,vlpMarkers} from './parkmaps.js';
 
-import './leaflet/grpLayerControl.js';
+import {GroupedLayersControl} from './leaflet/GroupedLayersControl.js';
+import {ValdeseTileLayer} from './leaflet/ValdeseTileLayer.js';
 import {YAHControl} from './leaflet/yahControl.js';
+import {RotateImageLayer} from './leaflet/RotateImageLayer.js';
+import {FVRWatermarkControl} from './leaflet/FVRWatermarkControl.js';
+import {ZoomViewer} from './leaflet/ZoomViewer.js';
+
 import './vlp-manifest-icons.js';
 import * as blankTile from './img/blankTile.png';
-import * as fvr_logo from './img/fvrlogopng.png';
 import * as img_parkplan from './img/dbd-parkplan.png';
 import * as img_photo from './img/park-satellite.png';
 import * as img_parkcontours from './img/park-contour.png';
 import zakklab from './zakklab.json';
 
 const vlpDebug = g.vlpDebug;
-
-//transform: skewY(-5deg);
-var vlpRotateImageLayer = L.ImageOverlay.extend({
-	options: {rotation: -1.5},
-	initialize: function(url,bounds,options) {
-		L.setOptions(this,options);
-		L.ImageOverlay.prototype.initialize.call(this,url,bounds,options);
-    },
-    _animateZoom: function(e){
-		L.ImageOverlay.prototype._animateZoom.call(this, e);
-        var img = this._image;
-        img.style[L.DomUtil.TRANSFORM] += ' rotate(' + this.options.rotation + 'deg)';
-    },
-    _reset: function(){
-        L.ImageOverlay.prototype._reset.call(this);
-        var img = this._image;
-        img.style[L.DomUtil.TRANSFORM] += ' rotate(' + this.options.rotation + 'deg)';
-    }
-});
-
-var fvrWatermarkControl = L.Control.extend({
-	onAdd: function(map) {
-		var link = L.DomUtil.create('a','fvrlink');
-		var img = L.DomUtil.create('img','fvrlogo',link);
-
-		link.href = 'https://friendsofthevaldeserec.org/valdese-lakeside-park-2';
-		link.target = '_blank';
-		img.src = fvr_logo;
-
-		return link;
-	},
-
-	onRemove: function(map) { }
-});
-
-var ZoomViewer = L.Control.extend({
-	onAdd: function(map){
-		var gauge = L.DomUtil.create('div');
-		gauge.style.width = '28px';
-		gauge.style.overflow = 'hidden';
-		gauge.style.background = 'rgba(250,248,245,0.6)';
-		gauge.style.textAlign = 'center';
-		map.on('zoomstart zoom zoomend', function(ev){
-			gauge.innerHTML = map.getZoom();
-		})
-		return gauge;
-	}
-});
-
-var ValdeseTileLayer = L.TileLayer.extend({
-	getTileUrl: function(coords) {
-		var zBox = vlpConfig.osmTileRanges[coords.z];
-		if (zBox) {
-			var x = coords.x, y = coords.y;
-			if ((x >= zBox[0][0]) && (x <= zBox[1][0]) && (y >= zBox[0][1]) && (y <= zBox[1][1])) {
-				return L.TileLayer.prototype.getTileUrl.call(this,coords);
-			}
-		}
-
-		vlpDebug('blank tile for ',coords);
-		return blankTile;
-	}
-});
 
 function vlpMapStartup(targetDiv) {
 	const burkeGISMap = 'http://gis.burkenc.org/default.htm?PIN=2744445905';
@@ -101,9 +42,9 @@ function vlpMapStartup(targetDiv) {
 		minZoom: vlpConfig.osmZoomRange[0],
 		maxNativeZoom: vlpConfig.osmZoomRange[1]
 		});
-	var fvrMark = new fvrWatermarkControl({position:'bottomleft'});
+	var fvrMark = new FVRWatermarkControl({position:'bottomleft'});
 	var yahBtn = new YAHControl({
-		position:'topright',
+		position:'topleft',
 		maxBounds:parkplan_bounds
 	});
 	map.addLayer(mapTiles);
@@ -112,9 +53,9 @@ function vlpMapStartup(targetDiv) {
 	
 	fvrMark.addTo(map);
 
-	var contourLayer = new vlpRotateImageLayer(img_parkcontours, vlpConfig.gpsBoundsParkContour,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`});
-	var photoLayer = new vlpRotateImageLayer(img_photo,vlpConfig.gpsBoundsSatellite,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`,opacity:0.7});
-	var parkplanLayer = new vlpRotateImageLayer(img_parkplan,vlpConfig.gpsBoundsParkPlan,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:'<a href="https://dbdplanning.com/">Destination by Design</a>'});
+	var contourLayer = new RotateImageLayer(img_parkcontours, vlpConfig.gpsBoundsParkContour,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`});
+	var photoLayer = new RotateImageLayer(img_photo,vlpConfig.gpsBoundsSatellite,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`,opacity:0.7});
+	var parkplanLayer = new RotateImageLayer(img_parkplan,vlpConfig.gpsBoundsParkPlan,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:'<a href="https://dbdplanning.com/">Destination by Design</a>'});
 	var baseMaps = {"Contour": contourLayer,"Photo": photoLayer,"Projected Park Plan":parkplanLayer};
 	var groupedOverlays = {};
 	
@@ -184,7 +125,7 @@ function vlpMapStartup(targetDiv) {
 	groupedOverlays['Points of Interest'] = poiData;
 	
 	clusterGroup.addTo(map);
-	L.control.groupedLayers(baseMaps, groupedOverlays).addTo(map);
+	new GroupedLayersControl(baseMaps, groupedOverlays).addTo(map);
 	map.attributionControl.addAttribution('<a href="https://friendsofthevaldeserec.org">FVR</a>');
 	yahBtn.addTo(map);
 
@@ -200,9 +141,7 @@ function vlpMapStartup(targetDiv) {
 
 	if (g.vlpDebugMode) {
 		new ZoomViewer({position:'topleft'}).addTo(map);
-		map.on('click',function(e){
-			vlpDebug(e.latlng);
-		});
+		map.on('click',e => vlpDebug(e.latlng));
 	}
 
 	//L.rectangle(vlpConfig.gpsBoundsSatellite, {color: "#ff7800", weight: 1}).addTo(map);
