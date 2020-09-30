@@ -72,7 +72,7 @@ if ('serviceWorker' in navigator) {
 {% endapply %}
 <script>
 var vlpApp = {
-	maps: {{ maproutes|json_encode() }},
+	maps: {{ maproutes|json_encode }},
 	activeMap: null
 }
 </script>

@@ -9,7 +9,6 @@ import 'leaflet-measure';
 import 'leaflet/dist/images/marker-shadow.png';
 import 'leaflet/dist/images/marker-icon-2x.png';
 
-import {format,formatDistance,formatRelative} from 'date-fns';
 import {createSVGIcon} from './vlp-mdi-icons';
 import parkParcel from './park-parcel.json';
 import {vlpTrails,vlpMarkers} from './parkmaps.js';
@@ -17,7 +16,6 @@ import {vlpTrails,vlpMarkers} from './parkmaps.js';
 import './leaflet/grpLayerControl.js';
 import {YAHControl} from './leaflet/yahControl.js';
 import './vlp-manifest-icons.js';
-import {showModal} from './modal.js';
 import * as blankTile from './img/blankTile.png';
 import * as fvr_logo from './img/fvrlogopng.png';
 import * as img_parkplan from './img/dbd-parkplan.png';
@@ -26,22 +24,6 @@ import * as img_parkcontours from './img/park-contour.png';
 import zakklab from './zakklab.json';
 
 const vlpDebug = g.vlpDebug;
-
-function showWhatsNew(map) {
-	let lastseen = localStorage.vintage;
-	let t_newest = LatestWhatsNewEntry;
-
-	if (t_newest <= lastseen) { return; }
-
-	var whatnewHtml = '<p>The Lakeside Park app has been updated.</p><p><a href="#!show-whatsnew">Show App History</a></p>';
-
-	vlpDebug('Showing whatsnew modal');
-
-	showModal('App Update',whatnewHtml,function() {
-		vlpDebug('whatsnew has been closed');
-		localStorage.vintage = t_newest;
-	});
-}
 
 //transform: skewY(-5deg);
 var vlpRotateImageLayer = L.ImageOverlay.extend({
@@ -226,8 +208,6 @@ function vlpMapStartup(targetDiv) {
 	//L.rectangle(vlpConfig.gpsBoundsSatellite, {color: "#ff7800", weight: 1}).addTo(map);
 
 	map.fitBounds(vlpConfig.gpsBoundsParkPlan);
-
-	showWhatsNew(map);
 }
 
 function vlpMap(hostDiv) {

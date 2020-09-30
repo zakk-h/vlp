@@ -1,11 +1,13 @@
 import './app.scss';
 import './app.manifest';
 import './index.twig';
-import {closeModal} from './modal.js';
 
 import * as g from './globals.js';
+import {showModal,closeModal} from './modal.js';
 import Navigo from 'navigo';
 import { vlpMap } from './vlp.js';
+
+const vlpDebug = g.vlpDebug;
 
 function toggleWindow(w) {w.style.display = (w.style.display == 'block') ? 'none' : 'block';}
 
@@ -14,11 +16,14 @@ function initLakesideParkApp() {
 	var ctrl_PageTitle = document.getElementById('id_AppPageTitle');
 	var currentPageID = false;
 	var menuDiv = document.getElementById('win-mainmenu');
+	var firstTime = true;
 
 	function closeOpenMenu() { menuDiv.style.display = 'none'; }
 	function setCurrentPage(rid) {
 		let id = `pgid-${rid}`;
 		let newpage = document.getElementById(id);
+
+		closeModal();
 
 		if (newpage) {
 			let newt = ctrl_PageTitle.querySelector('span:nth-of-type(2)');
@@ -26,7 +31,6 @@ function initLakesideParkApp() {
 
 			if (currentPageID) {
 				let curpage = document.getElementById(currentPageID);
-				closeModal();
 				curpage.classList.remove('active');
 			}
 
@@ -38,6 +42,20 @@ function initLakesideParkApp() {
 				vlpMap(newpage);
 			}
 
+		}
+
+		if (firstTime) {
+			firstTime = false;
+			
+			if (!localStorage.vintage || (rid == 'whatsnew')) {
+				localStorage.vintage = LatestWhatsNewEntry;
+			} else if (LatestWhatsNewEntry > localStorage.vintage) {
+				showModal(
+					'App Update',
+					'<p>The Lakeside Park app has been updated.</p><p><a href="#!whatsnew">Show App History</a></p>',
+					() => localStorage.vintage = LatestWhatsNewEntry
+				);
+			}
 		}
 	}
 
