@@ -1,0 +1,9 @@
+name: 2004 Trail 2
+secret: true
+color: "#FF0000"
+miles: 0.15
+dash: false
+optional: false
+trail:
+- [35.770472, -81.554161, 333]
+- [35.771028, -81.554282, 328]

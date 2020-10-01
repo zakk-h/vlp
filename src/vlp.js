@@ -11,7 +11,7 @@ import 'leaflet/dist/images/marker-icon-2x.png';
 
 import {createSVGIcon} from './vlp-mdi-icons';
 import parkParcel from './park-parcel.json';
-import {vlpTrails,vlpMarkers} from './parkmaps.js';
+import {vlpTrails,vlpMarkers,zakklabTrails} from './parkmaps.js';
 
 import {GroupedLayersControl} from './leaflet/GroupedLayersControl.js';
 import {ValdeseTileLayer} from './leaflet/ValdeseTileLayer.js';
@@ -25,7 +25,6 @@ import * as blankTile from './img/blankTile.png';
 import * as img_parkplan from './img/dbd-parkplan.png';
 import * as img_photo from './img/park-satellite.png';
 import * as img_parkcontours from './img/park-contour.png';
-import zakklab from './zakklab.json';
 
 const vlpDebug = g.vlpDebug;
 
@@ -62,7 +61,7 @@ function vlpMapStartup(targetDiv) {
 	map.addLayer(contourLayer);
 	
 	function vlpAddTrail(grp,opacity,weight,v,i) {
-		var nlo = {'color':v.color,'opacity':opacity,'weight':weight};
+		var nlo = {color:v.color,opacity:opacity,weight:weight};
 		if (v.secret) return;
 		if (!groupedOverlays[grp]) {
 			groupedOverlays[grp] = {};
@@ -92,7 +91,7 @@ function vlpMapStartup(targetDiv) {
 	vlpTrails.forEach(function(v,i) {vlpAddTrail('Primary Trails',0.85,9,v,i);});
 
 	if (g.addZakklab) {
-		zakklab.forEach(function(v,i) {vlpAddTrail('Trails by Zakklab',0.75,8,v,i);});
+		zakklabTrails.forEach(function(v,i) {vlpAddTrail('Trails by Zakklab',0.75,8,v,i);});
 	}
 	
 	var clusterGroup = L.markerClusterGroup({maxClusterRadius:20});

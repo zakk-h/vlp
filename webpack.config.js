@@ -53,6 +53,10 @@ module.exports = env => {
 						options: { sourceMap: true }
 					}]
 				},{
+					test: /\.(trail|mapmarks)$/,
+					type: 'json',
+					use: path.resolve('./src/loader/yaml-loader.js')
+				},{
 					test: /\.(png|svg|jpe?g|gif|woff2?|ttf|eot)$/,
 					use: [
 						{ loader: 'file-loader', options: { name: '[name]~[hash:base64:4].[ext]' } }

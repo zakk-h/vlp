@@ -1,0 +1,9 @@
+name: 2004 Trail 10
+secret: true
+color: "#8F01BC"
+miles: 0.15
+dash: false
+optional: false
+trail:
+- [35.772480, -81.545952, 316]
+- [35.771911, -81.547529, 335]
