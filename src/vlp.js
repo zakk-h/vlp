@@ -93,12 +93,6 @@ function vlpMapStartup(targetDiv) {
 		}
 	}
 	}
-	vlpTrails.forEach(function (v, i) { vlpAddTrail('Primary Trails', 0.85, 9, v, i); });
-
-	if (g.addZakklab) {
-		zakklabTrails.forEach(function(v,i) {vlpAddTrail('Trails by Zakklab',0.75,8,v,i);});
-	}
-
 	var clusterGroup = L.markerClusterGroup({ maxClusterRadius: 10 });
 	var poiData = {};
 	vlpMarkers.forEach(function (markData) {
@@ -129,6 +123,14 @@ function vlpMapStartup(targetDiv) {
 
 	groupedOverlays['Points of Interest'] = poiData;
 	clusterGroup.addTo(map);
+	
+	if (g.addZakklab) {
+		zakklabTrails.forEach(function(v,i) {vlpAddTrail('Trails by Zakklab',0.75,8,v,i);});
+	}
+
+	vlpTrails.forEach(function (v, i) { vlpAddTrail('Primary Trails', 0.85, 9, v, i); });
+
+
 	new GroupedLayersControl(baseMaps, groupedOverlays).addTo(map);
 	map.attributionControl.addAttribution('<a href="https://friendsofthevaldeserec.org">FVR</a>');
 	yahBtn.addTo(map);

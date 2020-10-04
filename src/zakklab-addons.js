@@ -15,6 +15,7 @@ const ShadeConnector = require('./zakklab/ShadeConnector.trail');
 const PinkConnector = require('./zakklab/PinkConnector.trail');
 const HCBeachConnector = require('./zakklab/HCBeachConnector.trail');
 const FireHydrant = require('./zakklab/FireHydrant.trail');
+const OuterConnector = require('./zakklab/OuterConnector.trail');
 //Other
 const DogPark = require('./zakklab/DogPark.trail');
 
@@ -33,6 +34,7 @@ var trails = [
 	ShadeConnector,
 	HCBeachConnector,
 	FireHydrant,
+	OuterConnector,
 	XC1,
 	XC2,
 	XC3,
