@@ -1,6 +1,6 @@
 ---
 class: info
-nav: B5
+nav: B500
 ---
 
 # Welcome

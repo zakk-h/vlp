@@ -1,4 +1,5 @@
 import {vlpConfig} from '../config.js';
+import * as blankTile from '../img/blankTile.png';
 
 var ValdeseTileLayer = L.TileLayer.extend({
 	getTileUrl: function(coords) {

@@ -20,17 +20,15 @@ if ('serviceWorker' in navigator) {
 <body>
 {% apply spaceless %}
 {% set maproutes = [] %}
+{% set pagedata = {} %}
 <header>
 	<div class="menu-selector" id="id_AppPageMenuBtn"><i class="fvricon fvricon-menu" style="font-size:24px; margin-top:2px;"></i></div>
 	<div class="menu-selector" id="id_AppPageTitle"><span>{{ apptitle }}</span><span>Map</span></div>
 </header>
 
 {% for pg in pages %}
-	{% if pg.grp %}
-	{% endif %}
-{% endfor %}
-
-{% for pg in pages %}
+	{% set thispd = {title: pg.title, opts: pg.opts} %}
+	{% set pagedata = pagedata|merge({(pg.id): thispd}) %}
 	{% if pg.class == 'map' %}
 		{% set maproutes = maproutes|merge([pg.id]) %}
 		<div class="main-content map-page" id="pgid-{{ pg.id }}">
@@ -73,6 +71,7 @@ if ('serviceWorker' in navigator) {
 <script>
 var vlpApp = {
 	maps: {{ maproutes|json_encode }},
+	pages: {{ pagedata|json_encode }},
 	activeMap: null
 }
 </script>

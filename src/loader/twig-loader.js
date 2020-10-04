@@ -51,7 +51,7 @@ function parseFrontMatter(text) {
 
 	if ((yamlOrJson = results[2])) {
 		// yaml does not allow tabs, but we do, thus this is needed
-		yamlOrJson.replace('\t','    ');
+		yamlOrJson = yamlOrJson.replace(/\t/g,'   ');
 		if (yamlOrJson.charAt(0) === '{') {
 			out[0] = JSON.parse(yamlOrJson);
 		} else {
@@ -71,7 +71,7 @@ async function buildMarkupPage(loaderObj,ifolder,fname,context) {
 	let pgid = (match = /^([^.]+)\./.exec(fname)) ? match[1] : fname;
 	let title = (match = /<h1>(.+)<\/h1>/m.exec(html)) ? match[1] : 'untitled';
 
-	const infoObj = Object.assign({title: title},iSplit[0],{id: pgid, html: html, src: htmraw});
+	const infoObj = Object.assign({title: title},iSplit[0],{id: pgid, html: html, _src: htmraw});
 	const linkedFiles = fixupHtmlResources(infoObj,ifolder,loaderObj);
 
 	return infoObj;
@@ -87,7 +87,7 @@ async function buildMarkdownPage(loaderObj,ifolder,fname,context) {
 	let pgid = (match = /^([^.]+)\.md$/.exec(fname)) ? match[1] : fname;
 	let title = (match = /^#\s*(.+)$/m.exec(mdp)) ? match[1] : 'untitled';
 
-	const infoObj = Object.assign({title: title},mdSplit[0],{id: pgid, html: html, src: md});
+	const infoObj = Object.assign({title: title},mdSplit[0],{id: pgid, html: html, _src: md});
 	const linkedFiles = fixupHtmlResources(infoObj,ifolder,loaderObj);
 
 	return infoObj;

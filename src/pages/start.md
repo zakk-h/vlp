@@ -1,6 +1,6 @@
 ---
-grp: B
-nav: 1
+class: info
+nav: B100
 ---
 
 # Start Here

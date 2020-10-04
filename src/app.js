@@ -7,8 +7,6 @@ import {showModal,closeModal} from './modal.js';
 import Navigo from 'navigo';
 import { vlpMap } from './vlp.js';
 
-const vlpDebug = g.vlpDebug;
-
 function toggleWindow(w) {w.style.display = (w.style.display == 'block') ? 'none' : 'block';}
 
 function initLakesideParkApp() {
@@ -20,33 +18,38 @@ function initLakesideParkApp() {
 
 	function closeOpenMenu() { menuDiv.style.display = 'none'; }
 	function setCurrentPage(rid) {
+		let doAppInit = firstTime;
 		let id = `pgid-${rid}`;
 		let newpage = document.getElementById(id);
 
+		firstTime = false;
 		closeModal();
 
 		if (newpage) {
-			let newt = ctrl_PageTitle.querySelector('span:nth-of-type(2)');
-			let newh1 = newpage.querySelector('h1');
+			let isMapPage = vlpApp.maps.includes(rid);
+			let thisPageData = vlpApp.pages[rid];
+
+			// if we want to have the current map in the background of info pages, then
+			// we always need to have one loaded first
+			if (doAppInit && !isMapPage) {
+				setCurrentPage(vlpApp.maps[0]);
+			}
 
 			if (currentPageID) {
 				let curpage = document.getElementById(currentPageID);
 				curpage.classList.remove('active');
 			}
 
-			newt.innerHTML = newh1 ? newh1.innerHTML : 'Map';
+			ctrl_PageTitle.querySelector('span:nth-of-type(2)').innerHTML = thisPageData.title;
 			newpage.classList.add('active');
 			currentPageID = id;
 
-			if (vlpApp.maps.includes(rid)) {
-				vlpMap(newpage);
+			if (isMapPage) {
+				vlpMap(newpage,thisPageData);
 			}
-
 		}
 
-		if (firstTime) {
-			firstTime = false;
-			
+		if (doAppInit) {
 			if (!localStorage.vintage || (rid == 'whatsnew')) {
 				localStorage.vintage = LatestWhatsNewEntry;
 			} else if (LatestWhatsNewEntry > localStorage.vintage) {
