@@ -1,3 +1,8 @@
+---
+class: info
+nav: B5
+---
+
 # Welcome
 
 The [Friends of the Valdese Rec][link-fvr] would like to welcome you to Valdese Lakeside, a 300 acre municipal park with construction set

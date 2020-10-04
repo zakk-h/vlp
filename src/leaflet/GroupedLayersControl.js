@@ -9,7 +9,7 @@
 
 // A layer control which provides for layer groupings.
 // Author: Ishmael Smyrnow
-L.Control.GroupedLayers = L.Control.extend({
+var GroupedLayersControl = L.Control.extend({
 	options: {
 		collapsed: true,
 		position: 'topright',
@@ -389,6 +389,4 @@ L.Control.GroupedLayers = L.Control.extend({
 	}
 });
 
-L.control.groupedLayers = function (baseLayers, groupedOverlays, options) {
-	return new L.Control.GroupedLayers(baseLayers, groupedOverlays, options);
-};
+export {GroupedLayersControl};

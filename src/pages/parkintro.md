@@ -1,3 +1,8 @@
+---
+class: null
+nav: null
+---
+
 # About the Park
 
 Welcome to **Valdese Lakeside Park** - a 300 acre park with construction set

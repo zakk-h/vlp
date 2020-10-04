@@ -1,6 +1,6 @@
 import {mdiTableFurniture, mdiFlagTriangle, mdiCamera, mdiCarMultiple, mdiParking, 
 	mdiSailBoat, mdiBridge, mdiNature, mdiInformationOutline, mdiWaves,
-	mdiBike, mdiFish, mdiShipWheel, mdiImageFilterHdr, mdiBeach, mdiCctv} from '@mdi/js';
+	mdiBike, mdiFish, mdiShipWheel, mdiImageFilterHdr, mdiBeach, mdiCctv, mdiSofaSingle} from '@mdi/js';
 
 // https://materialdesignicons.com
 
@@ -20,7 +20,8 @@ const mdiSVGPaths = {
 	rock:    mdiImageFilterHdr,
 	cctv: 	 mdiCctv,
 	waves:   mdiWaves,
-	wheel:   mdiShipWheel
+	wheel:   mdiShipWheel,
+	sofa:	 mdiSofaSingle
 }
 
 const mdiSVGIcons = {
@@ -32,7 +33,7 @@ const mdiSVGIcons = {
 		fill: '#000000',
 		anchor: [0.5,0.5]
 	},
-	beach: {path: mdiSVGPaths.beach,fill:'#EEAB04',stroke:'#000000'},
+	beach: {path: mdiSVGPaths.beach,fill:'#EEAB04',stroke:'#000000', size: 29},
 	bike: {path: mdiSVGPaths.bike},
 	boat: {path: mdiSVGPaths.boat,fill:'#A52A2A'},
 	bridge:	{path: mdiSVGPaths.bridge,strokeWidth:0,size:48},
@@ -45,9 +46,10 @@ const mdiSVGIcons = {
 	parking: {path: mdiSVGPaths.parking,fill:'#0000AA'},
 	picnic:	{path: mdiSVGPaths.picnic,fill:'#5C2F00'},
 	cctv:   {path: mdiSVGPaths.cctv,strokeWidth:1,size:24,fill:'7C8216'},
-	rock:	{path: mdiSVGPaths.rock,fill:'#70BB0A',stroke:'#000000'}, 
+	rock:	{path: mdiSVGPaths.rock,fill:'#70BB0A',stroke:'#000000', size: 31}, 
 	waves:	{path: mdiSVGPaths.waves,fill:'#000066'},
 	wheel:	{path: mdiSVGPaths.wheel,fill:'#5C2F00'},
+	sofa:	{path: mdiSVGPaths.sofa,fill:'#260D4E', size: 28},
 
 }
 

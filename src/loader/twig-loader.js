@@ -50,6 +50,8 @@ function parseFrontMatter(text) {
 		, yamlOrJson;
 
 	if ((yamlOrJson = results[2])) {
+		// yaml does not allow tabs, but we do, thus this is needed
+		yamlOrJson.replace('\t','    ');
 		if (yamlOrJson.charAt(0) === '{') {
 			out[0] = JSON.parse(yamlOrJson);
 		} else {
@@ -91,28 +93,40 @@ async function buildMarkdownPage(loaderObj,ifolder,fname,context) {
 	return infoObj;
 }
 
+function genSortKey(a) {
+	// empty setting triggers tildes, which are highest character code < 127, forcing those
+	// pages to the end of the sort
+	let nav = a.nav || '~~~~~';
+	return `${nav}:${a.id}`;
+}
+
 async function doLoader(loaderObj, twigSource, options) {
 	let c = init_twigenv(options.zakklab);
 
 	if (options.loadpages) {
-		let info = [];
+		let pages = [];
 
 		let flist = fs.readdirSync(path.resolve('./src/pages'),{withFileTypes:true});
 		// wait while we asynchronously process all of the pages
 		await forEach(flist, async (file) => { 
 			if (!file.isFile) return;
 
+			let pg_r = false;
+
 			if (/\.md$/.test(file.name)) {
-				let md_r = await buildMarkdownPage(loaderObj,'pages',file.name,c);
-				info.push(md_r);
+				pg_r = await buildMarkdownPage(loaderObj,'pages',file.name,c);
 			} else if (/\.twig$/.test(file.name)) {
-				let pg_r = await buildMarkupPage(loaderObj,'pages',file.name,c);
-				info.push(pg_r);
+				pg_r = await buildMarkupPage(loaderObj,'pages',file.name,c);
+			}
+
+			if (pg_r) {
+				pg_r.sortkey = genSortKey(pg_r);
+				pages.push(pg_r);
 			}
 		});
 
-		info.sort((a,b) => (a.id < b.id) ? -1 : 1);
-		c.info = info;
+		pages.sort((a,b) => (a.sortkey < b.sortkey) ? -1 : 1);
+		c.pages = pages;
 	}
 
 	return await twigIt(twigSource,c);

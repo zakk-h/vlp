@@ -4,11 +4,11 @@
 
 @import "~leaflet/dist/leaflet";
 @import "~leaflet-measure/dist/leaflet-measure";
-@import "./leaflet/grpLayerControl";
-@import "./leaflet/yahControl";
-@import "./modal";
 @import "~leaflet.markercluster/dist/MarkerCluster";
 @import "~leaflet.markercluster/dist/MarkerCluster.Default";
+@import "./leaflet/GroupedLayersControl";
+@import "./leaflet/yahControl";
+@import "./modal";
 @import "./font/fvricons";
 
 html,
@@ -81,7 +81,7 @@ header > div > span {
 .main-content.active {
 	display: block;
 }
-#image-map {
+div.map-page > div {
 	width: 100%;
 	height: 100%;
 	margin: 0;

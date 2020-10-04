@@ -9,117 +9,41 @@ import 'leaflet-measure';
 import 'leaflet/dist/images/marker-shadow.png';
 import 'leaflet/dist/images/marker-icon-2x.png';
 
-import {format,formatDistance,formatRelative} from 'date-fns';
 import {createSVGIcon} from './vlp-mdi-icons';
 import parkParcel from './park-parcel.json';
-import {vlpTrails,vlpMarkers} from './parkmaps.js';
+import {vlpTrails,vlpMarkers,zakklabTrails} from './parkmaps.js';
 
-import './leaflet/grpLayerControl.js';
-import { YAHControl } from './leaflet/yahControl.js';
+import {GroupedLayersControl} from './leaflet/GroupedLayersControl.js';
+import {ValdeseTileLayer} from './leaflet/ValdeseTileLayer.js';
+import {YAHControl} from './leaflet/yahControl.js';
+import {RotateImageLayer} from './leaflet/RotateImageLayer.js';
+import {FVRWatermarkControl} from './leaflet/FVRWatermarkControl.js';
+import {ZoomViewer} from './leaflet/ZoomViewer.js';
+
 import './vlp-manifest-icons.js';
-import { showModal } from './modal.js';
 import * as blankTile from './img/blankTile.png';
-import * as fvr_logo from './img/fvrlogopng.png';
 import * as img_parkplan from './img/dbd-parkplan.png';
 import * as img_photo from './img/park-satellite.png';
 import * as img_parkcontours from './img/park-contour.png';
-import zakklab from './zakklab.json';
 
 const vlpDebug = g.vlpDebug;
 
-function showWhatsNew(map) {
-	let lastseen = localStorage.vintage;
-	let t_newest = LatestWhatsNewEntry;
-
-	if (t_newest <= lastseen) { return; }
-
-	var whatnewHtml = '<p>The Lakeside Park app has been updated.</p><p><a href="#!show-whatsnew">Show App History</a></p>';
-
-	vlpDebug('Showing whatsnew modal');
-
-	showModal('App Update',whatnewHtml,function() {
-		vlpDebug('whatsnew has been closed');
-		localStorage.vintage = t_newest;
-	});
-}
-
-//transform: skewY(-5deg);
-var vlpRotateImageLayer = L.ImageOverlay.extend({
-	options: { rotation: -1.5 },
-	initialize: function (url, bounds, options) {
-		L.setOptions(this, options);
-		L.ImageOverlay.prototype.initialize.call(this, url, bounds, options);
-	},
-	_animateZoom: function (e) {
-		L.ImageOverlay.prototype._animateZoom.call(this, e);
-		var img = this._image;
-		img.style[L.DomUtil.TRANSFORM] += ' rotate(' + this.options.rotation + 'deg)';
-	},
-	_reset: function () {
-		L.ImageOverlay.prototype._reset.call(this);
-		var img = this._image;
-		img.style[L.DomUtil.TRANSFORM] += ' rotate(' + this.options.rotation + 'deg)';
-	}
-});
-
-var fvrWatermarkControl = L.Control.extend({
-	onAdd: function (map) {
-		var link = L.DomUtil.create('a', 'fvrlink');
-		var img = L.DomUtil.create('img', 'fvrlogo', link);
-
-		link.href = 'https://friendsofthevaldeserec.org/valdese-lakeside-park-2';
-		link.target = '_blank';
-		img.src = fvr_logo;
-
-		return link;
-	},
-
-	onRemove: function (map) { }
-});
-
-var ZoomViewer = L.Control.extend({
-	onAdd: function (map) {
-		var gauge = L.DomUtil.create('div');
-		gauge.style.width = '28px';
-		gauge.style.overflow = 'hidden';
-		gauge.style.background = 'rgba(250,248,245,0.6)';
-		gauge.style.textAlign = 'center';
-		map.on('zoomstart zoom zoomend', function (ev) {
-			gauge.innerHTML = map.getZoom();
-		})
-		return gauge;
-	}
-});
-var ValdeseTileLayer = L.TileLayer.extend({
-	getTileUrl: function (coords) {
-		var zBox = vlpConfig.osmTileRanges[coords.z];
-		if (zBox) {
-			var x = coords.x, y = coords.y;
-			if ((x >= zBox[0][0]) && (x <= zBox[1][0]) && (y >= zBox[0][1]) && (y <= zBox[1][1])) {
-				return L.TileLayer.prototype.getTileUrl.call(this, coords);
-			}
-		}
-
-		vlpDebug('blank tile for ', coords);
-		return blankTile;
-	}
-});
-function vlpMap() {
+function vlpMapStartup(targetDiv) {
 	const burkeGISMap = 'http://gis.burkenc.org/default.htm?PIN=2744445905';
 	var parkplan_bounds = new L.LatLngBounds(vlpConfig.gpsBoundsParkPlan);
 	var valdese_area = vlpConfig.gpsBoundsValdese;
 	var gpsCenter = parkplan_bounds.getCenter();
-	var map = L.map('image-map',{zoomControl: false, center: gpsCenter, minZoom: vlpConfig.osmZoomRange[0], zoom: vlpConfig.osmZoomRange[1], maxBounds:valdese_area});
+	var map = L.map(targetDiv,{zoomControl: false, center: gpsCenter, minZoom: vlpConfig.osmZoomRange[0], zoom: vlpConfig.osmZoomRange[1], maxBounds:valdese_area});
 	var mapTiles = new ValdeseTileLayer(vlpConfig.urlTileServer, {
 		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 		errorTileUrl: blankTile,
 		crossOrigin: true,
 		minZoom: vlpConfig.osmZoomRange[0],
 		maxNativeZoom: vlpConfig.osmZoomRange[1]
-	});
-	var fvrMark = new fvrWatermarkControl({ position: 'bottomleft' });
+		});
+	var fvrMark = new FVRWatermarkControl({position:'bottomleft'});
 	var yahBtn = new YAHControl({
-		position:'topright',
+		position:'topleft',
 		maxBounds:parkplan_bounds
 	}); 
 	map.addLayer(mapTiles);
@@ -128,21 +52,17 @@ function vlpMap() {
 
 	fvrMark.addTo(map);
 
-	var contourLayer = new vlpRotateImageLayer(img_parkcontours, vlpConfig.gpsBoundsParkContour, { rotation: vlpConfig.gpsBoundsLayerRotate, attribution: `<a href="${burkeGISMap}">gis.burkenc</a>` });
-	var photoLayer = new vlpRotateImageLayer(img_photo, vlpConfig.gpsBoundsSatellite, { rotation: vlpConfig.gpsBoundsLayerRotate, attribution: `<a href="${burkeGISMap}">gis.burkenc</a>`, opacity: 0.7 });
-	var parkplanLayer = new vlpRotateImageLayer(img_parkplan, vlpConfig.gpsBoundsParkPlan, { rotation: vlpConfig.gpsBoundsLayerRotate, attribution: '<a href="https://dbdplanning.com/">Destination by Design</a>' });
-	var baseMaps = { "Contour": contourLayer, "Photo": photoLayer, "Projected Park Plan": parkplanLayer };
+	var contourLayer = new RotateImageLayer(img_parkcontours, vlpConfig.gpsBoundsParkContour,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`});
+	var photoLayer = new RotateImageLayer(img_photo,vlpConfig.gpsBoundsSatellite,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`,opacity:0.7});
+	var parkplanLayer = new RotateImageLayer(img_parkplan,vlpConfig.gpsBoundsParkPlan,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:'<a href="https://dbdplanning.com/">Destination by Design</a>'});
+	var baseMaps = {"Contour": contourLayer,"Photo": photoLayer,"Projected Park Plan":parkplanLayer};
 	var groupedOverlays = {};
 
 	map.addLayer(contourLayer);
-
-	function vlpAddTrail(grp, opacity, weight, v, i) {
-		var nlo = { 'color': v.color, 'opacity': opacity, 'weight': weight };
-		if (g.vlpDebugMode) {
-		 
-		} else {
-			if (v.secret) return;
-		  }
+	
+	function vlpAddTrail(grp,opacity,weight,v,i) {
+		var nlo = {color:v.color,opacity:opacity,weight:weight};
+		if (v.secret) return;
 		if (!groupedOverlays[grp]) {
 			groupedOverlays[grp] = {};
 		}
@@ -176,7 +96,7 @@ function vlpMap() {
 	vlpTrails.forEach(function (v, i) { vlpAddTrail('Primary Trails', 0.85, 9, v, i); });
 
 	if (g.addZakklab) {
-		zakklab.forEach(function (v, i) { vlpAddTrail('Trails by Zakklab', 0.75, 8, v, i); });
+		zakklabTrails.forEach(function(v,i) {vlpAddTrail('Trails by Zakklab',0.75,8,v,i);});
 	}
 
 	var clusterGroup = L.markerClusterGroup({ maxClusterRadius: 10 });
@@ -209,7 +129,7 @@ function vlpMap() {
 
 	groupedOverlays['Points of Interest'] = poiData;
 	clusterGroup.addTo(map);
-	L.control.groupedLayers(baseMaps, groupedOverlays).addTo(map);
+	new GroupedLayersControl(baseMaps, groupedOverlays).addTo(map);
 	map.attributionControl.addAttribution('<a href="https://friendsofthevaldeserec.org">FVR</a>');
 	yahBtn.addTo(map);
 
@@ -224,23 +144,19 @@ function vlpMap() {
 	measureControl.addTo(map);
 
 	if (g.vlpDebugMode) {
-		new ZoomViewer({ position: 'topleft' }).addTo(map);
-		map.on('click', function (e) {
-			vlpDebug(e.latlng);
-		});
-	L.control.watermark({ position: 'bottomright' }).addTo(map);  //download-button
-	var url = location.search.slice(1)
-	var mytrack = L.mytrack({ click: url == 1 ? true : false, elevation: true }).addTo(map)  //{click:false}  //querstringparameter ?1 draw track  //must be named mytrack!
-
-	var upbu = L.control.watermark2({ position: 'bottomright' }).addTo(map);  //upload-button
-	if (isNaN(url)) upbu.ajax(url)  //querstringparameter ?mytrack.json
-	//setInterval(function(){upbu.ajax("https://api.wheretheiss.at/v1/satellites/25544")}, 3000)  //https://wanderdrone.appspot.com
-	setInterval(function(){mytrack.upload("upload/")}, 300000)  //upload int 5min
-	//upbu._container.addEventListener("click", function () { upbu.wakelock.request() })	
+		new ZoomViewer({position:'topleft'}).addTo(map);
+		map.on('click',e => vlpDebug(e.latlng));
 	}
 	map.fitBounds(vlpConfig.gpsBoundsParkPlan);
+}
 
-	showWhatsNew(map);
+function vlpMap(hostDiv) {
+	let targetDiv = hostDiv.querySelector('div');
+	if (!targetDiv) {
+		targetDiv = document.createElement('div');   
+		hostDiv.appendChild(targetDiv);
+		vlpMapStartup(targetDiv);
+	}
 }
 
 

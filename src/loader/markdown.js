@@ -14,8 +14,8 @@ marked.use({ renderer: {
 
 		if (/^http/.test(href)) {
 			target = ' target="_blank"';
-		} else if (match = /^([\S]+)\.md$/.exec(href)) {
-			href = `#!show-${match[1]}`;
+		} else if (match = /^([\S]+)\.(md|twig)$/.exec(href)) {
+			href = `#!${match[1]}`;
 			tail = ' data-navigo';
 		}
 
