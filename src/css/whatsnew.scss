@@ -1,0 +1,5 @@
+ul.whatsnew {list-style-type:none;position:relative;}
+ul.whatsnew li:hover {background-color:#eee;}
+ul.whatsnew li:not(:first-child) {padding-top:10px;}
+.whatsnew li::before {content: '➝';position:absolute;left:0;}
+.whatsnew em {padding:0 0 0 5px;color:#888;vertical-align:super;font-size:smaller;text-transform:lowercase;}

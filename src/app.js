@@ -3,9 +3,10 @@ import './app.manifest';
 import './index.twig';
 
 import * as g from './globals.js';
-import {showModal,closeModal} from './modal.js';
+import {closeModal} from './modal.js';
 import Navigo from 'navigo';
 import { vlpMap } from './vlp.js';
+import {showWhatsNew} from './whatsnew.js';
 
 function toggleWindow(w) {w.style.display = (w.style.display == 'block') ? 'none' : 'block';}
 
@@ -50,15 +51,7 @@ function initLakesideParkApp() {
 		}
 
 		if (doAppInit) {
-			if (!localStorage.vintage || (rid == 'whatsnew')) {
-				localStorage.vintage = LatestWhatsNewEntry;
-			} else if (LatestWhatsNewEntry > localStorage.vintage) {
-				showModal(
-					'App Update',
-					'<p>The Lakeside Park app has been updated.</p><p><a href="#!whatsnew">Show App History</a></p>',
-					() => localStorage.vintage = LatestWhatsNewEntry
-				);
-			}
+			showWhatsNew();
 		}
 	}
 
