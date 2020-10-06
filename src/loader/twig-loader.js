@@ -64,9 +64,9 @@ async function buildMarkupPage(loaderObj,ifolder,pgid,context) {
 	let c2 = Object.assign({},context,{page:iSplit[0]});
 	let html = await twigIt(iSplit[1],c2);
 	let match = null;
-	let title = (match = /<h1>(.+)<\/h1>/m.exec(html)) ? match[1] : 'untitled';
+	let title = (match = /<h1>(.+)<\/h1>/m.exec(html)) ? match[1] : pgid;
 
-	const infoObj = Object.assign({title: title},iSplit[0],{id: pgid, html: html, _src: htmraw});
+	const infoObj = Object.assign({class:'info',title:title},iSplit[0],{id: pgid, html: html, _src: htmraw});
 	const linkedFiles = fixupHtmlResources(infoObj,ifolder,loaderObj);
 
 	return infoObj;
@@ -79,9 +79,9 @@ async function buildMarkdownPage(loaderObj,ifolder,pgid,context) {
 	let mdp = await twigIt(mdSplit[1],c2);
 	let html = markdownRender(mdp);
 	let match = null;
-	let title = (match = /^#\s*(.+)$/m.exec(mdp)) ? match[1] : 'untitled';
+	let title = (match = /^#\s*(.+)$/m.exec(mdp)) ? match[1] : pgid;
 
-	const infoObj = Object.assign({title: title},mdSplit[0],{id: pgid, html: html, _src: md});
+	const infoObj = Object.assign({class:'info',title:title},mdSplit[0],{id: pgid, html: html, _src: md});
 	const linkedFiles = fixupHtmlResources(infoObj,ifolder,loaderObj);
 
 	return infoObj;
@@ -97,8 +97,8 @@ function genSortKey(a) {
 function loadYamlFile(f) {
 	if (!fs.existsSync(f)) return {};
 	let rawd = fs.readFileSync(f,'utf8');
-	let appd = YAML.parse(rawd.replace(/\t/g,'   '));
-	return appd;
+	let yd = YAML.parse(rawd.replace(/\t/g,'   '));
+	return yd;
 }
 
 async function doLoader(loaderObj, twigSource, options) {
@@ -133,24 +133,29 @@ async function doLoader(loaderObj, twigSource, options) {
 			await forEach(flist, async (file) => { 
 				if (!file.isFile) return;
 
-				let match = /^([^.]+)\.(md|twig)/.exec(file.name);
+				let match = /^([^.]+)\.(map|md|twig)/.exec(file.name);
 				if (!(match && match[2])) return;
 				
 				let pgid = match[1];
 				let pgtype = match[2];
 
 				if (ids.includes(pgid)) return;
-				ids.push(pgid);
 
-				let pg_r;
-				if (pgtype == 'md') {
+				let pg_r = {ignore: true};
+				if (pgtype == 'map') {
+					let mapdata = loadYamlFile(path.resolve(`./src/${folder}/${file.name}`));
+					pg_r = Object.assign({class:'map',title:pgid},mapdata,{id: pgid});
+				} else if (pgtype == 'md') {
 					pg_r = await buildMarkdownPage(loaderObj,folder,pgid,c);
 				} else {
 					pg_r = await buildMarkupPage(loaderObj,folder,pgid,c);
 				}
 
-				pg_r.sortkey = genSortKey(pg_r);
-				pages.push(pg_r);
+				if (!pg_r.ignore) {
+					pg_r.sortkey = genSortKey(pg_r);
+					pages.push(pg_r);
+					ids.push(pgid);
+				}
 			});
 		});
 

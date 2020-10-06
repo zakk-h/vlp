@@ -1,5 +1,4 @@
 ---
-class: info
 nav: B500
 ---
 
