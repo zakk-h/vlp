@@ -139,7 +139,9 @@ async function doLoader(loaderObj, twigSource, options) {
 				let pgid = match[1];
 				let pgtype = match[2];
 
+				// this hook and its matching push must be kept together and called synchronously
 				if (ids.includes(pgid)) return;
+				ids.push(pgid);
 
 				let pg_r = {ignore: true};
 				if (pgtype == 'map') {
@@ -154,7 +156,6 @@ async function doLoader(loaderObj, twigSource, options) {
 				if (!pg_r.ignore) {
 					pg_r.sortkey = genSortKey(pg_r);
 					pages.push(pg_r);
-					ids.push(pgid);
 				}
 			});
 		});
