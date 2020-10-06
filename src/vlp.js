@@ -39,7 +39,7 @@ function vlpMapStartup(targetDiv,pagedata) {
 		gpsCenter = valdese_area.getCenter();
 	}
 	let map = L.map(targetDiv,{
-		zoomControl: false,
+		zoomControl: !L.Browser.mobile,
 		center: gpsCenter,
 		minZoom: vlpConfig.osmZoomRange[0],
 		zoom: vlpConfig.osmZoomRange[1],
