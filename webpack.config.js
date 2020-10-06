@@ -82,7 +82,12 @@ module.exports = env => {
 				skipWaiting: true,
 				runtimeCaching: [{
 					urlPattern: new RegExp('https://[a-c].tile.openstreetmap.org/[0-9]+/[0-9]+/[0-9]+.png'),
-					handler: 'StaleWhileRevalidate'
+					handler: 'StaleWhileRevalidate',
+					options: {
+						cacheName: 'map-tiles',
+						// limit number of tiles in cache; should be enough for common offline use
+						expiration: { maxEntries: 600 },
+					},
 				}]
 			})
 		]

@@ -12,7 +12,7 @@ const OuterCreek = require('./trails/OuterCreek.trail');
 const markersOrienteering = require('./markers/Orienteering.mapmarks');
 const markersLandmarks = require('./markers/Landmarks.mapmarks');
 
-const zakklab = require('./zakklab-addons.js');
+const zakklab = require('./zakklab/zakklab-addons.js');
 
 module.exports = {
 	vlpTrails: [

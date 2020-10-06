@@ -8,8 +8,9 @@
 @import "~leaflet.markercluster/dist/MarkerCluster.Default";
 @import "./leaflet/GroupedLayersControl";
 @import "./leaflet/yahControl";
-@import "./modal";
 @import "./font/fvricons";
+@import "./css/modal";
+@import "./css/whatsnew";
 
 html,
 body {
