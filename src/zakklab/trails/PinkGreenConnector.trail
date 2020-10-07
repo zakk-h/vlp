@@ -1,6 +1,6 @@
-name: Pink to Green Connector
+name: Quez to Green Connector
 secret: false
-color: "#A4649D"
+color: "#612D61"
 dash: true
 miles: 0.06
 optional: false

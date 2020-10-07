@@ -10,8 +10,6 @@ import 'leaflet/dist/images/marker-shadow.png';
 import 'leaflet/dist/images/marker-icon-2x.png';
 
 import {createSVGIcon} from './vlp-mdi-icons';
-import parkParcel from './park-parcel.json';
-import {vlpTrails,vlpMarkers,zakklabTrails} from './parkmaps.js';
 
 import {GroupedLayersControl} from './leaflet/GroupedLayersControl.js';
 import {ValdeseTileLayer} from './leaflet/ValdeseTileLayer.js';
@@ -68,15 +66,12 @@ function vlpMapStartup(targetDiv,pagedata) {
 	let parkplanLayer = new RotateImageLayer(img_parkplan,vlpConfig.gpsBoundsParkPlan,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:'<a href="https://dbdplanning.com/">Destination by Design</a>'});
 	let baseMaps = {"Contour": contourLayer,"Photo": photoLayer,"Projected Park Plan":parkplanLayer};
 	let groupedOverlays = {};
+	let clusterGroup = null;
 	
 	map.addLayer(contourLayer);
 	
-	function vlpAddTrail(grp,opacity,weight,v,i) {
+	function vlpAddTrail(grp,opacity,weight,v) {
 		var nlo = {color:v.color,opacity:opacity,weight:weight};
-		if (v.secret) return;
-		if (!groupedOverlays[grp]) {
-			groupedOverlays[grp] = {};
-		}
 
 		if (v.dash) {
 			nlo['dashArray'] = "10";
@@ -99,42 +94,37 @@ function vlpMapStartup(targetDiv,pagedata) {
 		}
 	}
 	
-	vlpTrails.forEach(function(v,i) {vlpAddTrail('Primary Trails',0.85,9,v,i);});
+	if (pagedata.layers) pagedata.layers.forEach(layer => {
+		let l_opacity = layer.opacity || 0.85;
+		let l_weight = layer.weight || 9;
 
-	if (g.addZakklab) {
-		zakklabTrails.forEach(function(v,i) {vlpAddTrail('Trails by Zakklab',0.75,8,v,i);});
-	}
-	
-	let clusterGroup = L.markerClusterGroup({maxClusterRadius:20});
-	let poiData = {};
+		groupedOverlays[layer.group] = {};
+		
+		layer.list.forEach(resname => {
+			let ext = /[^.]+$/.exec(resname);
+			let yamlData = vlpApp.layers[resname];
 
-	vlpMarkers.forEach(function(markData) {
-		let markerPts = [];
-	
-		markData.markers.forEach(function(v,i) {
-			markerPts.push(
-				L.marker(v[0],{
-					icon:createSVGIcon(v[1])
-				}).bindPopup(v[2]))}
-			);
+			if (!yamlData) return;
 
-		poiData[markData.name] = L.featureGroup.subGroup(clusterGroup, markerPts);
+			if (ext == 'trail') {
+				vlpAddTrail(layer.group,l_opacity,l_weight,yamlData);
+			} else if (ext == 'mapmarks') {
+				let markerPts = [];
+
+				if (!yamlData.markers) return;
+
+				yamlData.markers.forEach(v => {
+					markerPts.push(L.marker(v[0],{icon:createSVGIcon(v[1])}).bindPopup(v[2]));
+				});
+
+				if (!clusterGroup) clusterGroup = L.markerClusterGroup({maxClusterRadius:20});
+				groupedOverlays[layer.group][yamlData.name] = L.featureGroup.subGroup(clusterGroup, markerPts);
+			}
+		});
 	});
 
-	poiData['Landmarks & Sightseeing'].addTo(map);
-	// Parcel GeoJSON has LngLat that needs to be reversed
-	let gpsParkBoundary = [];
-	parkParcel.geometry.coordinates.forEach(function(v) {gpsParkBoundary.push(gps(v[1],v[0]));});
-	
-	poiData['Park Parcel Boundary'] = L.polyline(gpsParkBoundary,{
-		color:'#D8B908',
-		opacity:0.75,
-		weight:8}
-		).bindTooltip('Parcel boundary for the park property',{sticky:true});
+	if (clusterGroup) clusterGroup.addTo(map);
 
-	groupedOverlays['Points of Interest'] = poiData;
-	
-	clusterGroup.addTo(map);
 	new GroupedLayersControl(baseMaps, groupedOverlays).addTo(map);
 	map.attributionControl.addAttribution('<a href="https://friendsofthevaldeserec.org">FVR</a>');
 	yahBtn.addTo(map);

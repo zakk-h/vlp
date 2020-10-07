@@ -1,6 +1,6 @@
 name: Road to DHS
 secret: false
-color: "#717005"
+color: "#612D61"
 miles: 0.07
 dash: true
 optional: false

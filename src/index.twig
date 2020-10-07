@@ -27,7 +27,7 @@ if ('serviceWorker' in navigator) {
 </header>
 
 {% for pg in pages %}
-	{% set thispd = {title: pg.title, opts: pg.opts} %}
+	{% set thispd = {title: pg.title, layers: pg.layers, opts: pg.opts} %}
 	{% set pagedata = pagedata|merge({(pg.id): thispd}) %}
 	{% if pg.class == 'map' %}
 		{% set maproutes = maproutes|merge([pg.id]) %}
@@ -71,6 +71,7 @@ if ('serviceWorker' in navigator) {
 <script>
 var vlpApp = {
 	appd: {{ appd|json_encode }},
+	layers: {{ layers|json_encode }},
 	maps: {{ maproutes|json_encode }},
 	pages: {{ pagedata|json_encode }},
 	activeMap: null

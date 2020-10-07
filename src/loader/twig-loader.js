@@ -101,27 +101,40 @@ function loadYamlFile(f) {
 	return yd;
 }
 
-async function doLoader(loaderObj, twigSource, options) {
-	let c = {};
-	let appd = loadYamlFile(path.resolve('./src/appd.yaml'));
-
-	if (options.zakklab) {
-		let zappd = loadYamlFile(path.resolve('./src/zakklab/appd.yaml'));
-		appd = Object.assign(appd,zappd);
+function loadYamlSettings(paths,fname,merge) {
+	let d = null;
+	for (let i=0; i<paths.length;i++) {
+		let f = path.resolve('./src',paths[i],fname);
+		if (!fs.existsSync(f)) continue;
+		let d2 = loadYamlFile(f);
+		if (!d) {
+			if (!merge) return d2;
+			d = d2;
+		} else {
+			Object.assign(d,d2);
+		}
 	}
+	return d;
+}
+
+async function doLoader(loaderObj, twigSource, options) {
+	let appdIncludeFolders = options.zakklab ? ['','zakklab'] : [''];
+	let c = {};
+	let appd = loadYamlSettings(appdIncludeFolders,'appd.yaml',true);
+	let bldd = loadYamlSettings(appdIncludeFolders,'build.yaml',true);
+
+	if (!bldd.mapIncludes) bldd.mapIncludes = ['trails'];
 
 	c.appd = appd;
 
 	let icons = {};
-	appd.fvricons.forEach(k => icons[k] = `<i class="fvricon fvricon-${k}"></i>`);
+	bldd.fvrIcons.forEach(k => icons[k] = `<i class="fvricon fvricon-${k}"></i>`);
 	c.icon = icons;
 
 	if (options.loadpages) {
-		let pageFolders = ['pages'];
+		let pageFolders = bldd.pageIncludes || ['pages'];
 		let pages = [];
 		let ids = [];
-
-		if (options.zakklab) pageFolders.unshift('zakklab/pages');
 
 		// We load all `md` and `twig` files in the first folder. We then iterate over
 		// other folders, but only include those files with a new unique id. This gives
@@ -163,6 +176,19 @@ async function doLoader(loaderObj, twigSource, options) {
 		pages.sort((a,b) => (a.sortkey < b.sortkey) ? -1 : 1);
 
 		c.pages = pages;
+
+		let layers = {};
+		pages.forEach(pg => {
+			if (!pg.layers) return;
+			pg.layers.forEach(layer => {
+				if (layer.list) layer.list.forEach(fn => {
+					if (!layers[fn]) {
+						layers[fn] = loadYamlSettings(bldd.mapIncludes,fn,false);
+					}
+				});
+			});
+		});
+		c.layers = layers;
 	}
 
 	return await twigIt(twigSource,c);

@@ -1,10 +1,10 @@
-name: Pink
-secret: false
-color: "#F565F3"
-dash: false
-miles: 0.55
-optional: false
-trail:
+"name": "Quez"
+"secret": false
+"color": "#B9329F"
+"dash": false
+"miles": 0.55
+"optional": false
+"trail": 
 - [35.768009, -81.558503, 348.9]
 - [35.768089, -81.558435, 348.8]
 - [35.768152, -81.558353, 348.8]
