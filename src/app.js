@@ -10,8 +10,14 @@ import {showWhatsNew} from './whatsnew.js';
 
 function toggleWindow(w) {w.style.display = (w.style.display == 'block') ? 'none' : 'block';}
 
+function getSiteRootURL() {
+	var r = window.location.href;
+	var hi = r.search(/[#?]/);
+	return (hi > 0) ? r.slice(0,hi) : r;
+}
+
 function initLakesideParkApp() {
-	var router = new Navigo('', true, '#!');
+	var router = new Navigo(getSiteRootURL(), true);
 	var ctrl_PageTitle = document.getElementById('id_AppPageTitle');
 	var currentPageID = false;
 	var menuDiv = document.getElementById('win-mainmenu');
@@ -29,18 +35,21 @@ function initLakesideParkApp() {
 		if (newpage) {
 			let isMapPage = vlpApp.maps.includes(rid);
 			let thisPageData = vlpApp.pages[rid];
+			let newTitle = thisPageData.title;
 
 			if (currentPageID) {
 				let curpage = document.getElementById(currentPageID);
 				curpage.classList.remove('active');
 			}
 
-			ctrl_PageTitle.querySelector('span:nth-of-type(2)').innerHTML = thisPageData.title;
+			document.title = newTitle;
+			ctrl_PageTitle.querySelector('span:nth-of-type(2)').innerHTML = newTitle;
 			newpage.classList.add('active');
 			currentPageID = id;
 
 			if (isMapPage) {
 				vlpMap(newpage,thisPageData);
+				vlpApp.activeMap = rid;
 			}
 		}
 
@@ -58,9 +67,9 @@ function initLakesideParkApp() {
 		}
 	});
 
-	router.on({
-		':id': (params) => setCurrentPage(params.id),
-		'*': () => setCurrentPage(vlpApp.maps[0])
+	vlpApp.pageids.forEach(pgid => router.on(pgid,() => setCurrentPage(pgid)).resolve());
+	router.on('*',() => {
+		setCurrentPage(vlpApp.pageids[0]);
 	}).resolve();
 }
 
