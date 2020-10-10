@@ -101,11 +101,12 @@ var GroupedLayersControl = L.Control.extend({
 		var form = this._form = L.DomUtil.create('form', className + '-list');
 
 		if (collapsed) {
-			var link = this._layersLink = L.DomUtil.create('a', className + '-toggle', container);
+			var link = this._layersLink = L.DomUtil.create('a','fvrIconButton', container);
+			L.DomUtil.addClass(link,'layersBtn');
 			link.title = 'Layers';
-
+			link.style.opacity = 0.8;
+			L.DomUtil.create('i','fvricon fvricon-layers',link);
 			L.DomEvent.on(link,'click', this._expand, this);
-
 			this._map.on('click', this._collapse, this);
 		} else {
 			this._expand();

@@ -5,9 +5,6 @@ import * as L from 'leaflet';
 import 'leaflet.markercluster/dist/leaflet.markercluster.js';
 import 'leaflet.featuregroup.subgroup';
 import 'leaflet-measure';
-// marker-shadow and marker-icon-2x have to be manually loaded
-import 'leaflet/dist/images/marker-shadow.png';
-import 'leaflet/dist/images/marker-icon-2x.png';
 
 import {createSVGIcon} from './vlp-mdi-icons';
 

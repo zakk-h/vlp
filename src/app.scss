@@ -2,13 +2,13 @@
 // The webpack config automatically detects and bundles all
 // images that are referenced from this.
 
-@import "~leaflet/dist/leaflet";
+@import "./leaflet/leaflet-generated";
 @import "~leaflet-measure/dist/leaflet-measure";
 @import "~leaflet.markercluster/dist/MarkerCluster";
 @import "~leaflet.markercluster/dist/MarkerCluster.Default";
-@import "./leaflet/GroupedLayersControl";
-@import "./leaflet/yahControl";
 @import "./font/fvricons";
+@import "./leaflet/fvrIconButtons";
+@import "./leaflet/GroupedLayersControl";
 @import "./css/modal";
 @import "./css/whatsnew";
 

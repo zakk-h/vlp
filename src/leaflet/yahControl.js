@@ -13,7 +13,8 @@ var YAHControl = L.Control.extend({
 		const flyToInterval = this.options.flyToInterval;
 		var lastVisibleLocationTime = 0;
 		var map_bounds = this.options.maxBounds || map.options.maxBounds;
-		var btn = L.DomUtil.create('a','yahBtn');
+		var btn = L.DomUtil.create('a','fvrIconButton');
+		L.DomUtil.addClass(btn,'yahBtn');
 		btn.title = 'You are here';
 		btn.style.opacity = 0.8;
 		L.DomUtil.create('i','fvricon fvricon-walk',btn);

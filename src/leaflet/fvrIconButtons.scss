@@ -1,4 +1,4 @@
-a.yahBtn {
+a.fvrIconButton {
 	display:block;
 	width:36px;
 	height:36px;
@@ -8,9 +8,12 @@ a.yahBtn {
 	background-color: white;
 	color: #666;
 }
-.leaflet-touch .yahBtn {
+.leaflet-touch .fvrIconButton {
 	width: 44px;
 	height: 44px;
 }
+
 a.yahBtn > i.fvricon {font-size: 36px; padding: 6px 0 0 3px;}
 a.yahActive {background-color:#666666; color: yellow;}
+
+a.layersBtn > i.fvricon {font-size: 30px; padding: 7px 0 0 7px;}

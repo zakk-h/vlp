@@ -23,19 +23,21 @@
 
   $fvricon-ishare: "\ea0c";
 
-  $fvricon-link: "\ea0d";
+  $fvricon-layers: "\ea0d";
 
-  $fvricon-menu: "\ea0e";
+  $fvricon-link: "\ea0e";
 
-  $fvricon-natureman: "\ea0f";
+  $fvricon-menu: "\ea0f";
 
-  $fvricon-together: "\ea10";
+  $fvricon-natureman: "\ea10";
 
-  $fvricon-twitter: "\ea11";
+  $fvricon-together: "\ea11";
 
-  $fvricon-voice: "\ea12";
+  $fvricon-twitter: "\ea12";
 
-  $fvricon-walk: "\ea13";
+  $fvricon-voice: "\ea13";
+
+  $fvricon-walk: "\ea14";
 
 
 @font-face {
@@ -193,31 +195,35 @@ display: inline-block;
     content: "\ea0c";
 }
 
-.fvricon-link::before {
+.fvricon-layers::before {
     content: "\ea0d";
 }
 
-.fvricon-menu::before {
+.fvricon-link::before {
     content: "\ea0e";
 }
 
-.fvricon-natureman::before {
+.fvricon-menu::before {
     content: "\ea0f";
 }
 
-.fvricon-together::before {
+.fvricon-natureman::before {
     content: "\ea10";
 }
 
-.fvricon-twitter::before {
+.fvricon-together::before {
     content: "\ea11";
 }
 
-.fvricon-voice::before {
+.fvricon-twitter::before {
     content: "\ea12";
 }
 
-.fvricon-walk::before {
+.fvricon-voice::before {
     content: "\ea13";
+}
+
+.fvricon-walk::before {
+    content: "\ea14";
 }
 

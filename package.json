@@ -4,6 +4,7 @@
 	"version": "0.9.9",
 	"description": "Navigating the new park and showing park plan overlays",
 	"scripts": {
+		"gen-leafletcss": "node bin/genLeafletCSS.js",
 		"build": "webpack --mode production",
 		"test": "webpack --mode development",
 		"serve": "http-server -p 1336 build -c-1 --gzip",
