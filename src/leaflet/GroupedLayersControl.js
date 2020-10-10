@@ -102,7 +102,6 @@ var GroupedLayersControl = L.Control.extend({
 
 		if (collapsed) {
 			var link = this._layersLink = L.DomUtil.create('a', className + '-toggle', container);
-			link.href = '#';
 			link.title = 'Layers';
 
 			L.DomEvent.on(link,'click', this._expand, this);

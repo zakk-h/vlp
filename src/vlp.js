@@ -118,7 +118,9 @@ function vlpMapStartup(targetDiv,pagedata) {
 				});
 
 				if (!clusterGroup) clusterGroup = L.markerClusterGroup({maxClusterRadius:20});
-				groupedOverlays[layer.group][yamlData.name] = L.featureGroup.subGroup(clusterGroup, markerPts);
+				let fg = L.featureGroup.subGroup(clusterGroup, markerPts);
+				groupedOverlays[layer.group][yamlData.name] = fg;
+				if (!yamlData.optional) fg.addTo(map);
 			}
 		});
 	});

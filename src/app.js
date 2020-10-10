@@ -19,6 +19,7 @@ function getSiteRootURL() {
 function initLakesideParkApp() {
 	var router = new Navigo(getSiteRootURL(), true);
 	var ctrl_PageTitle = document.getElementById('id_AppPageTitle');
+	var ctrl_PageBack = document.getElementById('id_AppPageBackBtn');
 	var currentPageID = false;
 	var menuDiv = document.getElementById('win-mainmenu');
 	var firstTime = true;
@@ -50,7 +51,11 @@ function initLakesideParkApp() {
 			if (isMapPage) {
 				vlpMap(newpage,thisPageData);
 				vlpApp.activeMap = rid;
+				ctrl_PageBack.style.display = 'none';
+			} else {
+				ctrl_PageBack.style.display = 'block';
 			}
+
 		}
 
 		if (doAppInit) {
@@ -65,6 +70,10 @@ function initLakesideParkApp() {
 		if (e.keyCode == 27) {
 			closeOpenMenu();
 		}
+	});
+	ctrl_PageBack.addEventListener("click",(e) => {
+		closeOpenMenu();
+		router.navigate(vlpApp.activeMap || vlpApp.pageids[0]);
 	});
 
 	vlpApp.pageids.forEach(pgid => router.on(pgid,() => setCurrentPage(pgid)).resolve());

@@ -13,27 +13,29 @@
 
   $fvricon-github: "\ea07";
 
-  $fvricon-home: "\ea08";
+  $fvricon-goback: "\ea08";
 
-  $fvricon-information: "\ea09";
+  $fvricon-home: "\ea09";
 
-  $fvricon-instagram: "\ea0a";
+  $fvricon-information: "\ea0a";
 
-  $fvricon-ishare: "\ea0b";
+  $fvricon-instagram: "\ea0b";
 
-  $fvricon-link: "\ea0c";
+  $fvricon-ishare: "\ea0c";
 
-  $fvricon-menu: "\ea0d";
+  $fvricon-link: "\ea0d";
 
-  $fvricon-natureman: "\ea0e";
+  $fvricon-menu: "\ea0e";
 
-  $fvricon-together: "\ea0f";
+  $fvricon-natureman: "\ea0f";
 
-  $fvricon-twitter: "\ea10";
+  $fvricon-together: "\ea10";
 
-  $fvricon-voice: "\ea11";
+  $fvricon-twitter: "\ea11";
 
-  $fvricon-walk: "\ea12";
+  $fvricon-voice: "\ea12";
+
+  $fvricon-walk: "\ea13";
 
 
 @font-face {
@@ -171,47 +173,51 @@ display: inline-block;
     content: "\ea07";
 }
 
-.fvricon-home::before {
+.fvricon-goback::before {
     content: "\ea08";
 }
 
-.fvricon-information::before {
+.fvricon-home::before {
     content: "\ea09";
 }
 
-.fvricon-instagram::before {
+.fvricon-information::before {
     content: "\ea0a";
 }
 
-.fvricon-ishare::before {
+.fvricon-instagram::before {
     content: "\ea0b";
 }
 
-.fvricon-link::before {
+.fvricon-ishare::before {
     content: "\ea0c";
 }
 
-.fvricon-menu::before {
+.fvricon-link::before {
     content: "\ea0d";
 }
 
-.fvricon-natureman::before {
+.fvricon-menu::before {
     content: "\ea0e";
 }
 
-.fvricon-together::before {
+.fvricon-natureman::before {
     content: "\ea0f";
 }
 
-.fvricon-twitter::before {
+.fvricon-together::before {
     content: "\ea10";
 }
 
-.fvricon-voice::before {
+.fvricon-twitter::before {
     content: "\ea11";
 }
 
-.fvricon-walk::before {
+.fvricon-voice::before {
     content: "\ea12";
+}
+
+.fvricon-walk::before {
+    content: "\ea13";
 }
 
