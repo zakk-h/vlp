@@ -1,7 +1,7 @@
 import * as g from './globals.js';
-import { vlpConfig } from './config.js';
+import {vlpConfig} from './config.js';
+
 import * as L from 'leaflet';
-import 'leaflet-draw/dist/leaflet.draw.js';
 import 'leaflet.markercluster/dist/leaflet.markercluster.js';
 import 'leaflet.featuregroup.subgroup';
 import 'leaflet-measure';
@@ -10,8 +10,6 @@ import 'leaflet/dist/images/marker-shadow.png';
 import 'leaflet/dist/images/marker-icon-2x.png';
 
 import {createSVGIcon} from './vlp-mdi-icons';
-import parkParcel from './park-parcel.json';
-import {vlpTrails,vlpMarkers,zakklabTrails} from './parkmaps.js';
 
 import {GroupedLayersControl} from './leaflet/GroupedLayersControl.js';
 import {ValdeseTileLayer} from './leaflet/ValdeseTileLayer.js';
@@ -58,9 +56,9 @@ function vlpMapStartup(targetDiv,pagedata) {
 		maxBounds: parkplan_bounds
 	});
 	map.addLayer(mapTiles);
-	function gps(latitude, longitude) { return new L.LatLng(latitude, longitude); }
+	function gps(latitude,longitude) { return new L.LatLng(latitude,longitude); }
 	map.attributionControl.setPrefix('');
-
+	
 	fvrMark.addTo(map);
 
 	let contourLayer = new RotateImageLayer(img_parkcontours, vlpConfig.gpsBoundsParkContour,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`});
@@ -68,80 +66,64 @@ function vlpMapStartup(targetDiv,pagedata) {
 	let parkplanLayer = new RotateImageLayer(img_parkplan,vlpConfig.gpsBoundsParkPlan,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:'<a href="https://dbdplanning.com/">Destination by Design</a>'});
 	let baseMaps = {"Contour": contourLayer,"Photo": photoLayer,"Projected Park Plan":parkplanLayer};
 	let groupedOverlays = {};
+	let clusterGroup = null;
 	
 	map.addLayer(contourLayer);
 	
-	function vlpAddTrail(grp,opacity,weight,v,i) {
+	function vlpAddTrail(grp,opacity,weight,v) {
 		var nlo = {color:v.color,opacity:opacity,weight:weight};
-		if (v.secret) return;
-		if (!groupedOverlays[grp]) {
-			groupedOverlays[grp] = {};
-		}
 
 		if (v.dash) {
 			nlo['dashArray'] = "10";
-			nlo['weight'] = Math.min(5, weight);
+			nlo['weight'] = Math.min(5,weight);
 		}
 		var newLayer = L.polyline(v.trail, nlo);
 		var tt = `<span style="color:${v.color}">${v.name} </span>`;
-		if (v.miles) { tt += `<span class="mileage">(${v.miles} miles)</span>`; }
+		if (v.miles) {tt += `<span class="mileage">(${v.miles} miles)</span>`; }
 
 		if (!v.dash) {
 			// could also test for blue:  /^#[012345678].[012345678].[9abcdef]/.test(v.color);
 			var newLayer1 = newLayer;
-			var newLayer2 = L.polyline(v.trail, { color: '#2C3050', weight: 1 });
-			newLayer = L.featureGroup([newLayer1, newLayer2]);
+			var newLayer2 = L.polyline(v.trail, {color:'#2C3050',weight:1});
+			newLayer = L.featureGroup([newLayer1,newLayer2]);
 		}
-		newLayer.bindTooltip(tt, { 'sticky': true });
+		newLayer.bindTooltip(tt,{ 'sticky': true });
 		groupedOverlays[grp][tt] = newLayer;
-		
 		if (!v.optional) {
 			map.addLayer(newLayer);
 		}
-		if (g.vlpDebugMode) {
-		if (v.optional) {
-			map.addLayer(newLayer);
-		}
-	}
 	}
 	
-	let clusterGroup = L.markerClusterGroup({maxClusterRadius:10});
-	let poiData = {};
+	if (pagedata.layers) pagedata.layers.forEach(layer => {
+		let l_opacity = layer.opacity || 0.85;
+		let l_weight = layer.weight || 9;
 
-	vlpMarkers.forEach(function(markData) {
-		let markerPts = [];
-	
-		markData.markers.forEach(function(v,i) {
-			markerPts.push(
-				L.marker(v[0], {
-					icon: createSVGIcon(v[1])
-				}).bindPopup(v[2]))
-		}
-		);
+		groupedOverlays[layer.group] = {};
+		
+		layer.list.forEach(resname => {
+			let ext = /[^.]+$/.exec(resname);
+			let yamlData = vlpApp.layers[resname];
 
-		poiData[markData.name] = L.featureGroup.subGroup(clusterGroup, markerPts);
+			if (!yamlData) return;
+
+			if (ext == 'trail') {
+				vlpAddTrail(layer.group,l_opacity,l_weight,yamlData);
+			} else if (ext == 'mapmarks') {
+				let markerPts = [];
+
+				if (!yamlData.markers) return;
+
+				yamlData.markers.forEach(v => {
+					markerPts.push(L.marker(v[0],{icon:createSVGIcon(v[1])}).bindPopup(v[2]));
+				});
+
+				if (!clusterGroup) clusterGroup = L.markerClusterGroup({maxClusterRadius:5});
+				groupedOverlays[layer.group][yamlData.name] = L.featureGroup.subGroup(clusterGroup, markerPts);
+			}
+		});
 	});
 
-	poiData['Landmarks & Sightseeing'].addTo(map);
-	// Parcel GeoJSON has LngLat that needs to be reversed
-	let gpsParkBoundary = [];
-	parkParcel.geometry.coordinates.forEach(function(v) {gpsParkBoundary.push(gps(v[1],v[0]));});
-	
-	poiData['Park Parcel Boundary'] = L.polyline(gpsParkBoundary,{
-		color:'#D8B908',
-		opacity:0.75,
-		weight:8}
-		).bindTooltip('Parcel boundary for the park property',{sticky:true});
-
-	groupedOverlays['Points of Interest'] = poiData;
-	clusterGroup.addTo(map);
-	
-	if (g.addZakklab) {
-		zakklabTrails.forEach(function(v,i) {vlpAddTrail('Trails by Zakklab',0.75,8,v,i);});
-	}
-
-	vlpTrails.forEach(function (v, i) { vlpAddTrail('Primary Trails', 0.85, 9, v, i); });
-
+	if (clusterGroup) clusterGroup.addTo(map);
 
 	new GroupedLayersControl(baseMaps, groupedOverlays).addTo(map);
 	map.attributionControl.addAttribution('<a href="https://friendsofthevaldeserec.org">FVR</a>');
@@ -161,6 +143,9 @@ function vlpMapStartup(targetDiv,pagedata) {
 		new ZoomViewer({position:'topleft'}).addTo(map);
 		map.on('click',e => vlpDebug(e.latlng));
 	}
+
+	//L.rectangle(vlpConfig.gpsBoundsSatellite, {color: "#ff7800", weight: 1}).addTo(map);
+
 	map.fitBounds(vlpConfig.gpsBoundsParkPlan);
 }
 
@@ -173,5 +158,4 @@ function vlpMap(hostDiv,pagedata) {
 	}
 }
 
-
-export { vlpMap };
+export {vlpMap};

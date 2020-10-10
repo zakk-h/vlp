@@ -30,12 +30,6 @@ function initLakesideParkApp() {
 			let isMapPage = vlpApp.maps.includes(rid);
 			let thisPageData = vlpApp.pages[rid];
 
-			// if we want to have the current map in the background of info pages, then
-			// we always need to have one loaded first
-			if (doAppInit && !isMapPage) {
-				setCurrentPage(vlpApp.maps[0]);
-			}
-
 			if (currentPageID) {
 				let curpage = document.getElementById(currentPageID);
 				curpage.classList.remove('active');
