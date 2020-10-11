@@ -1,12 +1,12 @@
-name: Orienteering Markers
-markers:
-- [[35.773590, -81.547390], "flag", "Orienteering, found at the Picnic Area by the Greenway."]
-- [[35.772110, -81.547680], "flag", "Orienteering, found at an intersection of the Red Trail and a small meadow."]
-- [[35.769179, -81.551283], "flag", "Orienteering, found at an intersection of the Red Trail and a small meadow."]
-- [[35.766754, -81.552442], "flag", "Orienteering, found at the Power Lines on the Red Trail."]
-- [[35.767849, -81.556220], "flag", "Orienteering, found at the intersection of the Red and Yellow trails."]
-- [[35.768670, -81.558744], "flag", "Orienteering, found at the Red Meadow."]
-- [[35.772401, -81.558432], "flag", "Orienteering, found at the intersection of the Red and Green trails."]
-- [[35.770245, -81.553461], "flag", "Orienteering, found along the Yellow Trail."]
-- [[35.775367, -81.547280], "flag", "Orienteering, found at Meditation Point looking out at Lake Rhodhiss."]
-- [[35.770126, -81.564404], "flag", "Orienteering, found at the Future Bridge to McGalliard Falls Park."]
+#name: Orienteering Markers
+#markers:
+#- [[35.773590, -81.547390], "flag", "Orienteering, found at the Picnic Area by the Greenway."]
+#- [[35.772110, -81.547680], "flag", "Orienteering, found at an intersection of the Red Trail and a small meadow."]
+#- [[35.769179, -81.551283], "flag", "Orienteering, found at an intersection of the Red Trail and a small meadow."]
+#- [[35.766754, -81.552442], "flag", "Orienteering, found at the Power Lines on the Red Trail."]
+#- [[35.767849, -81.556220], "flag", "Orienteering, found at the intersection of the Red and Yellow trails."]
+#- [[35.768670, -81.558744], "flag", "Orienteering, found at the Red Meadow."]
+#- [[35.772401, -81.558432], "flag", "Orienteering, found at the intersection of the Red and Green trails."]
+#- [[35.770245, -81.553461], "flag", "Orienteering, found along the Yellow Trail."]
+#- [[35.775367, -81.547280], "flag", "Orienteering, found at Meditation Point looking out at Lake Rhodhiss."]
+#- [[35.770126, -81.564404], "flag", "Orienteering, found at the Future Bridge to McGalliard Falls Park."]

@@ -5,9 +5,6 @@ import * as L from 'leaflet';
 import 'leaflet.markercluster/dist/leaflet.markercluster.js';
 import 'leaflet.featuregroup.subgroup';
 import 'leaflet-measure';
-// marker-shadow and marker-icon-2x have to be manually loaded
-import 'leaflet/dist/images/marker-shadow.png';
-import 'leaflet/dist/images/marker-icon-2x.png';
 
 import {createSVGIcon} from './vlp-mdi-icons';
 
@@ -63,13 +60,15 @@ function vlpMapStartup(targetDiv,pagedata) {
 
 	let contourLayer = new RotateImageLayer(img_parkcontours, vlpConfig.gpsBoundsParkContour,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`});
 	let photoLayer = new RotateImageLayer(img_photo,vlpConfig.gpsBoundsSatellite,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`,opacity:0.7});
+	//let photoLayerTransparent = new RotateImageLayer(img_photo,vlpConfig.gpsBoundsSatellite,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`,opacity:0.5});
 	let parkplanLayer = new RotateImageLayer(img_parkplan,vlpConfig.gpsBoundsParkPlan,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:'<a href="https://dbdplanning.com/">Destination by Design</a>'});
+	//let parkplanLayerTransparent = new RotateImageLayer(img_parkplan,vlpConfig.gpsBoundsParkPlan,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:'<a href="https://dbdplanning.com/">Destination by Design</a>', opacity:0.5});
 	let baseMaps = {"Contour": contourLayer,"Photo": photoLayer,"Projected Park Plan":parkplanLayer};
 	let groupedOverlays = {};
 	let clusterGroup = null;
 	
 	map.addLayer(contourLayer);
-	
+
 	function vlpAddTrail(grp,opacity,weight,v) {
 		var nlo = {color:v.color,opacity:opacity,weight:weight};
 
@@ -118,7 +117,9 @@ function vlpMapStartup(targetDiv,pagedata) {
 				});
 
 				if (!clusterGroup) clusterGroup = L.markerClusterGroup({maxClusterRadius:5});
-				groupedOverlays[layer.group][yamlData.name] = L.featureGroup.subGroup(clusterGroup, markerPts);
+				let fg = L.featureGroup.subGroup(clusterGroup, markerPts);
+				groupedOverlays[layer.group][yamlData.name] = fg;
+				if (!yamlData.optional) fg.addTo(map);
 			}
 		});
 	});

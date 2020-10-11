@@ -23,3 +23,7 @@
   text-indent: 15px;
 }
 span.mileage {font-size: 80%;}
+
+.leaflet-control-layers-expanded .layersBtn {
+	display: none;
+}

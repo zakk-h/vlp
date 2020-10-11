@@ -2,13 +2,13 @@
 // The webpack config automatically detects and bundles all
 // images that are referenced from this.
 
-@import "~leaflet/dist/leaflet";
+@import "./leaflet/leaflet-generated";
 @import "~leaflet-measure/dist/leaflet-measure";
 @import "~leaflet.markercluster/dist/MarkerCluster";
 @import "~leaflet.markercluster/dist/MarkerCluster.Default";
-@import "./leaflet/GroupedLayersControl";
-@import "./leaflet/yahControl";
 @import "./font/fvricons";
+@import "./leaflet/fvrIconButtons";
+@import "./leaflet/GroupedLayersControl";
 @import "./css/modal";
 @import "./css/whatsnew";
 
@@ -48,7 +48,7 @@ header > div {
 	overflow: hidden;
 	white-space: nowrap;
 	margin: 0;
-	padding: 0px 10px;
+	padding: 0 6px 0 8px;
 	font: 16px "Times New Roman", Times, serif;
 }
 header > div > span {
@@ -69,7 +69,12 @@ header > div > span {
 #id_AppPageTitle span:nth-of-type(2)::before {
 	content: ": ";
 }
-
+#id_AppPageBackBtn {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 24px;
+}
 // app primary content styles
 .main-content {
 	display: none;
@@ -96,6 +101,10 @@ div.info-content {
 	max-width: 1350px;
 	margin: 0;
 	padding: 4px 15px;
+	font-family: Whitney,'Helvetica Neue',Helvetica,Arial,'Lucida Grande',sans-serif;
+	font-size: 15px;
+	font-weight: 400;
+	line-height: 1.5;
 }
 .info-content > h1:first-child {
 	display: none;

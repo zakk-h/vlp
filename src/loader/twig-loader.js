@@ -177,6 +177,9 @@ async function doLoader(loaderObj, twigSource, options) {
 
 		c.pages = pages;
 
+		c.pageids = [];
+		pages.forEach(r => c.pageids.push(r.id));
+
 		let layers = {};
 		pages.forEach(pg => {
 			if (!pg.layers) return;

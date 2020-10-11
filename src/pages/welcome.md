@@ -27,7 +27,7 @@ Here are some of the features available in this app:
 - You can track your location in the app by tapping the hiking man icon {{ icon.walk }}
 in the app and your location will be shown on screen.
 
-- The menu in the top right corner ![Layer Button][img-layerbtn] will open a menu that allows you to
+- The menu in the top right corner {{ icon.layers }} will open a menu that allows you to
 change what trails you can see on the map, toggle different markers on and off, as well as changing
 the map view (between Terrain Lines, A satellite view, and the Future Park Plan).
 
@@ -48,6 +48,5 @@ and scroll down until you find "Add to Homescreen"
 - **On Android:**\
 In Chrome, Tap the bottom prompt that says "Add to Homescreen"
 
-[img-layerbtn]: ~leaflet/dist/images/layers.png#inline
 [link-fvr]: https://friendsofthevaldeserec.org
 [link-zakklab]: https://zakklab.valdese.info/vlp/smart-install/

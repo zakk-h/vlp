@@ -24,6 +24,7 @@ if ('serviceWorker' in navigator) {
 <header>
 	<div class="menu-selector" id="id_AppPageMenuBtn"><i class="fvricon fvricon-menu" style="font-size:24px; margin-top:2px;"></i></div>
 	<div class="menu-selector" id="id_AppPageTitle"><span>{{ appd.title }}</span><span>Map</span></div>
+	<div class="menu-button" id="id_AppPageBackBtn"><i class="fvricon fvricon-goback" style="font-size:24px; margin-top:2px;"></i></div>
 </header>
 
 {% for pg in pages %}
@@ -52,6 +53,7 @@ if ('serviceWorker' in navigator) {
 
 <div id="win-mainmenu" style="display:none;z-index:99999;">
 	<nav id="mainmenu" class="lsmenu">
+		<a href="./">{{ icon.home|raw }} Home</a><hr>
 		{% set navgrp = '' %}
 		{% for pg in pages %}
 			{% if pg.class and pg.nav %}
@@ -60,7 +62,7 @@ if ('serviceWorker' in navigator) {
 					<hr>
 				{% endif %}
 
-				<a href="#!{{ pg.id }}">{{ pg.title }}</a>
+				<a href="{{ pg.id }}" data-navigo>{{ pg.title }}</a>
 				{% set navgrp = thisnavgrp %}
 			{% endif %}
 		{% endfor %}
@@ -74,6 +76,7 @@ var vlpApp = {
 	layers: {{ layers|json_encode }},
 	maps: {{ maproutes|json_encode }},
 	pages: {{ pagedata|json_encode }},
+	pageids: {{ pageids|json_encode }},
 	activeMap: null
 }
 </script>
