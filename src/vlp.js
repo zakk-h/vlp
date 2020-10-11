@@ -23,6 +23,13 @@ import * as img_parkcontours from './img/park-contour.png';
 
 const vlpDebug = g.vlpDebug;
 
+L.Marker.prototype.options.icon = L.divIcon({
+	className: 'marker-divicon',
+	html: '<i class="fvricon fvricon-information" style="color:white;font-size:20px;background:rgba(0,0,255,0.60); border:0; padding: 2px; border-radius:50%;"></i>',
+	iconSize: [20, 20],
+	iconAnchor: [1, 1]
+});
+
 function vlpMapStartup(targetDiv,pagedata) {
 	const burkeGISMap = 'http://gis.burkenc.org/default.htm?PIN=2744445905';
 	let pageopts = pagedata.opts || {};
