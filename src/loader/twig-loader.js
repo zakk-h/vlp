@@ -98,6 +98,11 @@ function loadYamlFile(f) {
 	if (!fs.existsSync(f)) return {};
 	let rawd = fs.readFileSync(f,'utf8');
 	let yd = YAML.parse(rawd.replace(/\t/g,'   '));
+
+	if (yd.markers) yd.markers.forEach(v => {
+		v[2] = markdownRender(v[2].replace(/\|/g,'<br>'));
+	});
+
 	return yd;
 }
 
