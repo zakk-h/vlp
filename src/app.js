@@ -5,7 +5,7 @@ import './index.twig';
 import * as g from './globals.js';
 import {closeModal} from './modal.js';
 import Navigo from 'navigo';
-import { vlpMap } from './vlp.js';
+import { vlpAppMap } from './appmap.js';
 import {showWhatsNew} from './whatsnew.js';
 
 function toggleWindow(w) {w.style.display = (w.style.display == 'block') ? 'none' : 'block';}
@@ -17,40 +17,47 @@ function getSiteRootURL() {
 }
 
 function initLakesideParkApp() {
+	const MAPPAGEID = 'id_AppMapPage';
+	var currentPageID = MAPPAGEID;
+	var map_page = document.getElementById(MAPPAGEID);
+	var map_elem = document.getElementById('id_Map');
+	var map = new vlpAppMap(map_elem);
 	var router = new Navigo(getSiteRootURL(), true);
 	var ctrl_PageTitle = document.getElementById('id_AppPageTitle');
 	var ctrl_PageBack = document.getElementById('id_AppPageBackBtn');
-	var currentPageID = false;
 	var menuDiv = document.getElementById('win-mainmenu');
 	var firstTime = true;
 
 	function closeOpenMenu() { menuDiv.style.display = 'none'; }
 	function setCurrentPage(rid) {
 		let doAppInit = firstTime;
-		let id = `pgid-${rid}`;
+		let isMapPage = vlpApp.maps.includes(rid);
+		let id = isMapPage ? MAPPAGEID : `pgid-${rid}`;
 		let newpage = document.getElementById(id);
 
 		firstTime = false;
 		closeModal();
 
 		if (newpage) {
-			let isMapPage = vlpApp.maps.includes(rid);
 			let thisPageData = vlpApp.pages[rid];
 			let newTitle = thisPageData.title;
 
-			if (currentPageID) {
-				let curpage = document.getElementById(currentPageID);
-				curpage.classList.remove('active');
-			}
-
 			document.title = newTitle;
 			ctrl_PageTitle.querySelector('span:nth-of-type(2)').innerHTML = newTitle;
-			newpage.classList.add('active');
-			currentPageID = id;
+			if (currentPageID != id) {
+				if (currentPageID) {
+					document.getElementById(currentPageID).classList.remove('active');
+				}
+				newpage.classList.add('active');
+				currentPageID = id;
+			}
 
 			if (isMapPage) {
-				vlpMap(newpage,thisPageData);
-				vlpApp.activeMap = rid;
+				if (vlpApp.activeMap != rid) {
+					if (vlpApp.activeMap) map.clearConfig(vlpApp.pages[vlpApp.activeMap]);
+					vlpApp.activeMap = rid;
+					map.showConfig(thisPageData);
+				}
 				ctrl_PageBack.style.display = 'none';
 			} else {
 				ctrl_PageBack.style.display = 'block';

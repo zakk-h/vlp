@@ -1,7 +1,7 @@
 name: Area Restaurants
 markers:
 - [[35.745485,-81.526183],ffood,Speedway Cafe|611 Malcolm Blvd]
-- [[35.743273,-81.525679],food,JDs Smokehouse|500 Malcolm Blvd]
+- [[35.743273,-81.525679],food,JDs Smokehouse|500 Malcolm Blvd|https://www.jds-smokehouse.com]
 - [[35.760687,-81.527953],food,Jessica's Mediterranean & American Eatery|1311 Malcolm Boulevard]
 - [[35.740922,-81.531124],food,Stretch's Cafe|1900 US 70 E]
 - [[35.741749,-81.554818],food,Twin Brother’s Pizza|719 Main St E]

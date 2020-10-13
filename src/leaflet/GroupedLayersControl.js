@@ -174,7 +174,7 @@ var GroupedLayersControl = L.Control.extend({
 			this._refreshGroupsCheckStates();
 		}
 
-		this._separator.style.display = overlaysPresent && baseLayersPresent ? '' : 'none';
+		this._separator.style.display = (overlaysPresent || baseLayersPresent) ? '' : 'none';
 	},
 
 	_onLayerChange: function (e) {

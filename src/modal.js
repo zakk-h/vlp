@@ -23,7 +23,7 @@ function modalWindow() {
 
 	this.show = function(title,content,callbackOnClose) {
 		wnt.innerHTML = title;
-		wnc.innerHTML = content;
+		wnc.innerHTML = (typeof content == 'string') ? content : content.outerHTML;
 		wnp.style.display = 'block';
 		isOpen = true;
 		cbClose = callbackOnClose;
