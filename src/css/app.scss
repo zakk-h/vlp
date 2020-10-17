@@ -1,0 +1,151 @@
+
+@use "./lib" as *;
+
+html,
+body,
+#id_AppMapPage,
+#id_Map
+{
+	@include full-screen;
+}
+
+a {
+	text-decoration: none;
+	cursor: pointer;
+}
+.menu-selector {
+	cursor: context-menu;
+	user-select: none;
+}
+
+// app header styles
+header {
+	z-index: 999999;
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: $header-size;
+	background: none;
+	width: 100%;
+	margin: 0;
+	padding:0;
+}
+#id_AppPageTitle {
+	display: block;
+	position: fixed;
+	width: $menu-width;
+	height: $header-size - 3px;
+	padding: 3px 0 0 0;
+	border: 0;
+	margin: 0 0 0 #{0px - ($menu-width / 2)};
+	overflow: hidden;
+	background-color: $menu-bgcolor;
+	color: #fff;
+	border-radius: 0 0 $menu-radius $menu-radius;
+    top: 0;
+    left: 50%;
+	text-align: center;
+	font: 16px "Times New Roman", Times, serif;
+}
+#id_AppPageTitle.menu-active {border-radius: $menu-radius $menu-radius 0 0;}
+#id_AppPageTitle::before { content: "\021F3"; padding-right:10px; color: green;}
+#id_CloseAppInfoBtn {
+	display: block;
+	position: fixed;
+	font-size: 16px;
+	font-weight: bolder;
+	top: 8px;
+	left: calc(50% + min(100%/2,515px) - 44px);
+	color: white;
+	background: $menu-bgcolor;
+	padding: 0 3px;
+	border-radius: 5px;
+}
+a#id_CloseAppInfoBtn:hover {background: #a00;}
+// app menu
+div.app-menu {
+	@include screen-minus;
+	user-select: none;
+}
+.app-menu nav {
+	position: absolute;
+	top: -50%;
+	left: 50%;
+	width: $menu-width;
+	margin: 0 0 0 #{0px - ($menu-width / 2)};
+	padding: 10px 0;
+	background-color: $menu-bgcolor;
+	color: white;
+	border-radius: 0 0 $menu-radius $menu-radius;
+	overflow: auto;
+	max-height: 70%;
+	transition: top 0.3s;
+}
+.app-menu.menu-active nav {
+	top: 0;
+}
+.app-menu a {
+	display: block;
+	margin: 0;
+	padding: 4px 12px;
+	color: white;
+}
+.app-menu a:hover {
+	color: #111;
+	background-color: white;
+}
+
+// app primary page styles
+#id_AppInfoPage {
+	@include overlay-screen;
+}
+div.info-content {
+	display: none;
+	color: #111;
+	background: white;
+	max-width: 1000px;
+	margin: 0 auto;
+	padding: 50px 15px 8px 15px;
+	font-family: Whitney,'Helvetica Neue',Helvetica,Arial,'Lucida Grande',sans-serif;
+	font-size: 15px;
+	font-weight: 400;
+	line-height: 1.5;
+	max-height: calc(80% - 60px);
+	border: solid $menu-bgcolor 3px;
+	overflow: auto;
+}
+div.info-content.active {
+	display: block;
+}
+div.info-content > h1:first-child {
+	display: none;
+}
+.info-content img[src*="#center"] {
+	display: block;
+	max-width: 80%;
+	margin: auto;
+}
+.info-content img[src*="#inline"] {
+	display: inline;
+	border: 0;
+	max-height: 16px;
+}
+
+img.fvrlogo {
+	width: 50px;
+	opacity: 1;
+}
+a:visited img.fvrlogo {
+	opacity: 0.5;
+}
+a.btn {
+	display: block;
+	width: 140px;
+	border: solid 1px black;
+	border-radius: 4px;
+	text-decoration: none;
+	padding: 3px 10px;
+	background: #ccffcc;
+	margin: 15px auto;
+	text-align: center;
+}

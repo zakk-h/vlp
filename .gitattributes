@@ -1,0 +1,3 @@
+*.trail text linguist-language=YAML 
+*.map text linguist-language=YAML
+*.mapmarks text linguist-language=YAML
