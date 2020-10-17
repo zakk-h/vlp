@@ -98,6 +98,11 @@ function loadYamlFile(f) {
 	if (!fs.existsSync(f)) return {};
 	let rawd = fs.readFileSync(f,'utf8');
 	let yd = YAML.parse(rawd.replace(/\t/g,'   '));
+
+	if (yd.markers) yd.markers.forEach(v => {
+		v[2] = markdownRender(v[2].replace(/\|/g,'<br>'));
+	});
+
 	return yd;
 }
 
@@ -124,6 +129,10 @@ async function doLoader(loaderObj, twigSource, options) {
 	let bldd = loadYamlSettings(appdIncludeFolders,'build.yaml',true);
 
 	if (!bldd.mapIncludes) bldd.mapIncludes = ['trails'];
+
+	// commented this out for now...seems like overkil
+	// markdown encode the texts in history
+	// await forEach(appd.history, v => { v[1] = markdownRender(v[1]); });
 
 	c.appd = appd;
 
