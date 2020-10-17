@@ -50,7 +50,10 @@ module.exports = env => {
 						loader: 'resolve-url-loader'
 					},{
 						loader: 'sass-loader',
-						options: { sourceMap: true }
+						options: {
+							implementation: require('sass'),
+							sourceMap: true
+						}
 					}]
 				},{
 					test: /\.(trail|mapmarks)$/,

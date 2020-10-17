@@ -1,5 +1,5 @@
 
-@import "./lib";
+@use "./lib" as *;
 
 html,
 body,
@@ -56,12 +56,12 @@ header {
 	font-weight: bolder;
 	top: 8px;
 	left: calc(50% + min(100%/2,515px) - 44px);
-	color: black;
-	border: solid 1px;
+	color: white;
+	background: $menu-bgcolor;
 	padding: 0 3px;
 	border-radius: 5px;
 }
-a#id_CloseAppInfoBtn:hover {background: #ccc;}
+a#id_CloseAppInfoBtn:hover {background: #a00;}
 // app menu
 div.app-menu {
 	@include screen-minus;
@@ -116,6 +116,9 @@ div.info-content {
 }
 div.info-content.active {
 	display: block;
+}
+div.info-content > h1:first-child {
+	display: none;
 }
 .info-content img[src*="#center"] {
 	display: block;

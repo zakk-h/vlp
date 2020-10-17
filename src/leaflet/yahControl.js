@@ -27,22 +27,27 @@ var YAHControl = L.Control.extend({
 		});
 		var yahMarker = L.marker([35.75640,-81.58016],{icon:yahIcon}).bindTooltip('You are here');
 
-		function yahToggle() {
-			// great tool for svg filter color is at:
-			// https://codepen.io/sosuke/pen/Pjoqqp
+		function yahActive() {return L.DomUtil.hasClass(btn,'yahActive');}
+		function yahActivate(b) {
+			let b_c = yahActive();
 			vlpDebug('toggle yah');
-			if (L.DomUtil.hasClass(btn,'yahActive')) {
-				L.DomUtil.removeClass(btn,'yahActive');
-				map.removeLayer(yahMarker);
-				map.stopLocate();
-			} else {
+
+			if (b == b_c) return;
+
+			if (b) {
 				L.DomUtil.addClass(btn,'yahActive');
 				lastVisibleLocationTime = 0;
 				map.locate({watch: true, enableHighAccuracy:true, timeout:60000, maximumAge:5000});
+			} else {
+				L.DomUtil.removeClass(btn,'yahActive');
+				map.removeLayer(yahMarker);
+				map.stopLocate();
 			}
+
+			localStorage.yah = b;
 		}
 
-		L.DomEvent.on(btn,'click', yahToggle);
+		L.DomEvent.on(btn,'click', () => {yahActivate(!yahActive());});
 		L.DomEvent.disableClickPropagation(btn);
 
 		map.on('locationfound', function(e) {
@@ -74,12 +79,14 @@ var YAHControl = L.Control.extend({
 			}
 		});
 		map.on('locationerror', function(e) {
-			if (map.hasLayer(yahMarker)) {
-				yahToggle();
+			if (yahActive()) {
+				yahActivate(false);
 				alert(e.message);
 			}
 		});
 
+		if (localStorage.yah) yahActivate(true);
+		
 		return btn;
 	},
 
