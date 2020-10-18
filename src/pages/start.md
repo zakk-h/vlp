@@ -1,5 +1,6 @@
 ---
 nav: B100
+ignore: true
 ---
 
 # Start Here

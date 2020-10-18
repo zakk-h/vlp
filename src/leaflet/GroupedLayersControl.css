@@ -1,3 +1,7 @@
+div.leaflet-control-layers {
+	margin-top: 2px;
+}
+
 .leaflet-control-layers-list {
 	overflow-y: Auto;
 	padding-right: 10px;

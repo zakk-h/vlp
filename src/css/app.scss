@@ -95,6 +95,19 @@ div.app-menu {
 	background-color: white;
 }
 
+// leaflet updates for header
+div.leaflet-top {
+    top: $header-size + 10px;
+}
+
+.leaflet-right .leaflet-control {
+    margin-right: 6px;
+}
+
+.leaflet-top .leaflet-control {
+    margin-top: 2px;
+}
+
 // app primary page styles
 #id_AppInfoPage {
 	@include overlay-screen;

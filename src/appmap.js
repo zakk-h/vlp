@@ -31,7 +31,6 @@ function vlpAppMap(targetDiv) {
 	let parkplan_bounds = new L.LatLngBounds(vlpConfig.gpsBoundsParkPlan);
 	let valdese_area = new L.LatLngBounds(vlpConfig.gpsBoundsValdese);
 	let gpsCenter = parkplan_bounds.getCenter();
-
 	let map = L.map(targetDiv,{
 		zoomControl: !L.Browser.mobile,
 		center: gpsCenter,

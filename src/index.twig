@@ -54,7 +54,6 @@ if ('serviceWorker' in navigator) {
 
 <div id="win-mainmenu" class="app-menu" style="display:none;">
 	<nav id="mainmenu">
-		<a href="./">{{ icon.home|raw }} Home</a><hr>
 		{% set navgrp = '' %}
 		{% for pg in pages %}
 			{% if pg.class and pg.nav %}

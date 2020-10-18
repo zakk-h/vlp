@@ -28,6 +28,8 @@ function initLakesideParkApp() {
 	var menu_elem = document.getElementById('win-mainmenu');
 	var firstTime = true;
 
+	function isBlock(e) {return e.style.display == 'block';}
+	function isMenuOpen() {return isBlock(menu_elem);}
 	function openTheMenu(b) {
 		if (b) {
 			// clear the html style set in index.html; now use only classes
@@ -96,7 +98,8 @@ function initLakesideParkApp() {
 	menu_elem.addEventListener("click",() => openTheMenu(false));
 	document.addEventListener('keydown', (e) => {
 		if (e.keyCode == 27) {
-			openTheMenu(false);
+			if (isMenuOpen()) openTheMenu(false);
+			else if (isBlock(ctrl_CloseBtn)) router.navigate(vlpApp.activeMap || vlpApp.pageids[0]);
 		}
 	});
 	info_elem.addEventListener("click",(e) => {
