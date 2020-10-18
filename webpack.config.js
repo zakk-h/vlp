@@ -68,6 +68,7 @@ module.exports = env => {
 			]
 		},
 		plugins: [
+			new webpack.ProvidePlugin({L:'leaflet'}),
 			new webpack.DefinePlugin({
 				'ADD_ZAKKLAB': use_zakklab
 			}),

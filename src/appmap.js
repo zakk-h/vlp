@@ -1,7 +1,7 @@
 import * as g from './globals.js';
 import {vlpConfig} from './config.js';
 
-import * as L from 'leaflet';
+import 'leaflet';
 import 'leaflet.markercluster/dist/leaflet.markercluster.js';
 import 'leaflet.featuregroup.subgroup';
 import 'leaflet-measure';
@@ -22,6 +22,7 @@ import * as img_photo from './img/park-satellite.png';
 import * as img_parkcontours from './img/park-contour.png';
 
 const vlpDebug = g.vlpDebug;
+
 
 L.Marker.prototype.options.icon = createSVGIcon('marker');
 
