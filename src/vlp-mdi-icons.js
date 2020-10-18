@@ -40,9 +40,9 @@ const mdiSVGIcons = {
 		fill: '#000000',
 		anchor: [0.5,0.5]
 	},
-	beach: {path: mdiSVGPaths.beach,fill:'#EEAB04',stroke:'#000000', size: 29},
-	bike: {path: mdiSVGPaths.bike},
-	boat: {path: mdiSVGPaths.boat,fill:'#A52A2A'},
+	beach:	{path: mdiSVGPaths.beach,fill:'#EEAB04',stroke:'#000000', size: 29},
+	bike:	{path: mdiSVGPaths.bike},
+	boat:	{path: mdiSVGPaths.boat,fill:'#A52A2A'},
 	beer:	{path: mdiSVGPaths.beer,fill:'#d3c934',stroke:'#FFFFFF',strokeWidth: 1.2},
 	bridge:	{path: mdiSVGPaths.bridge,strokeWidth:0,size:48},
 	camera:	{path: mdiSVGPaths.camera,fill:'#040421'},
