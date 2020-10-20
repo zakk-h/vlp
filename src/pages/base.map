@@ -1,5 +1,5 @@
-nav: A100
-title: Main Map
+nav: A200
+title: VLP Map
 opts:
 	addParkOverlays: true
 layers:

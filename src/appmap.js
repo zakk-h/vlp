@@ -50,18 +50,17 @@ function vlpAppMap(targetDiv) {
 		position:'topright',
 		maxBounds: parkplan_bounds
 	});
+	let blankLayer = new RotateImageLayer(img_photo,vlpConfig.gpsBoundsSatellite,{rotation:vlpConfig.gpsBoundsLayerRotate,opacity:0.0});
 	let contourLayer = new RotateImageLayer(img_parkcontours, vlpConfig.gpsBoundsParkContour,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`});
 	let photoLayer = new RotateImageLayer(img_photo,vlpConfig.gpsBoundsSatellite,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`});
 	let parkplanLayer = new RotateImageLayer(img_parkplan,vlpConfig.gpsBoundsParkPlan,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:'<a href="https://dbdplanning.com/">Destination by Design</a>'});
-	let parkBaseMaps = {"Contour": contourLayer,"Photo": photoLayer,"Projected Park Plan":parkplanLayer};
+	let parkBaseMaps = {"Background": blankLayer, "Contour": contourLayer,"Photo": photoLayer,"Projected Park Plan":parkplanLayer};
 
 	function gps(latitude,longitude) { return new L.LatLng(latitude,longitude); }
 
 	map.attributionControl.setPrefix('');
 	mapTiles.addTo(map);
 	yahBtn.addTo(map);
-	fvrMark.addTo(map);
-	map.attributionControl.addAttribution('<a href="https://friendsofthevaldeserec.org">FVR</a>');
 
 	if (g.vlpDebugMode) {
 		new ZoomViewer({position:'topleft'}).addTo(map);

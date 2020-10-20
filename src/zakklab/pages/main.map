@@ -1,7 +1,12 @@
 nav: A100
-title: Main Map
+title: Adventure Map
+opts:
+	addParkOverlays: true
+	addMeasureControl: true
+	zoomBtns: false
 layers:
-- {group: Landmarks & Sightseeing, opacity: 0.85, weight: 9, list: [DogPark.trail,Orienteering.mapmarks,Landmarks.mapmarks,LakesideParkParcel.trail]}
-- {group: Trails by Zakklab, opacity: 0.75, weight: 8, list: [GreenDiagonal.trail,LimeLoop.trail,Pink.trail,StoneSkipper.trail,DHSRoad.trail,HighSchoolXCTrail1.trail,HighSchoolXCTrail2.trail,HighSchoolXCTrail3.trail,McGalliardFalls.trail]}
-- {group: Connectors - Zakklab, opacity: 0.75, weight: 8, list: [PinkGreenConnector.trail,HelmetConnector.trail,HCConnector.trail,LoveladyConnector.trail,ShadeConnector.trail,PinkConnector.trail,HCBeachConnector.trail,FireHydrant.trail,OuterConnector.trail]}
-- {group: Primary Trails, opacity: 0.85, weight: 9, list: [ParkingLot.trail,GreenWay.trail,YellowConnector.trail,RedOuter.trail,BlueLoop.trail,MeditationPoint.trail,McGalliardGreenway.trail,HoyleCreek.trail,ShadeSeeker.trail,OuterCreek.trail]}
+- {group: Options, opacity: 0.85, weight: 9, list: [Orienteering.mapmarks,Landmarks.mapmarks,LakesideParkParcel.trail, DogPark.trail]}
+- {group: Primary Trails, opacity: 0.85, weight: 9, list: [GreenWay.trail,YellowConnector.trail,RedOuter.trail,BlueLoop.trail,MeditationPoint.trail,McGalliardGreenway.trail,HoyleCreek.trail,ShadeSeeker.trail,OuterCreek.trail]}
+- {group: Zakklab Trails, opacity: 0.85, weight 9, list: [GreenDiagonal.trail,LimeLoop.trail,Pink.trail,StoneSkipper.trail]}
+- {group: DHS Trails, opacity: 0.85, weight 8, list: [HighSchoolXCTrail1.trail,HighSchoolXCTrail2.trail,HighSchoolXCTrail3.trail]}
+- {group: Connectors, opacity: 0.85, weight 7, list: [DHSRoad.trail, FireHydrant.trail, HCBeachConnector.trail, HCConnector.trail, HelmetConnector.trail, LoveladyConnector.trail, OuterConnector.trail, PinkConnector.trail, PinkGreenConnector.trail, ShadeConnector.trail]}
