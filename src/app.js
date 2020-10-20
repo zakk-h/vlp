@@ -17,36 +17,26 @@ function getSiteRootURL() {
 function initLakesideParkApp() {
 	//const MAPPAGEID = 'id_AppMapPage';
 	//var map_page = document.getElementById(MAPPAGEID);
-	const INFOPAGEID = 'id_AppInfoPage';
+	const INFOSCREENID = 'id_AppInfoScreen';
 	var currentInfoPageID = false;
 	var map_elem = document.getElementById('id_Map');
-	var info_elem = document.getElementById(INFOPAGEID);
+	var infoscreen_elem = document.getElementById(INFOSCREENID);
 	var map = new vlpAppMap(map_elem);
 	var router = new Navigo(getSiteRootURL(), true);
 	var ctrl_PageTitle = document.getElementById('id_AppPageTitle');
 	var ctrl_CloseBtn = document.getElementById('id_CloseAppInfoBtn');
-	var menu_elem = document.getElementById('win-mainmenu');
+	var menuscreen_elem = document.getElementById('win-mainmenu');
 	var firstTime = true;
 
 	function isBlock(e) {return e.style.display == 'block';}
-	function isMenuOpen() {return isBlock(menu_elem);}
+	function hideElem(e,doHide) {e.style.display = doHide ? 'none' : 'block';}
+	function isMenuOpen() {return isBlock(menuscreen_elem);}
 	function openTheMenu(b) {
-		if (b) {
-			// clear the html style set in index.html; now use only classes
-			//menu_elem.removeAttribute('style');
-			menu_elem.style.display = 'block';
-			// in order for the transition to fire, we need to use a timeout
-			setTimeout(function() {
-				menu_elem.classList.add('menu-active');
-				ctrl_PageTitle.classList.add('menu-active');
-			},20);
-		} else {
-			menu_elem.style.display = 'none';
-			ctrl_PageTitle.classList.remove('menu-active');
-			menu_elem.classList.remove('menu-active');
-		}
+		hideElem(menuscreen_elem, !b);
+		if (b) ctrl_PageTitle.classList.add('menu-active');
+		else ctrl_PageTitle.classList.remove('menu-active');
 	}
-	function toggleMenu() { openTheMenu(menu_elem.style.display == 'none'); }
+	function toggleMenu() { openTheMenu(menuscreen_elem.style.display == 'none'); }
 
 	function setCurrentPage(rid) {
 		let doAppInit = firstTime;
@@ -65,8 +55,7 @@ function initLakesideParkApp() {
 		ctrl_PageTitle.innerHTML = newTitle;
 		
 		if (isMapPage) {
-			info_elem.style.display = 'none';
-			ctrl_CloseBtn.style.display = 'none';
+			hideElem(infoscreen_elem, true);
 
 			if (vlpApp.activeMap != rid) {
 				if (vlpApp.activeMap) map.clearConfig(vlpApp.pages[vlpApp.activeMap]);
@@ -77,14 +66,13 @@ function initLakesideParkApp() {
 			let id = `pgid-${rid}`;
 			let newpage = document.getElementById(id);
 			
-			info_elem.style.display = 'block';
-			ctrl_CloseBtn.style.display = 'block';
+			hideElem(infoscreen_elem,false);
 			
 			if (currentInfoPageID != id) {
 				if (currentInfoPageID) {
-					document.getElementById(currentInfoPageID).classList.remove('active');
+					hideElem(document.getElementById(currentInfoPageID),true);
 				}
-				newpage.classList.add('active');
+				hideElem(newpage, false);
 				currentInfoPageID = id;
 			}
 		}
@@ -95,15 +83,15 @@ function initLakesideParkApp() {
 	}
 
 	ctrl_PageTitle.addEventListener("click",(e) => toggleMenu());
-	menu_elem.addEventListener("click",() => openTheMenu(false));
+	menuscreen_elem.addEventListener("click",() => openTheMenu(false));
 	document.addEventListener('keydown', (e) => {
 		if (e.keyCode == 27) {
 			if (isMenuOpen()) openTheMenu(false);
 			else if (isBlock(ctrl_CloseBtn)) router.navigate(vlpApp.activeMap || vlpApp.pageids[0]);
 		}
 	});
-	info_elem.addEventListener("click",(e) => {
-		if (e.target == info_elem) {
+	infoscreen_elem.addEventListener("click",(e) => {
+		if (e.target == infoscreen_elem) {
 			router.navigate(vlpApp.activeMap || vlpApp.pageids[0]);
 		}
 	});
