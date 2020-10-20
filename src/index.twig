@@ -25,24 +25,28 @@ if ('serviceWorker' in navigator) {
 	<div id="id_Map"></div>
 </div>
 
-<header class="menu-selector">
-	<a id="id_AppPageTitle">{{ appd.title }}</a>
-	<a id="id_CloseAppInfoBtn" style="display:none;">&times;</a>
+<header class="menu-selector" id="id_AppPageTitle">
+{{ appd.title }}
 </header>
 
-<div id="id_AppInfoPage">
+<div id="id_AppInfoScreen" style="display:none"><div class="info-container">
+	<div class="info-header">
+		<a id="id_CloseAppInfoBtn">&times;</a>
+	</div>
+	<div class="info-content">
 {% for pg in pages %}
 	{% set thispd = {title: pg.title, layers: pg.layers, opts: pg.opts} %}
 	{% set pagedata = pagedata|merge({(pg.id): thispd}) %}
 	{% if pg.class == 'map' %}
 		{% set maproutes = maproutes|merge([pg.id]) %}
 	{% elseif pg.class %}
-			<div class="info-content" id="pgid-{{ pg.id }}"">
+			<div id="pgid-{{ pg.id }}" style="display:none;">
 				{{ pg.html|raw }}
 			</div>
 	{% endif %}
 {% endfor %}
-</div>
+	</div>
+</div></div>
 
 <div id="vlp-modal"><div id="vlp-modal-content">
 	<div id="vlp-modal-header">
