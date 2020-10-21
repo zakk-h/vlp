@@ -9,4 +9,4 @@ layers:
 - {group: Primary Trails, opacity: 0.85, weight: 9, list: [GreenWay.trail,YellowConnector.trail,RedOuter.trail,BlueLoop.trail,MeditationPoint.trail,McGalliardGreenway.trail,HoyleCreek.trail,ShadeSeeker.trail,OuterCreek.trail]}
 - {group: Zakklab Trails, opacity: 0.85, weight 9, list: [GreenDiagonal.trail,LimeLoop.trail,Pink.trail,StoneSkipper.trail]}
 - {group: DHS Trails, opacity: 0.85, weight 8, list: [HighSchoolXCTrail1.trail,HighSchoolXCTrail2.trail,HighSchoolXCTrail3.trail]}
-- {group: Connectors, opacity: 0.85, weight 7, list: [DHSRoad.trail, FireHydrant.trail, HCBeachConnector.trail, HCConnector.trail, HelmetConnector.trail, LoveladyConnector.trail, OuterConnector.trail, PinkConnector.trail, PinkGreenConnector.trail, ShadeConnector.trail]}
+- {group: Connectors, opacity: 0.85, weight 7, list: [DHSRoad.trail, FireHydrant.trail, HCBeachConnector.trail, HCConnector.trail, HelmetConnector.trail, OuterConnector.trail, PinkConnector.trail, PinkGreenConnector.trail, RoundaboutConnector.trail, ShadeConnector.trail]}

@@ -1,0 +1,9 @@
+name: Roundabout Connector
+"secret": false
+"color": "#612D61"
+"miles": 0.05
+"dash": true
+"optional": false
+"trail": 
+- [35.764618,-81.552088]
+- [35.764962,-81.551809]
