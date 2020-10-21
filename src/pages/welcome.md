@@ -4,21 +4,20 @@ nav: B500
 
 # Welcome
 
+<div class="social-bar">
+<a target="_blank" href="https://friendsofthevaldeserec.org/"><i class="fvricon fvricon-facebook"></i></a>
+<a target="_blank" href="https://www.instagram.com/friendsofthevaldeserec/"><i class="fvricon fvricon-instagram"></i></a>
+<a target="_blank" href="https://friendsofthevaldeserec.org"><img src="../img/fvrlogopng.png"></a>
+<a target="_blank" href="https://twitter.com/FriendsValdese"><i class="fvricon fvricon-twitter"></i></a>
+<a target="_blank" href="https://github.com/valdese-net/vlp"><i class="fvricon fvricon-github"></i></a>
+</div>
+
 The [Friends of the Valdese Rec][link-fvr] would like to welcome you to Valdese Lakeside, a 300 acre municipal park with construction set
 to start in 2020. We hope that enjoy your visit to Valdese Lakeside Park!
 
 {% if zakklab %}
 This is Zakklab's Lakeside App. There are over 10 miles of trails to explore!
 {% endif %}
-
-## Connect
-
-- https://friendsofthevaldeserec.org/
-- https://www.facebook.com/FriendsoftheValdeseRec/
-- https://www.instagram.com/friendsofthevaldeserec/
-- https://twitter.com/FriendsValdese
-- https://github.com/valdese-net/vlp
-
 
 ## Introduction to the App
 
@@ -49,4 +48,8 @@ and scroll down until you find "Add to Homescreen"
 In Chrome, Tap the bottom prompt that says "Add to Homescreen"
 
 [link-fvr]: https://friendsofthevaldeserec.org
+[link-facebook]: https://friendsofthevaldeserec.org/
+[link-instagram]: https://www.instagram.com/friendsofthevaldeserec/
+[link-twitter]: https://twitter.com/FriendsValdese
+[link-github]: https://github.com/valdese-net/vlp
 [link-zakklab]: https://zakklab.valdese.info/vlp/smart-install/

@@ -26,7 +26,7 @@ const vlpDebug = g.vlpDebug;
 
 L.Marker.prototype.options.icon = createSVGIcon('marker');
 
-function vlpAppMap(targetDiv) {
+function vlpAppMap(targetDiv,router) {
 	const burkeGISMap = 'http://gis.burkenc.org/default.htm?PIN=2744445905';
 	let parkplan_bounds = new L.LatLngBounds(vlpConfig.gpsBoundsParkPlan);
 	let valdese_area = new L.LatLngBounds(vlpConfig.gpsBoundsValdese);
@@ -53,12 +53,18 @@ function vlpAppMap(targetDiv) {
 	let parkBaseMaps = {"Contour": contourLayer,"Photo": photoLayer,"Projected Park Plan":parkplanLayer};
 
 	function gps(latitude,longitude) { return new L.LatLng(latitude,longitude); }
+	function routeToFVR(e) {
+		e.stopPropagation();
+		router.navigate('fvr');
+	}
 
 	map.attributionControl.setPrefix('');
 	mapTiles.addTo(map);
 	yahBtn.bindTo(map);
 	fvrMark.addTo(map);
-	map.attributionControl.addAttribution('<a href="https://friendsofthevaldeserec.org">FVR</a>');
+	map.attributionControl.addAttribution('<a href="fvr" data-navigo>FVR</a>');
+
+	fvrMark.getContainer().addEventListener('click', routeToFVR);
 
 	if (g.vlpDebugMode) {
 		new ZoomViewer({position:'topleft'}).addTo(map);

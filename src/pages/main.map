@@ -3,6 +3,6 @@ title: Main Map
 opts:
 	addParkOverlays: true
 layers:
-- {group: Landmarks & Sightseeing, opacity: 0.85, weight: 9, list: [Orienteering.mapmarks,Landmarks.mapmarks,LakesideParkParcel.trail]}
+- {group: Landmarks & Sightseeing, opacity: 0.85, weight: 9, list: [Landmarks.mapmarks,LakesideParkParcel.trail]}
 - {group: Primary Trails, opacity: 0.85, weight: 9, list: [ParkingLot.trail,GreenWay.trail,YellowConnector.trail,RedOuter.trail,BlueLoop.trail,MeditationPoint.trail,McGalliardGreenway.trail,HoyleCreek.trail,ShadeSeeker.trail,OuterCreek.trail]}
 

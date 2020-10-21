@@ -29,12 +29,11 @@ var YAHControl = L.Control.extend({
 
 			if (b == b_c) return;
 
+			btn.classList.toggle('active');
 			if (b) {
-				btn.classList.add('active');
 				lastVisibleLocationTime = 0;
 				map.locate({watch: true, enableHighAccuracy:true, timeout:60000, maximumAge:5000});
 			} else {
-				btn.classList.remove('active');
 				map.removeLayer(yahMarker);
 				map.stopLocate();
 			}
@@ -44,7 +43,6 @@ var YAHControl = L.Control.extend({
 
 		btn.addEventListener('click', (e) => {
 			e.stopPropagation();
-			e.preventDefault();
 			yahActivate(!yahActive());
 		});
 

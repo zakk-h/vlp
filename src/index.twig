@@ -59,9 +59,10 @@ if ('serviceWorker' in navigator) {
 <div id="win-mainmenu" class="app-menu" style="display:none;">
 	<nav id="mainmenu">
 		<div class="mainmenu-tools">
-			<span class="toolbtn" id="btnid-yah"><i class="fvricon fvricon-walk"></i></span>
+			<a class="toolbtn" id="btnid-yah"><i class="fvricon fvricon-walk"></i></a>
 		</div>
 		<hr>
+		<div class="mainmenu-links">
 		{% set navgrp = '' %}
 		{% for pg in pages %}
 			{% if pg.class and pg.nav %}
@@ -74,6 +75,7 @@ if ('serviceWorker' in navigator) {
 				{% set navgrp = thisnavgrp %}
 			{% endif %}
 		{% endfor %}
+		</div>
 	</nav>
 </div>
 

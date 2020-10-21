@@ -21,7 +21,7 @@ species. A generous sampling of the park wildlife can be seen on [the zakklab si
 
 ## Trails
 
-Below are descriptions of each trail. Click on the trail to see more information.
+The park is home to a number of trails. Tap the trail name to see more information.
 
 <details>
 <summary>Greenway</summary>
@@ -39,7 +39,6 @@ throughout. Featured sights include:
   the water there are often birds such as the Great Blue Heron.
 - 1.3 Miles in: The future bridge to McGalliard Falls Park.
 
-![Greenway Trail Photo][photo-greenway]
 </details>
 
 <details>
@@ -49,10 +48,6 @@ throughout. Featured sights include:
 - 0.6 Miles
 - Grass can be tall at times.
 **Not recommended** until a future bridge project comes to fruition.
-
-![McGalliard Trail Photo][photo-mcgalliard]
-
-To cross to Lakeside Park as of now this pipe is what you would have to walk across.
 </details>
 
 <details>
@@ -65,8 +60,6 @@ The creek runs to the left side for the majority of the trail.
 A third of the way in, a good photo opportunity can be found
 on the left side, with access to the creek and an unusual tree
 overhang.
-
-![Yellow Creek Trail Photo][photo-yellowcreek]
 </details>
 
 <details>
@@ -79,7 +72,6 @@ The beginning and end of the trail can be a little steep.
 There are many elevation changes throughout the
 trail.
 
-![Red Outer Loop Trail Photo][photo-redouterloop]
 </details>
 
 <details>
@@ -90,8 +82,6 @@ trail.
 The trail takes you next to the water and down to Meditation Point.
 
 For casual walkers, the Meditation Point trail is recommended instead.
-
-![Blue Loop Trail Photo][photo-blueloop]
 </details>
 
 <details>
@@ -106,8 +96,6 @@ Has great water views and a rock halfway along the trail that you can go down
 and sit on and fish or take photos.
 
 No bikes allowed because this is a heavily trafficked trail and collisions could occur.
-
-![Meditation Point Trail Photo][photo-meditationpoint]
 </details>
 
 <details>
@@ -126,8 +114,6 @@ do wash it away frequently. The last part of the trail walks
 very close to the creek and there are some ups and downs and turns.
 At the very end you reach Lovelady Rd, where you cross the
 bridge to get back to Lake Rhodhiss Drive.
-
-![Hoyle Creek Trail Photo][photo-hoylecreek]
 </details>
 
 <details>
@@ -140,8 +126,6 @@ bridge to get back to Lake Rhodhiss Drive.
 A wooded trail along the side of the power lines that stays in the shade.
 Throughout the trail there you gain/lose 150 feet in elevation making the
 climb the most difficult part of the trail.
-
-![Shade Seeker Trail Photo][photo-shadeseeker]
 </details>
 
 <details>
@@ -153,21 +137,9 @@ climb the most difficult part of the trail.
 A difficult trail starting along Hoyle Creek and going up to Red.
 There is a small creek crossing with wooden planks allowing you to cross it.
 The width and terrain of the trail varies.
-
-![Outer Creek Connector Trail Photo][photo-outercreekconnector]
 </details>
 
 [link-fvr]: https://friendsofthevaldeserec.org/
 [link-bridgedonate]: https://friendsofthevaldeserec.org/donate-2
 [link-lakelevels]: https://lakes.duke-energy.com/index.html#/detail/14/Detail
 [link-zakklab]: https://zakklab.valdese.info
-
-[photo-greenway]: https://zakklab.valdese.info/files/greenway.jpg#center
-[photo-mcgalliard]: https://zakklab.valdese.info/files/mcgalliard.jpg#center
-[photo-yellowcreek]: https://zakklab.valdese.info/files/yellow.jpg#center
-[photo-redouterloop]: https://zakklab.valdese.info/files/red.jpg#center
-[photo-blueloop]: https://zakklab.valdese.info/files/blueloop.jpg#center
-[photo-meditationpoint]: https://zakklab.valdese.info/files/pointview.jpg#center
-[photo-hoylecreek]: https://zakklab.valdese.info/files/creek.jpg#center
-[photo-shadeseeker]: https://zakklab.valdese.info/files/orange2.jpg#center
-[photo-outercreekconnector]: https://zakklab.valdese.info/files/pink3.jpg#center

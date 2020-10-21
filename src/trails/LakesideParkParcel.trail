@@ -1,6 +1,5 @@
 name: Park Parcel Boundary
 color: "#D8B908"
-miles: 6
 dash: false
 optional: true
 trail:
