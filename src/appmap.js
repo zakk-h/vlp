@@ -45,11 +45,7 @@ function vlpAppMap(targetDiv) {
 		minZoom: vlpConfig.osmZoomRange[0],
 		maxNativeZoom: vlpConfig.osmZoomRange[1]
 		});
-	let fvrMark = new FVRWatermarkControl({position:'bottomleft'});
-	let yahBtn = new YAHControl({
-		position:'topright',
-		maxBounds: parkplan_bounds
-	});
+	let yahBtn = new YAHControl({maxBounds: parkplan_bounds});
 	let blankLayer = new RotateImageLayer(img_photo,vlpConfig.gpsBoundsSatellite,{rotation:vlpConfig.gpsBoundsLayerRotate,opacity:0.0});
 	let contourLayer = new RotateImageLayer(img_parkcontours, vlpConfig.gpsBoundsParkContour,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`});
 	let photoLayer = new RotateImageLayer(img_photo,vlpConfig.gpsBoundsSatellite,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`});
@@ -60,7 +56,7 @@ function vlpAppMap(targetDiv) {
 
 	map.attributionControl.setPrefix('');
 	mapTiles.addTo(map);
-	yahBtn.addTo(map);
+	yahBtn.bindTo(map);
 
 	if (g.vlpDebugMode) {
 		new ZoomViewer({position:'topleft'}).addTo(map);

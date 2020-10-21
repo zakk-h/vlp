@@ -9,16 +9,11 @@ var YAHControl = L.Control.extend({
         L.setOptions(this, options);
     },
 
-	onAdd: function(map) {
+	bindTo: function(map ) {
 		const flyToInterval = this.options.flyToInterval;
 		var lastVisibleLocationTime = 0;
 		var map_bounds = this.options.maxBounds || map.options.maxBounds;
-		var btn = L.DomUtil.create('a','fvrIconButton');
-		L.DomUtil.addClass(btn,'yahBtn');
-		btn.title = 'You are here';
-		btn.style.opacity = 0.8;
-		L.DomUtil.create('i','fvricon fvricon-walk',btn);
-
+		var btn = document.getElementById('btnid-yah');
 		var yahIcon = L.divIcon({
 			className: 'yah-divicon',
 			html: '<i class="fvricon fvricon-walk" style="font-size:32px;background:rgba(255,255,0,0.70); border:0; padding: 6px; border-radius:50%;"></i>',
@@ -27,7 +22,7 @@ var YAHControl = L.Control.extend({
 		});
 		var yahMarker = L.marker([35.75640,-81.58016],{icon:yahIcon}).bindTooltip('You are here');
 
-		function yahActive() {return L.DomUtil.hasClass(btn,'yahActive');}
+		function yahActive() {return btn.classList.contains('active');}
 		function yahActivate(b) {
 			let b_c = yahActive();
 			vlpDebug('toggle yah');
@@ -35,11 +30,11 @@ var YAHControl = L.Control.extend({
 			if (b == b_c) return;
 
 			if (b) {
-				L.DomUtil.addClass(btn,'yahActive');
+				btn.classList.add('active');
 				lastVisibleLocationTime = 0;
 				map.locate({watch: true, enableHighAccuracy:true, timeout:60000, maximumAge:5000});
 			} else {
-				L.DomUtil.removeClass(btn,'yahActive');
+				btn.classList.remove('active');
 				map.removeLayer(yahMarker);
 				map.stopLocate();
 			}
@@ -47,8 +42,11 @@ var YAHControl = L.Control.extend({
 			localStorage.yah = b;
 		}
 
-		L.DomEvent.on(btn,'click', () => {yahActivate(!yahActive());});
-		L.DomEvent.disableClickPropagation(btn);
+		btn.addEventListener('click', (e) => {
+			e.stopPropagation();
+			e.preventDefault();
+			yahActivate(!yahActive());
+		});
 
 		map.on('locationfound', function(e) {
 			var yahLatLng = e.latlng;
@@ -86,11 +84,7 @@ var YAHControl = L.Control.extend({
 		});
 
 		if (localStorage.yah) yahActivate(true);
-		
-		return btn;
 	},
-
-	onRemove: function(map) { },
 });
 /*
 var myLat = position.coords.latitude;

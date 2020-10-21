@@ -58,6 +58,10 @@ if ('serviceWorker' in navigator) {
 
 <div id="win-mainmenu" class="app-menu" style="display:none;">
 	<nav id="mainmenu">
+		<div class="mainmenu-tools">
+			<span class="toolbtn" id="btnid-yah"><i class="fvricon fvricon-walk"></i></span>
+		</div>
+		<hr>
 		{% set navgrp = '' %}
 		{% for pg in pages %}
 			{% if pg.class and pg.nav %}
