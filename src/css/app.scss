@@ -1,4 +1,5 @@
 
+@use "sass:color";
 @use "./lib" as *;
 
 html,
@@ -47,13 +48,15 @@ div.app-menu {
 	left: 50%;
 	width: $menu-width;
 	margin: 0 0 0 #{0px - ($menu-width / 2)};
-	padding: 10px 0;
+	padding: 0 0 10px 0;
 	background-color: $menu-bgcolor;
 	color: white;
+	border-top: solid 1px white;
 	border-radius: 0 0 $menu-radius $menu-radius;
 	overflow: auto;
 	max-height: 70%;
 }
+
 .app-menu a {
 	display: block;
 	margin: 0;
@@ -63,6 +66,34 @@ div.app-menu {
 .app-menu a:hover {
 	color: #111;
 	background-color: white;
+}
+
+div.mainmenu-tools {
+	margin: 3px auto;
+	text-align: center;
+}
+
+span.toolbtn {
+	display: inline-block;
+	background-color: color.scale($menu-bgcolor,$lightness:5%);
+	color: gray;
+	border: 0;
+	border-radius: 3px;
+
+	&:hover {
+		background-color: white;
+	}
+	&.active {
+		background-color:yellow;
+		color: $menu-bgcolor;
+	}
+
+	& .fvricon {
+		font-size: 24px;
+		padding: 6px;
+		
+		&.fvricon-walk {margin-left: 2px;}
+	}
 }
 
 // leaflet updates for header
