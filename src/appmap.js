@@ -226,7 +226,7 @@ function vlpAppMap(targetDiv,router) {
 		});
 
 		// on first showing, we try to fit the view around the target area
-		if (doCacheInit) map.fitBounds(cache.mapview.maxBounds)
+		if (doCacheInit) map.fitBounds(pageopts.yahZoomStartup ? cache.mapview.yahBounds : cache.mapview.maxBounds);
 		else map.setView(cache.mapview.center,cache.mapview.zoom);
 	}
 }
