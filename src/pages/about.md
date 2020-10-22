@@ -4,13 +4,7 @@ nav: B100
 
 # About the Park
 
-<div class="social-bar">
-<a target="_blank" href="https://friendsofthevaldeserec.org/"><i class="fvricon fvricon-facebook"></i></a>
-<a target="_blank" href="https://www.instagram.com/friendsofthevaldeserec/"><i class="fvricon fvricon-instagram"></i></a>
-<a target="_blank" href="https://friendsofthevaldeserec.org"><img src="../img/fvrlogopng.png"></a>
-<a target="_blank" href="https://twitter.com/FriendsValdese"><i class="fvricon fvricon-twitter"></i></a>
-<a target="_blank" href="https://github.com/valdese-net/vlp"><i class="fvricon fvricon-github"></i></a>
-</div>
+{% include 'pages/social.html' %}
 
 The [Friends of the Valdese Rec][link-fvr] would like to welcome you to Valdese Lakeside,
 a 300 acre municipal park with construction set to start in 2020. Currently, the park is

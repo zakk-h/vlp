@@ -4,13 +4,7 @@ nav: C100
 
 # About This App
 
-<div class="social-bar">
-<a target="_blank" href="https://friendsofthevaldeserec.org/"><i class="fvricon fvricon-facebook"></i></a>
-<a target="_blank" href="https://www.instagram.com/friendsofthevaldeserec/"><i class="fvricon fvricon-instagram"></i></a>
-<a target="_blank" href="https://friendsofthevaldeserec.org"><img src="../img/fvrlogopng.png"></a>
-<a target="_blank" href="https://twitter.com/FriendsValdese"><i class="fvricon fvricon-twitter"></i></a>
-<a target="_blank" href="https://github.com/valdese-net/vlp"><i class="fvricon fvricon-github"></i></a>
-</div>
+{% include 'pages/social.html' %}
 
 ## Introduction to the App
 
