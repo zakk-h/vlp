@@ -2,7 +2,7 @@
 nav: C100
 ---
 
-# App Info and Help
+# About This App
 
 <div class="social-bar">
 <a target="_blank" href="https://friendsofthevaldeserec.org/"><i class="fvricon fvricon-facebook"></i></a>
@@ -28,6 +28,13 @@ the map overlay image.
 - The info button icon in the top left corner provides more information about the park
 along with summaries and pictures of all the trails here.
 
+## Alternate Maps
+
+The app includes some alternate map views, which occasionally can be useful:
+
+- [Map of Burk County][link-mapburke] for looking around the park's surrounding area
+- [Map with Measuring Tool][link-mapmeasure] for measuring path distances on the map
+
 ## Offline Use
 
 You can install the app on any device and it works offline. Detailed instructions can be found
@@ -42,3 +49,5 @@ In Chrome, Tap the bottom prompt that says "Add to Homescreen"
 
 [link-fvr]: #fvr
 [link-zakklab]: https://zakklab.valdese.info/vlp/smart-install/
+[link-mapburke]: mapburke.map
+[link-mapmeasure]: mapmeasure.map

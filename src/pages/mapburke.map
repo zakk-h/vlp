@@ -1,9 +1,6 @@
-nav: A200
+title: Map of Burke County
 opts:
 	maxBounds: [[35.816, -81.833], [35.697, -81.406]]
 	yahBounds: null
-	addMeasureControl: true
-	zoomBtns: false
-title: Burke County Map
 layers:
 - {group: Around Valdese, opacity: 0.85, weight: 9, list: [Food.mapmarks,Petrol.mapmarks]}

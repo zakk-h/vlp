@@ -29,6 +29,7 @@ L.Marker.prototype.options.icon = createSVGIcon('marker');
 
 function vlpAppMap(targetDiv,router) {
 	const burkeGISMap = 'http://gis.burkenc.org/default.htm?PIN=2744445905';
+	let zoomRemoved = false;
 	let parkplan_bounds = new L.LatLngBounds(vlpConfig.gpsBoundsParkPlan);
 	let valdese_area = new L.LatLngBounds(vlpConfig.gpsBoundsValdese);
 	let gpsCenter = parkplan_bounds.getCenter();
@@ -204,6 +205,17 @@ function vlpAppMap(targetDiv,router) {
 			}
 	
 			pagedata.cache = cache;
+		}
+
+		if (map.zoomControl) {
+			let z = map.zoomControl;
+			if (pageopts.hideZoomControl) {
+				zoomRemoved = true;
+				z.remove();
+			} else if (zoomRemoved) {
+				zoomRemoved = false;
+				z.addTo(map);
+			}
 		}
 
 		map.setMaxBounds(cache.mapview.maxBounds);
