@@ -4,9 +4,18 @@ nav: B100
 
 # About the Park
 
-Welcome to **Valdese Lakeside Park**, a 300 acre park with construction set
-to start in 2020. The park is maintained by the [Friends of the Valdese Rec][link-fvr]
-volunteer organization.
+<div class="social-bar">
+<a target="_blank" href="https://friendsofthevaldeserec.org/"><i class="fvricon fvricon-facebook"></i></a>
+<a target="_blank" href="https://www.instagram.com/friendsofthevaldeserec/"><i class="fvricon fvricon-instagram"></i></a>
+<a target="_blank" href="https://friendsofthevaldeserec.org"><img src="../img/fvrlogopng.png"></a>
+<a target="_blank" href="https://twitter.com/FriendsValdese"><i class="fvricon fvricon-twitter"></i></a>
+<a target="_blank" href="https://github.com/valdese-net/vlp"><i class="fvricon fvricon-github"></i></a>
+</div>
+
+The [Friends of the Valdese Rec][link-fvr] would like to welcome you to Valdese Lakeside,
+a 300 acre municipal park with construction set to start in 2020. Currently, the park is
+maintained by the [Friends of the Valdese Rec][link-fvr] volunteer organization.
+We hope that enjoy your visit to Valdese Lakeside Park!
 
 The [Friends of the Valdese Rec][link-fvr] is [currently accepting donations][link-bridgedonate] for construction
 of a **150 foot suspension bridge** connecting McGalliard Falls and Valdese Lakeside Park. Donations are accepted
@@ -139,7 +148,7 @@ There is a small creek crossing with wooden planks allowing you to cross it.
 The width and terrain of the trail varies.
 </details>
 
-[link-fvr]: https://friendsofthevaldeserec.org/
-[link-bridgedonate]: https://friendsofthevaldeserec.org/donate-2
+[link-fvr]: #fvr
+[link-bridgedonate]: #donate
 [link-lakelevels]: https://lakes.duke-energy.com/index.html#/detail/14/Detail
 [link-zakklab]: https://zakklab.valdese.info

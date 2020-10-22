@@ -1,6 +1,7 @@
 nav: A200
 opts:
 	maxBounds: [[35.816, -81.833], [35.697, -81.406]]
+	yahBounds: null
 	addMeasureControl: true
 	zoomBtns: false
 title: Burke County Map

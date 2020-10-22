@@ -71,7 +71,7 @@ if ('serviceWorker' in navigator) {
 					<hr>
 				{% endif %}
 
-				<a href="{{ pg.id }}" data-navigo>{{ pg.title }}</a>
+				<a href="#{{ pg.id }}" data-navigo>{{ pg.title }}</a>
 				{% set navgrp = thisnavgrp %}
 			{% endif %}
 		{% endfor %}
