@@ -50,8 +50,9 @@ function vlpAppMap(targetDiv) {
 	let contourLayer = new RotateImageLayer(img_parkcontours, vlpConfig.gpsBoundsParkContour,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`});
 	let photoLayer = new RotateImageLayer(img_photo,vlpConfig.gpsBoundsSatellite,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`});
 	let parkplanLayer = new RotateImageLayer(img_parkplan,vlpConfig.gpsBoundsParkPlan,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:'<a href="https://dbdplanning.com/">Destination by Design</a>'});
-	let parkBaseMaps = {"Background": blankLayer, "Contour": contourLayer,"Photo": photoLayer,"Projected Park Plan":parkplanLayer};
-
+	
+	let parkBaseMaps = {"Background": blankLayer, "Contour": contourLayer, "Photo": photoLayer,"Projected Park Plan":parkplanLayer};
+	
 	function gps(latitude,longitude) { return new L.LatLng(latitude,longitude); }
 
 	map.attributionControl.setPrefix('');
