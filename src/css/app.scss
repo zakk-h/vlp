@@ -11,6 +11,7 @@ body,
 }
 
 a {
+	color: $menu-bgcolor;
 	text-decoration: none;
 	cursor: pointer;
 }
@@ -57,23 +58,7 @@ div.app-menu {
 	max-height: 70%;
 }
 
-.app-menu a {
-	display: block;
-	margin: 0;
-	padding: 4px 12px;
-	color: white;
-}
-.app-menu a:hover {
-	color: #111;
-	background-color: white;
-}
-
-div.mainmenu-tools {
-	margin: 3px auto;
-	text-align: center;
-}
-
-span.toolbtn {
+a.toolbtn {
 	display: inline-block;
 	background-color: color.scale($menu-bgcolor,$lightness:5%);
 	color: gray;
@@ -94,6 +79,22 @@ span.toolbtn {
 		
 		&.fvricon-walk {margin-left: 2px;}
 	}
+}
+
+.mainmenu-links a {
+	display: block;
+	margin: 0;
+	padding: 4px 12px;
+	color: white;
+}
+.mainmenu-links a:hover {
+	color: #111;
+	background-color: white;
+}
+
+div.mainmenu-tools {
+	margin: 3px auto;
+	text-align: center;
 }
 
 // leaflet updates for header
@@ -156,19 +157,33 @@ div.info-content {
 	font-weight: 400;
 	line-height: 1.5;
 	overflow: auto;
-}
-.info-content div > h1:first-child {
-	display: none;
-}
-.info-content img[src*="#center"] {
-	display: block;
-	max-width: 80%;
-	margin: auto;
-}
-.info-content img[src*="#inline"] {
-	display: inline;
-	border: 0;
-	max-height: 16px;
+
+	& > div > h1:first-child {
+		display: none;
+	}
+	& summary {
+		cursor: pointer;
+		padding-top: 8px;
+		color: darkblue;
+	}
+	& details[open] {
+		& summary {color: black; }
+	}
+	& img[src*="#fleft32"] {
+		max-height: 32px;
+		float: left;
+		padding: 8px 8px 8px 0;
+	}
+	& img[src*="#center"] {
+		display: block;
+		max-width: 80%;
+		margin: auto;
+	}
+	& img[src*="#inline"] {
+		display: inline;
+		border: 0;
+		max-height: 16px;
+	}
 }
 
 img.fvrlogo {
@@ -188,4 +203,25 @@ a.btn {
 	background: #ccffcc;
 	margin: 15px auto;
 	text-align: center;
+	border-radius: 4px;
+}
+
+div.social-bar {
+	text-align:center;
+
+	& a {
+		display: inline-block;
+		padding: 5px;
+		color: $menu-bgcolor;
+
+		& img {height: 32px; width: 32px;}
+
+		& i.fvricon {
+			font-size: 32px;
+			&.fvricon-twitter {color: #1DA1F2;}
+			&.fvricon-facebook {color: #1877F2;}
+			&.fvricon-github {color: purple;}
+			&.fvricon-instagram {color: white; background-image: linear-gradient(#E1306C, rgb(119, 3, 3)); border-radius: 10px;}
+		}
+	}
 }

@@ -7,10 +7,10 @@ export function showWhatsNew() {
 
 	if (!lastSeen) {
 		localStorage.vintage = LatestWhatsNewEntry;
-		return;
+		return false;
 	}
 
-	if (LatestWhatsNewEntry <= lastSeen) return;
+	if (LatestWhatsNewEntry <= lastSeen) return false;
 
 	let ul = document.createElement('ul');
 	ul.className = 'whatsnew';
@@ -31,4 +31,5 @@ export function showWhatsNew() {
 	html.appendChild(ul);
 
 	showModal('What&#039;s New',html, () => localStorage.vintage = LatestWhatsNewEntry);
+	return true;
 }

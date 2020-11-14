@@ -1,0 +1,6 @@
+title: Map with Measuring Tool
+opts:
+	maxBounds: [[35.816, -81.833], [35.697, -81.406]]
+	yahBounds: [[35.776043,-81.549904],[35.775486,-81.548724]]
+	addMeasureControl: true
+	hideZoomControl: true

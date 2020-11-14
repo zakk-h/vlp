@@ -9,49 +9,51 @@ var YAHControl = L.Control.extend({
         L.setOptions(this, options);
     },
 
-	bindTo: function(map ) {
-		const flyToInterval = this.options.flyToInterval;
-		var lastVisibleLocationTime = 0;
-		var map_bounds = this.options.maxBounds || map.options.maxBounds;
-		var btn = document.getElementById('btnid-yah');
-		var yahIcon = L.divIcon({
+	bindTo: function(map) {
+		const options = this.options;
+		const flyToInterval = options.flyToInterval;
+		let lastVisibleLocationTime = 0;
+		let btn = document.getElementById('btnid-yah');
+		let yahIcon = L.divIcon({
 			className: 'yah-divicon',
 			html: '<i class="fvricon fvricon-walk" style="font-size:32px;background:rgba(255,255,0,0.70); border:0; padding: 6px; border-radius:50%;"></i>',
 			iconSize: [36, 36],
 			iconAnchor: [18, 30]
 		});
-		var yahMarker = L.marker([35.75640,-81.58016],{icon:yahIcon}).bindTooltip('You are here');
+		let yahMarker = L.marker([35.75640,-81.58016],{icon:yahIcon}).bindTooltip('You are here');
 
 		function yahActive() {return btn.classList.contains('active');}
 		function yahActivate(b) {
 			let b_c = yahActive();
-			vlpDebug('toggle yah');
+			vlpDebug('yahActivate '+b);
 
 			if (b == b_c) return;
 
+			btn.classList.toggle('active');
 			if (b) {
-				btn.classList.add('active');
 				lastVisibleLocationTime = 0;
 				map.locate({watch: true, enableHighAccuracy:true, timeout:60000, maximumAge:5000});
 			} else {
-				btn.classList.remove('active');
 				map.removeLayer(yahMarker);
 				map.stopLocate();
 			}
 
-			localStorage.yah = b;
+			if (localStorage) {
+				if (b) localStorage.yah = 1;
+				else localStorage.removeItem('yah');
+			}
 		}
 
 		btn.addEventListener('click', (e) => {
 			e.stopPropagation();
-			e.preventDefault();
 			yahActivate(!yahActive());
 		});
 
 		map.on('locationfound', function(e) {
-			var yahLatLng = e.latlng;
-			var yahTime = e.timestamp;
-			var firstLocationNotify = !map.hasLayer(yahMarker);
+			let map_bounds = options.maxBounds || map.options.maxBounds;
+			let yahLatLng = e.latlng;
+			let yahTime = e.timestamp;
+			let firstLocationNotify = !map.hasLayer(yahMarker);
 			vlpDebug('locate',yahLatLng);
 		
 			if (firstLocationNotify) {
@@ -69,7 +71,7 @@ var YAHControl = L.Control.extend({
 				} else {
 					// user is in the park, but location is currently off-screen
 					if ((yahTime - lastVisibleLocationTime) >= flyToInterval) {
-						vlpDebug('flying to location in park');
+						vlpDebug('yah flying to location');
 						lastVisibleLocationTime = yahTime;
 						map.flyTo(yahLatLng);
 					}
@@ -83,7 +85,7 @@ var YAHControl = L.Control.extend({
 			}
 		});
 
-		if (localStorage.yah) yahActivate(true);
+		if (localStorage && localStorage.yah) yahActivate(true);
 	},
 });
 

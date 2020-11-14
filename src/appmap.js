@@ -16,6 +16,7 @@ import {FVRWatermarkControl} from './leaflet/FVRWatermarkControl.js';
 import {ZoomViewer} from './leaflet/ZoomViewer.js';
 
 import './vlp-manifest-icons.js';
+import * as blankImage from './img/blank.png';
 import * as blankTile from './img/blankTile.png';
 import * as img_parkplan from './img/dbd-parkplan.png';
 import * as img_photo from './img/park-satellite.png';
@@ -26,8 +27,9 @@ const vlpDebug = g.vlpDebug;
 
 L.Marker.prototype.options.icon = createSVGIcon('marker');
 
-function vlpAppMap(targetDiv) {
+function vlpAppMap(targetDiv,router) {
 	const burkeGISMap = 'http://gis.burkenc.org/default.htm?PIN=2744445905';
+	let zoomRemoved = false;
 	let parkplan_bounds = new L.LatLngBounds(vlpConfig.gpsBoundsParkPlan);
 	let valdese_area = new L.LatLngBounds(vlpConfig.gpsBoundsValdese);
 	let gpsCenter = parkplan_bounds.getCenter();
@@ -35,25 +37,28 @@ function vlpAppMap(targetDiv) {
 		zoomControl: !L.Browser.mobile,
 		center: gpsCenter,
 		minZoom: vlpConfig.osmZoomRange[0],
-		zoom: vlpConfig.osmZoomRange[1],
+		zoom: vlpConfig.osmZoomRange[0],
 		maxBounds: valdese_area
 	});
 	let mapTiles = new ValdeseTileLayer(vlpConfig.urlTileServer, {
-		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+		attribution: '&copy; <a target="_blank" href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 		errorTileUrl: blankTile,
 		crossOrigin: true,
 		minZoom: vlpConfig.osmZoomRange[0],
 		maxNativeZoom: vlpConfig.osmZoomRange[1]
 		});
 	let yahBtn = new YAHControl({maxBounds: parkplan_bounds});
-	let blankLayer = new RotateImageLayer(img_photo,vlpConfig.gpsBoundsSatellite,{rotation:vlpConfig.gpsBoundsLayerRotate,opacity:0.0});
-	let contourLayer = new RotateImageLayer(img_parkcontours, vlpConfig.gpsBoundsParkContour,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`});
-	let photoLayer = new RotateImageLayer(img_photo,vlpConfig.gpsBoundsSatellite,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:`<a href="${burkeGISMap}">gis.burkenc</a>`});
-	let parkplanLayer = new RotateImageLayer(img_parkplan,vlpConfig.gpsBoundsParkPlan,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:'<a href="https://dbdplanning.com/">Destination by Design</a>'});
-	
-	let parkBaseMaps = {"Background": blankLayer, "Contour": contourLayer, "Photo": photoLayer,"Projected Park Plan":parkplanLayer};
-	
+	let osmOnlyLayer = new L.ImageOverlay(blankImage, [[35.776043,-81.549904],[35.775486,-81.548724]],{opacity:0});
+	let contourLayer = new RotateImageLayer(img_parkcontours, vlpConfig.gpsBoundsParkContour,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:`<a target="_blank" href="${burkeGISMap}">gis.burkenc</a>`});
+	let photoLayer = new RotateImageLayer(img_photo,vlpConfig.gpsBoundsSatellite,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:`<a target="_blank" href="${burkeGISMap}">gis.burkenc</a>`});
+	let parkplanLayer = new RotateImageLayer(img_parkplan,vlpConfig.gpsBoundsParkPlan,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:'<a target="_blank" href="https://dbdplanning.com/">Destination by Design</a>'});
+	let parkBaseMaps = {"Open Street Map": osmOnlyLayer,"Contour": contourLayer,"Photo": photoLayer,"Projected Park Plan":parkplanLayer};
+
 	function gps(latitude,longitude) { return new L.LatLng(latitude,longitude); }
+	function routeToFVR(e) {
+		e.stopPropagation();
+		router.navigate('fvr');
+	}
 
 	map.attributionControl.setPrefix('');
 	mapTiles.addTo(map);
@@ -94,7 +99,12 @@ function vlpAppMap(targetDiv) {
 	}
 
 	this.clearConfig = function(pagedata) {
-		let layers = pagedata.cache.layers;
+		if (!pagedata.cache) return;
+		let cache = pagedata.cache;
+		let layers = cache.layers;
+
+		cache.mapview.zoom = map.getZoom();
+		cache.mapview.center = map.getCenter();
 
 		for (let i=layers.length; i>0; i--) {
 			let layer = layers[i-1];
@@ -106,11 +116,21 @@ function vlpAppMap(targetDiv) {
 
 	this.showConfig = function(pagedata) {
 		let pageopts = pagedata.opts || {};
-		let maxBounds = new L.LatLngBounds(pageopts.maxBounds || vlpConfig.gpsBoundsValdese);
 		let cache = pagedata.cache || {layers: []};
+		let doCacheInit = !pagedata.cache;
 
-		if (!pagedata.cache) {
+		if (doCacheInit) {
+			let maxBoundsRaw = pageopts.maxBounds || vlpConfig.gpsBoundsValdese;
+			let maxBoundsLL = new L.LatLngBounds(maxBoundsRaw);
+			let yahBoundsLL =  new L.LatLngBounds(pageopts.yahBounds || maxBoundsRaw);
 			let baselayers = {};
+
+			cache.mapview = {
+				maxBounds: maxBoundsLL,
+				yahBounds: yahBoundsLL,
+				zoom: (vlpConfig.osmZoomRange[0]+vlpConfig.osmZoomRange[1])/2,
+				center: yahBoundsLL.getCenter()
+			}
 
 			if (pageopts.addParkOverlays) {
 				baselayers = parkBaseMaps;
@@ -182,14 +202,27 @@ function vlpAppMap(targetDiv) {
 			pagedata.cache = cache;
 		}
 
-		map.setMaxBounds(maxBounds);
-		//map.fitBounds(vlpConfig.gpsBoundsParkPlan);
+		if (map.zoomControl) {
+			let z = map.zoomControl;
+			if (pageopts.hideZoomControl) {
+				zoomRemoved = true;
+				z.remove();
+			} else if (zoomRemoved) {
+				zoomRemoved = false;
+				z.addTo(map);
+			}
+		}
+
+		map.setMaxBounds(cache.mapview.maxBounds);
+		yahBtn.options.maxBounds = cache.mapview.yahBounds;
 
 		cache.layers.forEach(layer => {
 			if (layer.visible) layer.layer.addTo(map);
 		});
 
-		//L.rectangle(vlpConfig.gpsBoundsSatellite, {color: "#ff7800", weight: 1}).addTo(map);
+		// on first showing, we try to fit the view around the target area
+		if (doCacheInit) map.fitBounds(pageopts.yahZoomStartup ? cache.mapview.yahBounds : cache.mapview.maxBounds);
+		else map.setView(cache.mapview.center,cache.mapview.zoom);
 	}
 }
 

@@ -5,8 +5,6 @@ var FVRWatermarkControl = L.Control.extend({
 		var link = L.DomUtil.create('a','fvrlink');
 		var img = L.DomUtil.create('img','fvrlogo',link);
 
-		link.href = 'https://friendsofthevaldeserec.org/valdese-lakeside-park-2';
-		link.target = '_blank';
 		img.src = fvr_logo;
 
 		return link;
