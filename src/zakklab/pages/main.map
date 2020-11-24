@@ -8,8 +8,9 @@ opts:
 	addMeasureControl: true
 	hideZoomControl: true
 layers:
+- {group: Logging Roads, opacity: 0.85, weight: 9, list: [Logging1.trail, Logging2.trail, Logging3.trail, Logging4.trail, Logging5.trail, Logging6.trail, Logging7.trail, Logging8.trail, LoggingValley1.trail,]}
 - {group: Options, opacity: 0.85, weight: 9, list: [Orienteering.mapmarks,Landmarks.mapmarks,LakesideParkParcel.trail, DogPark.trail]}
 - {group: Primary Trails, opacity: 0.85, weight: 9, list: [GreenWay.trail,YellowConnector.trail,RedOuter.trail,BlueLoop.trail,MeditationPoint.trail,McGalliardGreenway.trail,HoyleCreek.trail,ShadeSeeker.trail,OuterCreek.trail]}
-- {group: Zakklab Trails, opacity: 0.85, weight 9, list: [GreenDiagonal.trail,LimeLoop.trail,Pink.trail,StoneSkipper.trail]}
+- {group: Zakklab Trails, opacity: 0.85, weight 9, list: [GreenDiagonal.trail,LimeLoop.trail,Pink.trail,StoneSkipper.trail,ShadeCut.trail, Oven.trail]}
 - {group: DHS Trails, opacity: 0.85, weight 8, list: [HighSchoolXCTrail1.trail,HighSchoolXCTrail2.trail,HighSchoolXCTrail3.trail]}
-- {group: Connectors, opacity: 0.85, weight 7, list: [DHSRoad.trail, FireHydrant.trail, HCBeachConnector.trail, HCConnector.trail, HelmetConnector.trail, OuterConnector.trail, PinkConnector.trail, PinkGreenConnector.trail, RoundaboutConnector.trail, ShadeConnector.trail]}
+- {group: Connectors, opacity: 0.85, weight 7, list: [DHSRoad.trail, FireHydrant.trail, HCBeachConnector.trail, HelmetConnector.trail, PinkConnector.trail, PinkGreenConnector.trail, RoundaboutConnector.trail]}

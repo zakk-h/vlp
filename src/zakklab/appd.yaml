@@ -4,6 +4,7 @@ manifest_themecolor: '#AA0000'
 manifest_bgcolor: '#AA0000'
 zakklab: true
 history:
+- [1606240731, "Trail Color Changes, Logging Road Additions"]
 - [1602974082, "More Creeks are rolling out - Above Saft, Below Lime, on the Left Side of Greenway"]
 - [1602973582, "Fixed issue on mobile with map not working. Added new menu at the top of map with page navigation. Highly recommend checking it out."]
 - [1602857496, "Adding more features to the map background: factories, high school, park property, hobble island, etc. Now features better tiles that make the app look much cleaner. Outer Creek Connector is cleared and finished. Best access is from the switchback."]

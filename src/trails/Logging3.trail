@@ -1,0 +1,10 @@
+name: Logging3
+secret: false
+color: "#FF0C0C"
+miles: 0.07
+dash: true
+optional: true
+trail:
+- [35.769825, -81.554329]
+- [35.770377, -81.555102]
+- [35.770429, -81.555467]

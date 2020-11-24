@@ -2,7 +2,7 @@
 nav: B500
 ---
 
-# About the Park
+# Zakklab Park Info
 
 Welcome to **Valdese Lakeside Park** - a 300 acre park with construction set
 to start in 2020. The park is maintained by the
