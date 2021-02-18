@@ -2,7 +2,7 @@ name: Green Diagonal
 secret: false
 color: "#013603"
 miles: 0.15
-dash: false
+dash: true
 optional: false
 trail:
 - [35.774686, -81.545077, 313.5]

@@ -1,5 +1,5 @@
-nav: A100
-title: Adventure Map
+nav: A200
+title: Trash Map
 opts:
 	maxBounds: [[35.721650, -81.597445], [35.784838, -81.514709]]
 	yahBounds: [[35.7632, -81.5670], [35.7765, -81.54284]]
@@ -8,7 +8,8 @@ opts:
 	addMeasureControl: true
 	hideZoomControl: true
 layers:
-- {group: Options, opacity: 0.85, weight: 9, list: [Orienteering.mapmarks,Landmarks.mapmarks,LakesideParkParcel.trail, DogPark.trail]}
+- {group: Around Valdese, opacity: 0.85, weight: 9, list: [trash.mapmarks]}
+#- {group: Options, opacity: 0.85, weight: 9, list: [Orienteering.mapmarks,Landmarks.mapmarks,LakesideParkParcel.trail, DogPark.trail]}
 - {group: Primary Trails, opacity: 0.85, weight: 9, list: [GreenWay.trail,YellowConnector.trail,RedOuter.trail,BlueLoop.trail,MeditationPoint.trail,McGalliardGreenway.trail,HoyleCreek.trail,ShadeSeeker.trail,OuterCreek.trail]}
 - {group: Zakklab Trails, opacity: 0.85, weight 9, list: [GreenDiagonal.trail, Lime2.trail, Pink.trail, ShadeCut.trail, Snipper1.trail, Snipper2.trail,]}
 - {group: DHS Trails, opacity: 0.85, weight 8, list: [HighSchoolXCTrail1.trail,HighSchoolXCTrail2.trail,HighSchoolXCTrail3.trail]}

@@ -1,8 +1,0 @@
-nav: A200
-title: VLP Map
-opts:
-	addParkOverlays: true
-layers:
-- {group: Landmarks & Sightseeing, opacity: 0.85, weight: 9, list: [Orienteering.mapmarks,Landmarks.mapmarks,LakesideParkParcel.trail]}
-- {group: Primary Trails, opacity: 0.85, weight: 9, list: [GreenWay.trail,YellowConnector.trail,RedOuter.trail,BlueLoop.trail,MeditationPoint.trail,McGalliardGreenway.trail,HoyleCreek.trail,ShadeSeeker.trail,OuterCreek.trail]}
-

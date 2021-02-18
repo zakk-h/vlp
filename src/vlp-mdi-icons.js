@@ -2,7 +2,7 @@ import {mdiTableFurniture, mdiFlagTriangle, mdiCamera, mdiCarMultiple, mdiParkin
 	mdiSailBoat, mdiBridge, mdiNature, mdiInformationOutline, mdiWaves,
 	mdiBike, mdiFish, mdiShipWheel, mdiImageFilterHdr, mdiBeach, mdiCctv, mdiSofaSingle,
 	mdiMapMarker, mdiGasStation, mdiSilverwareForkKnife, 
-	mdiFood, mdiBeer, mdiGlassWine} from '@mdi/js';
+	mdiFood, mdiBeer, mdiGlassWine, mdiDelete, mdiLadder, mdiHelp} from '@mdi/js';
 
 // https://materialdesignicons.com
 
@@ -31,6 +31,9 @@ const mdiSVGPaths = {
 	gas:		mdiGasStation,
 	marker:		mdiMapMarker,
 	wine:		mdiGlassWine,
+	trash:		mdiDelete,
+	ladder:		mdiLadder,
+	question:	mdiHelp,
 }
 
 const mdiSVGIcons = {
@@ -59,12 +62,15 @@ const mdiSVGIcons = {
 	nature:	{path: mdiSVGPaths.nature,fill:'#00AA00',anchor:[0.5,1.0]},
 	parking: {path: mdiSVGPaths.parking,fill:'#0000AA'},
 	picnic:	{path: mdiSVGPaths.picnic,fill:'#5C2F00'},
-	cctv:   {path: mdiSVGPaths.cctv,strokeWidth:1,size:24,fill:'7C8216'},
+	cctv:   {path: mdiSVGPaths.cctv,strokeWidth:1,size:24,fill:'#7C8216'},
 	rock:	{path: mdiSVGPaths.rock,fill:'#70BB0A',stroke:'#000000', size: 31}, 
 	waves:	{path: mdiSVGPaths.waves,fill:'#000066'},
 	wheel:	{path: mdiSVGPaths.wheel,fill:'#5C2F00'},
 	sofa:	{path: mdiSVGPaths.sofa,fill:'#260D4E', size: 28},
 	wine:	{path: mdiSVGPaths.wheel,fill:'#9e0c35'},
+	trash: {path: mdiSVGPaths.trash,fill:'#000000', size:30},
+	ladder: {path: mdiSVGPaths.ladder,fill:'#3F2812', size: 35, stroke: '#FFFFFF'},
+	question: {path: mdiSVGPaths.question,fill:'#6D0E0E', stroke: '#B0891E'},
 }
 
 function buildIcon(icoName) {

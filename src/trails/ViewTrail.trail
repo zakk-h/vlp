@@ -1,10 +1,11 @@
-name: Logging8
+name: View Trail
 secret: false
-color: "#FF0C0C"
-miles: 0.07
+color: "#69093F"
+miles: 0.25
 dash: true
-optional: true
+optional: false
 trail:
+- [35.770672,-81.550682]
 - [35.770920, -81.550795]
 - [35.771259, -81.550977]
 - [35.771575, -81.550864]

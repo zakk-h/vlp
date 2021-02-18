@@ -146,4 +146,4 @@ The width and terrain of the trail varies.
 [link-fvr]: #fvr
 [link-bridgedonate]: #donate
 [link-lakelevels]: https://lakes.duke-energy.com/index.html#/detail/14/Detail
-[link-zakklab]: https://zakklab.valdese.info
+[link-zakklab]: https://zakklab.valdese.info/vlp/wildlife/

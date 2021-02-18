@@ -4,8 +4,8 @@ nav: B500
 
 # Welcome
 
-The [Friends of the Valdese Rec][link-fvr] would like to welcome you to Valdese Lakeside, a 300 acre municipal park with construction set
-to start in 2020. We hope that enjoy your visit to Valdese Lakeside Park!
+The [Friends of the Valdese Rec][link-fvr] would like to welcome you to Valdese Lakeside, a 325 acre municipal park with construction set
+to start in March/April. We hope that enjoy your visit to Valdese Lakeside Park!
 
 {% if zakklab %}
 This is Zakklab's Lakeside App. There are over 10 miles of trails to explore!

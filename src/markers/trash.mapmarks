@@ -1,0 +1,30 @@
+name: Orienteering Markers
+markers:
+- [[35.766594,-81.554142], "ladder", "Saft Tree Stand on Red Trail."]
+- [[35.769288,-81.557297], "trash", "Part of Treestand, black material (not in tree)"]
+- [[35.763595,-81.550623], "trash", "Many pieces of trash like tires in Weaver Creek"]
+- [[35.763547,-81.549647], "trash", "Weaver Creek Washer/Dryer"]
+- [[35.76277, -81.54924], "trash", "Smaller Trash along Hoyle Creek"]
+- [[35.769249,-81.559308], "trash", "Small Trash along Red Trail."]
+- [[35.771386,-81.558584], "trash", "Tall Deer Feeder Thing"]
+- [[35.761801,-81.549293], "trash", "Tire leaning on guardrail at Hoyle Creek."]
+- [[35.762332,-81.549314], "trash", "Big Metal Piece along Hoyle Creek Trail"]
+- [[35.765828,-81.549711], "question", "Treestand along narrower trail"]
+- [[35.766672,-81.550285], "question", "Metal Trash"]
+
+
+- [[35.769641,-81.552603], "question", "Big Treestand, 2 chairs"]
+- [[35.764339,-81.547700], "question", "Inflatable on Road side of creek"]
+- [[35.764148,-81.549529], "question", "Metal Treestand"]
+- [[35.764204,-81.549861], "question", "Deer Feeder"]
+- [[35.764635,-81.551111], "question", "Helmet"]
+- [[35.765175,-81.552522], "question", "Barrel"]
+
+- [[35.767343,-81.554421], "question", "Metal around tree"]
+- [[35.768008,-81.554255], "question", "Treestand"]
+- [[35.769053,-81.551272], "question", "Mailbox"]
+- [[35.773741,-81.545264], "question", "Manhole Remains"]
+- [[35.773223,-81.545318], "question", "Treestand"]
+- [[35.767099,-81.552629], "question", "Metal Barrel"]
+- [[35.771691,-81.555054], "question", "Metal Piece for Duck Hunting by Water"]
+

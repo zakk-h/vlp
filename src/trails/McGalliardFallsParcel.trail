@@ -3,7 +3,7 @@ secret: false
 color: "#03F103"
 dash: false
 miles: 2.0
-optional: false
+optional: true
 trail:
 - [35.76506409009316 ,-81.56717580313017]
 - [35.76482901250867 ,-81.5671345520893]
