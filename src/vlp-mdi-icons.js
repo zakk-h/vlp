@@ -2,7 +2,7 @@ import {mdiTableFurniture, mdiFlagTriangle, mdiCamera, mdiCarMultiple, mdiParkin
 	mdiSailBoat, mdiBridge, mdiNature, mdiInformationOutline, mdiWaves,
 	mdiBike, mdiFish, mdiShipWheel, mdiImageFilterHdr, mdiBeach, mdiSofaSingle,
 	mdiMapMarker, mdiGasStation, mdiSilverwareForkKnife, 
-	mdiFood, mdiBeer, mdiGlassWine} from '@mdi/js';
+	mdiFood, mdiBeer, mdiGlassWine, mdiDelete, mdiLadder, mdiHelp} from '@mdi/js';
 
 // https://materialdesignicons.com
 
@@ -20,12 +20,15 @@ const mdiSVGPaths = {
 	food:		mdiSilverwareForkKnife,
 	gas:		mdiGasStation,
 	info:		mdiInformationOutline,
+	ladder:		mdiLadder,
 	marker:		mdiMapMarker,
 	nature:		mdiNature,
 	parking:	mdiParking,
 	picnic:		mdiTableFurniture,
+	question:	mdiHelp,
 	rock:		mdiImageFilterHdr,
 	sofa:		mdiSofaSingle,
+	trash:		mdiDelete,
 	waves:		mdiWaves,
 	wheel:		mdiShipWheel,
 	wine:		mdiGlassWine,
@@ -53,12 +56,15 @@ const mdiSVGIcons = {
 	flag:	{path: mdiSVGPaths.flag,fill:'#EF6C00',anchor:[0,1.0]},
 	gas:	{path: mdiSVGPaths.gas,fill:'#400559',stroke:'#FFFFFF',strokeWidth:1.0,size:28},
 	info:	{path: mdiSVGPaths.info,fill:'#0000AA'},
+	ladder: {path: mdiSVGPaths.ladder,fill:'#3F2812', size: 35, stroke: '#FFFFFF'},
 	marker: {path: mdiSVGPaths.marker,stroke:'#0000AA',fill:'#FFFFFF'},
 	nature:	{path: mdiSVGPaths.nature,fill:'#00AA00',anchor:[0.5,1.0]},
 	parking: {path: mdiSVGPaths.parking,fill:'#0000AA'},
 	picnic:	{path: mdiSVGPaths.picnic,fill:'#5C2F00'},
+	question: {path: mdiSVGPaths.question,fill:'#6D0E0E', stroke: '#B0891E'},
 	rock:	{path: mdiSVGPaths.rock,fill:'#70BB0A',stroke:'#000000', size: 31}, 
 	sofa:	{path: mdiSVGPaths.sofa,fill:'#260D4E', size: 28},
+	trash: {path: mdiSVGPaths.trash,fill:'#000000', size:30},
 	waves:	{path: mdiSVGPaths.waves,fill:'#000066'},
 	wheel:	{path: mdiSVGPaths.wheel,fill:'#5C2F00'},
 	wine:	{path: mdiSVGPaths.wine,fill:'#9e0c35'},
