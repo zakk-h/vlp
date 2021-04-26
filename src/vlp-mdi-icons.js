@@ -62,6 +62,7 @@ const mdiSVGIcons = {
 	flag:	{path: mdiSVGPaths.flag,fill:'#EF6C00',anchor:[0,1.0]},
 	gas:	{path: mdiSVGPaths.gas,fill:'#400559',stroke:'#FFFFFF',strokeWidth:1.0,size:28},
 	info:	{path: mdiSVGPaths.info,fill:'#0000AA'},
+	ladder: {path: mdiSVGPaths.ladder,fill:'#3F2812', size: 35, stroke: '#FFFFFF'},
 	marker: {path: mdiSVGPaths.marker,stroke:'#0000AA',fill:'#FFFFFF'},
 	nature:	{path: mdiSVGPaths.nature,fill:'#00AA00',anchor:[0.5,1.0]},
 	parking: {path: mdiSVGPaths.parking,fill:'#0000AA'},
