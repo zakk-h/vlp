@@ -76,7 +76,7 @@ const mdiSVGIcons = {
 	trash: {path: mdiSVGPaths.trash,fill:'#000000', size:30},
 	ladder: {path: mdiSVGPaths.ladder,fill:'#3F2812', size: 35, stroke: '#FFFFFF'},
 	question: {path: mdiSVGPaths.question,fill:'#6D0E0E', stroke: '#B0891E'},
-	construction: {path: mdiSVGPaths.construction, fill: '#E1A911', stroke: '#000000', strokeWidth: 1.0, size: 175},
+	construction: {path: mdiSVGPaths.construction, fill: '#E1A911', stroke: '#000000', strokeWidth: 1.0, size: 120},
 	mower: {path: mdiSVGPaths.mower, fill: '#45050F', stroke: '#FFFFFF', size: 42},
 	weed: {path: mdiSVGPaths.weed, fill: '#A3A113', stroke: '#FFFFFF', size: 40},
 	hydrant: {path: mdiSVGPaths.hydrant, fill: '#DD2E2E', size: 32},
