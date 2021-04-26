@@ -17,11 +17,11 @@ export var vlpConfig = {
 		15: [[8956, 12890], [8965, 12898]]
 	},
 	//urlTileServer: 'https://static.valdese.net/osm/{z}/{x}_{y}.png'
-	//urlTileServer: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' //Base
+	urlTileServer: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' //Base
 	//urlTileServer: 'https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png' //Cycle OSM
 	//urlTileServer: 'https://tile.thunderforest.com/cycle/{z}/{x}/{y}.png?apikey=b972ec1093f1460a811e8b553ae4721d' //Open Cycle Map
 	//urlTileServer: 'https://tile.thunderforest.com/transport/{z}/{x}/{y}.png?apikey=b972ec1093f1460a811e8b553ae4721d' //Transport
-	urlTileServer: 'https://tile.thunderforest.com/landscape/{z}/{x}/{y}.png?apikey=b972ec1093f1460a811e8b553ae4721d' //Landscape - Favorite
+	//urlTileServer: 'https://tile.thunderforest.com/landscape/{z}/{x}/{y}.png?apikey=b972ec1093f1460a811e8b553ae4721d' //Landscape - Favorite
 	//urlTileServer: 'https://tile.thunderforest.com/outdoors/{z}/{x}/{y}.png?apikey=b972ec1093f1460a811e8b553ae4721d' //Outdoors
 	//urlTileServer: 'https://tile.thunderforest.com/transport-dark/{z}/{x}/{y}.png?apikey=b972ec1093f1460a811e8b553ae4721d' //Transport Dark
 	//urlTileServer: 'https://tile.thunderforest.com/spinal-map/{z}/{x}/{y}.png?apikey=b972ec1093f1460a811e8b553ae4721d' //Spinal

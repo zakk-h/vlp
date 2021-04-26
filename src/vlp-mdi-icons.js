@@ -2,7 +2,7 @@ import {mdiTableFurniture, mdiFlagTriangle, mdiCamera, mdiCarMultiple, mdiParkin
 	mdiSailBoat, mdiBridge, mdiNature, mdiInformationOutline, mdiWaves,
 	mdiBike, mdiFish, mdiShipWheel, mdiImageFilterHdr, mdiBeach, mdiCctv, mdiSofaSingle,
 	mdiMapMarker, mdiGasStation, mdiSilverwareForkKnife, 
-	mdiFood, mdiBeer, mdiGlassWine, mdiDelete, mdiLadder, mdiHelp} from '@mdi/js';
+	mdiFood, mdiBeer, mdiGlassWine, mdiDelete, mdiLadder, mdiHelp, mdiDumpTruck, mdiMower, mdiBarley, mdiFireHydrant} from '@mdi/js';
 
 // https://materialdesignicons.com
 
@@ -34,6 +34,10 @@ const mdiSVGPaths = {
 	trash:		mdiDelete,
 	ladder:		mdiLadder,
 	question:	mdiHelp,
+	construction: mdiDumpTruck,
+	mower: mdiMower,
+	weed: mdiBarley,
+	hydrant: mdiFireHydrant,
 }
 
 const mdiSVGIcons = {
@@ -71,6 +75,10 @@ const mdiSVGIcons = {
 	trash: {path: mdiSVGPaths.trash,fill:'#000000', size:30},
 	ladder: {path: mdiSVGPaths.ladder,fill:'#3F2812', size: 35, stroke: '#FFFFFF'},
 	question: {path: mdiSVGPaths.question,fill:'#6D0E0E', stroke: '#B0891E'},
+	construction: {path: mdiSVGPaths.construction, fill: '#E1A911', stroke: '#000000', strokeWidth: 1.0, size: 175},
+	mower: {path: mdiSVGPaths.mower, fill: '#45050F', stroke: '#FFFFFF', size: 42},
+	weed: {path: mdiSVGPaths.weed, fill: '#A3A113', stroke: '#FFFFFF', size: 40},
+	hydrant: {path: mdiSVGPaths.hydrant, fill: '#DD2E2E', size: 32},
 }
 
 function buildIcon(icoName) {

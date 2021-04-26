@@ -41,8 +41,8 @@ function vlpAppMap(targetDiv,router) {
 		maxBounds: valdese_area
 	});
 	let mapTiles = new ValdeseTileLayer(vlpConfig.urlTileServer, {
-		//attribution: '&copy; <a target="_blank" href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors', //No Thunderforest
-		attribution: '&copy; <a target="_blank" href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a target="_blank" href="https://www.Thunderforest.com">Thunderforest</a>', //With Thunderforest
+		attribution: '&copy; <a target="_blank" href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors', //No Thunderforest
+		//attribution: '&copy; <a target="_blank" href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a target="_blank" href="https://www.Thunderforest.com">Thunderforest</a>', //With Thunderforest
 		errorTileUrl: blankTile,
 		crossOrigin: true,
 		minZoom: vlpConfig.osmZoomRange[0],
@@ -65,12 +65,6 @@ function vlpAppMap(targetDiv,router) {
 	mapTiles.addTo(map);
 	yahBtn.bindTo(map);
 
-	if (g.vlpDebugMode) {
-		new ZoomViewer({position:'topleft'}).addTo(map);
-		map.on('click',e => {
-			vlpDebug(e.latlng.lat.toPrecision(8)+','+e.latlng.lng.toPrecision(8));
-		});
-	}
 
 	function maketrail(grp,opacity,weight,v) {
 		let nlo = {color:v.color,opacity:opacity,weight:weight};
@@ -202,7 +196,13 @@ function vlpAppMap(targetDiv,router) {
 	
 			pagedata.cache = cache;
 		}
-
+		if (g.vlpDebugMode) {
+			new ZoomViewer({position:'topleft'}).addTo(map);
+			map.on('click',e => {
+				vlpDebug(e.latlng.lat.toPrecision(8)+','+e.latlng.lng.toPrecision(8));
+			});
+		}
+	
 		if (map.zoomControl) {
 			let z = map.zoomControl;
 			if (pageopts.hideZoomControl) {

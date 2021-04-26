@@ -7,7 +7,7 @@ nav: B100
 {% include 'pages/social.html' %}
 
 The [Friends of the Valdese Rec][link-fvr] would like to welcome you to Valdese Lakeside,
-a 300 acre municipal park with construction set to start in 2020. Currently, the park is
+a 325 acre municipal park ith ongoing construction set to be completed by November 30th. Currently, the park is
 maintained by the [Friends of the Valdese Rec][link-fvr] volunteer organization.
 We hope that enjoy your visit to Valdese Lakeside Park!
 
