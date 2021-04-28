@@ -48,6 +48,8 @@ function vlpAppMap(targetDiv,router) {
 		minZoom: vlpConfig.osmZoomRange[0],
 		maxNativeZoom: vlpConfig.osmZoomRange[1]
 		});
+		
+	let fvrMark = new FVRWatermarkControl({position:'bottomleft'});	
 	let yahBtn = new YAHControl({maxBounds: parkplan_bounds});
 	let osmOnlyLayer = new L.ImageOverlay(blankImage, [[35.776043,-81.549904],[35.775486,-81.548724]],{opacity:0});
 	let contourLayer = new RotateImageLayer(img_parkcontours, vlpConfig.gpsBoundsParkContour,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:`<a target="_blank" href="${burkeGISMap}">gis.burkenc</a>`});
@@ -64,8 +66,11 @@ function vlpAppMap(targetDiv,router) {
 	map.attributionControl.setPrefix('');
 	mapTiles.addTo(map);
 	yahBtn.bindTo(map);
+	fvrMark.addTo(map);
+	map.attributionControl.addAttribution('<a href="#fvr" data-navigo>FVR</a>');
 
-
+	fvrMark.getContainer().addEventListener('click', routeToFVR);
+	
 	function maketrail(grp,opacity,weight,v) {
 		let nlo = {color:v.color,opacity:opacity,weight:weight};
 

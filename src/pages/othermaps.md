@@ -11,10 +11,8 @@ Here are some of them:
 - [Map with Measuring Tool for measuring path distances on the map][link-mapmeasure] 
 - [Trail Expansions (includes Tim Johnson's mountain bike expansion, Friends of the Valdese Rec trail expansions, or existing unmaintained logging roads)][link-everything]
 - [Volunteer Maintenance Map (with descriptions of job, tools needed, etc)][link-volunteer]
-- [Base Openstreetmap with routing features, layering stlyes, etc][link-osm]
 
 [link-everything]: everything.map
 [link-mapburke]: mapburke.map
 [link-mapmeasure]: mapmeasure.map
 [link-volunteer]: volunteer.map
-[link-osm]: https://www.openstreetmap.org/#map=16/35.7680/-81.5542
