@@ -1,5 +1,5 @@
-name: Orienteering Markers
-markers:
+#name: Orienteering Markers
+#markers:
 - [[35.773590, -81.547390], "flag", "Orienteering, found at the Picnic Area by the Greenway."]
 - [[35.772110, -81.547680], "flag", "Orienteering, found at an intersection of the Red Trail and a small meadow."]
 - [[35.769179, -81.551283], "flag", "Orienteering, found at an intersection of the Red Trail and a small meadow."]

@@ -1,0 +1,9 @@
+name: Valley
+secret: false
+color: "#000000"
+miles: 0.07
+dash: true
+optional: true
+trail:
+- [35.770772, -81.550974]
+- [35.771212, -81.552501]

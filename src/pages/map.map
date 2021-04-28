@@ -1,4 +1,4 @@
-nav: A100
+nav: A200
 title: Map of Lakeside Park
 opts:
 	maxBounds: [[35.721650, -81.597445], [35.784838, -81.514709]]
@@ -6,6 +6,5 @@ opts:
 	addParkOverlays: true
 	yahZoomStartup: true
 layers:
-- {group: Landmarks & Sightseeing, opacity: 0.85, weight: 9, list: [Landmarks.mapmarks,LakesideParkParcel.trail]}
-- {group: Primary Trails, opacity: 0.85, weight: 9, list: [ParkingLot.trail,GreenWay.trail,YellowConnector.trail,RedOuter.trail,BlueLoop.trail,MeditationPoint.trail,McGalliardGreenway.trail,HoyleCreek.trail,ShadeSeeker.trail,OuterCreek.trail]}
-- {group: Around Valdese, opacity: 0.85, weight: 9, list: [Food.mapmarks,Petrol.mapmarks]}
+- {group: Options, opacity: 0.85, weight: 9, list: [Landmarks.mapmarks]}
+- {group: Primary Trails, opacity: 0.85, weight: 9, list: [GreenWay.trail,YellowConnector.trail,RedOuter.trail,McGalliardGreenway.trail,HoyleCreek.trail,ShadeSeeker.trail,OuterCreek.trail, Pink.trail, Tan.trail]}

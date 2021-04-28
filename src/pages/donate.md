@@ -10,7 +10,7 @@ or donating to our General Fund.
 
 Friends of the Valdese Rec, Inc is a 501c3.
 
-<a class="btn" target="_blank" href="https://friendsofthevaldeserec.org/donate-2"><i class="fvricon fvricon-donate" style="font-size:32px; color:darkred;"></i><br>Goto Donation Page</a>
+<a class="btn" target="_blank" href="https://friendsofthevaldeserec.org/donate"><i class="fvricon fvricon-donate" style="font-size:32px; color:darkred;"></i><br>Go to Donation Page</a>
 
 [fvrlogo]: ../img/fvrlogopng.png
 [link-fvr]: https://friendsofthevaldeserec.org

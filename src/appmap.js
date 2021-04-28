@@ -41,13 +41,15 @@ function vlpAppMap(targetDiv,router) {
 		maxBounds: valdese_area
 	});
 	let mapTiles = new ValdeseTileLayer(vlpConfig.urlTileServer, {
-		attribution: '&copy; <a target="_blank" href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+		attribution: '&copy; <a target="_blank" href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors', //No Thunderforest
+		//attribution: '&copy; <a target="_blank" href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a target="_blank" href="https://www.Thunderforest.com">Thunderforest</a>', //With Thunderforest
 		errorTileUrl: blankTile,
 		crossOrigin: true,
 		minZoom: vlpConfig.osmZoomRange[0],
 		maxNativeZoom: vlpConfig.osmZoomRange[1]
 		});
-	let fvrMark = new FVRWatermarkControl({position:'bottomleft'});
+		
+	let fvrMark = new FVRWatermarkControl({position:'bottomleft'});	
 	let yahBtn = new YAHControl({maxBounds: parkplan_bounds});
 	let osmOnlyLayer = new L.ImageOverlay(blankImage, [[35.776043,-81.549904],[35.775486,-81.548724]],{opacity:0});
 	let contourLayer = new RotateImageLayer(img_parkcontours, vlpConfig.gpsBoundsParkContour,{rotation:vlpConfig.gpsBoundsLayerRotate,attribution:`<a target="_blank" href="${burkeGISMap}">gis.burkenc</a>`});
@@ -68,14 +70,7 @@ function vlpAppMap(targetDiv,router) {
 	map.attributionControl.addAttribution('<a href="#fvr" data-navigo>FVR</a>');
 
 	fvrMark.getContainer().addEventListener('click', routeToFVR);
-
-	if (g.vlpDebugMode) {
-		new ZoomViewer({position:'topleft'}).addTo(map);
-		map.on('click',e => {
-			vlpDebug(e.latlng.lat.toPrecision(8)+','+e.latlng.lng.toPrecision(8));
-		});
-	}
-
+	
 	function maketrail(grp,opacity,weight,v) {
 		let nlo = {color:v.color,opacity:opacity,weight:weight};
 
@@ -206,7 +201,13 @@ function vlpAppMap(targetDiv,router) {
 	
 			pagedata.cache = cache;
 		}
-
+		if (g.vlpDebugMode) {
+			new ZoomViewer({position:'topleft'}).addTo(map);
+			map.on('click',e => {
+				vlpDebug(e.latlng.lat.toPrecision(8)+','+e.latlng.lng.toPrecision(8));
+			});
+		}
+	
 		if (map.zoomControl) {
 			let z = map.zoomControl;
 			if (pageopts.hideZoomControl) {

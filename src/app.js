@@ -76,9 +76,9 @@ function initLakesideParkApp() {
 			}
 		}
 
-		if (doAppInit) {
+		/*if (doAppInit) {
 			if (!showWhatsNew()) openTheMenu(true);
-		}
+		}*/
 	}
 
 	ctrl_PageTitle.addEventListener("click",(e) => toggleMenu());

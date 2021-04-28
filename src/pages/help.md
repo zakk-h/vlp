@@ -22,13 +22,6 @@ the map overlay image.
 - The info button icon in the top left corner provides more information about the park
 along with summaries and pictures of all the trails here.
 
-## Alternate Maps
-
-The app includes some alternate map views, which occasionally can be useful:
-
-- [Map of Burk County][link-mapburke] for looking around the park's surrounding area
-- [Map with Measuring Tool][link-mapmeasure] for measuring path distances on the map
-
 ## Offline Use
 
 You can install the app on any device and it works offline. Detailed instructions can be found

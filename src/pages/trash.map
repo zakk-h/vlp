@@ -1,6 +1,6 @@
 ignore: true
 nav: Z100
-title: March 13 Cleanup (via Zakklab)
+title: Trash Map
 opts:
 	maxBounds: [[35.721650, -81.597445], [35.784838, -81.514709]]
 	yahBounds: [[35.7632, -81.5670], [35.7765, -81.54284]]
@@ -9,5 +9,5 @@ opts:
 	addMeasureControl: true
 	hideZoomControl: true
 layers:
-- {group: Cleanup Markers, opacity: 0.85, weight: 9, list: [CleanupDay313.mapmarks]}
+- {group: Cleanup Markers, opacity: 0.85, weight: 9, list: [trash.mapmarks]}
 - {group: Primary Trails, opacity: 0.85, weight: 9, list: [ParkingLot.trail,GreenWay.trail,YellowConnector.trail,RedOuter.trail,BlueLoop.trail,MeditationPoint.trail,McGalliardGreenway.trail,HoyleCreek.trail,ShadeSeeker.trail,OuterCreek.trail]}

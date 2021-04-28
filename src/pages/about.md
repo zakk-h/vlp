@@ -7,7 +7,7 @@ nav: B100
 {% include 'pages/social.html' %}
 
 The [Friends of the Valdese Rec][link-fvr] would like to welcome you to Valdese Lakeside,
-a 300 acre municipal park with construction set to start in 2020. Currently, the park is
+a 325 acre municipal park ith ongoing construction set to be completed by November 30th. Currently, the park is
 maintained by the [Friends of the Valdese Rec][link-fvr] volunteer organization.
 We hope that enjoy your visit to Valdese Lakeside Park!
 
@@ -25,6 +25,7 @@ species. A generous sampling of the park wildlife can be seen on [the zakklab si
 ## Trails
 
 The park is home to a number of trails. Tap the trail name to see more information.
+
 
 <details>
 <summary>Greenway</summary>
@@ -145,4 +146,4 @@ The width and terrain of the trail varies.
 [link-fvr]: #fvr
 [link-bridgedonate]: #donate
 [link-lakelevels]: https://lakes.duke-energy.com/index.html#/detail/14/Detail
-[link-zakklab]: https://zakklab.valdese.info
+[link-zakklab]: https://zakklab.valdese.info/vlp/wildlife/
