@@ -1,6 +1,7 @@
 {
 	"name": "{{ appd.fulltitle }}",
 	"short_name": "{{ appd.title }}",
+	"description": "Helps you navigate the trails in the Valdese Lakeside Park",
 	"theme_color": "{{ appd.manifest_themecolor }}",
 	"background_color": "{{ appd.manifest_bgcolor }}",
 	"display": "standalone",

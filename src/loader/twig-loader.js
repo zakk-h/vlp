@@ -51,7 +51,7 @@ function parseFrontMatter(text, re=mdYAMLHeader) {
 		if (yamlOrJson.charAt(0) === '{') {
 			out[0] = JSON.parse(yamlOrJson);
 		} else {
-			out[0] = YAML.parse(yamlOrJson);
+			out[0] = YAML.parse(yamlOrJson,{indent:4,schema:'core',prettyErrors:true});
 		}
 	}
 

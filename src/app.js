@@ -22,6 +22,7 @@ function initLakesideParkApp() {
 	var router = new Navigo(getSiteRootURL(), true);
 	var map = new vlpAppMap(map_elem,router);
 	var ctrl_PageTitle = document.getElementById('id_AppPageTitle');
+	var ctrl_PageTitleText = ctrl_PageTitle.querySelector('span:last-of-type');
 	var ctrl_CloseBtn = document.getElementById('id_CloseAppInfoBtn');
 	var menuscreen_elem = document.getElementById('win-mainmenu');
 	var firstTime = true;
@@ -50,7 +51,7 @@ function initLakesideParkApp() {
 		openTheMenu(false);
 
 		document.title = newTitle;
-		ctrl_PageTitle.innerHTML = newTitle;
+		ctrl_PageTitleText.innerHTML = newTitle;
 		
 		if (isMapPage) {
 			hideElem(infoscreen_elem, true);
@@ -76,9 +77,9 @@ function initLakesideParkApp() {
 			}
 		}
 
-		/*if (doAppInit) {
-			if (!showWhatsNew()) openTheMenu(true);
-		}*/
+		if (doAppInit) {
+			showWhatsNew();
+		}
 	}
 
 	ctrl_PageTitle.addEventListener("click",(e) => toggleMenu());
