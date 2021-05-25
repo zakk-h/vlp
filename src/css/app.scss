@@ -1,5 +1,6 @@
 
 @use "sass:color";
+@use "sass:math";
 @use "./lib" as *;
 
 html,
@@ -25,18 +26,27 @@ a {
 	z-index: 999999;
 	position: absolute;
 	top: 0;
-	left: calc(50% - #{$menu-width / 2});
+	left: calc(50% - #{math.div($menu-width,2)});
 	width: $menu-width;
+	overflow: hidden;
 	padding: 3px 0 0 0;
 	height: $header-size - 3px;
-	margin: 0;
-	font: 16px "Times New Roman", Times, serif;
+	margin: 0 auto;
 	text-align: center;
+	vertical-align:text-top;
 	background-color: $menu-bgcolor;
 	color: #fff;
 	border-radius: 0 0 $menu-radius $menu-radius;
 }
-#id_AppPageTitle::before { content: "\021F3"; padding-right:10px; color: green;}
+#id_AppPageTitle span {
+	font:16px "Times New Roman", Times, serif;
+	line-height: 20px;
+	vertical-align:text-top;
+}
+#id_AppPageTitle span:first-child {
+	font-size: 26px;
+	padding-right: 10px;
+}
 #id_AppPageTitle.menu-active {border-radius: $menu-radius $menu-radius 0 0;}
 // app menu
 div.app-menu {
@@ -48,7 +58,7 @@ div.app-menu {
 	top: 0;
 	left: 50%;
 	width: $menu-width;
-	margin: 0 0 0 #{0px - ($menu-width / 2)};
+	margin: 0 0 0 #{0px - math.div($menu-width,2)};
 	padding: 0 0 10px 0;
 	background-color: $menu-bgcolor;
 	color: white;
