@@ -1,0 +1,3 @@
+name: Info
+markers:
+- [[35.774359,-81.549132], info, <a class="btn" href="#key" data-navigo>Wildlife Key</a><a class="btn" target="_blank" href="https://zakklab.valdese.info/vlp/wildlife/" data-navigo>Wildlife Videos</a>] 

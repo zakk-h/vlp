@@ -7,4 +7,4 @@ opts:
 	yahZoomStartup: true
 layers:
 - {group: Options, opacity: 0.85, weight: 9, list: [Landmarks.mapmarks,LakesideParkParcel.trail]}
-- {group: Primary Trails, opacity: 0.85, weight: 9, list: [GreenWay.trail,YellowConnector.trail,RedOuter.trail,McGalliardGreenway.trail,HoyleCreek.trail,ShadeSeeker.trail,OuterCreek.trail, Pink.trail, Tan.trail]}
+- {group: Primary Trails, opacity: 0.85, weight: 9, list: [GreenWay.trail,YellowConnector.trail,RedOuter.trail,McGalliardGreenway.trail,HoyleCreek.trail,ShadeSeeker.trail,OuterCreek.trail, Pink.trail]}

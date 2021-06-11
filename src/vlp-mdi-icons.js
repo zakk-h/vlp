@@ -1,8 +1,8 @@
 import {mdiTableFurniture, mdiFlagTriangle, mdiCamera, mdiCarMultiple, mdiParking, 
-	mdiSailBoat, mdiBridge, mdiNature, mdiInformationOutline, mdiWaves,
+	mdiSailBoat, mdiBridge, mdiNature, mdiInformation, mdiWaves,
 	mdiBike, mdiFish, mdiShipWheel, mdiImageFilterHdr, mdiBeach, mdiCctv, mdiSofaSingle,
 	mdiMapMarker, mdiGasStation, mdiSilverwareForkKnife, 
-	mdiFood, mdiBeer, mdiGlassWine, mdiDelete, mdiLadder, mdiHelp, mdiDumpTruck, mdiMower, mdiBarley, mdiFireHydrant} from '@mdi/js';
+	mdiFood, mdiBeer, mdiGlassWine, mdiDelete, mdiLadder, mdiHelp, mdiDumpTruck, mdiMower, mdiBarley, mdiFireHydrant, mdiPaw} from '@mdi/js';
 
 // https://materialdesignicons.com
 
@@ -15,7 +15,7 @@ const mdiSVGPaths = {
 	cars:    mdiCarMultiple,
 	fish:    mdiFish,
 	flag:    mdiFlagTriangle,
-	info:    mdiInformationOutline,
+	info:    mdiInformation,
 	nature:  mdiNature,
 	parking: mdiParking,
 	picnic:  mdiTableFurniture,
@@ -38,6 +38,7 @@ const mdiSVGPaths = {
 	mower: mdiMower,
 	weed: mdiBarley,
 	hydrant: mdiFireHydrant,
+	wildlife: mdiPaw,
 }
 
 const mdiSVGIcons = {
@@ -61,7 +62,7 @@ const mdiSVGIcons = {
 	fish:	{path: mdiSVGPaths.fish,fill:'#F6E35B',stroke:'#000000',strokeWidth:1},
 	flag:	{path: mdiSVGPaths.flag,fill:'#EF6C00',anchor:[0,1.0]},
 	gas:	{path: mdiSVGPaths.gas,fill:'#400559',stroke:'#FFFFFF',strokeWidth:1.0,size:28},
-	info:	{path: mdiSVGPaths.info,fill:'#0000AA'},
+	info:	{path: mdiSVGPaths.info,fill:'#0000AA', size: 40},
 	ladder: {path: mdiSVGPaths.ladder,fill:'#3F2812', size: 35, stroke: '#FFFFFF'},
 	marker: {path: mdiSVGPaths.marker,stroke:'#0000AA',fill:'#FFFFFF'},
 	nature:	{path: mdiSVGPaths.nature,fill:'#00AA00',anchor:[0.5,1.0]},
@@ -80,6 +81,20 @@ const mdiSVGIcons = {
 	mower: {path: mdiSVGPaths.mower, fill: '#45050F', stroke: '#FFFFFF', size: 42},
 	weed: {path: mdiSVGPaths.weed, fill: '#A3A113', stroke: '#FFFFFF', size: 40},
 	hydrant: {path: mdiSVGPaths.hydrant, fill: '#DD2E2E', size: 32},
+	blackw: {path: mdiSVGPaths.wildlife, fill: '#000000', size: 33},
+	yelloww: {path: mdiSVGPaths.wildlife, fill: '#DFF007', size: 33},
+	cyanw: {path: mdiSVGPaths.wildlife, fill: '#00F7D6', size: 33},
+	orangew: {path: mdiSVGPaths.wildlife, fill: '#FFAA00', size: 33},
+	tanw: {path: mdiSVGPaths.wildlife, fill: '#B6783F', size: 33},
+	whitew: {path: mdiSVGPaths.wildlife, fill: '#FFFFFF', size: 33},
+	redw: {path: mdiSVGPaths.wildlife, fill: '#FF0000', size: 33},
+	grayw: {path: mdiSVGPaths.wildlife, fill: '#8E908B', size: 33},
+	bluew: {path: mdiSVGPaths.wildlife, fill: '#20A2C6', size: 33},
+	brownw: {path: mdiSVGPaths.wildlife, fill: '#775541', size: 28},
+	pinkw: {path: mdiSVGPaths.wildlife, fill: '#FF0093', size: 33},
+	greenw: {path: mdiSVGPaths.wildlife, fill: '#228A13', size: 33},
+	purplew: {path: mdiSVGPaths.wildlife, fill: '#960A96', size: 33},
+	limew: {path: mdiSVGPaths.wildlife, fill: '#3FE114', size: 33},
 }
 
 function buildIcon(icoName) {

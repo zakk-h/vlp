@@ -5,7 +5,7 @@ export var vlpConfig = {
 	gpsBoundsParkContour: [[35.76295, -81.5668], [35.7765, -81.5433]],
 	gpsBoundsParkPlan: [[35.7632, -81.5670], [35.7765, -81.54284]],
 	gpsBoundsSatellite: [[35.75907, -81.57701], [35.78042, -81.523604]],
-	osmZoomRange: [8, 17],
+	osmZoomRange: [8, 19],
 	osmTileRanges: {
 		8: [[66, 98], [73, 102]],
 		9: [[136, 199], [143, 203]],
