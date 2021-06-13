@@ -7,5 +7,5 @@ opts:
 	addMeasureControl: true
 	hideZoomControl: true
 layers:
-- {group: Options, opacity: 0.85, weight: 9, list: [LakesideParkParcel.trail, DogPark.trail]}
-- {group: Misc, opacity: 0.85, weight: 9, list: [Logging1.trail, Logging2.trail, Logging4.trail, Logging5.trail, Logging6.trail, Logging7.trail, Logging8.trail, LoggingValley1.trail, Mtn.trail, Mtn2.trail, McGalliardFallsParcel.trail, McGalliardPointeParcel.trail]}
+- {group: Main, opacity: 0.85, weight: 9, list: [Mtn.trail, Mtn2.trail, TimRedSaft.trail, TimRedEast.trail, LakesideParkParcel.trail]}
+- {group: Misc, opacity: 0.85, weight: 9, list: [Logging1.trail, Logging2.trail, Logging4.trail, Logging5.trail, Logging6.trail, Logging7.trail, Logging8.trail, LoggingValley1.trail, McGalliardFallsParcel.trail, McGalliardPointeParcel.trail]}

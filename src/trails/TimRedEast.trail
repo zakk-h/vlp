@@ -1,0 +1,9 @@
+name: Eastern Red Reroute
+"secret": false
+"color": "#cc0000"
+"miles": 0.00
+"dash": true
+"optional": false
+"trail": 
+- [35.766766,-81.550058]
+- [35.766723,-81.550101]
